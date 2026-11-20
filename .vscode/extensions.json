@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "yzhang.markdown-all-in-one",
+    "DavidAnson.vscode-markdownlint",
+    "bierner.markdown-mermaid",
+    "ms-dotnettools.csdevkit",
+    "ms-python.python",
+    "charliermarsh.ruff",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "redhat.vscode-yaml",
+    "ms-vscode-remote.remote-wsl",
+    "timonwong.shellcheck"
+  ]
+}

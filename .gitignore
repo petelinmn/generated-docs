@@ -1,0 +1,42 @@
+# .NET
+bin/
+obj/
+*.user
+TestResults/
+.vs/
+artifacts/
+*.binlog
+*.suo
+*.DotSettings.user
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# Секреты и локальные настройки
+.env
+.env.*
+!.env.example
+*.kubeconfig
+.claude/settings.local.json
+
+# Модели и данные (LLM)
+*.gguf
+*.safetensors
+models/
+data/raw/
+
+# ОС и редакторы
+.idea/
+*.swp
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
