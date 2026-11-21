@@ -76,7 +76,7 @@ public static ref int FindFirst(int[] values, int target)
 }
 ```
 
-Вызывающий код: `ref int slot = ref RefReturns.FindFirst(values, 2); slot = 20;` — и массив `[1, 2, 3]` становится `[1, 20, 3]`. Ссылку можно вернуть только на то, что переживёт метод: элемент массива, поле объекта, `ref`-параметр. На локальную переменную нельзя — компилятор не даст. На этом механизме построены `Span<T>` и высокопроизводительные API (модуль 12). Код: [Ex09_RefReturns.cs](code/Examples/Ex09_RefReturns.cs).
+Вызывающий код: `ref int slot = ref RefReturns.FindFirst(values, 2); slot = 20;` — и массив `[1, 2, 3]` становится `[1, 20, 3]`. Ссылку можно вернуть только на то, что переживёт метод: элемент массива, поле объекта, `ref`-параметр. На локальную переменную нельзя — компилятор не даст. На этом механизме построены `Span<T>` и высокопроизводительные API (модуль 12a «Span и Memory», ещё не создан). Код: [Ex09_RefReturns.cs](code/Examples/Ex09_RefReturns.cs).
 
 ## Как foreach находит перечислитель
 
@@ -188,7 +188,7 @@ public readonly struct EvenNumbers
 | `ref readonly T x` (C# 12) | по ссылке, только чтение | вызывающий передаёт `ref` или `in`: `ReadOnlyRef(ref number)` и `ReadOnlyRef(in number)` дают одинаковый результат |
 | `params T[] x`, `params ReadOnlySpan<T> x` (C# 13) | переменное число аргументов | |
 | `T x = значение` | необязательный | значение подставляется в место вызова |
-| `scoped ref T x` (C# 11) | ограничивает время жизни ссылки | для `ref struct` и `Span<T>` (модуль 12) |
+| `scoped ref T x` (C# 11) | ограничивает время жизни ссылки | для `ref struct` и `Span<T>` (модуль 12a) |
 | `this T x` | первый параметр метода расширения | модуль 11 |
 
 Перегрузки, отличающиеся только `ref` и `out`, запрещены (CS0663). Перегрузки «по значению» и «по `ref`» допустимы: `M(1)` вызывает версию по значению, `M(ref field)` — версию с `ref`.
@@ -231,7 +231,7 @@ public readonly struct EvenNumbers
 | `checked` / `unchecked` | [02 · Типы и переменные](../02-types-and-variables/basics.ru.md) |
 | `yield return` / `yield break` | модуль 07 · LINQ |
 | `await`, `await foreach`, `await using` | модуль 10 · Async/await |
-| `using`, `fixed`, `unsafe` | модуль 12 · Память и GC |
+| `using`, `fixed`, `unsafe` | [12 · Память и GC](../12-memory-and-gc/expert.ru.md#закрепление-объектов) |
 | `lock` | модуль 18 · Многопоточность |
 
 ## Подвохи
@@ -262,7 +262,7 @@ static void IncrementViaIn(in Counter c) => c.Increment();
 static void IncrementViaRef(ref Counter c) => c.Increment();
 ```
 
-После `IncrementViaIn(in counter)` значение по-прежнему `0`, после `IncrementViaRef(ref counter)` — `1`. Параметр `in` нельзя менять, поэтому компилятор вызывает изменяющий метод на **защитной копии** (defensive copy) и молча её выбрасывает. Вывод: `in` — для `readonly struct`, иначе копия ещё и тратит время.
+После `IncrementViaIn(in counter)` значение по-прежнему `0`, после `IncrementViaRef(ref counter)` — `1`. Параметр `in` нельзя менять, поэтому компилятор вызывает изменяющий метод на **защитной копии** (defensive copy) и молча её выбрасывает. Вывод: `in` — для `readonly struct`, иначе копия ещё и тратит время. Та же ловушка — у `SpinLock` в `readonly`-поле: см. [18 · Многопоточность](../18-concurrency/expert.ru.md).
 
 ### params и явный null
 
@@ -456,6 +456,7 @@ read();   // 2
 
 - Пререквизиты: [02 · Типы и переменные](../02-types-and-variables/overview.ru.md)
 - Раньше: [01 · Платформа .NET и dotnet CLI](../01-dotnet-platform/overview.ru.md)
+- `using`, `fixed` и закрепление объектов: [12 · Память и GC](../12-memory-and-gc/expert.ru.md#закрепление-объектов)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `match`, циклы `for … in`, аргументы `*args` и `**kwargs`
 
 ## Источники

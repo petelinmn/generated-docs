@@ -87,7 +87,7 @@ public static long UnboxAsLong(object boxed) => (long)boxed;
 - `EqualityOperatorOnBoxes()` → `false`: `==` on `object` compares references.
 - `UnboxAsLong(42)` → `InvalidCastException`: the box holds an `int`, but it is unboxed as `long`. The right way: `(long)(int)boxed`.
 
-Boxing costs an allocation and GC work. It appears silently when value types are passed to APIs that take `object`. Generics (module 06) solve this problem. Code: [Ex05_Boxing.cs](code/Examples/Ex05_Boxing.cs).
+Boxing costs an allocation and GC work. It appears silently when value types are passed to APIs that take `object`. Generics (module 06) solve this problem. Code: [Ex05_Boxing.cs](code/Examples/Ex05_Boxing.cs). Boxing is also why `lock` on a value type is forbidden: see [18 · Multithreading](../18-concurrency/expert.en.md).
 
 ## double vs decimal
 
@@ -158,6 +158,8 @@ If `InvariantGlobalization` is enabled in the project, cultures are not availabl
 
 - Prerequisites: [01 · The .NET platform and dotnet CLI](../01-dotnet-platform/overview.en.md) — the project, `<Nullable>enable</Nullable>`, building
 - Next: [03 · Control flow and methods](../03-control-flow-and-methods/overview.en.md) — `ref`, `out`, `in` and passing value types to methods
+- What boxing costs the GC: [12 · Memory and GC](../12-memory-and-gc/advanced.en.md#measuring-allocations)
+- `decimal` in a database through EF Core (SQLite stores it as `TEXT`): [15 · EF Core](../15-ef-core/expert.en.md#sqlite-specifics)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — dynamic typing and type annotations instead of static types
 
 ## Sources

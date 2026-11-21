@@ -76,7 +76,7 @@ public static ref int FindFirst(int[] values, int target)
 }
 ```
 
-The calling code: `ref int slot = ref RefReturns.FindFirst(values, 2); slot = 20;` — and the array `[1, 2, 3]` becomes `[1, 20, 3]`. A reference can be returned only to something that outlives the method: an array element, an object field, a `ref` parameter. Not to a local variable — the compiler will not allow it. `Span<T>` and high-performance APIs are built on this mechanism (module 12). Code: [Ex09_RefReturns.cs](code/Examples/Ex09_RefReturns.cs).
+The calling code: `ref int slot = ref RefReturns.FindFirst(values, 2); slot = 20;` — and the array `[1, 2, 3]` becomes `[1, 20, 3]`. A reference can be returned only to something that outlives the method: an array element, an object field, a `ref` parameter. Not to a local variable — the compiler will not allow it. `Span<T>` and high-performance APIs are built on this mechanism (module 12a "Span and Memory", not created yet). Code: [Ex09_RefReturns.cs](code/Examples/Ex09_RefReturns.cs).
 
 ## How foreach finds an enumerator
 
@@ -188,7 +188,7 @@ An example of `goto case`: `switch (1)` with sections `case 1: … goto case 2;`
 | `ref readonly T x` (C# 12) | by reference, read-only | the caller passes `ref` or `in`: `ReadOnlyRef(ref number)` and `ReadOnlyRef(in number)` give the same result |
 | `params T[] x`, `params ReadOnlySpan<T> x` (C# 13) | a variable number of arguments | |
 | `T x = value` | optional | the value is substituted at the call site |
-| `scoped ref T x` (C# 11) | limits the lifetime of the reference | for `ref struct` and `Span<T>` (module 12) |
+| `scoped ref T x` (C# 11) | limits the lifetime of the reference | for `ref struct` and `Span<T>` (module 12a) |
 | `this T x` | the first parameter of an extension method | module 11 |
 
 Overloads that differ only in `ref` and `out` are forbidden (CS0663). Overloads "by value" and "by `ref`" are allowed: `M(1)` calls the by-value version, `M(ref field)` the `ref` version.
@@ -231,7 +231,7 @@ Declarations inside a method: local variables (`var` or an explicit type), local
 | `checked` / `unchecked` | [02 · Types and variables](../02-types-and-variables/basics.en.md) |
 | `yield return` / `yield break` | module 07 · LINQ |
 | `await`, `await foreach`, `await using` | module 10 · Async/await |
-| `using`, `fixed`, `unsafe` | module 12 · Memory and GC |
+| `using`, `fixed`, `unsafe` | [12 · Memory and GC](../12-memory-and-gc/expert.en.md#pinning) |
 | `lock` | module 18 · Concurrency |
 
 ## Gotchas
@@ -262,7 +262,7 @@ static void IncrementViaIn(in Counter c) => c.Increment();
 static void IncrementViaRef(ref Counter c) => c.Increment();
 ```
 
-After `IncrementViaIn(in counter)` the value is still `0`, after `IncrementViaRef(ref counter)` it is `1`. An `in` parameter cannot be changed, so the compiler calls the mutating method on a **defensive copy** and silently discards it. Takeaway: `in` is for a `readonly struct`; otherwise the copy also costs time.
+After `IncrementViaIn(in counter)` the value is still `0`, after `IncrementViaRef(ref counter)` it is `1`. An `in` parameter cannot be changed, so the compiler calls the mutating method on a **defensive copy** and silently discards it. Takeaway: `in` is for a `readonly struct`; otherwise the copy also costs time. The same trap applies to a `SpinLock` in a `readonly` field: see [18 · Multithreading](../18-concurrency/expert.en.md).
 
 ### params and an explicit null
 
@@ -456,6 +456,7 @@ An attribute (C# 10) that passes the text of another argument's expression into 
 
 - Prerequisites: [02 · Types and variables](../02-types-and-variables/overview.en.md)
 - Earlier: [01 · The .NET platform and dotnet CLI](../01-dotnet-platform/overview.en.md)
+- `using`, `fixed` and pinning: [12 · Memory and GC](../12-memory-and-gc/expert.en.md#pinning)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — `match`, `for … in` loops, `*args` and `**kwargs` arguments
 
 ## Sources

@@ -449,6 +449,8 @@ It takes the lowest version that satisfies all constraints. If the project refer
 ## Related materials
 
 - Next: [02 · Types and variables](../02-types-and-variables/overview.en.md), [03 · Control flow and methods](../03-control-flow-and-methods/overview.en.md)
+- The `dotnet ef` local tool and migrations: [15 · EF Core](../15-ef-core/basics.en.md#migrations)
+- GC settings in `runtimeconfig.json` and environment variables: [12 · Memory and GC](../12-memory-and-gc/expert.en.md#gc-settings)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — the CPython interpreter, uv and `pyproject.toml` instead of the dotnet CLI and `.csproj`; [Kubernetes](../../../kubernetes/overview.en.md) — containers for .NET apps
 
 ## Sources

@@ -23,6 +23,7 @@
 - [ ] 10-async-await
 - [ ] 11-modern-csharp
 - [ ] 12-memory-and-gc
+- [ ] 12a-span-and-memory
 - [ ] 13-di-config-logging
 - [ ] 14-aspnet-core-minimal-api
 - [ ] 15-ef-core

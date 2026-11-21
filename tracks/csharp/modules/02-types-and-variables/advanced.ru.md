@@ -87,7 +87,7 @@ public static long UnboxAsLong(object boxed) => (long)boxed;
 - `EqualityOperatorOnBoxes()` → `false`: `==` для `object` сравнивает ссылки.
 - `UnboxAsLong(42)` → `InvalidCastException`: в коробке `int`, а распаковывают как `long`. Правильно: `(long)(int)boxed`.
 
-Boxing стоит аллокации и работы GC. Он незаметно возникает при передаче значимых типов в API, которые принимают `object`. Обобщения (generics, модуль 06) решают эту проблему. Код: [Ex05_Boxing.cs](code/Examples/Ex05_Boxing.cs).
+Boxing стоит аллокации и работы GC. Он незаметно возникает при передаче значимых типов в API, которые принимают `object`. Обобщения (generics, модуль 06) решают эту проблему. Код: [Ex05_Boxing.cs](code/Examples/Ex05_Boxing.cs). Упаковка — ещё и причина, по которой `lock` по значимому типу запрещён: см. [18 · Многопоточность](../18-concurrency/expert.ru.md).
 
 ## double и decimal
 
@@ -158,6 +158,8 @@ public static string FormatInvariant(double value) => value.ToString("N2", Cultu
 
 - Пререквизиты: [01 · Платформа .NET и dotnet CLI](../01-dotnet-platform/overview.ru.md) — проект, `<Nullable>enable</Nullable>`, сборка
 - Дальше: [03 · Управляющие конструкции и методы](../03-control-flow-and-methods/overview.ru.md) — `ref`, `out`, `in` и передача значимых типов в методы
+- Сколько стоит упаковка для GC: [12 · Память и GC](../12-memory-and-gc/advanced.ru.md#измерение-выделений-памяти)
+- `decimal` в базе данных через EF Core (в SQLite хранится как `TEXT`): [15 · EF Core](../15-ef-core/expert.ru.md#особенности-sqlite)
 - То же в других треках: [Python](../../../python/overview.ru.md) — динамическая типизация и аннотации типов вместо статических типов
 
 ## Источники

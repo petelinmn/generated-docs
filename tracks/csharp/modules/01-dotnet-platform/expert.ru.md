@@ -449,6 +449,8 @@ File-based app неявно получает `PublishAot=true`, и SDK запи�
 ## Связанные материалы
 
 - Дальше: [02 · Типы и переменные](../02-types-and-variables/overview.ru.md), [03 · Управляющие конструкции и методы](../03-control-flow-and-methods/overview.ru.md)
+- Локальный инструмент `dotnet ef` и миграции: [15 · EF Core](../15-ef-core/basics.ru.md#миграции)
+- Настройки GC в `runtimeconfig.json` и переменных окружения: [12 · Память и GC](../12-memory-and-gc/expert.ru.md#настройки-gc)
 - То же в других треках: [Python](../../../python/overview.ru.md) — интерпретатор CPython, uv и `pyproject.toml` вместо dotnet CLI и `.csproj`; [Kubernetes](../../../kubernetes/overview.ru.md) — контейнеры для .NET-приложений
 
 ## Источники

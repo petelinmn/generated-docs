@@ -51,10 +51,11 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 
 - [10 · Async/await](modules/10-async-await/overview.en.md) — `Task`, `ValueTask`, `CancellationToken`, deadlocks, common mistakes
 - [11 · Modern C#](modules/11-modern-csharp/overview.en.md) — pattern matching, switch expressions, primary constructors, collection expressions, required/init, extension members
-- [12 · Memory and GC](modules/12-memory-and-gc/overview.en.md) — stack and heap, GC generations, `IDisposable` and `using`, `Span<T>` and `Memory<T>`
+- [12 · Memory and GC](modules/12-memory-and-gc/overview.en.md) — stack and heap, GC generations, `IDisposable` and `using`, finalizers and `SafeHandle`, memory leaks, GC modes and settings
+- [12a · Span and Memory](modules/12a-span-and-memory/overview.en.md) — `Span<T>`, `Memory<T>`, `stackalloc`, `ref struct`, `System.IO.Pipelines`
 - [13 · DI, configuration, logging](modules/13-di-config-logging/overview.en.md) — Generic Host, DI container and lifetimes, Options pattern, `ILogger`
 - [14 · ASP.NET Core: Minimal API](modules/14-aspnet-core-minimal-api/overview.en.md) — routing, middleware, validation, OpenAPI, error handling
-- [15 · EF Core](modules/15-ef-core/overview.en.md) — DbContext, migrations, relationships, change tracking, the N+1 problem
+- [15 · EF Core](modules/15-ef-core/overview.en.md) — DbContext, LINQ → SQL, change tracking, the N+1 problem, concurrency and transactions, inheritance, migrations
 - [16 · Testing: unit tests](modules/16-testing-unit/overview.en.md) — xUnit, AAA, parameterized tests, mocks, coverage
 - [17 · Testing: integration tests](modules/17-testing-integration/overview.en.md) — `WebApplicationFactory`, Testcontainers, API and database tests
 

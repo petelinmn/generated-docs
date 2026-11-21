@@ -83,7 +83,7 @@ public static bool InternedConcatSharesInstance(string prefix)
 }
 ```
 
-`LiteralsShareInstance()` → `true` (the compiler folded the constants), `RuntimeConcatSharesInstance("hel")` → `false`, `InternedConcatSharesInstance("hel")` → `true`. Takeaways: always compare strings with `==` or `string.Equals` (by contents), not with `ReferenceEquals`. `string.Intern` is rarely used: the memory of interned strings is not likely to be released until the runtime terminates. Code: [Ex09_Interning.cs](code/Examples/Ex09_Interning.cs).
+`LiteralsShareInstance()` → `true` (the compiler folded the constants), `RuntimeConcatSharesInstance("hel")` → `false`, `InternedConcatSharesInstance("hel")` → `true`. Takeaways: always compare strings with `==` or `string.Equals` (by contents), not with `ReferenceEquals`. `string.Intern` is rarely used: the memory of interned strings is not likely to be released until the runtime terminates. Code: [Ex09_Interning.cs](code/Examples/Ex09_Interning.cs). For the same reason a string is not used as a `lock` object: see [18 · Multithreading](../18-concurrency/basics.en.md).
 
 ## `Nullable<T>` and nullable annotations from the inside
 
@@ -245,7 +245,7 @@ For a boxed value the check is exact: `boxed is int` is `True`, `boxed is long` 
 | arrays, collections, generics | module 06 |
 | delegates and events | module 09 |
 | union types, closed hierarchies (C# 15) | module 11 |
-| `Span<T>`, `ref struct`, pointers | module 12 |
+| `Span<T>`, `ref struct`, pointers | `Span<T>` and `ref struct` — module 12a "Span and Memory" (not created yet); pointers — [12 · Memory and GC](../12-memory-and-gc/expert.en.md#pinning) |
 
 ## Gotchas
 
@@ -331,7 +331,7 @@ Concatenation treats `null` as an empty string and does not throw.
 | Inheritance | no | yes |
 | When to choose | small immutable values: coordinates, money, identifiers | entities with identity, large objects, hierarchies |
 
-More on structs and records in module 05, on memory and GC in module 12. C# 15 adds one more kind of type — union types: a value of such a type is one of several case types. They are covered in module 11.
+More on structs and records in module 05, on memory and GC in [12 · Memory and GC](../12-memory-and-gc/overview.en.md). C# 15 adds one more kind of type — union types: a value of such a type is one of several case types. They are covered in module 11.
 
 ## Interview questions
 
@@ -466,6 +466,7 @@ It tells the nullable analyzer that when the method returns `true`, the argument
 
 - Prerequisites: [01 · The .NET platform and dotnet CLI](../01-dotnet-platform/overview.en.md) — the project, `<Nullable>enable</Nullable>`, building
 - Next: [03 · Control flow and methods](../03-control-flow-and-methods/overview.en.md) — `ref`, `out`, `in` and passing value types to methods
+- The heap, the GC and `Dispose`: [12 · Memory and GC](../12-memory-and-gc/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — dynamic typing and type annotations instead of static types
 
 ## Sources

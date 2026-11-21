@@ -9,6 +9,13 @@ artifacts/
 *.suo
 *.DotSettings.user
 
+# Локальные базы данных (SQLite из примеров EF Core и миграций)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
 # Python
 __pycache__/
 *.py[cod]

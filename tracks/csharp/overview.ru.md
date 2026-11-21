@@ -51,10 +51,11 @@ C# — статически типизированный объектно-ори
 
 - [10 · Async/await](modules/10-async-await/overview.ru.md) — `Task`, `ValueTask`, `CancellationToken`, deadlock-и, частые ошибки
 - [11 · Современный C#](modules/11-modern-csharp/overview.ru.md) — pattern matching, switch expressions, primary constructors, collection expressions, required/init, extension members
-- [12 · Память и GC](modules/12-memory-and-gc/overview.ru.md) — стек и куча, поколения GC, `IDisposable` и `using`, `Span<T>` и `Memory<T>`
+- [12 · Память и GC](modules/12-memory-and-gc/overview.ru.md) — стек и куча, поколения GC, `IDisposable` и `using`, финализаторы и `SafeHandle`, утечки памяти, режимы и настройки GC
+- [12a · Span и Memory](modules/12a-span-and-memory/overview.ru.md) — `Span<T>`, `Memory<T>`, `stackalloc`, `ref struct`, `System.IO.Pipelines`
 - [13 · DI, конфигурация, логирование](modules/13-di-config-logging/overview.ru.md) — Generic Host, DI-контейнер и lifetimes, Options pattern, `ILogger`
 - [14 · ASP.NET Core: Minimal API](modules/14-aspnet-core-minimal-api/overview.ru.md) — маршрутизация, middleware, валидация, OpenAPI, обработка ошибок
-- [15 · EF Core](modules/15-ef-core/overview.ru.md) — DbContext, миграции, связи, change tracking, проблема N+1
+- [15 · EF Core](modules/15-ef-core/overview.ru.md) — DbContext, LINQ → SQL, change tracking, проблема N+1, конкурентность и транзакции, наследование, миграции
 - [16 · Тестирование: unit-тесты](modules/16-testing-unit/overview.ru.md) — xUnit, AAA, параметризованные тесты, моки, покрытие
 - [17 · Тестирование: интеграционные тесты](modules/17-testing-integration/overview.ru.md) — `WebApplicationFactory`, Testcontainers, тесты API и БД
 

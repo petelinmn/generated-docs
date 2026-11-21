@@ -83,7 +83,7 @@ public static bool InternedConcatSharesInstance(string prefix)
 }
 ```
 
-`LiteralsShareInstance()` → `true` (компилятор сложил константы), `RuntimeConcatSharesInstance("hel")` → `false`, `InternedConcatSharesInstance("hel")` → `true`. Выводы: строки всегда сравнивают через `==` или `string.Equals` (по содержимому), а не через `ReferenceEquals`. `string.Intern` применяют редко: память интернированных строк, скорее всего, не освободится до завершения runtime. Код: [Ex09_Interning.cs](code/Examples/Ex09_Interning.cs).
+`LiteralsShareInstance()` → `true` (компилятор сложил константы), `RuntimeConcatSharesInstance("hel")` → `false`, `InternedConcatSharesInstance("hel")` → `true`. Выводы: строки всегда сравнивают через `==` или `string.Equals` (по содержимому), а не через `ReferenceEquals`. `string.Intern` применяют редко: память интернированных строк, скорее всего, не освободится до завершения runtime. Код: [Ex09_Interning.cs](code/Examples/Ex09_Interning.cs). По той же причине строку не используют как объект для `lock`: см. [18 · Многопоточность](../18-concurrency/basics.ru.md).
 
 ## `Nullable<T>` и nullable-аннотации изнутри
 
@@ -245,7 +245,7 @@ public static NullabilityState ParameterNullability(string methodName) =>
 | массивы, коллекции, обобщения | модуль 06 |
 | делегаты и события | модуль 09 |
 | union types, closed-иерархии (C# 15) | модуль 11 |
-| `Span<T>`, `ref struct`, указатели | модуль 12 |
+| `Span<T>`, `ref struct`, указатели | `Span<T>` и `ref struct` — модуль 12a «Span и Memory» (ещё не создан); указатели — [12 · Память и GC](../12-memory-and-gc/expert.ru.md#закрепление-объектов) |
 
 ## Подвохи
 
@@ -331,7 +331,7 @@ s += "a";   // "a"
 | Наследование | нет | да |
 | Когда выбирать | маленькие неизменяемые значения: координаты, деньги, идентификаторы | сущности с идентичностью, большие объекты, иерархии |
 
-Подробнее о структурах и записях — в модуле 05, о памяти и GC — в модуле 12. В C# 15 появился ещё один вид типов — union types: значение такого типа является одним из нескольких типов-вариантов (case types). Они разбираются в модуле 11.
+Подробнее о структурах и записях — в модуле 05, о памяти и GC — в [12 · Память и GC](../12-memory-and-gc/overview.ru.md). В C# 15 появился ещё один вид типов — union types: значение такого типа является одним из нескольких типов-вариантов (case types). Они разбираются в модуле 11.
 
 ## Вопросы с собеседований
 
@@ -466,6 +466,7 @@ s += "a";   // "a"
 
 - Пререквизиты: [01 · Платформа .NET и dotnet CLI](../01-dotnet-platform/overview.ru.md) — проект, `<Nullable>enable</Nullable>`, сборка
 - Дальше: [03 · Управляющие конструкции и методы](../03-control-flow-and-methods/overview.ru.md) — `ref`, `out`, `in` и передача значимых типов в методы
+- Куча, GC и `Dispose`: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — динамическая типизация и аннотации типов вместо статических типов
 
 ## Источники
