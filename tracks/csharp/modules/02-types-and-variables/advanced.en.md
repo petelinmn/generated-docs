@@ -87,7 +87,7 @@ public static long UnboxAsLong(object boxed) => (long)boxed;
 - `EqualityOperatorOnBoxes()` → `false`: `==` on `object` compares references.
 - `UnboxAsLong(42)` → `InvalidCastException`: the box holds an `int`, but it is unboxed as `long`. The right way: `(long)(int)boxed`.
 
-Boxing costs an allocation and GC work. It appears silently when value types are passed to APIs that take `object`. Generics (module 06) solve this problem. Code: [Ex05_Boxing.cs](code/Examples/Ex05_Boxing.cs). Boxing is also why `lock` on a value type is forbidden: see [18 · Multithreading](../18-concurrency/expert.en.md).
+Boxing costs an allocation and GC work. It appears silently when value types are passed to APIs that take `object`. Generics ([06 · Collections and generics](../06-collections-and-generics/overview.en.md)) solve this problem. Code: [Ex05_Boxing.cs](code/Examples/Ex05_Boxing.cs). Boxing is also why `lock` on a value type is forbidden: see [18 · Multithreading](../18-concurrency/expert.en.md).
 
 ## double vs decimal
 

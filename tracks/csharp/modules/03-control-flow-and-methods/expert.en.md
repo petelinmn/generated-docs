@@ -148,7 +148,7 @@ The value of an optional parameter is substituted **into the code of the calling
 | `throw` | throws an exception; since C# 7 it can be an expression: `x ?? throw …`, a switch expression arm |
 | `goto label;` | jumps to a label in the same method |
 | `goto case value;` / `goto default;` | jumps to another `switch` section |
-| `yield return` / `yield break` | in iterators (covered together with LINQ, module 07) |
+| `yield return` / `yield break` | in iterators (covered together with LINQ, [07 · LINQ](../07-linq/advanced.en.md#iterators-and-yield)) |
 
 An example of `goto case`: `switch (1)` with sections `case 1: … goto case 2;`, `case 2: … goto default;` takes the path `one>two>default`.
 
@@ -227,9 +227,9 @@ Declarations inside a method: local variables (`var` or an explicit type), local
 
 | Statement | Where it is covered |
 |---|---|
-| `try` / `catch` / `finally`, `throw` | module 08 · Exceptions |
+| `try` / `catch` / `finally`, `throw` | [08 · Exceptions](../08-exceptions/overview.en.md) |
 | `checked` / `unchecked` | [02 · Types and variables](../02-types-and-variables/basics.en.md) |
-| `yield return` / `yield break` | module 07 · LINQ |
+| `yield return` / `yield break` | [07 · LINQ](../07-linq/advanced.en.md#iterators-and-yield) |
 | `await`, `await foreach`, `await using` | module 10 · Async/await |
 | `using`, `fixed`, `unsafe` | [12 · Memory and GC](../12-memory-and-gc/expert.en.md#pinning) |
 | `lock` | module 18 · Concurrency |

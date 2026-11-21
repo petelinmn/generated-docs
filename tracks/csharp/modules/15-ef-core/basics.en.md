@@ -18,7 +18,7 @@ updated: 2026-11-21
 
 **Levels:** [overview](overview.en.md) · **1. Basics** · [2. Advanced](advanced.en.md) · [3. Expert](expert.en.md) · [4. Quiz](quiz.en.md) · [exercises](exercises.en.md) · [5–6. Code and tests](code/)
 
-**Prerequisites:** [02 · Types and variables](../02-types-and-variables/overview.en.md); modules 05 "Interfaces, structs, records" and 07 "LINQ" (not created yet).
+**Prerequisites:** [02 · Types and variables](../02-types-and-variables/overview.en.md); [05 · Interfaces, structs, records](../05-interfaces-structs-records/overview.en.md) and [07 · LINQ](../07-linq/overview.en.md).
 
 ## Why it matters
 

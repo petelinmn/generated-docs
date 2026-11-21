@@ -240,10 +240,10 @@ For a boxed value the check is exact: `boxed is int` is `True`, `boxed is long` 
 
 | Kind of types | Where |
 |---|---|
-| classes, properties, inheritance | module 04 |
-| structs, records, interfaces | module 05 |
-| arrays, collections, generics | module 06 |
-| delegates and events | module 09 |
+| classes, properties, inheritance | [04 · OOP: classes and objects](../04-oop-basics/overview.en.md) |
+| structs, records, interfaces | [05 · Interfaces, structs, records](../05-interfaces-structs-records/overview.en.md) |
+| arrays, collections, generics | [06 · Collections and generics](../06-collections-and-generics/overview.en.md) |
+| delegates and events | [09 · Delegates, events, lambdas](../09-delegates-events-lambdas/overview.en.md) |
 | union types, closed hierarchies (C# 15) | module 11 |
 | `Span<T>`, `ref struct`, pointers | `Span<T>` and `ref struct` — module 12a "Span and Memory" (not created yet); pointers — [12 · Memory and GC](../12-memory-and-gc/expert.en.md#pinning) |
 
@@ -331,7 +331,7 @@ Concatenation treats `null` as an empty string and does not throw.
 | Inheritance | no | yes |
 | When to choose | small immutable values: coordinates, money, identifiers | entities with identity, large objects, hierarchies |
 
-More on structs and records in module 05, on memory and GC in [12 · Memory and GC](../12-memory-and-gc/overview.en.md). C# 15 adds one more kind of type — union types: a value of such a type is one of several case types. They are covered in module 11.
+More on structs and records in [05 · Interfaces, structs, records](../05-interfaces-structs-records/overview.en.md), on memory and GC in [12 · Memory and GC](../12-memory-and-gc/overview.en.md). C# 15 adds one more kind of type — union types: a value of such a type is one of several case types. They are covered in module 11.
 
 ## Interview questions
 

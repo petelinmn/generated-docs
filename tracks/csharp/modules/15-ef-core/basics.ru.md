@@ -18,7 +18,7 @@ updated: 2026-11-21
 
 **Уровни:** [обзор](overview.ru.md) · **1. Базовая** · [2. Продвинутая](advanced.ru.md) · [3. Экспертная](expert.ru.md) · [4. Квиз](quiz.ru.md) · [упражнения](exercises.ru.md) · [5–6. Код и тесты](code/)
 
-**Пререквизиты:** [02 · Типы и переменные](../02-types-and-variables/overview.ru.md); модули 05 «Интерфейсы, структуры, записи» и 07 «LINQ» (ещё не созданы).
+**Пререквизиты:** [02 · Типы и переменные](../02-types-and-variables/overview.ru.md); [05 · Интерфейсы, структуры, записи](../05-interfaces-structs-records/overview.ru.md) и [07 · LINQ](../07-linq/overview.ru.md).
 
 ## Зачем это нужно
 

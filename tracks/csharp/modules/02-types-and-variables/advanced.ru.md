@@ -87,7 +87,7 @@ public static long UnboxAsLong(object boxed) => (long)boxed;
 - `EqualityOperatorOnBoxes()` → `false`: `==` для `object` сравнивает ссылки.
 - `UnboxAsLong(42)` → `InvalidCastException`: в коробке `int`, а распаковывают как `long`. Правильно: `(long)(int)boxed`.
 
-Boxing стоит аллокации и работы GC. Он незаметно возникает при передаче значимых типов в API, которые принимают `object`. Обобщения (generics, модуль 06) решают эту проблему. Код: [Ex05_Boxing.cs](code/Examples/Ex05_Boxing.cs). Упаковка — ещё и причина, по которой `lock` по значимому типу запрещён: см. [18 · Многопоточность](../18-concurrency/expert.ru.md).
+Boxing стоит аллокации и работы GC. Он незаметно возникает при передаче значимых типов в API, которые принимают `object`. Обобщения (generics, [06 · Коллекции и обобщения](../06-collections-and-generics/overview.ru.md)) решают эту проблему. Код: [Ex05_Boxing.cs](code/Examples/Ex05_Boxing.cs). Упаковка — ещё и причина, по которой `lock` по значимому типу запрещён: см. [18 · Многопоточность](../18-concurrency/expert.ru.md).
 
 ## double и decimal
 

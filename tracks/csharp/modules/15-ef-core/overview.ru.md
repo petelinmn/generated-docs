@@ -67,7 +67,7 @@ EF генерирует `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Like
 
 ## Связанные материалы
 
-- Пререквизиты: [02 · Типы и переменные](../02-types-and-variables/overview.ru.md); модули 07 «LINQ» и 10 «Async/await» (ещё не созданы)
+- Пререквизиты: [02 · Типы и переменные](../02-types-and-variables/overview.ru.md); [07 · LINQ](../07-linq/overview.ru.md); модуль 10 «Async/await» (ещё не создан)
 - `DbContext` и потоки: [18 · Многопоточность](../18-concurrency/overview.ru.md)
 - Инструмент `dotnet ef`: [01 · Платформа .NET и dotnet CLI](../01-dotnet-platform/expert.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — модуль 20 «Работа с БД»: SQLAlchemy и Alembic

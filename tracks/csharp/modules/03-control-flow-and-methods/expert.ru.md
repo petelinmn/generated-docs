@@ -148,7 +148,7 @@ public readonly struct EvenNumbers
 | `throw` | бросает исключение; с C# 7 может быть выражением: `x ?? throw …`, ветка switch expression |
 | `goto метка;` | переход к метке в том же методе |
 | `goto case значение;` / `goto default;` | переход к другой секции `switch` |
-| `yield return` / `yield break` | в итераторах (разбираются вместе с LINQ, модуль 07) |
+| `yield return` / `yield break` | в итераторах (разбираются вместе с LINQ, [07 · LINQ](../07-linq/advanced.ru.md#итераторы-и-yield)) |
 
 Пример `goto case`: `switch (1)` с секциями `case 1: … goto case 2;`, `case 2: … goto default;` проходит путь `one>two>default`.
 
@@ -227,9 +227,9 @@ public readonly struct EvenNumbers
 
 | Оператор | Где разбирается |
 |---|---|
-| `try` / `catch` / `finally`, `throw` | модуль 08 · Исключения |
+| `try` / `catch` / `finally`, `throw` | [08 · Исключения](../08-exceptions/overview.ru.md) |
 | `checked` / `unchecked` | [02 · Типы и переменные](../02-types-and-variables/basics.ru.md) |
-| `yield return` / `yield break` | модуль 07 · LINQ |
+| `yield return` / `yield break` | [07 · LINQ](../07-linq/advanced.ru.md#итераторы-и-yield) |
 | `await`, `await foreach`, `await using` | модуль 10 · Async/await |
 | `using`, `fixed`, `unsafe` | [12 · Память и GC](../12-memory-and-gc/expert.ru.md#закрепление-объектов) |
 | `lock` | модуль 18 · Многопоточность |
