@@ -6,10 +6,10 @@ kind: track
 doc: overview
 slug: kubernetes
 tags: [kubernetes, containers]
-versions: ""
+versions: "Kubernetes 1.37, kind 0.34, kubectl 1.36, Docker Engine 29.6"
 default_level: 4
 status: draft
-updated: 2026-11-20
+updated: 2026-11-22
 ---
 
 # Kubernetes

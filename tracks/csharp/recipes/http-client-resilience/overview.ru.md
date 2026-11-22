@@ -62,5 +62,5 @@ builder.Services.AddHttpClient("api", c => c.BaseAddress = new Uri("https://api.
 
 - Пререквизиты: [10 · async/await](../../modules/10-async-await/overview.ru.md), [13 · DI, конфигурация, логирование](../../modules/13-di-config-logging/overview.ru.md)
 - Рядом: [Rate limiting](../rate-limiting/overview.ru.md), [Фоновые задачи](../background-jobs/overview.ru.md), [22 · Наблюдаемость](../../modules/22-observability/overview.ru.md)
-- В других треках: [Python](../../../python/overview.ru.md) — httpx с ретраями
+- В других треках: [Python](../../../python/overview.ru.md) — httpx с ретраями; [Kubernetes · Service и сеть](../../../kubernetes/modules/06-services/overview.ru.md) — имена Service и `Connection refused` при выкатке
 - Рецепты и библиотеки: [Polly](../../libraries/polly/overview.ru.md), [Refit](../../libraries/refit/overview.ru.md), [Кэширование](../caching/overview.ru.md), [gRPC-сервис](../grpc-service/overview.ru.md)

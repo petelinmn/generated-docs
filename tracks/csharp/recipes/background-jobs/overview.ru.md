@@ -70,5 +70,5 @@ builder.Services.AddHostedService<TickWorker>();
 
 - Пререквизиты: [10 · async/await](../../modules/10-async-await/overview.ru.md), [13 · DI, конфигурация, логирование](../../modules/13-di-config-logging/overview.ru.md)
 - Рядом: [18 · Конкурентность](../../modules/18-concurrency/overview.ru.md), [Rate limiting](../rate-limiting/overview.ru.md)
-- В других треках: [Python](../../../python/overview.ru.md) — фоновые задачи в asyncio
+- В других треках: [Python](../../../python/overview.ru.md) — фоновые задачи в asyncio; [Kubernetes · Pod](../../../kubernetes/modules/04-pods/overview.ru.md) — `SIGTERM` и остановка пода, на которых держится graceful shutdown воркера
 - Рецепты и библиотеки: [Serilog](../../libraries/serilog/overview.ru.md), [Кэширование](../caching/overview.ru.md), [Загрузка файлов](../file-upload/overview.ru.md), [Устойчивый HttpClient](../http-client-resilience/overview.ru.md), [Real-time через SignalR](../signalr-realtime/overview.ru.md)

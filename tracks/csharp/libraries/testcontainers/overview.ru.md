@@ -65,4 +65,4 @@ await pg.DisposeAsync();
 
 - Пререквизиты: [17 · Интеграционное тестирование](../../modules/17-testing-integration/overview.ru.md)
 - Рядом: [15 · EF Core](../../modules/15-ef-core/overview.ru.md), [Dapper](../dapper/overview.ru.md), [NSubstitute](../nsubstitute/overview.ru.md)
-- В других треках: [Kubernetes](../../../kubernetes/overview.ru.md) — контейнеры и kind
+- В других треках: [Kubernetes](../../../kubernetes/overview.ru.md) — контейнеры и kind; [Контейнеры и Docker](../../../kubernetes/modules/01-containers/overview.ru.md) — образы и контейнеры, которые запускает Testcontainers

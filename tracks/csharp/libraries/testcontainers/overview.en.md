@@ -65,4 +65,4 @@ await pg.DisposeAsync();
 
 - Prerequisites: [17 · Integration testing](../../modules/17-testing-integration/overview.en.md)
 - Nearby: [15 · EF Core](../../modules/15-ef-core/overview.en.md), [Dapper](../dapper/overview.en.md), [NSubstitute](../nsubstitute/overview.en.md)
-- In other tracks: [Kubernetes](../../../kubernetes/overview.en.md) — containers and kind
+- In other tracks: [Kubernetes](../../../kubernetes/overview.en.md) — containers and kind; [Containers and Docker](../../../kubernetes/modules/01-containers/overview.en.md) — the images and containers that Testcontainers starts
