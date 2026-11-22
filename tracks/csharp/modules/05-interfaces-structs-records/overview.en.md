@@ -68,4 +68,5 @@ Console.WriteLine(a with { Age = 31 });   // Person { Name = Ann, Age = 31 }
 - Prerequisites: [04 · OOP: classes and objects](../04-oop-basics/overview.en.md), [02 · Types and variables](../02-types-and-variables/overview.en.md)
 - Next: [06 · Collections and generics](../06-collections-and-generics/overview.en.md)
 - Boxing and allocations: [12 · Memory and GC](../12-memory-and-gc/overview.en.md)
+- Patterns, primary constructors, `required`/`init`: [11 · Modern C#](../11-modern-csharp/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — `Protocol`, `dataclass`

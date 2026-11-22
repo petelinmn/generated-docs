@@ -75,4 +75,5 @@ finally
 - Prerequisites: [03 · Control flow and methods](../03-control-flow-and-methods/overview.en.md), [04 · OOP: classes and objects](../04-oop-basics/overview.en.md)
 - Releasing resources: [12 · Memory and GC](../12-memory-and-gc/overview.en.md)
 - Exceptions in multithreaded code: [18 · Concurrency](../18-concurrency/overview.en.md)
+- Exceptions in asynchronous code, `AggregateException`: [10 · Async/await](../10-async-await/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — `try`/`except`, `raise from`

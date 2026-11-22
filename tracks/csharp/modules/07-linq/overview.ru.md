@@ -70,4 +70,6 @@ record P(string Name, string Dept, int Age);
 - Пререквизиты: [06 · Коллекции и обобщения](../06-collections-and-generics/overview.ru.md), [09 · Делегаты, события, лямбды](../09-delegates-events-lambdas/overview.ru.md)
 - LINQ к базе данных: [15 · EF Core](../15-ef-core/overview.ru.md)
 - Измерение выделений: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
+- `IAsyncEnumerable<T>` и асинхронные потоки: [10 · Async/await](../10-async-await/overview.ru.md)
+- Образцы и extension members: [11 · Современный C#](../11-modern-csharp/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — генераторы списков, `itertools`

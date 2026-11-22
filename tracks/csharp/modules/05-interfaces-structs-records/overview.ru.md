@@ -68,4 +68,5 @@ Console.WriteLine(a with { Age = 31 });   // Person { Name = Ann, Age = 31 }
 - Пререквизиты: [04 · ООП: классы и объекты](../04-oop-basics/overview.ru.md), [02 · Типы и переменные](../02-types-and-variables/overview.ru.md)
 - Дальше: [06 · Коллекции и обобщения](../06-collections-and-generics/overview.ru.md)
 - Упаковка и выделения: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
+- Образцы, первичные конструкторы, `required`/`init`: [11 · Современный C#](../11-modern-csharp/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `Protocol`, `dataclass`

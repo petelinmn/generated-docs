@@ -61,7 +61,7 @@ public static ThreadKind LongRunningTask() =>
 
 - `Start()` starts the thread, `Join()` waits for it to finish.
 - The process does not exit while at least one **foreground** thread is running. Background threads (including all pool threads) end together with the process.
-- Everyday code uses `Task.Run` and `await`. Asynchrony is covered in detail in module 10; here the topic is thread synchronization.
+- Everyday code uses `Task.Run` and `await`. Asynchrony is covered in detail in module [10 · Async/await](../10-async-await/overview.en.md); here the topic is thread synchronization.
 
 Code: [Ex02_ThreadKinds.cs](code/Examples/Ex02_ThreadKinds.cs).
 

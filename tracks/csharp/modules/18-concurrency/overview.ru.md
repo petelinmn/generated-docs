@@ -76,4 +76,6 @@ public sealed class LockCounter : ICounter
 
 - Пререквизиты: [03 · Управляющие конструкции и методы](../03-control-flow-and-methods/overview.ru.md), [02 · Типы и переменные](../02-types-and-variables/overview.ru.md)
 - Применение: `DbContext` в EF Core не потокобезопасен — [15 · EF Core](../15-ef-core/advanced.ru.md#жизненный-цикл-dbcontext)
+- `Task`, `async`/`await`, отмена: [10 · Async/await](../10-async-await/overview.ru.md)
+- `ArrayPool`, `Pipelines`: [12a · Span и Memory](../12a-span-and-memory/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — GIL, `threading` и `asyncio`

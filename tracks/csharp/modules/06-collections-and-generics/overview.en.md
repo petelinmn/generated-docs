@@ -72,4 +72,6 @@ Console.WriteLine(Max(3, 7));            // 7
 - Next: [07 · LINQ](../07-linq/overview.en.md)
 - Measuring allocations: [12 · Memory and GC](../12-memory-and-gc/overview.en.md)
 - Thread-safe collections: [18 · Concurrency](../18-concurrency/overview.en.md)
+- Collection expressions `[..]`: [11 · Modern C#](../11-modern-csharp/overview.en.md)
+- Zero-copy views of memory: [12a · Span and Memory](../12a-span-and-memory/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — `list`, `dict`, `set`, `heapq`

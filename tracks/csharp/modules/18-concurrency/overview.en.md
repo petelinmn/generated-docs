@@ -76,4 +76,6 @@ Four threads calling `Increment()` a million times each give exactly `4000000`.
 
 - Prerequisites: [03 · Control flow and methods](../03-control-flow-and-methods/overview.en.md), [02 · Types and variables](../02-types-and-variables/overview.en.md)
 - In practice: an EF Core `DbContext` is not thread-safe — [15 · EF Core](../15-ef-core/advanced.en.md#dbcontext-lifetime)
+- `Task`, `async`/`await`, cancellation: [10 · Async/await](../10-async-await/overview.en.md)
+- `ArrayPool`, `Pipelines`: [12a · Span and Memory](../12a-span-and-memory/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — the GIL, `threading` and `asyncio`

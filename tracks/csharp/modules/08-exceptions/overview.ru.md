@@ -75,4 +75,5 @@ finally
 - Пререквизиты: [03 · Управляющие конструкции и методы](../03-control-flow-and-methods/overview.ru.md), [04 · ООП: классы и объекты](../04-oop-basics/overview.ru.md)
 - Освобождение ресурсов: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
 - Исключения в многопоточном коде: [18 · Многопоточность](../18-concurrency/overview.ru.md)
+- Исключения в асинхронном коде, `AggregateException`: [10 · Async/await](../10-async-await/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `try`/`except`, `raise from`

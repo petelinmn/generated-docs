@@ -72,4 +72,6 @@ Console.WriteLine(Max(3, 7));            // 7
 - Дальше: [07 · LINQ](../07-linq/overview.ru.md)
 - Измерение выделений: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
 - Потокобезопасные коллекции: [18 · Многопоточность](../18-concurrency/overview.ru.md)
+- Выражения коллекций `[..]`: [11 · Современный C#](../11-modern-csharp/overview.ru.md)
+- Представления на память без копирования: [12a · Span и Memory](../12a-span-and-memory/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `list`, `dict`, `set`, `heapq`

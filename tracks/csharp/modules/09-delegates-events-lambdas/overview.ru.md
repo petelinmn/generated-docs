@@ -72,4 +72,6 @@ c.Click();                                         // clicked
 - LINQ на делегатах: [07 · LINQ](../07-linq/overview.ru.md)
 - Исключения в обработчиках: [08 · Исключения](../08-exceptions/overview.ru.md)
 - Утечки через события: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
+- Асинхронные лямбды и `Task`: [10 · Async/await](../10-async-await/overview.ru.md)
+- Параметры лямбд по умолчанию, `static`-лямбды: [11 · Современный C#](../11-modern-csharp/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — функции как объекты, замыкания

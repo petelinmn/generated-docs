@@ -78,7 +78,7 @@ public static string Classify(int celsius) => celsius switch
 };
 ```
 
-`_` is the "anything" pattern (discard). `< 0` and `>= 0 and < 20` are relational and logical patterns (C# 9). `FizzBuzz(15)` → `FizzBuzz`, `Classify(25)` → `warm`. Pattern matching is covered in detail in module 11. Code: [Ex01_Branching.cs](code/Examples/Ex01_Branching.cs).
+`_` is the "anything" pattern (discard). `< 0` and `>= 0 and < 20` are relational and logical patterns (C# 9). `FizzBuzz(15)` → `FizzBuzz`, `Classify(25)` → `warm`. Pattern matching is covered in detail in module [11 · Modern C#](../11-modern-csharp/overview.en.md). Code: [Ex01_Branching.cs](code/Examples/Ex01_Branching.cs).
 
 ## Loops
 

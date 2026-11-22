@@ -244,8 +244,8 @@ public static NullabilityState ParameterNullability(string methodName) =>
 | структуры, записи, интерфейсы | [05 · Интерфейсы, структуры, записи](../05-interfaces-structs-records/overview.ru.md) |
 | массивы, коллекции, обобщения | [06 · Коллекции и обобщения](../06-collections-and-generics/overview.ru.md) |
 | делегаты и события | [09 · Делегаты, события, лямбды](../09-delegates-events-lambdas/overview.ru.md) |
-| union types, closed-иерархии (C# 15) | модуль 11 |
-| `Span<T>`, `ref struct`, указатели | `Span<T>` и `ref struct` — модуль 12a «Span и Memory» (ещё не создан); указатели — [12 · Память и GC](../12-memory-and-gc/expert.ru.md#закрепление-объектов) |
+| union types, closed-иерархии (C# 15) | [11 · Современный C#](../11-modern-csharp/overview.ru.md) |
+| `Span<T>`, `ref struct`, указатели | `Span<T>` и `ref struct` — [12a · Span и Memory](../12a-span-and-memory/overview.ru.md); указатели — [12 · Память и GC](../12-memory-and-gc/expert.ru.md#закрепление-объектов) |
 
 ## Подвохи
 
@@ -331,7 +331,7 @@ s += "a";   // "a"
 | Наследование | нет | да |
 | Когда выбирать | маленькие неизменяемые значения: координаты, деньги, идентификаторы | сущности с идентичностью, большие объекты, иерархии |
 
-Подробнее о структурах и записях — в [05 · Интерфейсы, структуры, записи](../05-interfaces-structs-records/overview.ru.md), о памяти и GC — в [12 · Память и GC](../12-memory-and-gc/overview.ru.md). В C# 15 появился ещё один вид типов — union types: значение такого типа является одним из нескольких типов-вариантов (case types). Они разбираются в модуле 11.
+Подробнее о структурах и записях — в [05 · Интерфейсы, структуры, записи](../05-interfaces-structs-records/overview.ru.md), о памяти и GC — в [12 · Память и GC](../12-memory-and-gc/overview.ru.md). В C# 15 появился ещё один вид типов — union types: значение такого типа является одним из нескольких типов-вариантов (case types). Они разбираются в модуле [11 · Современный C#](../11-modern-csharp/overview.ru.md).
 
 ## Вопросы с собеседований
 

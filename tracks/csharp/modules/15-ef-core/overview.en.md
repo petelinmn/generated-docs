@@ -67,7 +67,8 @@ EF generates `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Likes" >= @minL
 
 ## Related materials
 
-- Prerequisites: [02 · Types and variables](../02-types-and-variables/overview.en.md); [07 · LINQ](../07-linq/overview.en.md); module 10 "Async/await" (not created yet)
+- Prerequisites: [02 · Types and variables](../02-types-and-variables/overview.en.md); [07 · LINQ](../07-linq/overview.en.md); [10 · Async/await](../10-async-await/overview.en.md)
 - `DbContext` and threads: [18 · Concurrency](../18-concurrency/overview.en.md)
 - The `dotnet ef` tool: [01 · The .NET platform and dotnet CLI](../01-dotnet-platform/expert.en.md)
+- `required`/`init` in entities, primary constructors: [11 · Modern C#](../11-modern-csharp/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — module 20 "Databases": SQLAlchemy and Alembic

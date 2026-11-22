@@ -55,7 +55,7 @@ C# 15 adds two kinds of types for which a `switch` can be exhaustive without a `
 - **union types** — a value is one of several case types, and the compiler checks that a switch expression covers all of them;
 - **closed hierarchies** — a class with the `closed` modifier can be derived from only within its own assembly, so the compiler knows all derived classes, and a `switch` over such a hierarchy needs no default arm.
 
-Both are covered in module 11, "Modern C#".
+Both are covered in module [11 · Modern C#](../11-modern-csharp/overview.en.md).
 
 ## Ref returns
 
@@ -76,7 +76,7 @@ public static ref int FindFirst(int[] values, int target)
 }
 ```
 
-The calling code: `ref int slot = ref RefReturns.FindFirst(values, 2); slot = 20;` — and the array `[1, 2, 3]` becomes `[1, 20, 3]`. A reference can be returned only to something that outlives the method: an array element, an object field, a `ref` parameter. Not to a local variable — the compiler will not allow it. `Span<T>` and high-performance APIs are built on this mechanism (module 12a "Span and Memory", not created yet). Code: [Ex09_RefReturns.cs](code/Examples/Ex09_RefReturns.cs).
+The calling code: `ref int slot = ref RefReturns.FindFirst(values, 2); slot = 20;` — and the array `[1, 2, 3]` becomes `[1, 20, 3]`. A reference can be returned only to something that outlives the method: an array element, an object field, a `ref` parameter. Not to a local variable — the compiler will not allow it. `Span<T>` and high-performance APIs are built on this mechanism ([12a · Span and Memory](../12a-span-and-memory/overview.en.md)). Code: [Ex09_RefReturns.cs](code/Examples/Ex09_RefReturns.cs).
 
 ## How foreach finds an enumerator
 
@@ -174,7 +174,7 @@ An example of `goto case`: `switch (1)` with sections `case 1: … goto case 2;`
 | `while (condition)` / `do … while (condition);` | check before / after the body |
 | `foreach (var x in collection)` | by the `GetEnumerator` pattern; over `null` it throws `NullReferenceException` |
 | `foreach (ref var x in span)` | changing `Span<T>` elements in place: `[1, 2, 3]` → `[10, 20, 30]` after `item *= 10` |
-| `await foreach` | asynchronous streams (module 10) |
+| `await foreach` | asynchronous streams ([10 · Async/await](../10-async-await/overview.en.md)) |
 | `label: for …` + `break label;` | leaving nested loops (C# 15) |
 
 ### Parameters in full
@@ -188,8 +188,8 @@ An example of `goto case`: `switch (1)` with sections `case 1: … goto case 2;`
 | `ref readonly T x` (C# 12) | by reference, read-only | the caller passes `ref` or `in`: `ReadOnlyRef(ref number)` and `ReadOnlyRef(in number)` give the same result |
 | `params T[] x`, `params ReadOnlySpan<T> x` (C# 13) | a variable number of arguments | |
 | `T x = value` | optional | the value is substituted at the call site |
-| `scoped ref T x` (C# 11) | limits the lifetime of the reference | for `ref struct` and `Span<T>` (module 12a) |
-| `this T x` | the first parameter of an extension method | module 11 |
+| `scoped ref T x` (C# 11) | limits the lifetime of the reference | for `ref struct` and `Span<T>` ([12a · Span and Memory](../12a-span-and-memory/overview.en.md)) |
+| `this T x` | the first parameter of an extension method | [11 · Modern C#](../11-modern-csharp/overview.en.md) |
 
 Overloads that differ only in `ref` and `out` are forbidden (CS0663). Overloads "by value" and "by `ref`" are allowed: `M(1)` calls the by-value version, `M(ref field)` the `ref` version.
 
@@ -230,7 +230,7 @@ Declarations inside a method: local variables (`var` or an explicit type), local
 | `try` / `catch` / `finally`, `throw` | [08 · Exceptions](../08-exceptions/overview.en.md) |
 | `checked` / `unchecked` | [02 · Types and variables](../02-types-and-variables/basics.en.md) |
 | `yield return` / `yield break` | [07 · LINQ](../07-linq/advanced.en.md#iterators-and-yield) |
-| `await`, `await foreach`, `await using` | module 10 · Async/await |
+| `await`, `await foreach`, `await using` | [10 · Async/await](../10-async-await/overview.en.md) |
 | `using`, `fixed`, `unsafe` | [12 · Memory and GC](../12-memory-and-gc/expert.en.md#pinning) |
 | `lock` | module 18 · Concurrency |
 

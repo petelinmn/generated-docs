@@ -78,7 +78,7 @@ public static string Classify(int celsius) => celsius switch
 };
 ```
 
-`_` — шаблон «что угодно» (discard). `< 0`, `>= 0 and < 20` — реляционные и логические шаблоны (C# 9). `FizzBuzz(15)` → `FizzBuzz`, `Classify(25)` → `warm`. Сопоставление с шаблонами подробно разбирается в модуле 11. Код: [Ex01_Branching.cs](code/Examples/Ex01_Branching.cs).
+`_` — шаблон «что угодно» (discard). `< 0`, `>= 0 and < 20` — реляционные и логические шаблоны (C# 9). `FizzBuzz(15)` → `FizzBuzz`, `Classify(25)` → `warm`. Сопоставление с шаблонами подробно разбирается в модуле [11 · Современный C#](../11-modern-csharp/overview.ru.md). Код: [Ex01_Branching.cs](code/Examples/Ex01_Branching.cs).
 
 ## Циклы
 

@@ -329,7 +329,7 @@ The value is read as hexadecimal: `0x10000000` = 268,435,456 bytes. Verified: `G
 | | an array in the POH | the memory is not compacted, but does not get in the way of the rest |
 | A latency-critical section | `GC.TryStartNoGCRegion`, `SustainedLowLatency` | more memory; not a silver bullet |
 
-`Span<T>`, `Memory<T>` and `stackalloc` are the next step in fighting allocations. They are covered in a separate module 12a "Span and Memory" (not created yet), and pools and profiling in module 19 "Performance".
+`Span<T>`, `Memory<T>` and `stackalloc` are the next step in fighting allocations. They are covered in a separate [12a · Span and Memory](../12a-span-and-memory/overview.en.md), and pools and profiling in module 19 "Performance".
 
 ## Interview questions
 

@@ -55,7 +55,7 @@ public static string SafeAction(TrafficLight light) => light switch
 - **union types** — значение является одним из нескольких типов-вариантов (case types), и компилятор проверяет, что switch expression покрывает все варианты;
 - **closed-иерархии** — класс с модификатором `closed` может иметь наследников только в своей сборке, поэтому компилятор знает их все, и `switch` по такой иерархии не требует ветки по умолчанию.
 
-Оба механизма разбираются в модуле 11 «Современный C#».
+Оба механизма разбираются в модуле [11 · Современный C#](../11-modern-csharp/overview.ru.md).
 
 ## ref-возвраты
 
@@ -76,7 +76,7 @@ public static ref int FindFirst(int[] values, int target)
 }
 ```
 
-Вызывающий код: `ref int slot = ref RefReturns.FindFirst(values, 2); slot = 20;` — и массив `[1, 2, 3]` становится `[1, 20, 3]`. Ссылку можно вернуть только на то, что переживёт метод: элемент массива, поле объекта, `ref`-параметр. На локальную переменную нельзя — компилятор не даст. На этом механизме построены `Span<T>` и высокопроизводительные API (модуль 12a «Span и Memory», ещё не создан). Код: [Ex09_RefReturns.cs](code/Examples/Ex09_RefReturns.cs).
+Вызывающий код: `ref int slot = ref RefReturns.FindFirst(values, 2); slot = 20;` — и массив `[1, 2, 3]` становится `[1, 20, 3]`. Ссылку можно вернуть только на то, что переживёт метод: элемент массива, поле объекта, `ref`-параметр. На локальную переменную нельзя — компилятор не даст. На этом механизме построены `Span<T>` и высокопроизводительные API ([12a · Span и Memory](../12a-span-and-memory/overview.ru.md)). Код: [Ex09_RefReturns.cs](code/Examples/Ex09_RefReturns.cs).
 
 ## Как foreach находит перечислитель
 
@@ -174,7 +174,7 @@ public readonly struct EvenNumbers
 | `while (condition)` / `do … while (condition);` | проверка до / после тела |
 | `foreach (var x in collection)` | по шаблону `GetEnumerator`; по `null` бросает `NullReferenceException` |
 | `foreach (ref var x in span)` | изменение элементов `Span<T>` на месте: `[1, 2, 3]` → `[10, 20, 30]` после `item *= 10` |
-| `await foreach` | асинхронные потоки (модуль 10) |
+| `await foreach` | асинхронные потоки ([10 · Async/await](../10-async-await/overview.ru.md)) |
 | `метка: for …` + `break метка;` | выход из вложенных циклов (C# 15) |
 
 ### Параметры полностью
@@ -188,8 +188,8 @@ public readonly struct EvenNumbers
 | `ref readonly T x` (C# 12) | по ссылке, только чтение | вызывающий передаёт `ref` или `in`: `ReadOnlyRef(ref number)` и `ReadOnlyRef(in number)` дают одинаковый результат |
 | `params T[] x`, `params ReadOnlySpan<T> x` (C# 13) | переменное число аргументов | |
 | `T x = значение` | необязательный | значение подставляется в место вызова |
-| `scoped ref T x` (C# 11) | ограничивает время жизни ссылки | для `ref struct` и `Span<T>` (модуль 12a) |
-| `this T x` | первый параметр метода расширения | модуль 11 |
+| `scoped ref T x` (C# 11) | ограничивает время жизни ссылки | для `ref struct` и `Span<T>` ([12a · Span и Memory](../12a-span-and-memory/overview.ru.md)) |
+| `this T x` | первый параметр метода расширения | [11 · Современный C#](../11-modern-csharp/overview.ru.md) |
 
 Перегрузки, отличающиеся только `ref` и `out`, запрещены (CS0663). Перегрузки «по значению» и «по `ref`» допустимы: `M(1)` вызывает версию по значению, `M(ref field)` — версию с `ref`.
 
@@ -230,7 +230,7 @@ public readonly struct EvenNumbers
 | `try` / `catch` / `finally`, `throw` | [08 · Исключения](../08-exceptions/overview.ru.md) |
 | `checked` / `unchecked` | [02 · Типы и переменные](../02-types-and-variables/basics.ru.md) |
 | `yield return` / `yield break` | [07 · LINQ](../07-linq/advanced.ru.md#итераторы-и-yield) |
-| `await`, `await foreach`, `await using` | модуль 10 · Async/await |
+| `await`, `await foreach`, `await using` | [10 · Async/await](../10-async-await/overview.ru.md) |
 | `using`, `fixed`, `unsafe` | [12 · Память и GC](../12-memory-and-gc/expert.ru.md#закрепление-объектов) |
 | `lock` | модуль 18 · Многопоточность |
 

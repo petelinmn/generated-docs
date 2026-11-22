@@ -72,4 +72,6 @@ c.Click();                                         // clicked
 - LINQ on delegates: [07 · LINQ](../07-linq/overview.en.md)
 - Exceptions in handlers: [08 · Exceptions](../08-exceptions/overview.en.md)
 - Leaks through events: [12 · Memory and GC](../12-memory-and-gc/overview.en.md)
+- Asynchronous lambdas and `Task`: [10 · Async/await](../10-async-await/overview.en.md)
+- Default lambda parameters, `static` lambdas: [11 · Modern C#](../11-modern-csharp/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — functions as objects, closures
