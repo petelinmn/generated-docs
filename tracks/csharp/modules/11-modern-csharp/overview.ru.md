@@ -69,4 +69,5 @@ Console.WriteLine(Describe(data));   // 1..3
 
 - Пререквизиты: [05 · Интерфейсы, структуры, записи](../05-interfaces-structs-records/overview.ru.md), [06 · Коллекции и обобщения](../06-collections-and-generics/overview.ru.md)
 - Дальше: [12a · Span и Memory](../12a-span-and-memory/overview.ru.md), [07 · LINQ](../07-linq/overview.ru.md)
+- `partial`-члены и генераторы: [20 · Рефлексия и генераторы кода](../20-reflection-and-source-generators/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `match`/`case`

@@ -67,4 +67,7 @@ Console.WriteLine(string.Join(",", results));   // 10,20
 - Пререквизиты: [08 · Исключения](../08-exceptions/overview.ru.md), [09 · Делегаты, события, лямбды](../09-delegates-events-lambdas/overview.ru.md)
 - Дальше: [18 · Многопоточность](../18-concurrency/overview.ru.md), [15 · EF Core](../15-ef-core/overview.ru.md) (асинхронные запросы)
 - Ресурсы: [12 · Память и GC](../12-memory-and-gc/overview.ru.md) — `IAsyncDisposable`
+- Асинхронные обработчики: [14 · ASP.NET Core: Minimal API](../14-aspnet-core-minimal-api/overview.ru.md)
+- Асинхронные тесты: [16 · Unit-тесты](../16-testing-unit/overview.ru.md)
+- Контекст трассы через `await`: [22 · Наблюдаемость](../22-observability/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `asyncio`, `gather` ↔ `Task.WhenAll`

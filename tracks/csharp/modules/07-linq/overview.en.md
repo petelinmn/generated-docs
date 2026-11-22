@@ -72,4 +72,5 @@ record P(string Name, string Dept, int Age);
 - Measuring allocations: [12 · Memory and GC](../12-memory-and-gc/overview.en.md)
 - `IAsyncEnumerable<T>` and asynchronous streams: [10 · Async/await](../10-async-await/overview.en.md)
 - Patterns and extension members: [11 · Modern C#](../11-modern-csharp/overview.en.md)
+- Expression trees: [20 · Reflection and source generators](../20-reflection-and-source-generators/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — list comprehensions, `itertools`

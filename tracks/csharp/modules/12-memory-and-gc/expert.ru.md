@@ -329,7 +329,7 @@ DOTNET_GCHeapHardLimit=10000000 dotnet run
 | | массив в POH | память не уплотняется, но и не мешает остальным |
 | Критичный по задержке участок | `GC.TryStartNoGCRegion`, `SustainedLowLatency` | больше памяти; не панацея |
 
-`Span<T>`, `Memory<T>` и `stackalloc` — следующий шаг в борьбе с выделениями. Они разобраны в отдельном модуле [12a · Span и Memory](../12a-span-and-memory/overview.ru.md), пулы и профилирование — в модуле 19 «Производительность».
+`Span<T>`, `Memory<T>` и `stackalloc` — следующий шаг в борьбе с выделениями. Они разобраны в отдельном модуле [12a · Span и Memory](../12a-span-and-memory/overview.ru.md), пулы и профилирование — в модуле [19 · Производительность](../19-performance/overview.ru.md).
 
 ## Вопросы с собеседований
 

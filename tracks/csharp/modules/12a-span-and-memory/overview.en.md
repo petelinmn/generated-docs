@@ -74,4 +74,5 @@ Console.WriteLine(sum);   // 67
 - Prerequisites: [12 · Memory and GC](../12-memory-and-gc/overview.en.md), [06 · Collections and generics](../06-collections-and-generics/overview.en.md)
 - Nearby: [10 · Async/await](../10-async-await/overview.en.md) (`Memory<T>` and `await`), [11 · Modern C#](../11-modern-csharp/overview.en.md) (collection expressions)
 - Next: [18 · Concurrency](../18-concurrency/overview.en.md)
+- Measuring allocations: [19 · Performance](../19-performance/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — `memoryview` and `bytes`/`bytearray`

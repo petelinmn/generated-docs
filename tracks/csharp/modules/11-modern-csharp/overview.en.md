@@ -69,4 +69,5 @@ Console.WriteLine(Describe(data));   // 1..3
 
 - Prerequisites: [05 · Interfaces, structs, records](../05-interfaces-structs-records/overview.en.md), [06 · Collections and generics](../06-collections-and-generics/overview.en.md)
 - Next: [12a · Span and Memory](../12a-span-and-memory/overview.en.md), [07 · LINQ](../07-linq/overview.en.md)
+- `partial` members and generators: [20 · Reflection and source generators](../20-reflection-and-source-generators/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — `match`/`case`

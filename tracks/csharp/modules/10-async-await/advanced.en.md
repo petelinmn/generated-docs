@@ -178,7 +178,7 @@ await v1;
 var v2 = Cached(cache, 5); Console.WriteLine(v2.IsCompletedSuccessfully);   // True
 ```
 
-`ValueTask` restrictions: **one** `await` per instance, no concurrent `await` from several places, no `.Result` before completion. If you need to hold the result, call `AsTask()`. Return `Task` by default; use `ValueTask` only after measuring (module "19 · Performance" is not created yet).
+`ValueTask` restrictions: **one** `await` per instance, no concurrent `await` from several places, no `.Result` before completion. If you need to hold the result, call `AsTask()`. Return `Task` by default; use `ValueTask` only after measuring ([19 · Performance](../19-performance/overview.en.md)).
 
 ## Async streams and resources
 

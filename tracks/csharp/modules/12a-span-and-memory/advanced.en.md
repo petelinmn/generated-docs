@@ -193,7 +193,7 @@ tail: last
 | `Span` inside synchronous methods, `Memory` at `async` boundaries | `ref struct` restrictions |
 | Do not cache a `Span` from a `List<T>` | the array may be reallocated |
 | Return a rented array in `finally` | otherwise the pool loses buffers |
-| Measure first (BenchmarkDotNet, module "19 · Performance" is not created yet) | the gain is not everywhere |
+| Measure first (BenchmarkDotNet, [19 · Performance](../19-performance/overview.en.md)) | the gain is not everywhere |
 
 ## Related materials
 

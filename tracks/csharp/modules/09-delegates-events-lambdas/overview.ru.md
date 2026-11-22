@@ -74,4 +74,5 @@ c.Click();                                         // clicked
 - Утечки через события: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
 - Асинхронные лямбды и `Task`: [10 · Async/await](../10-async-await/overview.ru.md)
 - Параметры лямбд по умолчанию, `static`-лямбды: [11 · Современный C#](../11-modern-csharp/overview.ru.md)
+- Делегаты и рефлексия: [20 · Рефлексия и генераторы кода](../20-reflection-and-source-generators/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — функции как объекты, замыкания

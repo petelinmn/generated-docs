@@ -67,4 +67,7 @@ Console.WriteLine(string.Join(",", results));   // 10,20
 - Prerequisites: [08 · Exceptions](../08-exceptions/overview.en.md), [09 · Delegates, events, lambdas](../09-delegates-events-lambdas/overview.en.md)
 - Next: [18 · Concurrency](../18-concurrency/overview.en.md), [15 · EF Core](../15-ef-core/overview.en.md) (asynchronous queries)
 - Resources: [12 · Memory and GC](../12-memory-and-gc/overview.en.md) — `IAsyncDisposable`
+- Asynchronous handlers: [14 · ASP.NET Core: Minimal API](../14-aspnet-core-minimal-api/overview.en.md)
+- Asynchronous tests: [16 · Unit tests](../16-testing-unit/overview.en.md)
+- Trace context across `await`: [22 · Observability](../22-observability/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — `asyncio`, `gather` ↔ `Task.WhenAll`

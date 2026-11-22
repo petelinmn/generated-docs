@@ -76,6 +76,6 @@ The result is `["body end", "dispose b", "dispose a", "after block"]` — the re
 - Prerequisites: [02 · Types and variables](../02-types-and-variables/overview.en.md) — value and reference types, boxing
 - The runtime and its settings: [01 · The .NET platform and dotnet CLI](../01-dotnet-platform/overview.en.md)
 - `Dispose` in practice: [15 · EF Core](../15-ef-core/overview.en.md) — the `DbContext` lifetime
-- Next: [12a · Span and Memory](../12a-span-and-memory/overview.en.md); module 19 "Performance" (not created yet)
+- Next: [12a · Span and Memory](../12a-span-and-memory/overview.en.md), [19 · Performance](../19-performance/overview.en.md)
 - `IAsyncDisposable` and state machine allocations: [10 · Async/await](../10-async-await/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — CPython reference counting and cycle collector, `with`

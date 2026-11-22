@@ -76,6 +76,6 @@ public static List<string> Declarations()
 - Пререквизиты: [02 · Типы и переменные](../02-types-and-variables/overview.ru.md) — значимые и ссылочные типы, упаковка
 - Runtime и его настройки: [01 · Платформа .NET и dotnet CLI](../01-dotnet-platform/overview.ru.md)
 - `Dispose` на практике: [15 · EF Core](../15-ef-core/overview.ru.md) — время жизни `DbContext`
-- Дальше: [12a · Span и Memory](../12a-span-and-memory/overview.ru.md); модуль 19 «Производительность» (ещё не создан)
+- Дальше: [12a · Span и Memory](../12a-span-and-memory/overview.ru.md), [19 · Производительность](../19-performance/overview.ru.md)
 - `IAsyncDisposable` и выделения конечным автоматом: [10 · Async/await](../10-async-await/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — подсчёт ссылок и сборщик циклов CPython, `with`

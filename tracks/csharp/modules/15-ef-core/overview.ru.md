@@ -71,4 +71,7 @@ EF генерирует `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Like
 - `DbContext` и потоки: [18 · Многопоточность](../18-concurrency/overview.ru.md)
 - Инструмент `dotnet ef`: [01 · Платформа .NET и dotnet CLI](../01-dotnet-platform/expert.ru.md)
 - `required`/`init` в сущностях, первичные конструкторы: [11 · Современный C#](../11-modern-csharp/overview.ru.md)
+- API поверх данных: [14 · ASP.NET Core: Minimal API](../14-aspnet-core-minimal-api/overview.ru.md)
+- Тесты с БД: [17 · Тестирование: интеграционные тесты](../17-testing-integration/overview.ru.md)
+- Репозиторий и агрегаты: [21 · Архитектура приложений](../21-architecture/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — модуль 20 «Работа с БД»: SQLAlchemy и Alembic

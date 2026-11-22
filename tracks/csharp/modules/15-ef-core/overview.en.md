@@ -71,4 +71,7 @@ EF generates `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Likes" >= @minL
 - `DbContext` and threads: [18 · Concurrency](../18-concurrency/overview.en.md)
 - The `dotnet ef` tool: [01 · The .NET platform and dotnet CLI](../01-dotnet-platform/expert.en.md)
 - `required`/`init` in entities, primary constructors: [11 · Modern C#](../11-modern-csharp/overview.en.md)
+- An API on top of the data: [14 · ASP.NET Core: Minimal API](../14-aspnet-core-minimal-api/overview.en.md)
+- Tests with a database: [17 · Testing: integration tests](../17-testing-integration/overview.en.md)
+- Repository and aggregates: [21 · Application architecture](../21-architecture/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — module 20 "Databases": SQLAlchemy and Alembic

@@ -58,7 +58,7 @@ A `readonly ref struct` guarantees immutable fields: the compiler makes no defen
 
 ## How the JIT works with Span
 
-Access `span[i]` contains a bounds check. The JIT removes it where it can prove the index is valid (for example, in the loop `for (int i = 0; i < span.Length; i++)`), so a loop over a `Span` is comparable to a loop over an array. Methods such as `IndexOf`, `SequenceEqual`, `Contains` and `SearchValues` use SIMD instructions (`Vector128/256/512`) — a gain on long data. Specific numbers depend on the processor and version — measure with BenchmarkDotNet (module "19 · Performance" is not created yet).
+Access `span[i]` contains a bounds check. The JIT removes it where it can prove the index is valid (for example, in the loop `for (int i = 0; i < span.Length; i++)`), so a loop over a `Span` is comparable to a loop over an array. Methods such as `IndexOf`, `SequenceEqual`, `Contains` and `SearchValues` use SIMD instructions (`Vector128/256/512`) — a gain on long data. Specific numbers depend on the processor and version — measure with BenchmarkDotNet ([19 · Performance](../19-performance/overview.en.md)).
 
 `stackalloc` zeroes memory by default; the `[SkipLocalsInit]` attribute and a compiler option turn zeroing off for speed — then you must not read what you did not write.
 

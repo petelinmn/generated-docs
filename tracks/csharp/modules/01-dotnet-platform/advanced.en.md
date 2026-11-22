@@ -74,7 +74,7 @@ The JIT faces a choice: compile quickly (fast startup, slower code) or optimize 
 1. **The first tier** — quick JIT without heavy optimizations, or loading ready-made ReadyToRun code.
 2. **The second tier** — frequently called ("hot") methods are recompiled by the optimizing JIT on a background thread.
 
-The behavior is controlled by the runtime settings `TieredCompilation`, `TC_QuickJit` and `TieredPGO`. The last one enables dynamic profile-guided optimization (dynamic PGO): the JIT takes into account how the code actually ran at the first tier. The practical consequence: the first calls of a method are slower than later ones, so performance cannot be measured with a single call. BenchmarkDotNet exists for measurements — it does the warm-up (module 19).
+The behavior is controlled by the runtime settings `TieredCompilation`, `TC_QuickJit` and `TieredPGO`. The last one enables dynamic profile-guided optimization (dynamic PGO): the JIT takes into account how the code actually ran at the first tier. The practical consequence: the first calls of a method are slower than later ones, so performance cannot be measured with a single call. BenchmarkDotNet exists for measurements — it does the warm-up ([19 · Performance](../19-performance/overview.en.md)).
 
 ## Ahead-of-time: ReadyToRun and Native AOT
 

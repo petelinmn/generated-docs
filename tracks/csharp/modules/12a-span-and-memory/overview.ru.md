@@ -74,4 +74,5 @@ Console.WriteLine(sum);   // 67
 - Пререквизиты: [12 · Память и GC](../12-memory-and-gc/overview.ru.md), [06 · Коллекции и обобщения](../06-collections-and-generics/overview.ru.md)
 - Рядом: [10 · Async/await](../10-async-await/overview.ru.md) (`Memory<T>` и `await`), [11 · Современный C#](../11-modern-csharp/overview.ru.md) (выражения коллекций)
 - Дальше: [18 · Многопоточность](../18-concurrency/overview.ru.md)
+- Измерение выделений: [19 · Производительность](../19-performance/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `memoryview` и `bytes`/`bytearray`
