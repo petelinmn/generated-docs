@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 06-collections-and-generics
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [collections, generics, list, dictionary, hashset, queue, stack, array, ienumerable, collection-expressions, type-parameters]
 versions: ".NET 11, C# 15"
 status: draft
@@ -62,7 +62,7 @@ Console.WriteLine(Max(3, 7));            // 7
 | [1. Базовая теория](basics.ru.md) | массивы, `List`, `Dictionary`, `HashSet`, очереди и стеки, интерфейсы коллекций, выражения коллекций, основы обобщений, выбор коллекции |
 | [2. Продвинутая теория](advanced.ru.md) | ёмкость, изменение при обходе, словарь подробнее, сортировка, ограничения параметров типа, вариантность, неизменяемые и frozen-коллекции |
 | [3. Экспертная теория](expert.ru.md) | устройство `List` и `Dictionary`, обобщения в runtime, выражения коллекций, справочники сложности и вариантности, подвохи, 17 вопросов с собеседований |
-| 4. Самопроверка | ещё не создан — `/learn csharp 06-collections-and-generics level 4` |
+| [4. Самопроверка](quiz.ru.md) | 11 вопросов и [5 упражнений](exercises.ru.md) с решениями |
 | 5. Запускаемые примеры | ещё не создан — `/learn csharp 06-collections-and-generics level 5` |
 | 6. Тесты | ещё не создан — `/learn csharp 06-collections-and-generics level 6` |
 

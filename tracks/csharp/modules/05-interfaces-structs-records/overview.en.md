@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 05-interfaces-structs-records
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [interface, abstract-class, struct, record, value-semantics, value-equality, with-expression, deconstruction, equals]
 versions: ".NET 11, C# 15"
 status: draft
@@ -59,7 +59,7 @@ Console.WriteLine(a with { Age = 31 });   // Person { Name = Ann, Age = 31 }
 | [1. Basics](basics.en.md) | interfaces, structs, records; reference vs value equality; what to choose |
 | [2. Advanced](advanced.en.md) | default implementation, explicit implementation, `static abstract`, `IEquatable<T>` and `GetHashCode`, mutable structs and defensive copies, records in hierarchies |
 | [3. Expert](expert.en.md) | what the compiler generates for records, structs and boxing, reference, gotchas, 18 interview questions |
-| 4. Self-check | not generated yet — `/learn csharp 05-interfaces-structs-records level 4` |
+| [4. Self-check](quiz.en.md) | 11 questions and [5 exercises](exercises.en.md) with solutions |
 | 5. Runnable examples | not generated yet — `/learn csharp 05-interfaces-structs-records level 5` |
 | 6. Tests | not generated yet — `/learn csharp 05-interfaces-structs-records level 6` |
 

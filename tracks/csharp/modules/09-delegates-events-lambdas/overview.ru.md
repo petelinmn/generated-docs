@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 09-delegates-events-lambdas
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [delegates, lambdas, events, func-action, multicast, closures, event-handler, callbacks]
 versions: ".NET 11, C# 15"
 status: draft
@@ -62,7 +62,7 @@ c.Click();                                         // clicked
 | [1. Базовая теория](basics.ru.md) | делегаты, `Func`/`Action`/`Predicate`, лямбды, делегаты как параметры, многоадресность, события и шаблон `EventHandler`, замыкания |
 | [2. Продвинутая теория](advanced.ru.md) | многоадресные делегаты, естественный тип и `static`-лямбды, замыкания и выделения памяти, события в деталях, потокобезопасность, вариантность |
 | [3. Экспертная теория](expert.ru.md) | устройство делегата, скрытые классы и кеш лямбд, события как поле и методы, указатели на функции, справочник, подвохи, 16 вопросов с собеседований |
-| 4. Самопроверка | ещё не создан — `/learn csharp 09-delegates-events-lambdas level 4` |
+| [4. Самопроверка](quiz.ru.md) | 11 вопросов и [5 упражнений](exercises.ru.md) с решениями |
 | 5. Запускаемые примеры | ещё не создан — `/learn csharp 09-delegates-events-lambdas level 5` |
 | 6. Тесты | ещё не создан — `/learn csharp 09-delegates-events-lambdas level 6` |
 

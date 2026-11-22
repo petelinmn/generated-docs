@@ -16,7 +16,7 @@ updated: 2026-11-22
 
 🌐 [Русский](advanced.ru.md) · **English**
 
-**Levels:** [overview](overview.en.md) · [1. Basics](basics.en.md) · **2. Advanced** · [3. Expert](expert.en.md)
+**Levels:** [overview](overview.en.md) · [1. Basics](basics.en.md) · **2. Advanced** · [3. Expert](expert.en.md) · [4. Quiz](quiz.en.md)
 
 ## List capacity
 

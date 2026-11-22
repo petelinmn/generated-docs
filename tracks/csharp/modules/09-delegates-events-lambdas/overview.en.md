@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 09-delegates-events-lambdas
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [delegates, lambdas, events, func-action, multicast, closures, event-handler, callbacks]
 versions: ".NET 11, C# 15"
 status: draft
@@ -62,7 +62,7 @@ c.Click();                                         // clicked
 | [1. Basics](basics.en.md) | delegates, `Func`/`Action`/`Predicate`, lambdas, delegates as parameters, multicast, events and the `EventHandler` pattern, closures |
 | [2. Advanced](advanced.en.md) | multicast delegates, the natural type and `static` lambdas, closures and memory allocations, events in detail, thread safety, variance |
 | [3. Expert](expert.en.md) | how a delegate works, hidden classes and the lambda cache, events as a field and methods, function pointers, reference, gotchas, 16 interview questions |
-| 4. Self-check | not generated yet — `/learn csharp 09-delegates-events-lambdas level 4` |
+| [4. Self-check](quiz.en.md) | 11 questions and [5 exercises](exercises.en.md) with solutions |
 | 5. Runnable examples | not generated yet — `/learn csharp 09-delegates-events-lambdas level 5` |
 | 6. Tests | not generated yet — `/learn csharp 09-delegates-events-lambdas level 6` |
 

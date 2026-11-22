@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 04-oop-basics
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [class, object, constructor, property, encapsulation, access-modifiers, static, inheritance, polymorphism, virtual-override]
 versions: ".NET 11, C# 15"
 status: draft
@@ -64,7 +64,7 @@ Console.WriteLine(animal.Speak());     // Woof — decided by the actual type
 | [1. Базовая теория](basics.ru.md) | класс и объект, модификаторы доступа, поля и свойства, конструкторы, `static`, наследование, полиморфизм, приведение типов |
 | [2. Продвинутая теория](advanced.ru.md) | порядок инициализации, `virtual`/`override`/`new`, перегрузка в иерархиях, `field`, индексаторы, `const`/`readonly`, методы расширения, `partial`, композиция |
 | [3. Экспертная теория](expert.ru.md) | объект в памяти, `callvirt`, метаданные свойств и `init`/`required`, справочник модификаторов, подвохи, 18 вопросов с собеседований |
-| 4. Самопроверка | ещё не создан — `/learn csharp 04-oop-basics level 4` |
+| [4. Самопроверка](quiz.ru.md) | 10 вопросов и [5 упражнений](exercises.ru.md) с решениями |
 | 5. Запускаемые примеры | ещё не создан — `/learn csharp 04-oop-basics level 5` |
 | 6. Тесты | ещё не создан — `/learn csharp 04-oop-basics level 6` |
 

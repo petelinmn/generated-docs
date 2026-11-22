@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 04-oop-basics
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [class, object, constructor, property, encapsulation, access-modifiers, static, inheritance, polymorphism, virtual-override]
 versions: ".NET 11, C# 15"
 status: draft
@@ -64,7 +64,7 @@ Console.WriteLine(animal.Speak());     // Woof — decided by the actual type
 | [1. Basics](basics.en.md) | a class and an object, access modifiers, fields and properties, constructors, `static`, inheritance, polymorphism, type casts |
 | [2. Advanced](advanced.en.md) | initialization order, `virtual`/`override`/`new`, overloading in hierarchies, `field`, indexers, `const`/`readonly`, extension methods, `partial`, composition |
 | [3. Expert](expert.en.md) | an object in memory, `callvirt`, property metadata and `init`/`required`, a reference of modifiers, gotchas, 18 interview questions |
-| 4. Self-check | not generated yet — `/learn csharp 04-oop-basics level 4` |
+| [4. Self-check](quiz.en.md) | 10 questions and [5 exercises](exercises.en.md) with solutions |
 | 5. Runnable examples | not generated yet — `/learn csharp 04-oop-basics level 5` |
 | 6. Tests | not generated yet — `/learn csharp 04-oop-basics level 6` |
 

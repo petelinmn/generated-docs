@@ -16,7 +16,7 @@ updated: 2026-11-22
 
 🌐 **Русский** · [English](expert.en.md)
 
-**Уровни:** [обзор](overview.ru.md) · [1. Базовая](basics.ru.md) · [2. Продвинутая](advanced.ru.md) · **3. Экспертная**
+**Уровни:** [обзор](overview.ru.md) · [1. Базовая](basics.ru.md) · [2. Продвинутая](advanced.ru.md) · **3. Экспертная** · [4. Квиз](quiz.ru.md)
 
 ## Под капотом
 

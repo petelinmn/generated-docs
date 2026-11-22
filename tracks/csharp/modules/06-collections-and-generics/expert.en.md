@@ -16,7 +16,7 @@ updated: 2026-11-22
 
 🌐 [Русский](expert.ru.md) · **English**
 
-**Levels:** [overview](overview.en.md) · [1. Basics](basics.en.md) · [2. Advanced](advanced.en.md) · **3. Expert**
+**Levels:** [overview](overview.en.md) · [1. Basics](basics.en.md) · [2. Advanced](advanced.en.md) · **3. Expert** · [4. Quiz](quiz.en.md)
 
 ## Under the hood
 

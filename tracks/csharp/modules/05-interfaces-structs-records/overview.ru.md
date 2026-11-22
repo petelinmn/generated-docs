@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 05-interfaces-structs-records
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [interface, abstract-class, struct, record, value-semantics, value-equality, with-expression, deconstruction, equals]
 versions: ".NET 11, C# 15"
 status: draft
@@ -59,7 +59,7 @@ Console.WriteLine(a with { Age = 31 });   // Person { Name = Ann, Age = 31 }
 | [1. Базовая теория](basics.ru.md) | интерфейсы, структуры, записи; равенство ссылок и значений; что выбрать |
 | [2. Продвинутая теория](advanced.ru.md) | реализация по умолчанию, явная реализация, `static abstract`, `IEquatable<T>` и `GetHashCode`, изменяемые структуры и защитные копии, записи в иерархиях |
 | [3. Экспертная теория](expert.ru.md) | что компилятор генерирует для записей, структуры и упаковка, справочник, подвохи, 18 вопросов с собеседований |
-| 4. Самопроверка | ещё не создан — `/learn csharp 05-interfaces-structs-records level 4` |
+| [4. Самопроверка](quiz.ru.md) | 11 вопросов и [5 упражнений](exercises.ru.md) с решениями |
 | 5. Запускаемые примеры | ещё не создан — `/learn csharp 05-interfaces-structs-records level 5` |
 | 6. Тесты | ещё не создан — `/learn csharp 05-interfaces-structs-records level 6` |
 

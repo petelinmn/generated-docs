@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 07-linq
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [linq, query-syntax, method-syntax, deferred-execution, iterators, yield, expression-trees, iqueryable, group-join, closures]
 versions: ".NET 11, C# 15"
 status: draft
@@ -61,7 +61,7 @@ record P(string Name, string Dept, int Age);
 | [1. Базовая теория](basics.ru.md) | лямбды, основные операторы, выбор элемента, отложенное выполнение, запросный синтаксис, группировка, материализация |
 | [2. Продвинутая теория](advanced.ru.md) | стриминг и буферизация, многократное перечисление, замыкания, пустые последовательности, соединения, новые операторы, итераторы, `IQueryable` |
 | [3. Экспертная теория](expert.ru.md) | перевод запросного синтаксиса, конечный автомат итератора, оптимизации `Enumerable`, деревья выражений, асинхронный LINQ, справочник, подвохи, 17 вопросов с собеседований |
-| 4. Самопроверка | ещё не создан — `/learn csharp 07-linq level 4` |
+| [4. Самопроверка](quiz.ru.md) | 11 вопросов и [5 упражнений](exercises.ru.md) с решениями |
 | 5. Запускаемые примеры | ещё не создан — `/learn csharp 07-linq level 5` |
 | 6. Тесты | ещё не создан — `/learn csharp 07-linq level 6` |
 

@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 08-exceptions
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [exceptions, try-catch-finally, throw, custom-exceptions, exception-hierarchy, argument-validation, exception-filters, rethrow, inner-exception]
 versions: ".NET 11, C# 15"
 status: draft
@@ -66,7 +66,7 @@ finally
 | [1. Базовая теория](basics.ru.md) | `try`/`catch`/`finally`, иерархия, типичные исключения, свойства, проверка аргументов, `using`, свои исключения, обёртывание, когда бросать |
 | [2. Продвинутая теория](advanced.ru.md) | фильтры `when`, `throw` и `throw ex`, обёртывание и `InnerException`, подвохи `finally`, `AggregateException`, проектирование исключений, производительность, шаблон Try |
 | [3. Экспертная теория](expert.ru.md) | области обработки в IL, двухпроходная обработка, содержимое исключения, неперехватываемые сбои, справочник, подвохи, 17 вопросов с собеседований |
-| 4. Самопроверка | ещё не создан — `/learn csharp 08-exceptions level 4` |
+| [4. Самопроверка](quiz.ru.md) | 11 вопросов и [5 упражнений](exercises.ru.md) с решениями |
 | 5. Запускаемые примеры | ещё не создан — `/learn csharp 08-exceptions level 5` |
 | 6. Тесты | ещё не создан — `/learn csharp 08-exceptions level 6` |
 

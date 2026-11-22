@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 06-collections-and-generics
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [collections, generics, list, dictionary, hashset, queue, stack, array, ienumerable, collection-expressions, type-parameters]
 versions: ".NET 11, C# 15"
 status: draft
@@ -62,7 +62,7 @@ Console.WriteLine(Max(3, 7));            // 7
 | [1. Basics](basics.en.md) | arrays, `List`, `Dictionary`, `HashSet`, queues and stacks, collection interfaces, collection expressions, generics basics, choosing a collection |
 | [2. Advanced](advanced.en.md) | capacity, modification during iteration, the dictionary in detail, sorting, type parameter constraints, variance, immutable and frozen collections |
 | [3. Expert](expert.en.md) | the internals of `List` and `Dictionary`, generics at run time, collection expressions, complexity and variance references, gotchas, 17 interview questions |
-| 4. Self-check | not generated yet — `/learn csharp 06-collections-and-generics level 4` |
+| [4. Self-check](quiz.en.md) | 11 questions and [5 exercises](exercises.en.md) with solutions |
 | 5. Runnable examples | not generated yet — `/learn csharp 06-collections-and-generics level 5` |
 | 6. Tests | not generated yet — `/learn csharp 06-collections-and-generics level 6` |
 

@@ -6,7 +6,7 @@ kind: module
 doc: overview
 slug: 08-exceptions
 part: 1
-levels: [1, 2, 3]
+levels: [1, 2, 3, 4]
 tags: [exceptions, try-catch-finally, throw, custom-exceptions, exception-hierarchy, argument-validation, exception-filters, rethrow, inner-exception]
 versions: ".NET 11, C# 15"
 status: draft
@@ -66,7 +66,7 @@ finally
 | [1. Basics](basics.en.md) | `try`/`catch`/`finally`, the hierarchy, common exceptions, properties, argument validation, `using`, custom exceptions, wrapping, when to throw |
 | [2. Advanced](advanced.en.md) | `when` filters, `throw` and `throw ex`, wrapping and `InnerException`, `finally` gotchas, `AggregateException`, designing exceptions, performance, the Try pattern |
 | [3. Expert](expert.en.md) | handling clauses in IL, two-pass handling, what an exception holds, uncatchable failures, reference, gotchas, 17 interview questions |
-| 4. Self-check | not generated yet — `/learn csharp 08-exceptions level 4` |
+| [4. Self-check](quiz.en.md) | 11 questions and [5 exercises](exercises.en.md) with solutions |
 | 5. Runnable examples | not generated yet — `/learn csharp 08-exceptions level 5` |
 | 6. Tests | not generated yet — `/learn csharp 08-exceptions level 6` |
 

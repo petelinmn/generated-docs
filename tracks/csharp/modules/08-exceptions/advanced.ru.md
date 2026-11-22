@@ -16,7 +16,7 @@ updated: 2026-11-22
 
 🌐 **Русский** · [English](advanced.en.md)
 
-**Уровни:** [обзор](overview.ru.md) · [1. Базовая](basics.ru.md) · **2. Продвинутая** · [3. Экспертная](expert.ru.md)
+**Уровни:** [обзор](overview.ru.md) · [1. Базовая](basics.ru.md) · **2. Продвинутая** · [3. Экспертная](expert.ru.md) · [4. Квиз](quiz.ru.md)
 
 ## Фильтры исключений when
 
