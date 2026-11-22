@@ -77,3 +77,4 @@ finally
 - Exceptions in multithreaded code: [18 · Concurrency](../18-concurrency/overview.en.md)
 - Exceptions in asynchronous code, `AggregateException`: [10 · Async/await](../10-async-await/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — `try`/`except`, `raise from`
+- Recipes and libraries: [Polly](../../libraries/polly/overview.en.md)

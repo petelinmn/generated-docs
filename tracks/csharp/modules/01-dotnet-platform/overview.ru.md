@@ -74,3 +74,4 @@ Hello, Alice! Running HelloFileApp on .NET 11
 
 - Дальше: [02 · Типы и переменные](../02-types-and-variables/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — интерпретатор и uv вместо CLR и dotnet CLI
+- Рецепты и библиотеки: [Spectre.Console](../../libraries/spectre-console/overview.ru.md)

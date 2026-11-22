@@ -76,3 +76,4 @@ foreach (var p in typeof(Person).GetProperties())
 - Next: [21 · Application architecture](../21-architecture/overview.en.md)
 - `[LoggerMessage]` and DI: [13 · DI, configuration, logging](../13-di-config-logging/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — introspection
+- Recipes and libraries: [Dapper](../../libraries/dapper/overview.en.md), [FluentValidation](../../libraries/fluentvalidation/overview.en.md), [Mapperly](../../libraries/mapperly/overview.en.md), [NSubstitute](../../libraries/nsubstitute/overview.en.md), [Refit](../../libraries/refit/overview.en.md)

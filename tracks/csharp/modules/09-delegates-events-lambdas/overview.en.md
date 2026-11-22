@@ -76,3 +76,4 @@ c.Click();                                         // clicked
 - Default lambda parameters, `static` lambdas: [11 · Modern C#](../11-modern-csharp/overview.en.md)
 - Delegates and reflection: [20 · Reflection and source generators](../20-reflection-and-source-generators/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — functions as objects, closures
+- Recipes and libraries: [FluentValidation](../../libraries/fluentvalidation/overview.en.md)

@@ -77,3 +77,4 @@ Console.WriteLine(p.GetRequiredService<GreetingService>().Greet("Ann"));   // Go
 - Logs, metrics, traces: [22 · Observability](../22-observability/overview.en.md)
 - Replacing dependencies in tests: [16 · Unit tests](../16-testing-unit/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — FastAPI dependencies, `logging`
+- Recipes and libraries: [FluentValidation](../../libraries/fluentvalidation/overview.en.md), [Polly](../../libraries/polly/overview.en.md), [Refit](../../libraries/refit/overview.en.md), [Serilog](../../libraries/serilog/overview.en.md), [Spectre.Console](../../libraries/spectre-console/overview.en.md), [Background jobs](../../recipes/background-jobs/overview.en.md), [Resilient HttpClient](../../recipes/http-client-resilience/overview.en.md), [JWT authentication](../../recipes/jwt-auth/overview.en.md)

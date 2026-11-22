@@ -73,3 +73,4 @@ public class CalculatorTests
 - Асинхронные тесты: [10 · Async/await](../10-async-await/overview.ru.md)
 - Архитектурные тесты: [21 · Архитектура приложений](../21-architecture/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — pytest
+- Рецепты и библиотеки: [FluentValidation](../../libraries/fluentvalidation/overview.ru.md), [NSubstitute](../../libraries/nsubstitute/overview.ru.md), [Spectre.Console](../../libraries/spectre-console/overview.ru.md), [Testcontainers](../../libraries/testcontainers/overview.ru.md)

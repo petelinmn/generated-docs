@@ -71,3 +71,4 @@ Console.WriteLine(string.Join(",", results));   // 10,20
 - Asynchronous tests: [16 · Unit tests](../16-testing-unit/overview.en.md)
 - Trace context across `await`: [22 · Observability](../22-observability/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — `asyncio`, `gather` ↔ `Task.WhenAll`
+- Recipes and libraries: [Polly](../../libraries/polly/overview.en.md), [Refit](../../libraries/refit/overview.en.md), [Background jobs](../../recipes/background-jobs/overview.en.md), [Caching](../../recipes/caching/overview.en.md), [File upload](../../recipes/file-upload/overview.en.md), [gRPC service](../../recipes/grpc-service/overview.en.md), [Resilient HttpClient](../../recipes/http-client-resilience/overview.en.md), [Real-time with SignalR](../../recipes/signalr-realtime/overview.en.md)

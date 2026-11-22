@@ -74,3 +74,4 @@ Console.WriteLine(animal.Speak());     // Woof — decided by the actual type
 - Next: [05 · Interfaces, structs, records](../05-interfaces-structs-records/overview.en.md)
 - Releasing objects: [12 · Memory and GC](../12-memory-and-gc/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — classes, `__init__`, `@property`
+- Recipes and libraries: [Mapperly](../../libraries/mapperly/overview.en.md)

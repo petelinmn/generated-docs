@@ -77,3 +77,4 @@ finally
 - Исключения в многопоточном коде: [18 · Многопоточность](../18-concurrency/overview.ru.md)
 - Исключения в асинхронном коде, `AggregateException`: [10 · Async/await](../10-async-await/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `try`/`except`, `raise from`
+- Рецепты и библиотеки: [Polly](../../libraries/polly/overview.ru.md)

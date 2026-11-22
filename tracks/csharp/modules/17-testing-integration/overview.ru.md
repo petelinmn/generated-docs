@@ -72,3 +72,4 @@ public class SmokeTests(WebApplicationFactory<Program> factory) : IClassFixture<
 - Подмена сервисов: [13 · DI, конфигурация, логирование](../13-di-config-logging/overview.ru.md)
 - Smoke-тесты и health checks: [22 · Наблюдаемость](../22-observability/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `TestClient` FastAPI
+- Рецепты и библиотеки: [NSubstitute](../../libraries/nsubstitute/overview.ru.md), [Testcontainers](../../libraries/testcontainers/overview.ru.md), [Устойчивый HttpClient](../../recipes/http-client-resilience/overview.ru.md), [JWT-аутентификация](../../recipes/jwt-auth/overview.ru.md)

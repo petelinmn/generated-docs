@@ -70,3 +70,4 @@ Console.WriteLine(a with { Age = 31 });   // Person { Name = Ann, Age = 31 }
 - Boxing and allocations: [12 · Memory and GC](../12-memory-and-gc/overview.en.md)
 - Patterns, primary constructors, `required`/`init`: [11 · Modern C#](../11-modern-csharp/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — `Protocol`, `dataclass`
+- Recipes and libraries: [FluentValidation](../../libraries/fluentvalidation/overview.en.md), [NSubstitute](../../libraries/nsubstitute/overview.en.md), [Refit](../../libraries/refit/overview.en.md)

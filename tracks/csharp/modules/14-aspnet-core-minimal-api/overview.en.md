@@ -73,3 +73,4 @@ app.Run();
 - Application structure: [21 · Application architecture](../21-architecture/overview.en.md)
 - Health checks and tracing: [22 · Observability](../22-observability/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — FastAPI
+- Recipes and libraries: [FluentValidation](../../libraries/fluentvalidation/overview.en.md), [Caching](../../recipes/caching/overview.en.md), [File upload](../../recipes/file-upload/overview.en.md), [gRPC service](../../recipes/grpc-service/overview.en.md), [JWT authentication](../../recipes/jwt-auth/overview.en.md), [Pagination and filtering](../../recipes/pagination-filtering/overview.en.md), [Rate limiting](../../recipes/rate-limiting/overview.en.md), [Real-time with SignalR](../../recipes/signalr-realtime/overview.en.md)

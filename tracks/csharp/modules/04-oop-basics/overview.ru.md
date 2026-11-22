@@ -74,3 +74,4 @@ Console.WriteLine(animal.Speak());     // Woof — decided by the actual type
 - Дальше: [05 · Интерфейсы, структуры, записи](../05-interfaces-structs-records/overview.ru.md)
 - Освобождение объектов: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — классы, `__init__`, `@property`
+- Рецепты и библиотеки: [Mapperly](../../libraries/mapperly/overview.ru.md)

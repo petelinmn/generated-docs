@@ -76,3 +76,4 @@ Console.WriteLine(sum);   // 67
 - Дальше: [18 · Многопоточность](../18-concurrency/overview.ru.md)
 - Измерение выделений: [19 · Производительность](../19-performance/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `memoryview` и `bytes`/`bytearray`
+- Рецепты и библиотеки: [BenchmarkDotNet](../../libraries/benchmarkdotnet/overview.ru.md)

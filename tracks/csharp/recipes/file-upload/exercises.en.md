@@ -1,0 +1,136 @@
+---
+title: "Exercises: File upload"
+lang: en
+track: csharp
+kind: recipe
+doc: exercises
+slug: file-upload
+part: 2
+tags: [file-upload, iformfile, streaming, multipart-reader, range-requests]
+status: draft
+updated: 2026-11-22
+---
+
+# Exercises: File upload
+
+🌐 [Русский](exercises.ru.md) · **English**
+
+> Solve it yourself before opening the hints. The solutions were verified by running (Kestrel + `HttpClient`, no external packages). There are no runnable versions in `code/` (level 5 does not exist).
+
+## 1. 🟢 A safe upload
+
+**Task:** the endpoint `POST /upload` saves a file under a server name and returns the original name, size and type. Send a file named `../../evil.txt`.
+
+**Expected result:** `200`, `original = "evil.txt"`, `size = 11`; nothing created outside the directory.
+
+<details><summary>Hint</summary>
+
+`IFormFile`, `Path.GetFileName`, `Guid.NewGuid().ToString("N")`, `.DisableAntiforgery()`.
+
+</details>
+
+<details><summary>Solution</summary>
+
+```csharp
+// Exercise 1: server-generated file name.
+app.MapPost("/upload", async (IFormFile file) =>
+{
+    var safe = Path.GetFileName(file.FileName);
+    var id = Guid.NewGuid().ToString("N") + Path.GetExtension(safe);
+    await using var fs = File.Create(Path.Combine(root, id));
+    await file.CopyToAsync(fs);
+    return Results.Ok(new { id, original = safe, size = file.Length, file.ContentType });
+}).DisableAntiforgery();
+```
+
+Verified: `upload: 200 {"id":"…txt","original":"evil.txt","size":11,"contentType":"text/plain"}`, no file created outside the root.
+
+</details>
+
+## 2. 🟡 A streaming upload with a limit
+
+**Task:** `PUT /stream/{name}` writes the body to disk; the request limit is 1 MB. Send 500 KB and 2 MB.
+
+**Expected result:** `200 {"saved":500000}` and `413`.
+
+<details><summary>Hint</summary>
+
+`req.Body.CopyToAsync(fs)` and `ConfigureKestrel(k => k.Limits.MaxRequestBodySize = …)`.
+
+</details>
+
+<details><summary>Solution</summary>
+
+```csharp
+// Exercise 2: streaming upload with a body size limit.
+builder.WebHost.ConfigureKestrel(k => k.Limits.MaxRequestBodySize = 1024 * 1024);
+app.MapPut("/stream/{name}", async (string name, HttpRequest req) =>
+{
+    await using var fs = File.Create(Path.Combine(root, Path.GetFileName(name)));
+    await req.Body.CopyToAsync(fs);
+    return Results.Ok(new { saved = fs.Length });
+});
+```
+
+Verified: `stream 500KB: 200 {"saved":500000}`, `stream 2MB (limit 1MB): 413`.
+
+</details>
+
+## 3. 🟡 A type check
+
+**Task:** accept only `.png/.jpg/.txt`; for `.png` check the signature `89 50 4E 47`. Test three files: `x.exe`, `x.png` with arbitrary bytes, `x.png` with a real signature.
+
+**Expected result:** `extension not allowed`, `content is not PNG`, `ok`.
+
+<details><summary>Hint</summary>
+
+`file.OpenReadStream()`, `ReadExactlyAsync` for 4 bytes, `SequenceEqual`.
+
+</details>
+
+<details><summary>Solution</summary>
+
+```csharp
+// Exercise 3: extension allow-list + magic-bytes check.
+var allowed = new[] { ".png", ".jpg", ".txt" };
+var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+if (!allowed.Contains(ext)) return Results.BadRequest("extension not allowed");
+var head = new byte[4];
+await using var s = file.OpenReadStream();
+await s.ReadExactlyAsync(head);
+var isPng = head.AsSpan().SequenceEqual(new byte[] { 0x89, 0x50, 0x4E, 0x47 });
+return ext == ".png" && !isPng ? Results.BadRequest("content is not PNG") : Results.Ok("ok");
+```
+
+Verified: three responses — `"extension not allowed"`, `"content is not PNG"`, `"ok"`.
+
+</details>
+
+## 4. 🔴 Download with resume
+
+**Task:** `GET /download/{name}` serves a file with `Range` support. Request bytes 0–99 of a 500,000-byte file.
+
+**Expected result:** `206`, length 100, `Content-Range: bytes 0-99/500000`; for a missing file — `404`.
+
+<details><summary>Hint</summary>
+
+`Results.File(path, contentType, fileName, enableRangeProcessing: true)`; the header `RangeHeaderValue(0, 99)`.
+
+</details>
+
+<details><summary>Solution</summary>
+
+```csharp
+// Exercise 4: download with HTTP range support.
+app.MapGet("/download/{name}", (string name) =>
+{
+    var path = Path.Combine(root, Path.GetFileName(name));
+    return File.Exists(path)
+        ? Results.File(path, "application/octet-stream", name, enableRangeProcessing: true)
+        : Results.NotFound();
+});
+```
+
+Verified: `range 0-99: 206 length=100 content-range=bytes 0-99/500000`, `download missing: 404`.
+
+</details>

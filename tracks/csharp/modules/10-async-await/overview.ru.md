@@ -71,3 +71,4 @@ Console.WriteLine(string.Join(",", results));   // 10,20
 - Асинхронные тесты: [16 · Unit-тесты](../16-testing-unit/overview.ru.md)
 - Контекст трассы через `await`: [22 · Наблюдаемость](../22-observability/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `asyncio`, `gather` ↔ `Task.WhenAll`
+- Рецепты и библиотеки: [Polly](../../libraries/polly/overview.ru.md), [Refit](../../libraries/refit/overview.ru.md), [Фоновые задачи](../../recipes/background-jobs/overview.ru.md), [Кэширование](../../recipes/caching/overview.ru.md), [Загрузка файлов](../../recipes/file-upload/overview.ru.md), [gRPC-сервис](../../recipes/grpc-service/overview.ru.md), [Устойчивый HttpClient](../../recipes/http-client-resilience/overview.ru.md), [Real-time через SignalR](../../recipes/signalr-realtime/overview.ru.md)

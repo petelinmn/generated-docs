@@ -76,3 +76,4 @@ foreach (var p in typeof(Person).GetProperties())
 - Дальше: [21 · Архитектура приложений](../21-architecture/overview.ru.md)
 - `[LoggerMessage]` и DI: [13 · DI, конфигурация, логирование](../13-di-config-logging/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — интроспекция
+- Рецепты и библиотеки: [Dapper](../../libraries/dapper/overview.ru.md), [FluentValidation](../../libraries/fluentvalidation/overview.ru.md), [Mapperly](../../libraries/mapperly/overview.ru.md), [NSubstitute](../../libraries/nsubstitute/overview.ru.md), [Refit](../../libraries/refit/overview.ru.md)

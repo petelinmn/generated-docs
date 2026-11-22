@@ -70,3 +70,4 @@ Console.WriteLine(a with { Age = 31 });   // Person { Name = Ann, Age = 31 }
 - Упаковка и выделения: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
 - Образцы, первичные конструкторы, `required`/`init`: [11 · Современный C#](../11-modern-csharp/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — `Protocol`, `dataclass`
+- Рецепты и библиотеки: [FluentValidation](../../libraries/fluentvalidation/overview.ru.md), [NSubstitute](../../libraries/nsubstitute/overview.ru.md), [Refit](../../libraries/refit/overview.ru.md)

@@ -74,3 +74,4 @@ Console.WriteLine(Alloc(() => { _ = string.Concat(parts); }));                  
 - Next: [22 · Observability](../22-observability/overview.en.md)
 - Performance regressions: [16 · Unit tests](../16-testing-unit/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — profiling
+- Recipes and libraries: [BenchmarkDotNet](../../libraries/benchmarkdotnet/overview.en.md), [Dapper](../../libraries/dapper/overview.en.md), [Mapperly](../../libraries/mapperly/overview.en.md), [Serilog](../../libraries/serilog/overview.en.md), [Spectre.Console](../../libraries/spectre-console/overview.en.md), [Caching](../../recipes/caching/overview.en.md), [File upload](../../recipes/file-upload/overview.en.md), [Pagination and filtering](../../recipes/pagination-filtering/overview.en.md)

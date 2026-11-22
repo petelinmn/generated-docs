@@ -79,3 +79,4 @@ public static List<string> Declarations()
 - Дальше: [12a · Span и Memory](../12a-span-and-memory/overview.ru.md), [19 · Производительность](../19-performance/overview.ru.md)
 - `IAsyncDisposable` и выделения конечным автоматом: [10 · Async/await](../10-async-await/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — подсчёт ссылок и сборщик циклов CPython, `with`
+- Рецепты и библиотеки: [BenchmarkDotNet](../../libraries/benchmarkdotnet/overview.ru.md)

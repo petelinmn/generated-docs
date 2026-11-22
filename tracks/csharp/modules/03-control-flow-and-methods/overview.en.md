@@ -74,3 +74,4 @@ public static string FizzBuzz(int n) => (n % 3, n % 5) switch
 - Earlier: [01 · The .NET platform and dotnet CLI](../01-dotnet-platform/overview.en.md)
 - Patterns and `switch` expressions: [11 · Modern C#](../11-modern-csharp/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — `if`/`match`, `for … in`, `*args`/`**kwargs`
+- Recipes and libraries: [Spectre.Console](../../libraries/spectre-console/overview.en.md)

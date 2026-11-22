@@ -77,3 +77,4 @@ Console.WriteLine(p.GetRequiredService<GreetingService>().Greet("Ann"));   // Go
 - Логи, метрики, трассы: [22 · Наблюдаемость](../22-observability/overview.ru.md)
 - Подмена зависимостей в тестах: [16 · Unit-тесты](../16-testing-unit/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — зависимости FastAPI, `logging`
+- Рецепты и библиотеки: [FluentValidation](../../libraries/fluentvalidation/overview.ru.md), [Polly](../../libraries/polly/overview.ru.md), [Refit](../../libraries/refit/overview.ru.md), [Serilog](../../libraries/serilog/overview.ru.md), [Spectre.Console](../../libraries/spectre-console/overview.ru.md), [Фоновые задачи](../../recipes/background-jobs/overview.ru.md), [Устойчивый HttpClient](../../recipes/http-client-resilience/overview.ru.md), [JWT-аутентификация](../../recipes/jwt-auth/overview.ru.md)

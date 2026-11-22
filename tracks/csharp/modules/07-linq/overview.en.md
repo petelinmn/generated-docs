@@ -74,3 +74,4 @@ record P(string Name, string Dept, int Age);
 - Patterns and extension members: [11 · Modern C#](../11-modern-csharp/overview.en.md)
 - Expression trees: [20 · Reflection and source generators](../20-reflection-and-source-generators/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — list comprehensions, `itertools`
+- Recipes and libraries: [Pagination and filtering](../../recipes/pagination-filtering/overview.en.md)

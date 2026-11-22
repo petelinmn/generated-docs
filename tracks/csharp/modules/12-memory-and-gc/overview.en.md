@@ -79,3 +79,4 @@ The result is `["body end", "dispose b", "dispose a", "after block"]` — the re
 - Next: [12a · Span and Memory](../12a-span-and-memory/overview.en.md), [19 · Performance](../19-performance/overview.en.md)
 - `IAsyncDisposable` and state machine allocations: [10 · Async/await](../10-async-await/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — CPython reference counting and cycle collector, `with`
+- Recipes and libraries: [BenchmarkDotNet](../../libraries/benchmarkdotnet/overview.en.md)

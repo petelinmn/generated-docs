@@ -74,3 +74,4 @@ Console.WriteLine(Alloc(() => { _ = string.Concat(parts); }));                  
 - Дальше: [22 · Наблюдаемость](../22-observability/overview.ru.md)
 - Регрессии производительности: [16 · Unit-тесты](../16-testing-unit/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — профилирование
+- Рецепты и библиотеки: [BenchmarkDotNet](../../libraries/benchmarkdotnet/overview.ru.md), [Dapper](../../libraries/dapper/overview.ru.md), [Mapperly](../../libraries/mapperly/overview.ru.md), [Serilog](../../libraries/serilog/overview.ru.md), [Spectre.Console](../../libraries/spectre-console/overview.ru.md), [Кэширование](../../recipes/caching/overview.ru.md), [Загрузка файлов](../../recipes/file-upload/overview.ru.md), [Пагинация и фильтрация](../../recipes/pagination-filtering/overview.ru.md)

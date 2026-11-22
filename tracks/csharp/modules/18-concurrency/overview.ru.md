@@ -80,3 +80,4 @@ public sealed class LockCounter : ICounter
 - `ArrayPool`, `Pipelines`: [12a · Span и Memory](../12a-span-and-memory/overview.ru.md)
 - Пул потоков и производительность: [19 · Производительность](../19-performance/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — GIL, `threading` и `asyncio`
+- Рецепты и библиотеки: [Фоновые задачи](../../recipes/background-jobs/overview.ru.md)

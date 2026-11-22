@@ -74,3 +74,4 @@ record P(string Name, string Dept, int Age);
 - Образцы и extension members: [11 · Современный C#](../11-modern-csharp/overview.ru.md)
 - Деревья выражений: [20 · Рефлексия и генераторы кода](../20-reflection-and-source-generators/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — генераторы списков, `itertools`
+- Рецепты и библиотеки: [Пагинация и фильтрация](../../recipes/pagination-filtering/overview.ru.md)

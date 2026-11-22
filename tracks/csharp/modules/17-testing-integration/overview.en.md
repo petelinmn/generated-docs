@@ -72,3 +72,4 @@ public class SmokeTests(WebApplicationFactory<Program> factory) : IClassFixture<
 - Replacing services: [13 · DI, configuration, logging](../13-di-config-logging/overview.en.md)
 - Smoke tests and health checks: [22 · Observability](../22-observability/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — FastAPI's `TestClient`
+- Recipes and libraries: [NSubstitute](../../libraries/nsubstitute/overview.en.md), [Testcontainers](../../libraries/testcontainers/overview.en.md), [Resilient HttpClient](../../recipes/http-client-resilience/overview.en.md), [JWT authentication](../../recipes/jwt-auth/overview.en.md)

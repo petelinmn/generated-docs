@@ -73,3 +73,4 @@ public class CalculatorTests
 - Asynchronous tests: [10 · Async/await](../10-async-await/overview.en.md)
 - Architecture tests: [21 · Application architecture](../21-architecture/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — pytest
+- Recipes and libraries: [FluentValidation](../../libraries/fluentvalidation/overview.en.md), [NSubstitute](../../libraries/nsubstitute/overview.en.md), [Spectre.Console](../../libraries/spectre-console/overview.en.md), [Testcontainers](../../libraries/testcontainers/overview.en.md)

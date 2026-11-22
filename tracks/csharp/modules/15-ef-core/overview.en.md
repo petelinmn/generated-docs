@@ -75,3 +75,4 @@ EF generates `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Likes" >= @minL
 - Tests with a database: [17 · Testing: integration tests](../17-testing-integration/overview.en.md)
 - Repository and aggregates: [21 · Application architecture](../21-architecture/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — module 20 "Databases": SQLAlchemy and Alembic
+- Recipes and libraries: [Dapper](../../libraries/dapper/overview.en.md), [Mapperly](../../libraries/mapperly/overview.en.md), [Testcontainers](../../libraries/testcontainers/overview.en.md), [Caching](../../recipes/caching/overview.en.md), [Pagination and filtering](../../recipes/pagination-filtering/overview.en.md)
