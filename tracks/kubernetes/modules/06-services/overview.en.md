@@ -76,6 +76,6 @@ hello from web-8678fd4948-7xm64
 ## Related materials
 
 - Prerequisites: [05 · Deployment and ReplicaSet](../05-deployments/overview.en.md), [04 · Pod](../04-pods/overview.en.md)
-- Next: module 07 · ConfigMap and Secret (in the roadmap of the [track](../../overview.en.md))
+- Next: [07 · ConfigMap and Secret](../07-config-and-secrets/overview.en.md)
 - Networking components: [02 · Kubernetes architecture](../02-architecture/overview.en.md) — kube-proxy and CoreDNS
 - Foundation: the [Linux track](../../../linux/overview.en.md) — iptables and networking

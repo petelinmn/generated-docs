@@ -76,5 +76,5 @@ Console.WriteLine(p.GetRequiredService<GreetingService>().Greet("Ann"));   // Go
 - Корень композиции и слои: [21 · Архитектура приложений](../21-architecture/overview.ru.md)
 - Логи, метрики, трассы: [22 · Наблюдаемость](../22-observability/overview.ru.md)
 - Подмена зависимостей в тестах: [16 · Unit-тесты](../16-testing-unit/overview.ru.md)
-- То же в других треках: [Python](../../../python/overview.ru.md) — зависимости FastAPI, `logging`
+- То же в других треках: [Python](../../../python/overview.ru.md) — зависимости FastAPI, `logging`; [Kubernetes · ConfigMap и Secret](../../../kubernetes/modules/07-config-and-secrets/overview.ru.md) — откуда в контейнере берутся переменные окружения и файлы конфигурации
 - Рецепты и библиотеки: [FluentValidation](../../libraries/fluentvalidation/overview.ru.md), [Polly](../../libraries/polly/overview.ru.md), [Refit](../../libraries/refit/overview.ru.md), [Serilog](../../libraries/serilog/overview.ru.md), [Spectre.Console](../../libraries/spectre-console/overview.ru.md), [Фоновые задачи](../../recipes/background-jobs/overview.ru.md), [Устойчивый HttpClient](../../recipes/http-client-resilience/overview.ru.md), [JWT-аутентификация](../../recipes/jwt-auth/overview.ru.md)

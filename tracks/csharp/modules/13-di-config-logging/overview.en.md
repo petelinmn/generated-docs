@@ -76,5 +76,5 @@ Console.WriteLine(p.GetRequiredService<GreetingService>().Greet("Ann"));   // Go
 - The composition root and layers: [21 · Application architecture](../21-architecture/overview.en.md)
 - Logs, metrics, traces: [22 · Observability](../22-observability/overview.en.md)
 - Replacing dependencies in tests: [16 · Unit tests](../16-testing-unit/overview.en.md)
-- The same idea in other tracks: [Python](../../../python/overview.en.md) — FastAPI dependencies, `logging`
+- The same idea in other tracks: [Python](../../../python/overview.en.md) — FastAPI dependencies, `logging`; [Kubernetes · ConfigMap and Secret](../../../kubernetes/modules/07-config-and-secrets/overview.en.md) — where a container's environment variables and configuration files come from
 - Recipes and libraries: [FluentValidation](../../libraries/fluentvalidation/overview.en.md), [Polly](../../libraries/polly/overview.en.md), [Refit](../../libraries/refit/overview.en.md), [Serilog](../../libraries/serilog/overview.en.md), [Spectre.Console](../../libraries/spectre-console/overview.en.md), [Background jobs](../../recipes/background-jobs/overview.en.md), [Resilient HttpClient](../../recipes/http-client-resilience/overview.en.md), [JWT authentication](../../recipes/jwt-auth/overview.en.md)

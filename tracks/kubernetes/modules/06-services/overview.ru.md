@@ -76,6 +76,6 @@ hello from web-8678fd4948-7xm64
 ## Связанные материалы
 
 - Пререквизиты: [05 · Deployment и ReplicaSet](../05-deployments/overview.ru.md), [04 · Pod](../04-pods/overview.ru.md)
-- Дальше: модуль 07 · ConfigMap и Secret (в дорожной карте [трека](../../overview.ru.md))
+- Дальше: [07 · ConfigMap и Secret](../07-config-and-secrets/overview.ru.md)
 - Компоненты сети: [02 · Архитектура Kubernetes](../02-architecture/overview.ru.md) — kube-proxy и CoreDNS
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — iptables и сеть
