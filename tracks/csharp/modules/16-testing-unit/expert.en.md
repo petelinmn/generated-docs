@@ -32,7 +32,7 @@ updated: 2026-11-22
 
 - **Exact type match.** `Assert.Throws<Exception>(...)` **fails** for an `InvalidOperationException` ("Exception type was not an exact match"); `Assert.ThrowsAny<Exception>(...)` passes (verified).
 - **Collection order.** `Assert.Equal(new[]{1,2}, new[]{2,1})` fails ("Collections differ"); an order-insensitive comparison is `Assert.Equivalent` (verified: passes).
-- **Asynchronous code.** `Assert.Throws<T>(() => throw …)` with a lambda the compiler binds to `Func<Task>` is a compile error `CS0619`: "You must call Assert.ThrowsAsync<T> (and await the result) when testing async code". For asynchronous code — `ThrowsAsync` with `await`; for synchronous — an `Action` lambda or a method group (verified).
+- **Asynchronous code.** `Assert.Throws<T>(() => throw …)` with a lambda the compiler binds to `Func<Task>` is a compile error `CS0619`: `You must call Assert.ThrowsAsync<T> (and await the result) when testing async code`. For asynchronous code — `ThrowsAsync` with `await`; for synchronous — an `Action` lambda or a method group (verified).
 - **Conditional skip at run time.** `Assert.Skip("reason")` ends the test as skipped (verified: `skipped … not on this OS`); `[Fact(Skip = …)]` is unconditional.
 - **Comparing floating-point numbers.** Only with precision (`precision`) or a tolerance.
 - **Messages.** For strings the position of the first difference is given, for collections both lists (verified).

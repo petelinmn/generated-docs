@@ -37,7 +37,7 @@ class ScopedWorker(IServiceScopeFactory f) : BackgroundService
 }
 ```
 
-Проверено: scoped `Db` из scope получен. Внедрение scoped-сервиса напрямую в singleton — «захваченная зависимость» ([13](../../modules/13-di-config-logging/advanced.ru.md#проблема-captive-dependency)); при включённой валидации scopes это ошибка при запуске.
+Проверено: scoped `Db` из scope получен. Внедрение scoped-сервиса напрямую в singleton — «захваченная зависимость» ([13](../../modules/13-di-config-logging/advanced.ru.md#проблема-захваченной-зависимости)); при включённой валидации scopes это ошибка при запуске.
 
 ## Исключения в воркере
 

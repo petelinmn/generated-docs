@@ -39,7 +39,7 @@ Console.WriteLine(numbers.Length);  // 3
 - Массив — **ссылочный тип**: `int[] b = a;` не копирует элементы (`b[0] = 9` меняет и `a[0]`); копию делает `Clone()` (поверхностная) или `[..a]`.
 - Бывают многомерные (`int[2, 3]`, у них `Length` — общее число элементов: 6) и «зубчатые» (`int[][]`, массив массивов, внутренние массивы изначально `null`).
 
-## List<T>
+## `List<T>`
 
 `List<T>` — динамический массив: можно добавлять и удалять элементы.
 
@@ -55,7 +55,7 @@ Console.WriteLine(names.Contains("Ann"));   // True
 
 Основное: `Add`, `AddRange`, `Insert`, `Remove`, `RemoveAt`, `RemoveAll(predicate)`, `Contains`, `IndexOf`, `Sort`, `Reverse`, индексатор `list[i]`, `Count`. Доступ по индексу быстрый, поиск по значению (`Contains`, `IndexOf`) — линейный.
 
-## Dictionary<TKey, TValue>
+## `Dictionary<TKey, TValue>`
 
 Словарь хранит пары «ключ — значение» и находит значение по ключу практически мгновенно:
 
@@ -80,7 +80,7 @@ foreach (var (name, value) in ages)
 - ключ не может быть `null` (`ArgumentNullException`);
 - порядок перечисления не стоит считать гарантированным (подробнее — в [продвинутой теории](advanced.ru.md#dictionary-подробнее)).
 
-## HashSet<T>, Queue<T>, Stack<T>
+## `HashSet<T>`, `Queue<T>`, `Stack<T>`
 
 | Коллекция | Назначение | Основные операции |
 |---|---|---|
@@ -188,5 +188,5 @@ Console.WriteLine(Max("a", "b"));       // b — T is inferred as string
 - [Выбор коллекции](https://learn.microsoft.com/dotnet/standard/collections/selecting-a-collection-class)
 - [Обобщения](https://learn.microsoft.com/dotnet/csharp/fundamentals/types/generics)
 - [Выражения коллекций](https://learn.microsoft.com/dotnet/csharp/language-reference/operators/collection-expressions)
-- [List<T>](https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1)
-- [Dictionary<TKey,TValue>](https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2)
+- [`List<T>`](https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1)
+- [`Dictionary<TKey,TValue>`](https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2)

@@ -20,11 +20,11 @@ updated: 2026-11-22
 
 ## Under the hood
 
-### List<T>
+### `List<T>`
 
 Inside, `List<T>` has three private fields (verified through reflection): the array `_items`, the counter `_size` and the version number `_version`. `Count` is `_size`, `Capacity` is the length of `_items`. When an item is added to a full list, a new array twice as large is allocated (`0 → 4 → 8 → 16 → 32`) and the elements are copied. Every modification increments `_version`; the `List<T>.Enumerator` enumerator is a struct that remembers the version at creation and compares it on every `MoveNext`: that is why a change during `foreach` gives `InvalidOperationException`. The struct enumerator allocates no heap object if `foreach` runs over a variable of type `List<T>`, and if you cast it to `IEnumerable<T>` the enumerator is boxed ([03 · Control flow and methods](../03-control-flow-and-methods/expert.en.md)).
 
-### Dictionary<TKey, TValue>
+### `Dictionary<TKey, TValue>`
 
 The `Dictionary` fields (verified): `_buckets`, `_entries`, `_fastModMultiplier`, `_count`, `_freeList`, `_freeCount`, `_version`, `_comparer`. It is a **hash table with chaining on arrays**:
 
@@ -119,7 +119,7 @@ The keys came out in insertion order (`3,1,2`) as long as nothing was removed. A
 
 `object[] objs = new string[]{"a"}; objs[0] = 1;` → `ArrayTypeMismatchException` at run time, not a compile error.
 
-### List<string> is not a List<object>
+### `List<string>` is not a `List<object>`
 
 `new List<string>() is List<object>` → `False` (invariance). But `IEnumerable<object> eo = new List<string>{ "a" };` works.
 
@@ -336,4 +336,4 @@ The compiler chooses the method by the target type: an array, `List<T>`, `Span<T
 - [Collection expressions: specification](https://learn.microsoft.com/dotnet/csharp/language-reference/proposals/csharp-12.0/collection-expressions)
 - [Frozen collections](https://learn.microsoft.com/dotnet/api/system.collections.frozen)
 - [CollectionsMarshal](https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.collectionsmarshal)
-- [List<T>.Sort: remarks](https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1.sort)
+- [`List<T>.Sort`: remarks](https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1.sort)

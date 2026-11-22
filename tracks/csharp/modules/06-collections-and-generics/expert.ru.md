@@ -20,11 +20,11 @@ updated: 2026-11-22
 
 ## Под капотом
 
-### List<T>
+### `List<T>`
 
 Внутри `List<T>` три закрытых поля (проверено через рефлексию): массив `_items`, счётчик `_size` и номер версии `_version`. `Count` — это `_size`, `Capacity` — длина `_items`. При добавлении в заполненный список выделяется новый массив вдвое больше (`0 → 4 → 8 → 16 → 32`) и элементы копируются. Каждое изменение увеличивает `_version`; перечислитель `List<T>.Enumerator` — структура, запоминает версию при создании и сравнивает при каждом `MoveNext`: поэтому изменение во время `foreach` даёт `InvalidOperationException`. Структурный перечислитель не создаёт объекта в куче, если `foreach` идёт по переменной типа `List<T>`, а если привести её к `IEnumerable<T>`, перечислитель упаковывается ([03 · Управляющие конструкции и методы](../03-control-flow-and-methods/expert.ru.md)).
 
-### Dictionary<TKey, TValue>
+### `Dictionary<TKey, TValue>`
 
 Поля `Dictionary` (проверено): `_buckets`, `_entries`, `_fastModMultiplier`, `_count`, `_freeList`, `_freeCount`, `_version`, `_comparer`. Это **хеш-таблица с цепочками на массивах**:
 
@@ -119,7 +119,7 @@ updated: 2026-11-22
 
 `object[] objs = new string[]{"a"}; objs[0] = 1;` → `ArrayTypeMismatchException` во время выполнения, а не ошибка компиляции.
 
-### List<string> не является List<object>
+### `List<string>` не является `List<object>`
 
 `new List<string>() is List<object>` → `False` (инвариантность). Зато `IEnumerable<object> eo = new List<string>{ "a" };` работает.
 
@@ -336,4 +336,4 @@ updated: 2026-11-22
 - [Выражения коллекций: спецификация](https://learn.microsoft.com/dotnet/csharp/language-reference/proposals/csharp-12.0/collection-expressions)
 - [Frozen-коллекции](https://learn.microsoft.com/dotnet/api/system.collections.frozen)
 - [CollectionsMarshal](https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.collectionsmarshal)
-- [List<T>.Sort: примечания](https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1.sort)
+- [`List<T>.Sort`: примечания](https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1.sort)

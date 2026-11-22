@@ -32,7 +32,7 @@ updated: 2026-11-22
 
 - **Точное совпадение типа.** `Assert.Throws<Exception>(...)` для `InvalidOperationException` **падает** («Exception type was not an exact match»); `Assert.ThrowsAny<Exception>(...)` — проходит (проверено).
 - **Порядок коллекций.** `Assert.Equal(new[]{1,2}, new[]{2,1})` падает («Collections differ»); сравнение без учёта порядка — `Assert.Equivalent` (проверено: проходит).
-- **Асинхронный код.** `Assert.Throws<T>(() => throw …)` с лямбдой, которую компилятор привязывает к `Func<Task>`, — ошибка компиляции `CS0619`: «You must call Assert.ThrowsAsync<T> (and await the result) when testing async code». Для асинхронного кода — `ThrowsAsync` с `await`; для синхронного — лямбда-`Action` или группа методов (проверено).
+- **Асинхронный код.** `Assert.Throws<T>(() => throw …)` с лямбдой, которую компилятор привязывает к `Func<Task>`, — ошибка компиляции `CS0619`: «`You must call Assert.ThrowsAsync<T> (and await the result) when testing async code`». Для асинхронного кода — `ThrowsAsync` с `await`; для синхронного — лямбда-`Action` или группа методов (проверено).
 - **Условный пропуск во время выполнения.** `Assert.Skip("причина")` прерывает тест как пропущенный (проверено: `пропущено … not on this OS`); `[Fact(Skip = …)]` — безусловный.
 - **Сравнение вещественных.** Только с точностью (`precision`) или допуском.
 - **Сообщения.** Для строк указывается позиция первого различия, для коллекций — оба списка (проверено).

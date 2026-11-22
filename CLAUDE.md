@@ -160,6 +160,7 @@ Tests: uv run pytest -k task_group
 README.md, README.ru.md, README.en.md   точка входа
 PROGRESS.md                             прогресс изучения — единственное место с чекбоксами
 tools/check-docs.ps1                    автопроверка: пары ru/en, структура, front matter, ссылки, уровни
+.vitepress/, package.json               сайт на GitHub Pages (VitePress): `npm ci && npm run docs:build`; публикует .github/workflows/pages.yml
 tracks/<track>/
 ├── overview.ru.md, overview.en.md      кратко о технологии, окружение, дорожная карта
 ├── modules/NN-slug/                    материал (раздел 1)
