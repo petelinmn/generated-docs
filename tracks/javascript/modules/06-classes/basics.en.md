@@ -154,7 +154,7 @@ The same error occurs if the derived constructor is empty and does not call `sup
 ## Related materials
 
 - Next: [advanced theory](advanced.en.md) — private methods, field order, built-in classes, mixins
-- Earlier: [05 · Objects and prototypes](../05-objects-and-prototypes/overview.en.md), [04 · Functions](../04-functions/overview.en.md#constructor-functions-and-new)
+- Earlier: [05 · Objects and prototypes](../05-objects-and-prototypes/overview.en.md), [04 · Functions](../04-functions/advanced.en.md#constructor-functions-and-new)
 
 ## Sources
 

@@ -154,7 +154,7 @@ ReferenceError: Must call super constructor in derived class before accessing 't
 ## Связанные материалы
 
 - Дальше: [продвинутая теория](advanced.ru.md) — приватные методы, порядок полей, встроенные классы, mixins
-- Ранее: [05 · Объекты и прототипы](../05-objects-and-prototypes/overview.ru.md), [04 · Функции](../04-functions/overview.ru.md#функции-конструкторы-и-new)
+- Ранее: [05 · Объекты и прототипы](../05-objects-and-prototypes/overview.ru.md), [04 · Функции](../04-functions/advanced.ru.md#функции-конструкторы-и-new)
 
 ## Источники
 
