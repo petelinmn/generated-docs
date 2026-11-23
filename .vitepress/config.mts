@@ -40,6 +40,15 @@ function siteUrl(href: string, dir: string): string | null {
   return null
 }
 
+// A link to a markdown file that does not exist yet (a planned material in a roadmap, README or PROGRESS).
+// Such links are rendered red on the site (see theme/custom.css).
+function isPlanned(href: string, dir: string): boolean {
+  const m = href.match(/^([^#?]*)/)
+  if (!m || !m[1] || /^[a-z][a-z0-9+.-]*:/i.test(m[1]) || m[1].startsWith('/')) return false
+  const resolved = path.posix.normalize(path.posix.join(dir, m[1]))
+  return /\.md$/.test(resolved) && !resolved.startsWith('..') && !fs.existsSync(path.join(repoRoot, resolved))
+}
+
 const escapeHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 // Markdown is not parsed inside a raw HTML line like `<details><summary>…</summary>`, so
@@ -134,6 +143,10 @@ export default withMermaid(
             for (const tok of block.children ?? []) {
               if (tok.type !== 'link_open') continue
               const href = tok.attrGet('href')
+              if (href && isPlanned(href, dir)) {
+                tok.attrJoin('class', 'link-planned')
+                tok.attrSet('title', rel.startsWith('ru/') ? 'Материал ещё не создан' : 'Not created yet')
+              }
               const target = href && siteUrl(href, dir)
               if (target) tok.attrSet('href', target)
             }

@@ -1,0 +1,7 @@
+/* Links to materials that are not created yet (planned in a roadmap): red, dashed underline. */
+.vp-doc a.link-planned,
+.vp-doc a.link-planned:hover {
+  color: var(--vp-c-danger-1);
+  text-decoration: underline dashed;
+  text-underline-offset: 3px;
+}
