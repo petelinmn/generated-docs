@@ -102,6 +102,8 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 
 - [Python](../python/overview.en.md) — a second language: handy for comparing approaches (async, typing, testing)
 - [Kubernetes](../kubernetes/overview.en.md) — deploying C# applications
+- [JavaScript](../javascript/overview.en.md) — `async`/`await` came to JavaScript from C#: compare the implementations
+- [TypeScript](../typescript/overview.en.md) — structural typing versus nominal typing
 - [LLM](../llm/overview.en.md) — LLM applications on .NET with Microsoft.Extensions.AI
 
 ## Sources

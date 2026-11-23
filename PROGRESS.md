@@ -126,6 +126,110 @@
 - [ ] projects/fastapi-service
 - [ ] projects/data-pipeline
 
+## javascript
+
+### Часть 1. Основы
+
+- [ ] 01-environment
+- [ ] 02-types-and-values
+- [ ] 03-scopes-and-hoisting
+- [ ] 04-functions
+- [ ] 05-objects-and-prototypes
+- [ ] 06-classes
+- [ ] 07-arrays-and-collections
+- [ ] 08-strings-numbers-dates-regex
+
+### Часть 2. Продвинутые темы
+
+- [ ] 09-modules
+- [ ] 10-closures-and-functional
+- [ ] 11-iterators-and-generators
+- [ ] 12-promises-and-async-await
+- [ ] 13-event-loop-and-concurrency
+- [ ] 14-errors-and-debugging
+- [ ] 15-testing
+- [ ] 16-nodejs-files-streams-processes
+
+### Часть 3. Темы для опытных
+
+- [ ] 17-browser-dom-and-events
+- [ ] 18-metaprogramming
+- [ ] 19-performance-and-memory
+- [ ] 20-security
+- [ ] 21-http-service
+
+### Библиотеки
+
+- [ ] libraries/zod
+- [ ] libraries/fastify
+- [ ] libraries/pino
+- [ ] libraries/date-fns
+- [ ] libraries/commander
+
+### Рецепты
+
+- [ ] recipes/cli-app
+- [ ] recipes/rest-api
+- [ ] recipes/config-from-env
+- [ ] recipes/fetch-with-retry
+
+### Проекты
+
+- [ ] projects/cli-tool
+- [ ] projects/rest-service
+
+## typescript
+
+### Часть 1. Основы
+
+- [ ] 01-environment
+- [ ] 02-basic-types
+- [ ] 03-objects-and-interfaces
+- [ ] 04-functions
+- [ ] 05-unions-and-narrowing
+- [ ] 06-generics
+- [ ] 07-classes
+- [ ] 08-modules-and-tsconfig
+
+### Часть 2. Продвинутые темы
+
+- [ ] 09-utility-types
+- [ ] 10-conditional-types
+- [ ] 11-mapped-and-template-literal-types
+- [ ] 12-async-types
+- [ ] 13-errors-and-validation
+- [ ] 14-testing-vitest
+- [ ] 15-declaration-files
+- [ ] 16-build-and-monorepos
+
+### Часть 3. Темы для опытных
+
+- [ ] 17-type-system-internals
+- [ ] 18-type-level-programming
+- [ ] 19-decorators
+- [ ] 20-compiler-performance
+- [ ] 21-typescript-in-production
+
+### Библиотеки
+
+- [ ] libraries/zod
+- [ ] libraries/vitest
+- [ ] libraries/tsx
+- [ ] libraries/type-fest
+- [ ] libraries/ts-pattern
+
+### Рецепты
+
+- [ ] recipes/typed-api-client
+- [ ] recipes/validated-config
+- [ ] recipes/library-publishing
+- [ ] recipes/monorepo-setup
+
+### Проекты
+
+- [ ] projects/typed-cli
+- [ ] projects/typed-rest-service
+
 ## kubernetes
 
 ### Часть 1. Основы

@@ -52,3 +52,9 @@ Thumbs.db
 node_modules/
 .vitepress/cache/
 .vitepress/dist/
+
+# JavaScript / TypeScript
+coverage/
+*.tsbuildinfo
+.vitest-cache/
+.eslintcache

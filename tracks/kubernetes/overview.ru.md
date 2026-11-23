@@ -94,7 +94,7 @@ Kubernetes — платформа оркестрации контейнеров 
 ## Связанные треки
 
 - [Linux](../linux/overview.ru.md) — фундамент: процессы, сеть, namespaces и cgroups
-- [C# / .NET](../csharp/overview.ru.md) и [Python](../python/overview.ru.md) — приложения для деплоя
+- [C# / .NET](../csharp/overview.ru.md), [Python](../python/overview.ru.md) и [JavaScript](../javascript/overview.ru.md) — приложения для деплоя
 
 ## Источники
 

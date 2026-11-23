@@ -2,7 +2,7 @@
 
 Личная база знаний для изучения технологий: теория, квизы, упражнения, запускаемые примеры и тесты. Контент генерирует Claude по правилам ниже, пользователь изучает его и проверяет на практике.
 
-**Правила универсальны.** Они применяются к любой теме: языку, инструменту, библиотеке, алгоритму, фиче, концепции. Текущие треки (`csharp`, `python`, `kubernetes`, `linux`, `llm`) — только стартовый набор. Новая тема получает материалы по тем же правилам.
+**Правила универсальны.** Они применяются к любой теме: языку, инструменту, библиотеке, алгоритму, фиче, концепции. Текущие треки (`csharp`, `python`, `javascript`, `typescript`, `kubernetes`, `linux`, `llm`) — только стартовый набор. Новая тема получает материалы по тем же правилам.
 
 ## 1. Уровни детализации
 
@@ -133,6 +133,8 @@ code/
 |---|---|---|---|
 | csharp | решение `Code.slnx`: `Examples/` (classlib), `Solutions/` (classlib), `Tests/` (`OutputType=Exe`); `global.json` с `"test": {"runner": "Microsoft.Testing.Platform"}` — без него xUnit v3 в .NET 10+ SDK не запускается (с .NET 11 вместо него можно задать `DOTNET_TEST_RUNNER=Microsoft.Testing.Platform`) | xUnit v3 (`xunit.v3`) | `dotnet test` |
 | python, llm | `pyproject.toml`, `examples/exNN_name.py`, `solutions/`, `tests/test_*.py` (имя модуля Python не может начинаться с цифры) | pytest | `uv run pytest` |
+| javascript | `package.json` (`"type": "module"`), `examples/exNN-name.js`, `solutions/`, `tests/*.test.js` | встроенный раннер `node:test` | `npm test` (`node --test`) |
+| typescript | `package.json`, `tsconfig.json`, `examples/exNN-name.ts`, `solutions/`, `tests/*.test.ts` | vitest | `npm test` (`vitest run`); типы — `npx tsc --noEmit` |
 | kubernetes | `examples/NN-name.yaml`, ресурсы в namespace `learn-NN` | bats: kubeconform + проверка в kind | `bats tests` |
 | linux | `examples/NN-name.sh` (`#!/usr/bin/env bash`, `set -euo pipefail`, без замечаний shellcheck) | bats | `bats tests` |
 

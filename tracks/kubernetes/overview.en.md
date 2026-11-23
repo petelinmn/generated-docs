@@ -94,7 +94,7 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 ## Related tracks
 
 - [Linux](../linux/overview.en.md) — the foundation: processes, networking, namespaces and cgroups
-- [C# / .NET](../csharp/overview.en.md) and [Python](../python/overview.en.md) — applications to deploy
+- [C# / .NET](../csharp/overview.en.md), [Python](../python/overview.en.md) and [JavaScript](../javascript/overview.en.md) — applications to deploy
 
 ## Sources
 

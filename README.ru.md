@@ -10,6 +10,8 @@
 |---|---|
 | [C# / .NET](tracks/csharp/overview.ru.md) | язык, async, ASP.NET Core, EF Core, тестирование, производительность |
 | [Python](tracks/python/overview.ru.md) | язык, типизация, asyncio, pytest, FastAPI, работа с данными |
+| [JavaScript](tracks/javascript/overview.ru.md) | язык, прототипы, асинхронность, модули, Node.js, браузер |
+| [TypeScript](tracks/typescript/overview.ru.md) | система типов, дженерики, условные типы, конфигурация, vitest |
 | [Kubernetes](tracks/kubernetes/overview.ru.md) | контейнеры, workload-ы, сеть, Helm, безопасность, GitOps |
 | [Linux](tracks/linux/overview.ru.md) | shell, права, процессы, bash-скрипты, systemd, сеть, диагностика |
 | [LLM](tracks/llm/overview.ru.md) | как работают LLM, API, tool use, RAG, агенты, MCP, evals |

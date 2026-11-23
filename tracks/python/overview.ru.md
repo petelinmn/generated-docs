@@ -96,6 +96,8 @@ Python — интерпретируемый язык общего назначе
 - [C# / .NET](../csharp/overview.ru.md) — второй язык: удобно сравнивать подходы
 - [LLM](../llm/overview.ru.md) — основной язык LLM-трека, нужны модули 01–08
 - [Kubernetes](../kubernetes/overview.ru.md) — деплой Python-приложений
+- [JavaScript](../javascript/overview.ru.md) — другой динамический язык: сравните модель выполнения и асинхронность
+- [TypeScript](../typescript/overview.ru.md) — статические типы в другой экосистеме: сравните с аннотациями типов Python
 
 ## Источники
 

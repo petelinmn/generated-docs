@@ -102,6 +102,8 @@ C# — статически типизированный объектно-ори
 
 - [Python](../python/overview.ru.md) — второй язык: удобно сравнивать подходы (async, типизация, тестирование)
 - [Kubernetes](../kubernetes/overview.ru.md) — деплой C#-приложений
+- [JavaScript](../javascript/overview.ru.md) — `async`/`await` пришёл в JavaScript из C#: сравните реализации
+- [TypeScript](../typescript/overview.ru.md) — структурная типизация против номинальной
 - [LLM](../llm/overview.ru.md) — LLM-приложения на .NET через Microsoft.Extensions.AI
 
 ## Источники
