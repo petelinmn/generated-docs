@@ -1,0 +1,168 @@
+---
+title: "Тестирование: продвинутый уровень"
+lang: ru
+track: javascript
+kind: module
+doc: advanced
+slug: 15-testing
+part: 2
+tags: [mock-fn, mock-method, fake-timers, coverage, snapshot, test-reporter, test-timeout, dependency-injection]
+versions: "Node.js 24.15 LTS (node:test, node:assert)"
+status: draft
+updated: 2026-11-23
+---
+
+# Тестирование: продвинутый уровень
+
+🌐 **Русский** · [English](advanced.en.md)
+
+**Уровни:** [overview](overview.ru.md) · [1. Основы](basics.ru.md) · **2. Продвинутый** · [3. Эксперт](expert.ru.md) · [4. Квиз](quiz.ru.md)
+
+Опирается на [базовую теорию](basics.ru.md). Все примеры запускались на Node.js 24.15; тестируемый код (`lib/math.js`) — из базового уровня.
+
+## Моки
+
+Мок подменяет зависимость и запоминает вызовы. Лучше всего тестируется код, который получает зависимости **параметрами** (внедрение зависимостей): `fetchUser(id, client)` принимает `client`.
+
+```js
+import { test, mock } from 'node:test';
+import assert from 'node:assert/strict';
+import { fetchUser } from '../lib/math.js';
+
+test('mock.fn client', async () => {
+  const get = mock.fn(async () => ({ ok: true, json: async () => ({ id: 7 }) }));
+  const user = await fetchUser(7, { get });
+  assert.deepEqual(user, { id: 7 });
+  assert.equal(get.mock.callCount(), 1);
+  assert.deepEqual(get.mock.calls[0].arguments, ['/users/7']);
+});
+
+test('mock rejects not ok', async () => {
+  const get = mock.fn(async () => ({ ok: false }));
+  await assert.rejects(fetchUser(1, { get }), { message: 'not ok' });
+});
+```
+
+- `mock.fn(impl)` создаёт функцию-пустышку с реализацией `impl`; `fn.mock.callCount()` — число вызовов, `fn.mock.calls[i].arguments` — аргументы.
+- `fn.mock.mockImplementationOnce(f)` подменяет реализацию на один вызов (в опыте `[f(), f()]` дало `['once', 'default']`).
+- Сеть и файлы в юнит-тесте заменяют моками: тест быстрый и детерминированный.
+
+**Подмена метода** с автоматическим восстановлением:
+
+```js
+test('mock.method restores', (t) => {
+  const obj = { greet: () => 'hi' };
+  const m = t.mock.method(obj, 'greet', () => 'mocked');
+  assert.equal(obj.greet(), 'mocked'); assert.equal(m.mock.callCount(), 1);
+  m.mock.restore(); assert.equal(obj.greet(), 'hi');
+});
+```
+
+`t.mock` (мок контекста теста) сам восстанавливает подмены после теста; `mock.method` из общего `mock` нужно сбрасывать вручную (`mock.restoreAll()`).
+
+## Фальшивые таймеры
+
+`mock.timers` подменяет `setTimeout`, `setInterval`, `setImmediate` и `Date`, чтобы тест не ждал:
+
+```js
+test('fake timers', (t) => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  let fired = false; setTimeout(() => { fired = true }, 1000);
+  assert.equal(fired, false); t.mock.timers.tick(999); assert.equal(fired, false); t.mock.timers.tick(1); assert.equal(fired, true);
+});
+
+test('fake Date', (t) => {
+  t.mock.timers.enable({ apis: ['Date'], now: 1000 }); assert.equal(Date.now(), 1000); t.mock.timers.tick(500); assert.equal(Date.now(), 1500);
+});
+```
+
+- `enable({ apis, now })` включает подмену; `tick(ms)` «перематывает» время.
+- Таймер на 1000 мс сработал мгновенно, как только время дошло до `1000`.
+- Код, зависящий от текущего времени, становится детерминированным.
+
+## Выбор и фильтрация тестов
+
+| Флаг | Что делает |
+|---|---|
+| `--test-name-pattern="divide"` | выполнить только тесты, в имени которых есть `divide` (в опыте остались тесты набора `divide`) |
+| `--test-skip-pattern=…` | пропустить подходящие |
+| `--test-only` + `{ only: true }` | выполнить только помеченные `only`; **без флага `only` не действует** (раннер пишет `'only' and 'runOnly' require the --test-only command-line option`) |
+| `--test-timeout=мс` | общий таймаут теста |
+
+Таймаут отдельного теста: `test('имя', { timeout: 20 }, async () => …)`; при превышении тест падает с `test timed out after 20ms` (в опыте).
+
+## Покрытие кода
+
+```text
+$ node --test --experimental-test-coverage
+ℹ start of coverage report
+ℹ file      | line % | branch % | funcs % | uncovered lines
+ℹ lib       |        |          |         |
+ℹ  math.js  | 100.00 |   100.00 |   75.00 |
+ℹ all files | 100.00 |   100.00 |   75.00 |
+ℹ end of coverage report
+```
+
+(Таблица сокращена.) Функция `untested` не вызывалась, поэтому `funcs` — `75%` (три функции из четырёх). Строки при этом покрыты на 100%, потому что она записана в одной строке: **покрытие строк не заменяет проверку поведения**. Пороги можно задать флагами `--test-coverage-lines`, `--test-coverage-branches`, `--test-coverage-functions`; набор файлов — `--test-coverage-include` и `--test-coverage-exclude`.
+
+> ⚠️ Проверить: флаг `--experimental-test-coverage` назван экспериментальным в справке Node.js 24.15; пороги `--test-coverage-*` и фильтры файлов не запускались.
+
+## Снимки
+
+Снимок сохраняет результат и сравнивает с ним при следующих запусках:
+
+```js
+test('snapshot', (t) => { t.assert.snapshot({ x: 1, list: [1, 2] }); });
+test('file snapshot', (t) => { t.assert.fileSnapshot('plain text', './snap.txt'); });
+```
+
+- Первый запуск **падает** с `Missing snapshots can be generated by rerunning the command with the --test-update-snapshots flag`.
+- `node --test --test-update-snapshots` создаёт файл `*.snapshot` рядом с тестом (в опыте `snap.test.js.snapshot` с записью `exports[\`snapshot 1\`] = …`); дальше тест проходит.
+- Файл снимка коммитят в репозиторий; изменения в нём — предмет ревью.
+- Снимки легко «зацементировать» по ошибке: сверяйте обновления глазами.
+
+## Отчёты
+
+`--test-reporter=<имя>` выбирает формат: по умолчанию `spec` (в опыте и при выводе в конвейер), `dot` — по точке на тест (в опыте `...............`), есть и `tap`, `junit`, `lcov`. `--test-reporter-destination=<файл>` пишет отчёт в файл — удобно для CI.
+
+> ⚠️ Проверить: форматы `tap`, `junit`, `lcov`, `--test-shard` и `--test-rerun-failures` в этом материале не запускались.
+
+## Организация тестов
+
+- Тесты кладут рядом с кодом (`math.test.js`) или в папку `test/`.
+- Имя файла и расположение определяют, запустится ли он (см. [экспертную теорию](expert.ru.md#обнаружение-тестовых-файлов)).
+- Каждый тестовый файл выполняется в **отдельном процессе**: глобальные переменные одного файла не видны другому (в опыте `leak a 1` и `leak b undefined`).
+- Код, пригодный для тестирования: чистые функции, зависимости как параметры, отделённый ввод-вывод.
+
+## Лучшие практики
+
+- Один тест проверяет одну вещь; имя описывает поведение.
+- Структура: подготовка → действие → проверка.
+- Тесты не зависят от порядка, сети, текущего времени и случайности.
+- Мокайте границы системы (сеть, диск, время), а не внутренние детали.
+- Проверяйте и ошибки: `assert.throws`, `assert.rejects`.
+- Подключите `node --test` и покрытие в CI.
+
+## Частые ошибки
+
+- ❌ `only` без `--test-only` → ✅ добавьте флаг (или уберите `only`).
+- ❌ Моки, не сброшенные между тестами → ✅ `t.mock`, `mock.restoreAll()`.
+- ❌ Реальные `setTimeout` в тестах → ✅ `mock.timers`.
+- ❌ Гнаться за 100% покрытия → ✅ осмысленные проверки.
+- ❌ Не закоммитить файл снимка → ✅ коммитить и ревьюить.
+- ❌ Тестировать приватные детали → ✅ публичное поведение.
+
+## Связанные материалы
+
+- Дальше: [экспертная теория](expert.ru.md)
+- Асинхронность и таймеры: [13 · Цикл событий и параллелизм](../13-event-loop-and-concurrency/basics.ru.md#таймеры)
+- Тесты на vitest: [TypeScript](../../../typescript/overview.ru.md)
+- Модульные тесты в C#: [16 · Модульное тестирование](../../../csharp/modules/16-testing-unit/overview.ru.md)
+
+## Источники
+
+- [Node.js: Mocking](https://nodejs.org/docs/latest-v24.x/api/test.html#mocking)
+- [Node.js: Code coverage](https://nodejs.org/docs/latest-v24.x/api/test.html#collecting-code-coverage)
+- [Node.js: Snapshot testing](https://nodejs.org/docs/latest-v24.x/api/test.html#snapshot-testing)
+- [Node.js: Test reporters](https://nodejs.org/docs/latest-v24.x/api/test.html#test-reporters)
+- [Node.js: MockTimers](https://nodejs.org/docs/latest-v24.x/api/test.html#class-mocktimers)
