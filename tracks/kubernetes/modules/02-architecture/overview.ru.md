@@ -71,3 +71,4 @@ SuccessfulCreate    replicaset-controller   Created pod: web-689b9bdbdd-24sgv
 - Дальше: [03 · Локальный кластер и kubectl](../03-local-cluster-and-kubectl/overview.ru.md)
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — процессы, сеть, cgroups
 - Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)
+- CRD и операторы: [19 · CRD и операторы](../19-crd-and-operators/overview.ru.md)

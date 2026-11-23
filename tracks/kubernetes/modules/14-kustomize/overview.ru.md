@@ -75,3 +75,4 @@ deployment.apps/prod-web created
 - Предыдущий модуль: [13 · Helm](../13-helm/overview.ru.md)
 - Дальше: [15 · Автомасштабирование](../15-autoscaling/overview.ru.md)
 - Выкатка при смене конфигурации: [07 · ConfigMap и Secret](../07-config-and-secrets/advanced.ru.md)
+- GitOps и Argo CD: [20 · GitOps](../20-gitops/overview.ru.md)

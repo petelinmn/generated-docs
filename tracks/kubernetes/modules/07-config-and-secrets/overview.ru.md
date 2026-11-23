@@ -78,3 +78,5 @@ DB_PASSWORD=S3cr3t!
 - В других треках: [DI, конфигурация и логирование в C#](../../../csharp/modules/13-di-config-logging/overview.ru.md) — как приложение читает переменные окружения и файлы конфигурации
 - Версии конфигурации через генераторы: [14 · Kustomize](../14-kustomize/overview.ru.md); значения в чартах: [13 · Helm](../13-helm/overview.ru.md)
 - Безопасность подов и сети: [17 · Безопасность](../17-security/overview.ru.md)
+- GitOps и Argo CD: [20 · GitOps](../20-gitops/overview.ru.md)
+- Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)

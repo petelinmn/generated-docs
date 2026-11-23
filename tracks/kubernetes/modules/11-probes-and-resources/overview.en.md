@@ -87,3 +87,4 @@ web    1/1     Running   0          20s
 - Autoscaling by requests: [15 · Autoscaling](../15-autoscaling/overview.en.md)
 - Logs, events and metrics: [16 · Observability](../16-observability/overview.en.md)
 - Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)
+- Troubleshooting: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)

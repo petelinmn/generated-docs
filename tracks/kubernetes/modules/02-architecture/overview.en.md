@@ -71,3 +71,4 @@ Here `deployment-controller` created a ReplicaSet, `replicaset-controller` creat
 - Next: [03 · Local cluster and kubectl](../03-local-cluster-and-kubectl/overview.en.md)
 - Foundation: the [Linux track](../../../linux/overview.en.md) — processes, network, cgroups
 - Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)
+- CRDs and operators: [19 · CRDs and operators](../19-crd-and-operators/overview.en.md)

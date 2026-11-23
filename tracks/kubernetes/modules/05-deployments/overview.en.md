@@ -91,3 +91,4 @@ deployment "web" successfully rolled out
 - Templates and releases: [13 · Helm](../13-helm/overview.en.md), overlays: [14 · Kustomize](../14-kustomize/overview.en.md); autoscaling: [15 · Autoscaling](../15-autoscaling/overview.en.md)
 - Logs, events and metrics: [16 · Observability](../16-observability/overview.en.md)
 - Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)
+- Troubleshooting: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)

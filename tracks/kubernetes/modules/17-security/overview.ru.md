@@ -81,3 +81,6 @@ wget: download timed out
 - Предыдущий модуль: [16 · Наблюдаемость](../16-observability/overview.ru.md)
 - Дальше: [18 · Планирование подов](../18-scheduling/overview.ru.md)
 - Аналоги в других треках: [Linux](../../../linux/overview.ru.md) — права, пользователи, capabilities на уровне ОС
+- CRD и операторы: [19 · CRD и операторы](../19-crd-and-operators/overview.ru.md)
+- GitOps и Argo CD: [20 · GitOps](../20-gitops/overview.ru.md)
+- Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)

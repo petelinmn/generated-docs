@@ -75,3 +75,4 @@ deployment.apps/prod-web created
 - Previous module: [13 · Helm](../13-helm/overview.en.md)
 - Next: [15 · Autoscaling](../15-autoscaling/overview.en.md)
 - Rollout on a configuration change: [07 · ConfigMap and Secret](../07-config-and-secrets/advanced.en.md#a-configmap-change-does-not-restart-pods)
+- GitOps and Argo CD: [20 · GitOps](../20-gitops/overview.en.md)

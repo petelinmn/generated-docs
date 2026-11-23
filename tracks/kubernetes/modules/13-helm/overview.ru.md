@@ -76,3 +76,5 @@ Rollback was a success! Happy Helming!
 - Хуки и Job: [12 · Другие workload-ы](../12-workloads/overview.ru.md)
 - Выкатка и откат: [05 · Deployment](../05-deployments/advanced.ru.md#история-ревизий-и-откат)
 - Логи, события и метрики: [16 · Наблюдаемость](../16-observability/overview.ru.md)
+- CRD и операторы: [19 · CRD и операторы](../19-crd-and-operators/overview.ru.md)
+- GitOps и Argo CD: [20 · GitOps](../20-gitops/overview.ru.md)

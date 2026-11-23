@@ -72,3 +72,5 @@ no
 - Путь запроса и авторизация: [02 · Архитектура Kubernetes](../02-architecture/advanced.ru.md#путь-запроса-через-api-server)
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — пользователи, группы, права
 - Безопасность подов и сети: [17 · Безопасность](../17-security/overview.ru.md)
+- CRD и операторы: [19 · CRD и операторы](../19-crd-and-operators/overview.ru.md)
+- Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)

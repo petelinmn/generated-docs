@@ -76,3 +76,5 @@ Rollback was a success! Happy Helming!
 - Hooks and Jobs: [12 · Other workloads](../12-workloads/overview.en.md)
 - Rollout and rollback: [05 · Deployment](../05-deployments/advanced.en.md)
 - Logs, events and metrics: [16 · Observability](../16-observability/overview.en.md)
+- CRDs and operators: [19 · CRDs and operators](../19-crd-and-operators/overview.en.md)
+- GitOps and Argo CD: [20 · GitOps](../20-gitops/overview.en.md)

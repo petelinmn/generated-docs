@@ -80,3 +80,4 @@ hello from web-8678fd4948-7xm64
 - Компоненты сети: [02 · Архитектура Kubernetes](../02-architecture/overview.ru.md) — kube-proxy и CoreDNS
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — iptables и сеть
 - Безопасность подов и сети: [17 · Безопасность](../17-security/overview.ru.md)
+- Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)

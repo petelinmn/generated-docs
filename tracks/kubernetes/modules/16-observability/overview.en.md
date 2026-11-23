@@ -76,4 +76,4 @@ LAST SEEN           TYPE      REASON    OBJECT      MESSAGE
 - Installation with Helm: [13 · Helm](../13-helm/overview.en.md)
 - DaemonSet: [12 · Other workloads](../12-workloads/overview.en.md)
 - Next: [17 · Security](../17-security/overview.en.md)
-- Diagnosis by events and logs: module 21 · Troubleshooting (in the [track](../../overview.en.md) roadmap)
+- Diagnosis by events and logs: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)

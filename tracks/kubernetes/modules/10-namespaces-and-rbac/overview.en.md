@@ -72,3 +72,5 @@ no
 - The request path and authorization: [02 · Kubernetes architecture](../02-architecture/advanced.en.md#the-request-path-through-the-api-server)
 - Foundation: the [Linux track](../../../linux/overview.en.md) — users, groups, permissions
 - Pod and network security: [17 · Security](../17-security/overview.en.md)
+- CRDs and operators: [19 · CRDs and operators](../19-crd-and-operators/overview.en.md)
+- Troubleshooting: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)

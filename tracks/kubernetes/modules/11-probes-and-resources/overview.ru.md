@@ -87,3 +87,4 @@ web    1/1     Running   0          20s
 - Автомасштабирование по requests: [15 · Автомасштабирование](../15-autoscaling/overview.ru.md)
 - Логи, события и метрики: [16 · Наблюдаемость](../16-observability/overview.ru.md)
 - Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)
+- Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)

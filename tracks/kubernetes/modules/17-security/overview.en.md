@@ -81,3 +81,6 @@ Before the policy was applied, the same request returned a response.
 - Previous module: [16 · Observability](../16-observability/overview.en.md)
 - Next: [18 · Pod scheduling](../18-scheduling/overview.en.md)
 - In other tracks: [Linux](../../../linux/overview.en.md) — permissions, users, capabilities at the OS level
+- CRDs and operators: [19 · CRDs and operators](../19-crd-and-operators/overview.en.md)
+- GitOps and Argo CD: [20 · GitOps](../20-gitops/overview.en.md)
+- Troubleshooting: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)

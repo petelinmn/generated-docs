@@ -83,3 +83,4 @@ web    1/1     Running   0          20s
 - Логи, события и метрики: [16 · Наблюдаемость](../16-observability/overview.ru.md)
 - Безопасность подов и сети: [17 · Безопасность](../17-security/overview.ru.md)
 - Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)
+- Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)

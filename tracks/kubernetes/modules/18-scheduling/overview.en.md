@@ -83,4 +83,5 @@ No node has the label `disk=nvme`, and the control-plane has a taint.
 - Previous modules: [16 · Observability](../16-observability/overview.en.md), [17 · Security](../17-security/overview.en.md)
 - DaemonSet and tolerations: [12 · Other workloads](../12-workloads/overview.en.md)
 - Autoscaling and a lack of nodes: [15 · Autoscaling](../15-autoscaling/overview.en.md)
-- Next: module 19 · CRDs and operators (in the [track](../../overview.en.md) roadmap)
+- Next: [19 · CRDs and operators](../19-crd-and-operators/overview.en.md)
+- Troubleshooting: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)

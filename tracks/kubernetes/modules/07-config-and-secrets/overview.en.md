@@ -78,3 +78,5 @@ DB_PASSWORD=S3cr3t!
 - The same idea in other tracks: [DI, configuration and logging in C#](../../../csharp/modules/13-di-config-logging/overview.en.md) — how an application reads environment variables and configuration files
 - Config versions through generators: [14 · Kustomize](../14-kustomize/overview.en.md); values in charts: [13 · Helm](../13-helm/overview.en.md)
 - Pod and network security: [17 · Security](../17-security/overview.en.md)
+- GitOps and Argo CD: [20 · GitOps](../20-gitops/overview.en.md)
+- Troubleshooting: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)

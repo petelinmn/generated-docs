@@ -76,4 +76,4 @@ LAST SEEN           TYPE      REASON    OBJECT      MESSAGE
 - Установка через Helm: [13 · Helm](../13-helm/overview.ru.md)
 - DaemonSet: [12 · Другие workloads](../12-workloads/overview.ru.md)
 - Дальше: [17 · Безопасность](../17-security/overview.ru.md)
-- Диагностика по событиям и логам: модуль 21 · Диагностика (в дорожной карте [трека](../../overview.ru.md))
+- Диагностика по событиям и логам: [21 · Диагностика](../21-troubleshooting/overview.ru.md)

@@ -83,4 +83,5 @@ $ kubectl -n learn-18 describe pod sel-bad
 - Предыдущие модули: [16 · Наблюдаемость](../16-observability/overview.ru.md), [17 · Безопасность](../17-security/overview.ru.md)
 - DaemonSet и tolerations: [12 · Другие workloads](../12-workloads/overview.ru.md)
 - Автомасштабирование и нехватка нод: [15 · Автомасштабирование](../15-autoscaling/overview.ru.md)
-- Дальше: модуль 19 · CRD и операторы (в дорожной карте [трека](../../overview.ru.md))
+- Дальше: [19 · CRD и операторы](../19-crd-and-operators/overview.ru.md)
+- Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)
