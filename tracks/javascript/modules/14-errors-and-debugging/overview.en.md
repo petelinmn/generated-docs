@@ -78,5 +78,5 @@ The original error is not lost: it is in `cause`.
 ## Related materials
 
 - Prerequisites: [12 · Promises and async/await](../12-promises-and-async-await/overview.en.md), [13 · The event loop and concurrency](../13-event-loop-and-concurrency/overview.en.md)
-- Next: module 15 · Testing (in the [roadmap](../../overview.en.md))
+- Next: [15 · Testing](../15-testing/overview.en.md)
 - Analogues in other tracks: [C#: exceptions](../../../csharp/modules/08-exceptions/overview.en.md), [Python](../../../python/overview.en.md) (exceptions)

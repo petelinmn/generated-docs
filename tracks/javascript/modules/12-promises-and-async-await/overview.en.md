@@ -78,5 +78,5 @@ Two operations run simultaneously, and `await` waits for both.
 ## Related materials
 
 - Prerequisites: [04 · Functions](../04-functions/overview.en.md), [11 · Iterators and generators](../11-iterators-and-generators/overview.en.md)
-- Next: module 13 · The event loop and concurrency (in the [roadmap](../../overview.en.md))
+- Next: [13 · The event loop and concurrency](../13-event-loop-and-concurrency/overview.en.md)
 - Analogues in other tracks: [C#: async/await](../../../csharp/modules/10-async-await/overview.en.md), [Python](../../../python/overview.en.md) (asyncio)

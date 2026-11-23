@@ -78,5 +78,5 @@ config failed <- SyntaxError
 ## Связанные материалы
 
 - Пререквизиты: [12 · Промисы и async/await](../12-promises-and-async-await/overview.ru.md), [13 · Цикл событий и параллелизм](../13-event-loop-and-concurrency/overview.ru.md)
-- Дальше: модуль 15 · Тестирование (в [дорожной карте](../../overview.ru.md))
+- Дальше: [15 · Тестирование](../15-testing/overview.ru.md)
 - Аналоги в других треках: [C#: исключения](../../../csharp/modules/08-exceptions/overview.ru.md), [Python](../../../python/overview.ru.md) (исключения)

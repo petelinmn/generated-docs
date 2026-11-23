@@ -78,5 +78,5 @@ a b
 ## Связанные материалы
 
 - Пререквизиты: [04 · Функции](../04-functions/overview.ru.md), [11 · Итераторы и генераторы](../11-iterators-and-generators/overview.ru.md)
-- Дальше: модуль 13 · Цикл событий и параллелизм (в [дорожной карте](../../overview.ru.md))
+- Дальше: [13 · Цикл событий и параллелизм](../13-event-loop-and-concurrency/overview.ru.md)
 - Аналоги в других треках: [C#: async/await](../../../csharp/modules/10-async-await/overview.ru.md), [Python](../../../python/overview.ru.md) (asyncio)
