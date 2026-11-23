@@ -74,6 +74,6 @@ console.log(fv.map(f => f()), fl.map(f => f()));
 ## Связанные материалы
 
 - Пререквизиты: [01 · Окружение и инструменты](../01-environment/overview.ru.md) (строгий режим), [02 · Типы и значения](../02-types-and-values/overview.ru.md)
-- Дальше: модуль 04 · Функции (в дорожной карте [трека](../../overview.ru.md))
+- Дальше: [04 · Функции](../04-functions/overview.ru.md)
 - Аналоги в других треках: [Python: области видимости (LEGB)](../../../python/overview.ru.md), [C#: переменные и методы](../../../csharp/overview.ru.md)
 - Статические типы: [TypeScript](../../../typescript/overview.ru.md)
