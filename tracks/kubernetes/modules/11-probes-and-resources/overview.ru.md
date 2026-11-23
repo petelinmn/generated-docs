@@ -84,3 +84,4 @@ web    1/1     Running   0          20s
 - Квоты и значения по умолчанию: [10 · Namespace и RBAC](../10-namespaces-and-rbac/overview.ru.md)
 - Выкатка и готовность: [05 · Deployment и ReplicaSet](../05-deployments/overview.ru.md)
 - То же в других треках: [Linux](../../../linux/overview.ru.md) — cgroups, из которых строятся лимиты
+- Автомасштабирование по requests: [15 · Автомасштабирование](../15-autoscaling/overview.ru.md)

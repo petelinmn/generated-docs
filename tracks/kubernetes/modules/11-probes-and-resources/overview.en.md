@@ -84,3 +84,4 @@ web    1/1     Running   0          20s
 - Quotas and defaults: [10 · Namespaces and RBAC](../10-namespaces-and-rbac/overview.en.md)
 - Rollouts and readiness: [05 · Deployment and ReplicaSet](../05-deployments/overview.en.md)
 - The same idea in other tracks: [Linux](../../../linux/overview.en.md) — the cgroups limits are built from
+- Autoscaling by requests: [15 · Autoscaling](../15-autoscaling/overview.en.md)

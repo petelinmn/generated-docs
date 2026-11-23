@@ -79,6 +79,6 @@ job-done
 ## Связанные материалы
 
 - Пререквизиты: [05 · Deployment и ReplicaSet](../05-deployments/overview.ru.md), [08 · Хранилище](../08-storage/overview.ru.md) (PVC), [06 · Service и сеть](../06-services/overview.ru.md) (headless Service)
-- Дальше: модуль 13 · Helm (в дорожной карте [трека](../../overview.ru.md))
+- Дальше: [13 · Helm](../13-helm/overview.ru.md)
 - Остановка и перезапуск подов: [04 · Pod](../04-pods/overview.ru.md)
 - В других треках: [фоновые задачи в C#](../../../csharp/recipes/background-jobs/overview.ru.md) — то же «периодическое и разовое» вне Kubernetes

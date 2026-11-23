@@ -76,3 +76,4 @@ DB_PASSWORD=S3cr3t!
 - Prerequisites: [04 · Pod](../04-pods/overview.en.md), [05 · Deployment and ReplicaSet](../05-deployments/overview.en.md)
 - Next: [08 · Storage](../08-storage/overview.en.md)
 - The same idea in other tracks: [DI, configuration and logging in C#](../../../csharp/modules/13-di-config-logging/overview.en.md) — how an application reads environment variables and configuration files
+- Config versions through generators: [14 · Kustomize](../14-kustomize/overview.en.md); values in charts: [13 · Helm](../13-helm/overview.en.md)

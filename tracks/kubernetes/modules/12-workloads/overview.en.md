@@ -79,6 +79,6 @@ job-done
 ## Related materials
 
 - Prerequisites: [05 · Deployment and ReplicaSet](../05-deployments/overview.en.md), [08 · Storage](../08-storage/overview.en.md) (PVC), [06 · Service and networking](../06-services/overview.en.md) (headless Service)
-- Next: module 13 · Helm (in the [track](../../overview.en.md) roadmap)
+- Next: [13 · Helm](../13-helm/overview.en.md)
 - Stopping and restarting pods: [04 · Pod](../04-pods/overview.en.md)
 - In other tracks: [background jobs in C#](../../../csharp/recipes/background-jobs/overview.en.md) — the same "periodic and one-off" outside Kubernetes

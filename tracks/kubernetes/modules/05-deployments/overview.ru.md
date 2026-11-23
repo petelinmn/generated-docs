@@ -88,3 +88,4 @@ deployment "web" successfully rolled out
 - Цикл согласования: [02 · Архитектура Kubernetes](../02-architecture/overview.ru.md)
 - То же в других треках: [Фоновые задачи в C#](../../../csharp/recipes/background-jobs/overview.ru.md) — graceful shutdown при выкатке
 - Другие контроллеры: [12 · Другие workload-ы](../12-workloads/overview.ru.md) — StatefulSet, DaemonSet, Job, CronJob
+- Шаблоны и релизы: [13 · Helm](../13-helm/overview.ru.md), оверлеи: [14 · Kustomize](../14-kustomize/overview.ru.md); автомасштабирование: [15 · Автомасштабирование](../15-autoscaling/overview.ru.md)
