@@ -83,7 +83,7 @@ default 0
 ## Связанные материалы
 
 - Пререквизиты: [01 · Окружение и инструменты](../01-environment/overview.ru.md) (ESM и CommonJS, `package.json`), [03 · Переменные и области видимости](../03-scopes-and-hoisting/overview.ru.md) (TDZ)
-- Дальше: модуль 10 · Замыкания и функциональный стиль (в дорожной карте [трека](../../overview.ru.md))
+- Дальше: [10 · Замыкания и функциональный стиль](../10-closures-and-functional/overview.ru.md)
 - Асинхронность подробно: модуль 12 дорожной карты
 - Аналоги в других треках: [Python: модули и пакеты](../../../python/overview.ru.md), [C#: сборки и пространства имён](../../../csharp/overview.ru.md)
 - Модули и `tsconfig` в TypeScript: [TypeScript](../../../typescript/overview.ru.md)

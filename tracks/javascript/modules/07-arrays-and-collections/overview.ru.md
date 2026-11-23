@@ -79,6 +79,6 @@ console.log([...new Set([1, 2, 2, 3])], new Map([['a', 1]]).get('a'));
 
 - Пререквизиты: [02 · Типы и значения](../02-types-and-values/overview.ru.md), [04 · Функции](../04-functions/overview.ru.md) (обратные вызовы), [05 · Объекты и прототипы](../05-objects-and-prototypes/overview.ru.md) (копирование, `groupBy`)
 - Дальше: [08 · Строки, числа, даты, регулярные выражения](../08-strings-numbers-dates-regex/overview.ru.md)
-- Итераторы и генераторы подробно: модуль 11 дорожной карты [трека](../../overview.ru.md)
+- Итераторы и генераторы подробно: [11 · Итераторы и генераторы](../11-iterators-and-generators/overview.ru.md)
 - Аналоги в других треках: [Python: списки, словари, множества](../../../python/overview.ru.md), [C#: коллекции и LINQ](../../../csharp/overview.ru.md)
 - Типизация массивов и коллекций: [TypeScript](../../../typescript/overview.ru.md)

@@ -73,6 +73,7 @@ console.log(add(1), add(1, 2, 3, 4), [1, 2, 3].map(double));
 
 - Пререквизиты: [02 · Типы и значения](../02-types-and-values/overview.ru.md), [03 · Переменные и области видимости](../03-scopes-and-hoisting/overview.ru.md) (всплытие, замыкания)
 - Дальше: [05 · Объекты и прототипы](../05-objects-and-prototypes/overview.ru.md)
-- Замыкания и функциональный стиль подробно: модуль 10 дорожной карты [трека](../../overview.ru.md)
+- Замыкания и функциональный стиль подробно: [10 · Замыкания и функциональный стиль](../10-closures-and-functional/overview.ru.md)
+- Асинхронные функции: [12 · Промисы и async/await](../12-promises-and-async-await/overview.ru.md)
 - Аналоги в других треках: [Python: функции](../../../python/overview.ru.md), [C#: методы и делегаты](../../../csharp/overview.ru.md)
 - Типизация функций: [TypeScript](../../../typescript/overview.ru.md)

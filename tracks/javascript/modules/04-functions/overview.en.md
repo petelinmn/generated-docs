@@ -73,6 +73,7 @@ console.log(add(1), add(1, 2, 3, 4), [1, 2, 3].map(double));
 
 - Prerequisites: [02 · Types and values](../02-types-and-values/overview.en.md), [03 · Variables and scopes](../03-scopes-and-hoisting/overview.en.md) (hoisting, closures)
 - Next: [05 · Objects and prototypes](../05-objects-and-prototypes/overview.en.md)
-- Closures and functional style in depth: module 10 of the [track](../../overview.en.md) roadmap
+- Closures and functional style in depth: [10 · Closures and functional style](../10-closures-and-functional/overview.en.md)
+- Asynchronous functions: [12 · Promises and async/await](../12-promises-and-async-await/overview.en.md)
 - Analogues in other tracks: [Python: functions](../../../python/overview.en.md), [C#: methods and delegates](../../../csharp/overview.en.md)
 - Typing functions: [TypeScript](../../../typescript/overview.en.md)

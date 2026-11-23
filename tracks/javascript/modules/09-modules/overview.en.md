@@ -83,7 +83,7 @@ default 0
 ## Related materials
 
 - Prerequisites: [01 · Environment and tools](../01-environment/overview.en.md) (ESM and CommonJS, `package.json`), [03 · Variables and scopes](../03-scopes-and-hoisting/overview.en.md) (TDZ)
-- Next: module 10 · Closures and functional style (in the [track](../../overview.en.md) roadmap)
+- Next: [10 · Closures and functional style](../10-closures-and-functional/overview.en.md)
 - Asynchrony in depth: module 12 of the roadmap
 - Analogues in other tracks: [Python: modules and packages](../../../python/overview.en.md), [C#: assemblies and namespaces](../../../csharp/overview.en.md)
 - Modules and `tsconfig` in TypeScript: [TypeScript](../../../typescript/overview.en.md)

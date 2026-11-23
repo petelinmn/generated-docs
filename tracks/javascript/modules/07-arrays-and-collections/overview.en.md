@@ -79,6 +79,6 @@ console.log([...new Set([1, 2, 2, 3])], new Map([['a', 1]]).get('a'));
 
 - Prerequisites: [02 · Types and values](../02-types-and-values/overview.en.md), [04 · Functions](../04-functions/overview.en.md) (callbacks), [05 · Objects and prototypes](../05-objects-and-prototypes/overview.en.md) (copying, `groupBy`)
 - Next: [08 · Strings, numbers, dates, regular expressions](../08-strings-numbers-dates-regex/overview.en.md)
-- Iterators and generators in depth: module 11 of the [track](../../overview.en.md) roadmap
+- Iterators and generators in depth: [11 · Iterators and generators](../11-iterators-and-generators/overview.en.md)
 - Analogues in other tracks: [Python: lists, dicts, sets](../../../python/overview.en.md), [C#: collections and LINQ](../../../csharp/overview.en.md)
 - Typing arrays and collections: [TypeScript](../../../typescript/overview.en.md)
