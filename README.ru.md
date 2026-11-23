@@ -15,6 +15,7 @@
 | [Kubernetes](tracks/kubernetes/overview.ru.md) | контейнеры, workload-ы, сеть, Helm, безопасность, GitOps |
 | [Linux](tracks/linux/overview.ru.md) | shell, права, процессы, bash-скрипты, systemd, сеть, диагностика |
 | [LLM](tracks/llm/overview.ru.md) | как работают LLM, API, tool use, RAG, агенты, MCP, evals |
+| [Claude](tracks/claude/overview.ru.md) | Claude API, Claude Code, tool use, MCP, агенты и production |
 
 Новую технологию можно добавить в любой момент: `/learn <технология>` создаст трек по тем же правилам.
 

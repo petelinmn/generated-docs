@@ -138,6 +138,7 @@ code/
 | typescript | `package.json`, `tsconfig.json`, `examples/exNN-name.ts`, `solutions/`, `tests/*.test.ts` | vitest | `npm test` (`vitest run`); типы — `npx tsc --noEmit` |
 | kubernetes | `examples/NN-name.yaml`, ресурсы в namespace `learn-NN` | bats: kubeconform + проверка в kind | `bats tests` |
 | linux | `examples/NN-name.sh` (`#!/usr/bin/env bash`, `set -euo pipefail`, без замечаний shellcheck) | bats | `bats tests` |
+| claude | `pyproject.toml`, `examples/exNN_name.py`, `solutions/`, `tests/test_*.py` | pytest (`uv run pytest`) | `uv run pytest` |
 
 Для новой технологии выбери её стандартный тестовый инструмент (Go — `go test`, Rust — `cargo test`, TypeScript — vitest и т. п.), опиши его в overview трека и добавь строку в эту таблицу.
 

@@ -91,6 +91,7 @@ updated: 2026-11-20
 
 - [Python](../python/overview.ru.md) — основной язык трека
 - [C# / .NET](../csharp/overview.ru.md) — LLM-приложения на .NET
+- [Claude](../claude/overview.ru.md) — Anthropic-модели, Messages API и Claude Code
 
 ## Источники
 

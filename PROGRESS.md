@@ -387,3 +387,52 @@
 
 - [ ] projects/docs-assistant
 - [ ] projects/coding-agent
+
+## claude
+
+### Часть 1. Основы
+
+- [ ] 01-models
+- [ ] 02-messages-api
+- [ ] 03-prompt-engineering
+- [ ] 04-structured-output
+- [ ] 05-prompt-caching
+- [ ] 06-documents-and-citations
+
+### Часть 2. Продвинутые темы
+
+- [ ] 07-tool-use
+- [ ] 08-mcp
+- [ ] 09-claude-code
+- [ ] 10-memory
+- [ ] 11-skills-and-hooks
+- [ ] 12-agents
+
+### Часть 3. Темы для опытных
+
+- [ ] 13-long-context
+- [ ] 14-evals
+- [ ] 15-observability
+- [ ] 16-security
+- [ ] 17-production
+
+### Библиотеки
+
+- [ ] libraries/anthropic-sdk
+- [ ] libraries/agent-sdk
+- [ ] libraries/mcp-sdk
+- [ ] libraries/claude-code
+
+### Рецепты
+
+- [ ] recipes/chat-with-history
+- [ ] recipes/tool-agent
+- [ ] recipes/structured-extraction
+- [ ] recipes/claude-code-workflow
+- [ ] recipes/rag-with-claude
+
+### Проекты
+
+- [ ] projects/api-service
+- [ ] projects/coding-agent
+- [ ] projects/document-assistant

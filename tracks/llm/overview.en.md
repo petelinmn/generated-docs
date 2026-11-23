@@ -91,6 +91,7 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 
 - [Python](../python/overview.en.md) — the main language of this track
 - [C# / .NET](../csharp/overview.en.md) — LLM applications on .NET
+- [Claude](../claude/overview.en.md) — Anthropic models, the Messages API and Claude Code
 
 ## Sources
 
