@@ -80,6 +80,6 @@ console.log(p.len, `${p}`, p.reveal(), Object.keys(p));
 ## Связанные материалы
 
 - Пререквизиты: [04 · Функции](../04-functions/overview.ru.md) (`this`, `new`, `new.target`), [05 · Объекты и прототипы](../05-objects-and-prototypes/overview.ru.md)
-- Дальше: модуль 07 · Массивы и коллекции (в дорожной карте [трека](../../overview.ru.md))
+- Дальше: [07 · Массивы и коллекции](../07-arrays-and-collections/overview.ru.md)
 - Аналоги в других треках: [Python: ООП](../../../python/overview.ru.md), [C#: ООП](../../../csharp/overview.ru.md)
 - Типизация классов: [TypeScript](../../../typescript/overview.ru.md)

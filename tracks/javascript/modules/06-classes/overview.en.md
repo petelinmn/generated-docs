@@ -80,6 +80,6 @@ console.log(p.len, `${p}`, p.reveal(), Object.keys(p));
 ## Related materials
 
 - Prerequisites: [04 · Functions](../04-functions/overview.en.md) (`this`, `new`, `new.target`), [05 · Objects and prototypes](../05-objects-and-prototypes/overview.en.md)
-- Next: module 07 · Arrays and collections (in the [track](../../overview.en.md) roadmap)
+- Next: [07 · Arrays and collections](../07-arrays-and-collections/overview.en.md)
 - Analogues in other tracks: [Python: OOP](../../../python/overview.en.md), [C#: OOP](../../../csharp/overview.en.md)
 - Typing classes: [TypeScript](../../../typescript/overview.en.md)
