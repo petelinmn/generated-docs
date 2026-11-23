@@ -79,3 +79,4 @@ web    1/1     Running   0          20s
 - Next: [05 · Deployment and ReplicaSet](../05-deployments/overview.en.md)
 - Foundation: the [Linux track](../../../linux/overview.en.md) — processes and signals
 - Containers: [01 · Containers and Docker](../01-containers/overview.en.md) — `PID 1` and `SIGTERM`
+- Pod restarts and completion in Jobs: [12 · Other workloads](../12-workloads/overview.en.md)

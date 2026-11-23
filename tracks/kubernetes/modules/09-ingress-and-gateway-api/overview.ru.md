@@ -74,6 +74,6 @@ v1 api from web-v1-584794c796-qxvt5
 ## Связанные материалы
 
 - Пререквизиты: [06 · Service и сеть](../06-services/overview.ru.md), [07 · ConfigMap и Secret](../07-config-and-secrets/overview.ru.md) (TLS-секреты)
-- Дальше: модуль 10 · Namespace и RBAC (в дорожной карте [трека](../../overview.ru.md))
+- Дальше: [10 · Namespace и RBAC](../10-namespaces-and-rbac/overview.ru.md)
 - Выкатка и canary: [05 · Deployment и ReplicaSet](../05-deployments/overview.ru.md)
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — сеть, TLS, прокси

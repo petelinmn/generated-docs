@@ -70,5 +70,5 @@ builder.Services.AddHostedService<TickWorker>();
 
 - Prerequisites: [10 · async/await](../../modules/10-async-await/overview.en.md), [13 · DI, configuration, logging](../../modules/13-di-config-logging/overview.en.md)
 - Nearby: [18 · Concurrency](../../modules/18-concurrency/overview.en.md), [Rate limiting](../rate-limiting/overview.en.md)
-- In other tracks: [Python](../../../python/overview.en.md) — background tasks in asyncio; [Kubernetes · Pod](../../../kubernetes/modules/04-pods/overview.en.md) — `SIGTERM` and pod termination that a worker's graceful shutdown relies on
+- In other tracks: [Python](../../../python/overview.en.md) — background tasks in asyncio; [Kubernetes · Pod](../../../kubernetes/modules/04-pods/overview.en.md) — `SIGTERM` and pod termination that a worker's graceful shutdown relies on; [Kubernetes · Other workloads](../../../kubernetes/modules/12-workloads/overview.en.md) — Job and CronJob as an external alternative
 - Recipes and libraries: [Serilog](../../libraries/serilog/overview.en.md), [Caching](../caching/overview.en.md), [File upload](../file-upload/overview.en.md), [Resilient HttpClient](../http-client-resilience/overview.en.md), [Real-time with SignalR](../signalr-realtime/overview.en.md)

@@ -87,3 +87,4 @@ deployment "web" successfully rolled out
 - Next: [06 · Service and networking](../06-services/overview.en.md)
 - The reconciliation loop: [02 · Kubernetes architecture](../02-architecture/overview.en.md)
 - The same idea in other tracks: [Background jobs in C#](../../../csharp/recipes/background-jobs/overview.en.md) — graceful shutdown during a rollout
+- Other controllers: [12 · Other workloads](../12-workloads/overview.en.md) — StatefulSet, DaemonSet, Job, CronJob

@@ -79,3 +79,4 @@ web    1/1     Running   0          20s
 - Дальше: [05 · Deployment и ReplicaSet](../05-deployments/overview.ru.md)
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — процессы и сигналы
 - Контейнеры: [01 · Контейнеры и Docker](../01-containers/overview.ru.md) — `PID 1` и `SIGTERM`
+- Завершение и перезапуск подов в Job: [12 · Другие workload-ы](../12-workloads/overview.ru.md)

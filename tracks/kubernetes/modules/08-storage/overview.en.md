@@ -86,3 +86,4 @@ data   Bound    pvc-eac81e8c-2cc1-4f1c-b4ef-888b1005a130   1Gi        RWO       
 - Next: [09 · Ingress and Gateway API](../09-ingress-and-gateway-api/overview.en.md)
 - Foundation: the [Linux track](../../../linux/overview.en.md) — file systems, mounting, permissions
 - The same idea in other tracks: [Testcontainers for C#](../../../csharp/libraries/testcontainers/overview.en.md) — volumes and container state in tests
+- StatefulSet and a PVC per replica: [12 · Other workloads](../12-workloads/overview.en.md)

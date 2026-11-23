@@ -86,3 +86,4 @@ data   Bound    pvc-eac81e8c-2cc1-4f1c-b4ef-888b1005a130   1Gi        RWO       
 - Дальше: [09 · Ingress и Gateway API](../09-ingress-and-gateway-api/overview.ru.md)
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — файловые системы, монтирование, права
 - То же в других треках: [Testcontainers для C#](../../../csharp/libraries/testcontainers/overview.ru.md) — тома и состояние контейнеров в тестах
+- StatefulSet и PVC на реплику: [12 · Другие workload-ы](../12-workloads/overview.ru.md)

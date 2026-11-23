@@ -74,6 +74,6 @@ v1 api from web-v1-584794c796-qxvt5
 ## Related materials
 
 - Prerequisites: [06 · Service and networking](../06-services/overview.en.md), [07 · ConfigMap and Secret](../07-config-and-secrets/overview.en.md) (TLS secrets)
-- Next: module 10 · Namespaces and RBAC (in the roadmap of the [track](../../overview.en.md))
+- Next: [10 · Namespaces and RBAC](../10-namespaces-and-rbac/overview.en.md)
 - Rollouts and canary: [05 · Deployment and ReplicaSet](../05-deployments/overview.en.md)
 - Foundation: the [Linux track](../../../linux/overview.en.md) — networking, TLS, proxies
