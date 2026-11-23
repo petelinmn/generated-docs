@@ -80,3 +80,6 @@ web    1/1     Running   0          20s
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — процессы и сигналы
 - Контейнеры: [01 · Контейнеры и Docker](../01-containers/overview.ru.md) — `PID 1` и `SIGTERM`
 - Завершение и перезапуск подов в Job: [12 · Другие workload-ы](../12-workloads/overview.ru.md)
+- Логи, события и метрики: [16 · Наблюдаемость](../16-observability/overview.ru.md)
+- Безопасность подов и сети: [17 · Безопасность](../17-security/overview.ru.md)
+- Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)

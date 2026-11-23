@@ -71,3 +71,4 @@ no
 - Дальше: [11 · Probes и ресурсы](../11-probes-and-resources/overview.ru.md)
 - Путь запроса и авторизация: [02 · Архитектура Kubernetes](../02-architecture/advanced.ru.md#путь-запроса-через-api-server)
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — пользователи, группы, права
+- Безопасность подов и сети: [17 · Безопасность](../17-security/overview.ru.md)

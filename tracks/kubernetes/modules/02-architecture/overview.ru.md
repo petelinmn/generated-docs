@@ -70,3 +70,4 @@ SuccessfulCreate    replicaset-controller   Created pod: web-689b9bdbdd-24sgv
 - Пререквизиты: [01 · Контейнеры и Docker](../01-containers/overview.ru.md) — рантайм containerd и образы
 - Дальше: [03 · Локальный кластер и kubectl](../03-local-cluster-and-kubectl/overview.ru.md)
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — процессы, сеть, cgroups
+- Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)

@@ -75,3 +75,4 @@ Rollback was a success! Happy Helming!
 - Дальше: [14 · Kustomize](../14-kustomize/overview.ru.md)
 - Хуки и Job: [12 · Другие workload-ы](../12-workloads/overview.ru.md)
 - Выкатка и откат: [05 · Deployment](../05-deployments/advanced.ru.md#история-ревизий-и-откат)
+- Логи, события и метрики: [16 · Наблюдаемость](../16-observability/overview.ru.md)

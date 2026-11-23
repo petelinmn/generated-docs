@@ -89,3 +89,5 @@ deployment "web" successfully rolled out
 - То же в других треках: [Фоновые задачи в C#](../../../csharp/recipes/background-jobs/overview.ru.md) — graceful shutdown при выкатке
 - Другие контроллеры: [12 · Другие workload-ы](../12-workloads/overview.ru.md) — StatefulSet, DaemonSet, Job, CronJob
 - Шаблоны и релизы: [13 · Helm](../13-helm/overview.ru.md), оверлеи: [14 · Kustomize](../14-kustomize/overview.ru.md); автомасштабирование: [15 · Автомасштабирование](../15-autoscaling/overview.ru.md)
+- Логи, события и метрики: [16 · Наблюдаемость](../16-observability/overview.ru.md)
+- Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)

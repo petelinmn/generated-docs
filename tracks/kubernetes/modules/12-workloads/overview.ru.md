@@ -82,3 +82,5 @@ job-done
 - Дальше: [13 · Helm](../13-helm/overview.ru.md)
 - Остановка и перезапуск подов: [04 · Pod](../04-pods/overview.ru.md)
 - В других треках: [фоновые задачи в C#](../../../csharp/recipes/background-jobs/overview.ru.md) — то же «периодическое и разовое» вне Kubernetes
+- Логи, события и метрики: [16 · Наблюдаемость](../16-observability/overview.ru.md)
+- Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)

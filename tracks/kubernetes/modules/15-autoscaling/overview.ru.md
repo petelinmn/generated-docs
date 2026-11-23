@@ -83,5 +83,6 @@ php-apache   Deployment/php-apache   cpu: 250%/50%   1       5         5
 
 - Пререквизиты: [05 · Deployment](../05-deployments/overview.ru.md), [11 · Probes и ресурсы](../11-probes-and-resources/overview.ru.md) (requests и limits)
 - Предыдущий модуль: [14 · Kustomize](../14-kustomize/overview.ru.md)
-- Дальше: модуль 16 · Наблюдаемость (в дорожной карте [трека](../../overview.ru.md))
+- Дальше: [16 · Наблюдаемость](../16-observability/overview.ru.md)
 - Масштабирование вручную: [05 · Deployment](../05-deployments/advanced.ru.md)
+- Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)

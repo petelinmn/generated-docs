@@ -71,3 +71,4 @@ no
 - Next: [11 · Probes and resources](../11-probes-and-resources/overview.en.md)
 - The request path and authorization: [02 · Kubernetes architecture](../02-architecture/advanced.en.md#the-request-path-through-the-api-server)
 - Foundation: the [Linux track](../../../linux/overview.en.md) — users, groups, permissions
+- Pod and network security: [17 · Security](../17-security/overview.en.md)

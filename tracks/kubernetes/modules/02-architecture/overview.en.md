@@ -70,3 +70,4 @@ Here `deployment-controller` created a ReplicaSet, `replicaset-controller` creat
 - Prerequisites: [01 · Containers and Docker](../01-containers/overview.en.md) — the containerd runtime and images
 - Next: [03 · Local cluster and kubectl](../03-local-cluster-and-kubectl/overview.en.md)
 - Foundation: the [Linux track](../../../linux/overview.en.md) — processes, network, cgroups
+- Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)

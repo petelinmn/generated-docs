@@ -74,7 +74,7 @@ Progressing=True  (NewReplicaSetAvailable)    ReplicaSet "web-6d8567df8" has suc
 | `Available=True`, `MinimumReplicasAvailable` | доступно не меньше `replicas − maxUnavailable` подов |
 | `ReplicaFailure` | ReplicaSet не может создать поды (например, превышена квота) |
 
-> ⚠️ Проверить: условие `ReplicaFailure` и его причины не воспроизводились в этом материале; значения `ReplicaSetUpdated`, `NewReplicaSetAvailable`, `MinimumReplicasAvailable`, `ProgressDeadlineExceeded` получены опытом.
+Значения `ReplicaSetUpdated`, `NewReplicaSetAvailable`, `MinimumReplicasAvailable`, `ProgressDeadlineExceeded` получены опытом в этом материале. `ReplicaFailure=True` с причиной `FailedCreate` воспроизведён в других модулях: при превышении квоты ([модуль 10](../10-namespaces-and-rbac/overview.ru.md)) и при отказе Pod Security Admission ([модуль 17](../17-security/advanced.ru.md#pod-security-admission-режимы-на-практике)).
 
 `kubectl rollout status` завершается кодом 0 при успехе и ненулевым при ошибке или тайм-ауте (`error: deployment "web" exceeded its progress deadline`), что удобно в CI.
 

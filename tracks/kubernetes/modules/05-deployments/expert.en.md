@@ -74,7 +74,7 @@ Progressing=True  (NewReplicaSetAvailable)    ReplicaSet "web-6d8567df8" has suc
 | `Available=True`, `MinimumReplicasAvailable` | at least `replicas − maxUnavailable` pods available |
 | `ReplicaFailure` | the ReplicaSet cannot create pods (for example, a quota is exceeded) |
 
-> ⚠️ Verify: the `ReplicaFailure` condition and its reasons were not reproduced in this material; the values `ReplicaSetUpdated`, `NewReplicaSetAvailable`, `MinimumReplicasAvailable`, `ProgressDeadlineExceeded` were obtained by experiment.
+The values `ReplicaSetUpdated`, `NewReplicaSetAvailable`, `MinimumReplicasAvailable`, `ProgressDeadlineExceeded` were obtained by experiment in this material. `ReplicaFailure=True` with the reason `FailedCreate` was reproduced in other modules: when a quota is exceeded ([module 10](../10-namespaces-and-rbac/overview.en.md)) and when Pod Security Admission rejects pods ([module 17](../17-security/advanced.en.md#pod-security-admission-modes-in-practice)).
 
 `kubectl rollout status` ends with code 0 on success and non-zero on an error or timeout (`error: deployment "web" exceeded its progress deadline`), which is handy in CI.
 

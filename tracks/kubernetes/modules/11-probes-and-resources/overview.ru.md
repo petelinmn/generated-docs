@@ -85,3 +85,5 @@ web    1/1     Running   0          20s
 - Выкатка и готовность: [05 · Deployment и ReplicaSet](../05-deployments/overview.ru.md)
 - То же в других треках: [Linux](../../../linux/overview.ru.md) — cgroups, из которых строятся лимиты
 - Автомасштабирование по requests: [15 · Автомасштабирование](../15-autoscaling/overview.ru.md)
+- Логи, события и метрики: [16 · Наблюдаемость](../16-observability/overview.ru.md)
+- Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)

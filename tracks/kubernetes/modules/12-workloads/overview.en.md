@@ -82,3 +82,5 @@ job-done
 - Next: [13 · Helm](../13-helm/overview.en.md)
 - Stopping and restarting pods: [04 · Pod](../04-pods/overview.en.md)
 - In other tracks: [background jobs in C#](../../../csharp/recipes/background-jobs/overview.en.md) — the same "periodic and one-off" outside Kubernetes
+- Logs, events and metrics: [16 · Observability](../16-observability/overview.en.md)
+- Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)

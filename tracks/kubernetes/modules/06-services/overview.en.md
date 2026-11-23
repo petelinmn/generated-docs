@@ -79,3 +79,4 @@ hello from web-8678fd4948-7xm64
 - Next: [07 · ConfigMap and Secret](../07-config-and-secrets/overview.en.md)
 - Networking components: [02 · Kubernetes architecture](../02-architecture/overview.en.md) — kube-proxy and CoreDNS
 - Foundation: the [Linux track](../../../linux/overview.en.md) — iptables and networking
+- Pod and network security: [17 · Security](../17-security/overview.en.md)

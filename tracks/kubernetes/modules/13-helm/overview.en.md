@@ -75,3 +75,4 @@ Rollback was a success! Happy Helming!
 - Next: [14 · Kustomize](../14-kustomize/overview.en.md)
 - Hooks and Jobs: [12 · Other workloads](../12-workloads/overview.en.md)
 - Rollout and rollback: [05 · Deployment](../05-deployments/advanced.en.md)
+- Logs, events and metrics: [16 · Observability](../16-observability/overview.en.md)

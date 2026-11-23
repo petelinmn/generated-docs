@@ -80,3 +80,6 @@ web    1/1     Running   0          20s
 - Foundation: the [Linux track](../../../linux/overview.en.md) — processes and signals
 - Containers: [01 · Containers and Docker](../01-containers/overview.en.md) — `PID 1` and `SIGTERM`
 - Pod restarts and completion in Jobs: [12 · Other workloads](../12-workloads/overview.en.md)
+- Logs, events and metrics: [16 · Observability](../16-observability/overview.en.md)
+- Pod and network security: [17 · Security](../17-security/overview.en.md)
+- Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)

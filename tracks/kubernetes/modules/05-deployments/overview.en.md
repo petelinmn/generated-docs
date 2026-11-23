@@ -89,3 +89,5 @@ deployment "web" successfully rolled out
 - The same idea in other tracks: [Background jobs in C#](../../../csharp/recipes/background-jobs/overview.en.md) — graceful shutdown during a rollout
 - Other controllers: [12 · Other workloads](../12-workloads/overview.en.md) — StatefulSet, DaemonSet, Job, CronJob
 - Templates and releases: [13 · Helm](../13-helm/overview.en.md), overlays: [14 · Kustomize](../14-kustomize/overview.en.md); autoscaling: [15 · Autoscaling](../15-autoscaling/overview.en.md)
+- Logs, events and metrics: [16 · Observability](../16-observability/overview.en.md)
+- Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)

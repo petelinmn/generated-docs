@@ -83,5 +83,6 @@ php-apache   Deployment/php-apache   cpu: 250%/50%   1       5         5
 
 - Prerequisites: [05 · Deployment](../05-deployments/overview.en.md), [11 · Probes and resources](../11-probes-and-resources/overview.en.md) (requests and limits)
 - Previous module: [14 · Kustomize](../14-kustomize/overview.en.md)
-- Next: module 16 · Observability (in the [track](../../overview.en.md) roadmap)
+- Next: [16 · Observability](../16-observability/overview.en.md)
 - Manual scaling: [05 · Deployment](../05-deployments/advanced.en.md)
+- Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)
