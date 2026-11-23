@@ -78,5 +78,5 @@ $ node --test
 ## Связанные материалы
 
 - Пререквизиты: [14 · Ошибки и отладка](../14-errors-and-debugging/overview.ru.md), [12 · Промисы и async/await](../12-promises-and-async-await/overview.ru.md), [09 · Модули](../09-modules/overview.ru.md)
-- Дальше: модуль 16 · Node.js: файлы, потоки, процессы (в [дорожной карте](../../overview.ru.md))
+- Дальше: [16 · Node.js: файлы, потоки, процессы](../16-nodejs-files-streams-processes/overview.ru.md)
 - Аналоги в других треках: [C#: модульное тестирование](../../../csharp/modules/16-testing-unit/overview.ru.md), [Python](../../../python/overview.ru.md) (pytest), [TypeScript](../../../typescript/overview.ru.md) (vitest)

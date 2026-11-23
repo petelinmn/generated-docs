@@ -78,5 +78,5 @@ $ node --test
 ## Related materials
 
 - Prerequisites: [14 · Errors and debugging](../14-errors-and-debugging/overview.en.md), [12 · Promises and async/await](../12-promises-and-async-await/overview.en.md), [09 · Modules](../09-modules/overview.en.md)
-- Next: module 16 · Node.js: files, streams, processes (in the [roadmap](../../overview.en.md))
+- Next: [16 · Node.js: files, streams, processes](../16-nodejs-files-streams-processes/overview.en.md)
 - Analogues in other tracks: [C#: unit testing](../../../csharp/modules/16-testing-unit/overview.en.md), [Python](../../../python/overview.en.md) (pytest), [TypeScript](../../../typescript/overview.en.md) (vitest)
