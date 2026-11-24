@@ -78,5 +78,5 @@ coding claude-opus-5-5
 ## Related materials
 
 - Prerequisites: [LLM](../../../llm/overview.en.md) and HTTP/API fundamentals.
-- Next: the Messages API module from the [Claude track](../../overview.en.md) roadmap.
+- Next: [02 · Messages API](../02-messages-api/overview.en.md)
 - The same idea in other tracks: model selection and evaluation principles in [LLM](../../../llm/overview.en.md).

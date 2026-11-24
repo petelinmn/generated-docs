@@ -78,5 +78,5 @@ coding claude-opus-5-5
 ## Связанные материалы
 
 - Пререквизиты: [LLM](../../../llm/overview.ru.md) и основы HTTP/API.
-- Дальше: модуль «Messages API» из дорожной карты трека [Claude](../../overview.ru.md).
+- Дальше: [02 · Messages API](../02-messages-api/overview.ru.md)
 - То же в других треках: принципы выбора моделей и evaluation в [LLM](../../../llm/overview.ru.md).
