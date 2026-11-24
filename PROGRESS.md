@@ -49,6 +49,7 @@
 - [ ] libraries/nsubstitute
 - [ ] libraries/testcontainers
 - [ ] libraries/benchmarkdotnet
+- [ ] libraries/masstransit
 - [ ] libraries/spectre-console
 
 ### Рецепты

@@ -70,6 +70,7 @@ RabbitMQ — брокер сообщений (message broker) с открыты�
 
 - [pika](libraries/pika/overview.ru.md) — синхронный клиент для Python
 - [aio-pika](libraries/aio-pika/overview.ru.md) — клиент на asyncio
+- [MassTransit (C#)](../csharp/libraries/masstransit/overview.ru.md) — клиентская библиотека поверх RabbitMQ для .NET
 - [rabbitmqctl](tools/rabbitmqctl/overview.ru.md) — управление узлами и кластером из командной строки
 
 ## Рецепты

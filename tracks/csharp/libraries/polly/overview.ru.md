@@ -64,5 +64,5 @@ var result = await pipeline.ExecuteAsync(async ct => await CallServiceAsync(ct))
 ## Связанные материалы
 
 - Пререквизиты: [10 · async/await](../../modules/10-async-await/overview.ru.md), [08 · Исключения](../../modules/08-exceptions/overview.ru.md)
-- Рядом: [Устойчивый HttpClient](../../recipes/http-client-resilience/overview.ru.md), [Rate limiting](../../recipes/rate-limiting/overview.ru.md), [Refit](../refit/overview.ru.md)
+- Рядом: [Устойчивый HttpClient](../../recipes/http-client-resilience/overview.ru.md), [Rate limiting](../../recipes/rate-limiting/overview.ru.md), [Refit](../refit/overview.ru.md), [MassTransit](../masstransit/overview.ru.md) — повторы на уровне конечной точки брокера
 - В других треках: [Python](../../../python/overview.ru.md) — tenacity

@@ -78,6 +78,7 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 - [NSubstitute](libraries/nsubstitute/overview.en.md) — mocks and stubs in tests
 - [Testcontainers](libraries/testcontainers/overview.en.md) — real databases and services in Docker for tests
 - [BenchmarkDotNet](libraries/benchmarkdotnet/overview.en.md) — microbenchmarks
+- [MassTransit](libraries/masstransit/overview.en.md) — messaging: the bus, consumers, retries, sagas, RabbitMQ
 - [Spectre.Console](libraries/spectre-console/overview.en.md) — console apps with tables, progress bars, prompts
 
 ## Recipes

@@ -70,6 +70,7 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 
 - [pika](libraries/pika/overview.en.md) — the synchronous Python client
 - [aio-pika](libraries/aio-pika/overview.en.md) — the asyncio client
+- [MassTransit (C#)](../csharp/libraries/masstransit/overview.en.md) — a client library over RabbitMQ for .NET
 - [rabbitmqctl](tools/rabbitmqctl/overview.en.md) — node and cluster management from the command line
 
 ## Recipes

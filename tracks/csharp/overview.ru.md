@@ -78,6 +78,7 @@ C# — статически типизированный объектно-ори
 - [NSubstitute](libraries/nsubstitute/overview.ru.md) — моки и стабы в тестах
 - [Testcontainers](libraries/testcontainers/overview.ru.md) — настоящие БД и сервисы в Docker для тестов
 - [BenchmarkDotNet](libraries/benchmarkdotnet/overview.ru.md) — микробенчмарки
+- [MassTransit](libraries/masstransit/overview.ru.md) — обмен сообщениями: шина, потребители, повторы, саги, RabbitMQ
 - [Spectre.Console](libraries/spectre-console/overview.ru.md) — консольные приложения с таблицами, прогрессом, промптами
 
 ## Рецепты

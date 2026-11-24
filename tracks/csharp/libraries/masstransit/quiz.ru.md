@@ -1,0 +1,160 @@
+---
+title: "Квиз: MassTransit"
+lang: ru
+track: csharp
+kind: library
+doc: quiz
+slug: masstransit
+part: 3
+tags: [masstransit, messaging, consumer, retry, saga, test-harness]
+status: draft
+updated: 2026-11-24
+---
+
+# Квиз: MassTransit
+
+🌐 **Русский** · [English](quiz.en.md)
+
+> Сначала ответьте сами, потом откройте ответ. Метка показывает уровень вопроса: 🟢 [основы](basics.ru.md) · 🟡 [продвинутый](advanced.ru.md) · 🔴 [эксперт](expert.ru.md).
+
+## 1. 🟢 Что нужно сделать, чтобы сообщение можно было опубликовать?
+
+- A) Объявить тип в любом пространстве имён (не глобальном)
+- B) Унаследовать его от `IMessage`
+- C) Пометить атрибутом `[Message]`
+- D) Ничего: любой тип подходит
+
+<details><summary>Ответ</summary>
+
+**A.** Тип в глобальном пространстве имён даёт `ArgumentException: Messages types must have a valid namespace`.
+→ [Основы](basics.ru.md#контракт-сообщения)
+
+</details>
+
+## 2. 🟢 Чем `Publish` отличается от `Send`?
+
+- A) `Publish` — всем подписчикам типа, `Send` — в одну конечную точку
+- B) `Publish` — синхронный, `Send` — асинхронный
+- C) `Send` — всем подписчикам, `Publish` — одному
+- D) Ничем
+
+<details><summary>Ответ</summary>
+
+**A.**
+→ [Основы](basics.ru.md#publish-и-send)
+
+</details>
+
+## 3. 🟢 Контейнер с MassTransit освобождён через `using var sp`. Что произойдёт?
+
+- A) Всё нормально
+- B) `InvalidOperationException`: нужен `await using`
+- C) Сообщения потеряются молча
+- D) Ошибка компиляции
+
+<details><summary>Ответ</summary>
+
+**B.**
+→ [Основы](basics.ru.md#шина-в-памяти)
+
+</details>
+
+## 4. 🟢 Как по умолчанию называется конечная точка для `OrderSubmittedConsumer`?
+
+- A) `order-submitted`
+- B) `OrderSubmitted`
+- C) `OrderSubmittedConsumer`
+- D) `consumer`
+
+<details><summary>Ответ</summary>
+
+**B.** `kebab-case` включается `SetKebabCaseEndpointNameFormatter()`.
+→ [Основы](basics.ru.md#имена-конечных-точек)
+
+</details>
+
+## 5. 🟡 Потребитель падает дважды и на третий раз успевает. Что нужно настроить?
+
+- A) `UseMessageRetry` на конечной точке
+- B) `ConcurrentMessageLimit`
+- C) `AddRequestClient`
+- D) Ничего: MassTransit повторит сам
+
+<details><summary>Ответ</summary>
+
+**A.** В опыте: попытки 1, 2, 3 и успех.
+→ [Продвинутый](advanced.ru.md#повторы)
+
+</details>
+
+## 6. 🟡 Повторы исчерпаны. Что с сообщением?
+
+- A) Оно удалено
+- B) Опубликован `Fault<T>`, сообщение лежит в `<очередь>_error` с заголовками `MT-Fault-*`
+- C) Оно вернулось в исходную очередь
+- D) Оно ушло в `_skipped`
+
+<details><summary>Ответ</summary>
+
+**B.**
+→ [Продвинутый](advanced.ru.md#ошибки-faultt-и-очередь-_error)
+
+</details>
+
+## 7. 🟡 Что получит `IRequestClient<T>`, если потребителя запроса нет?
+
+- A) Пустой ответ
+- B) `RequestTimeoutException` после таймаута
+- C) Бесконечное ожидание
+- D) `null`
+
+<details><summary>Ответ</summary>
+
+**B.**
+→ [Продвинутый](advanced.ru.md#запрос-и-ответ)
+
+</details>
+
+## 8. 🟡 Выберите все верные утверждения
+
+- [ ] A) В RabbitMQ на тип сообщения создаётся fanout-обменник `Пространство:Тип`
+- [ ] B) Test harness позволяет не использовать `Task.Delay` в тестах
+- [ ] C) `ConcurrentMessageLimit=1` обрабатывает сообщения последовательно
+- [ ] D) Повторы возвращают сообщение в очередь брокера между попытками
+
+<details><summary>Ответ</summary>
+
+**A, B, C.** D неверно: повторы идут в процессе.
+→ [Продвинутый](advanced.ru.md)
+
+</details>
+
+## 9. 🔴 Событие `OrderShipped` пришло, когда сага в состоянии `Submitted`, а переход не описан. Что произойдёт?
+
+- A) Сага перейдёт в `Paid`
+- B) `NotAcceptedStateMachineException` и `Fault`; состояние не изменится
+- C) Сообщение молча пропадёт
+- D) Сага удалится
+
+<details><summary>Ответ</summary>
+
+**B.**
+→ [Саги](expert.ru.md#саги-и-конечные-автоматы)
+
+</details>
+
+## 10. 🔴 Открытый вопрос
+
+Сервис заказов публикует `OrderSubmitted`, три других сервиса реагируют. Как настроите потребителей, повторы и тесты? Что нужно проверить перед выбором версии MassTransit?
+
+<details><summary>Ключевые мысли хорошего ответа</summary>
+
+- Событие — `Publish`; каждый сервис — отдельный потребитель со своей очередью; тип сообщения в стабильном пространстве имён.
+- Идемпотентные потребители; `UseMessageRetry`; мониторинг очереди `_error`, `Fault<T>`.
+- Тесты на test harness (`Consumed.Any<T>()`), без `Task.Delay`; `await using`.
+- Версия: 8.x открытая, 9.x коммерческая — проверить лицензию; телеметрия использования.
+- Что не проверялось: outbox, отложенный повтор, постоянные репозитории саг.
+
+</details>
+
+→ [Экспертный](expert.ru.md)
