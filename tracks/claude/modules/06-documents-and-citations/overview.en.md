@@ -79,5 +79,5 @@ The document is the first block, the question the second. The code was checked a
 ## Related materials
 
 - Prerequisites: [02 · Messages API](../02-messages-api/overview.en.md), [05 · Prompt caching](../05-prompt-caching/overview.en.md), [04 · Structured outputs](../04-structured-output/overview.en.md) (incompatibility with citations)
-- Next: module 07 · Tool use (in the [roadmap](../../overview.en.md))
+- Next: [07 · Tool use](../07-tool-use/overview.en.md)
 - Analogues in other tracks: [LLM](../../../llm/overview.en.md) (RAG), [Python](../../../python/overview.en.md)

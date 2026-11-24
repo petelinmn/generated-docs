@@ -79,5 +79,5 @@ message = client.messages.create(
 ## Связанные материалы
 
 - Пререквизиты: [02 · Messages API](../02-messages-api/overview.ru.md), [05 · Prompt caching](../05-prompt-caching/overview.ru.md), [04 · Structured outputs](../04-structured-output/overview.ru.md) (несовместимость с цитатами)
-- Дальше: модуль 07 · Tool use (в [дорожной карте](../../overview.ru.md))
+- Дальше: [07 · Tool use](../07-tool-use/overview.ru.md)
 - Аналоги в других треках: [LLM](../../../llm/overview.ru.md) (RAG), [Python](../../../python/overview.ru.md)
