@@ -82,5 +82,5 @@ The output came from a local mock server (see "How the code was checked" in the 
 ## Related materials
 
 - Prerequisites: [02 · Messages API](../02-messages-api/overview.en.md), [04 · Structured outputs](../04-structured-output/overview.en.md) (changing the schema resets the cache)
-- Next: module 06 · Working with documents (in the [roadmap](../../overview.en.md))
+- Next: [06 · Documents and citations](../06-documents-and-citations/overview.en.md)
 - Analogues in other tracks: [LLM](../../../llm/overview.en.md), [Python](../../../python/overview.en.md)

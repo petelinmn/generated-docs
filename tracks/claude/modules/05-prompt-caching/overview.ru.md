@@ -82,5 +82,5 @@ print(u.input_tokens, u.cache_creation_input_tokens, u.cache_read_input_tokens)
 ## Связанные материалы
 
 - Пререквизиты: [02 · Messages API](../02-messages-api/overview.ru.md), [04 · Structured outputs](../04-structured-output/overview.ru.md) (смена схемы сбрасывает кэш)
-- Дальше: модуль 06 · Работа с документами (в [дорожной карте](../../overview.ru.md))
+- Дальше: [06 · Документы и цитаты](../06-documents-and-citations/overview.ru.md)
 - Аналоги в других треках: [LLM](../../../llm/overview.ru.md), [Python](../../../python/overview.ru.md)
