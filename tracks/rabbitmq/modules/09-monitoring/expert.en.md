@@ -81,7 +81,7 @@ You need `/metrics/per-object` (verified: the label `queue="mon"` appears only t
 
 ### 4. `guest`/`guest`
 
-The teaching image accepted these credentials through the published port; in production such a user is a hole ([module 11](../../overview.en.md)).
+The teaching image accepted these credentials through the published port; in production such a user is a hole ([module 11](../11-security/overview.en.md)).
 
 ### 5. An alarm blocks publishers, not consumers
 
@@ -215,7 +215,7 @@ blocked   : Connection.Blocked(reason="low on memory") -> pause publishing
 
 - Previous level: [advanced theory](advanced.en.md)
 - Before: [08 · Clustering](../08-clustering/expert.en.md)
-- Next module: [10 · Flow control and performance](../../overview.en.md)
+- Next module: [10 · Flow control and performance](../10-performance/overview.en.md)
 
 ## Sources
 

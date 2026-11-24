@@ -103,7 +103,7 @@ Practice (from the documentation and operating experience); each needs threshold
 - Before: [basics](basics.en.md)
 - Next: [expert theory](expert.en.md)
 - [05 · Reliability](../05-reliability/advanced.en.md) — publisher behaviour when blocked
-- Next module: [10 · Flow control and performance](../../overview.en.md)
+- Next module: [10 · Flow control and performance](../10-performance/overview.en.md)
 
 ## Sources
 

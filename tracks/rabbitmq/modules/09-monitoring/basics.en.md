@@ -95,14 +95,14 @@ healthcheck: {'status': 'ok'}
 - ❌ Looking only at `messages` → ✅ `messages_ready` and `messages_unacknowledged` separately.
 - ❌ Leaving connections unnamed → ✅ `connection_name` in `client_properties`.
 - ❌ Treating API numbers as instantaneous → ✅ statistics update with a delay.
-- ❌ Leaving `guest`/`guest` → ✅ a separate user with minimal permissions ([roadmap](../../overview.en.md), module 11).
+- ❌ Leaving `guest`/`guest` → ✅ a separate user with minimal permissions ([module 11](../11-security/overview.en.md)).
 - ❌ Monitoring only queues → ✅ nodes too: memory, disk, alarms.
 
 ## Related materials
 
 - Next: [advanced theory](advanced.en.md) — Prometheus, alarms
 - Before: [08 · Clustering](../08-clustering/basics.en.md), [03 · Queues and delivery](../03-queues-and-delivery/basics.en.md)
-- Next module: [10 · Flow control and performance](../../overview.en.md)
+- Next module: [10 · Flow control and performance](../10-performance/overview.en.md)
 
 ## Sources
 

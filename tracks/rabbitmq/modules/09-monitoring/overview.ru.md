@@ -66,5 +66,5 @@ print(q["messages_ready"], q["messages_unacknowledged"], q["consumers"])   # 7 3
 ## Связанные материалы
 
 - Пререквизиты: [03 · Очереди и доставка](../03-queues-and-delivery/overview.ru.md), [08 · Кластеризация](../08-clustering/overview.ru.md)
-- Дальше: [10 · Управление потоком и производительность](../../overview.ru.md)
+- Дальше: [10 · Управление потоком и производительность](../10-performance/overview.ru.md)
 - Аналоги в других треках: [Linux](../../../linux/overview.ru.md)

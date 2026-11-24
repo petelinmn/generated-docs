@@ -66,5 +66,5 @@ Everything was run against a real RabbitMQ 4.4.1 in Docker (see the [basic theor
 ## Related materials
 
 - Prerequisites: [03 · Queues and delivery](../03-queues-and-delivery/overview.en.md), [08 · Clustering](../08-clustering/overview.en.md)
-- Next: [10 · Flow control and performance](../../overview.en.md)
+- Next: [10 · Flow control and performance](../10-performance/overview.en.md)
 - Analogues in other tracks: [Linux](../../../linux/overview.en.md)
