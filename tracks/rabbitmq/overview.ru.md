@@ -84,6 +84,7 @@ RabbitMQ — брокер сообщений (message broker) с открыты�
 
 ## Связанные треки
 
+- [Kafka](../kafka/overview.ru.md) — журнал событий вместо очереди: сравнение моделей
 - [Python](../python/overview.ru.md) — язык примеров
 - [Kubernetes](../kubernetes/overview.ru.md) — запуск брокера через оператор
 - [Linux](../linux/overview.ru.md) — сокеты, файловые дескрипторы и диагностика

@@ -17,6 +17,7 @@
 | [LLM](tracks/llm/overview.ru.md) | как работают LLM, API, tool use, RAG, агенты, MCP, evals |
 | [Claude](tracks/claude/overview.ru.md) | Claude API, Claude Code, tool use, MCP, агенты и production |
 | [RabbitMQ](tracks/rabbitmq/overview.ru.md) | модель AMQP, обменники и очереди, надёжность, кворумные очереди, кластер, безопасность |
+| [Kafka](tracks/kafka/overview.ru.md) | журнал, темы и партиции, группы потребителей, семантика доставки, репликация, Kafka Connect |
 
 Новую технологию можно добавить в любой момент: `/learn <технология>` создаст трек по тем же правилам.
 

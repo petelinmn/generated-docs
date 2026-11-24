@@ -477,3 +477,43 @@
 ### Проекты
 
 - [ ] projects/order-pipeline
+
+## kafka
+
+### Часть 1. Основы
+
+- [ ] 01-kafka-basics
+- [ ] 02-producers
+- [ ] 03-consumers-and-groups
+- [ ] 04-topics-and-retention
+
+### Часть 2. Продвинутые темы
+
+- [ ] 05-delivery-semantics
+- [ ] 06-schemas-and-serialization
+- [ ] 07-replication-and-availability
+- [ ] 08-kafka-connect
+- [ ] 09-monitoring
+
+### Часть 3. Темы для опытных
+
+- [ ] 10-performance
+- [ ] 11-security
+- [ ] 12-stream-processing
+- [ ] 13-internals
+- [ ] 14-kubernetes
+
+### Библиотеки и инструменты
+
+- [ ] libraries/confluent-kafka
+- [ ] tools/kafka-cli
+
+### Рецепты
+
+- [ ] recipes/consumer-with-retries
+- [ ] recipes/exactly-once-pipeline
+- [ ] recipes/outbox
+
+### Проекты
+
+- [ ] projects/clickstream-pipeline

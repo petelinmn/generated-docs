@@ -84,6 +84,7 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 
 ## Related tracks
 
+- [Kafka](../kafka/overview.en.md) — an event log instead of a queue: comparing the models
 - [Python](../python/overview.en.md) — language of the examples
 - [Kubernetes](../kubernetes/overview.en.md) — running the broker with the operator
 - [Linux](../linux/overview.en.md) — sockets, file descriptors and diagnostics
