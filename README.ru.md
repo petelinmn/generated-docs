@@ -16,6 +16,7 @@
 | [Linux](tracks/linux/overview.ru.md) | shell, права, процессы, bash-скрипты, systemd, сеть, диагностика |
 | [LLM](tracks/llm/overview.ru.md) | как работают LLM, API, tool use, RAG, агенты, MCP, evals |
 | [Claude](tracks/claude/overview.ru.md) | Claude API, Claude Code, tool use, MCP, агенты и production |
+| [RabbitMQ](tracks/rabbitmq/overview.ru.md) | модель AMQP, обменники и очереди, надёжность, кворумные очереди, кластер, безопасность |
 
 Новую технологию можно добавить в любой момент: `/learn <технология>` создаст трек по тем же правилам.
 

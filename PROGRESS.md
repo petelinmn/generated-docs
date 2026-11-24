@@ -436,3 +436,44 @@
 - [ ] projects/api-service
 - [ ] projects/coding-agent
 - [ ] projects/document-assistant
+
+## rabbitmq
+
+### Часть 1. Основы
+
+- [ ] 01-messaging-basics
+- [ ] 02-exchanges-and-routing
+- [ ] 03-queues-and-delivery
+- [ ] 04-messaging-patterns
+
+### Часть 2. Продвинутые темы
+
+- [ ] 05-reliability
+- [ ] 06-dead-lettering-and-retries
+- [ ] 07-queue-types
+- [ ] 08-clustering
+- [ ] 09-monitoring
+
+### Часть 3. Темы для опытных
+
+- [ ] 10-performance
+- [ ] 11-security
+- [ ] 12-federation-and-shovel
+- [ ] 13-internals
+- [ ] 14-kubernetes
+
+### Библиотеки и инструменты
+
+- [ ] libraries/pika
+- [ ] libraries/aio-pika
+- [ ] tools/rabbitmqctl
+
+### Рецепты
+
+- [ ] recipes/task-queue-with-retries
+- [ ] recipes/rpc
+- [ ] recipes/outbox
+
+### Проекты
+
+- [ ] projects/order-pipeline
