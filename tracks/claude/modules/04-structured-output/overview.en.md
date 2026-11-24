@@ -89,5 +89,5 @@ The output came from a local mock server (see "How the code was checked" in the 
 ## Related materials
 
 - Prerequisites: [02 · Messages API](../02-messages-api/overview.en.md), [03 · Prompt engineering](../03-prompt-engineering/overview.en.md)
-- Next: module 05 · Prompt caching (in the [roadmap](../../overview.en.md))
+- Next: [05 · Prompt caching](../05-prompt-caching/overview.en.md)
 - Analogues in other tracks: [LLM](../../../llm/overview.en.md), [Python](../../../python/overview.en.md) (Pydantic), [TypeScript](../../../typescript/overview.en.md) (schemas and types)

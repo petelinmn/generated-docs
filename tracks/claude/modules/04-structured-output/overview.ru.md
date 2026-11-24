@@ -89,5 +89,5 @@ name='John Smith' email='john@example.com' plan_interest='Enterprise' demo_reque
 ## Связанные материалы
 
 - Пререквизиты: [02 · Messages API](../02-messages-api/overview.ru.md), [03 · Prompt engineering](../03-prompt-engineering/overview.ru.md)
-- Дальше: модуль 05 · Prompt caching (в [дорожной карте](../../overview.ru.md))
+- Дальше: [05 · Prompt caching](../05-prompt-caching/overview.ru.md)
 - Аналоги в других треках: [LLM](../../../llm/overview.ru.md), [Python](../../../python/overview.ru.md) (Pydantic), [TypeScript](../../../typescript/overview.ru.md) (схемы и типы)
