@@ -89,5 +89,5 @@ Question: How did revenue change?
 ## Связанные материалы
 
 - Пререквизиты: [02 · Messages API](../02-messages-api/overview.ru.md)
-- Дальше: модуль 04 · Structured outputs (в [дорожной карте](../../overview.ru.md))
+- Дальше: [04 · Structured outputs](../04-structured-output/overview.ru.md)
 - Аналоги в других треках: [LLM](../../../llm/overview.ru.md), [Python](../../../python/overview.ru.md)
