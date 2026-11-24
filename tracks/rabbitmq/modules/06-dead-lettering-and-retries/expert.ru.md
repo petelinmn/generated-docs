@@ -29,7 +29,7 @@ updated: 2026-11-24
 | `x-dead-letter-exchange` | куда отправлять «мёртвые» сообщения | да |
 | `x-dead-letter-routing-key` | ключ маршрутизации в DLX; иначе остаётся исходный | да |
 | `x-dead-letter-strategy` (`at-most-once`/`at-least-once`) | гарантия dead-lettering | не проверялся |
-| `x-delivery-limit` (quorum) | предел доставок | **не сработал** в тесте, см. [продвинутую теорию](advanced.ru.md#delivery-limit-quorum-очередей) |
+| `x-delivery-limit` (quorum) | предел доставок | работает при `reject(requeue=True)` и обрыве канала; `nack(requeue=True)` не считается, см. [продвинутую теорию](advanced.ru.md#delivery-limit-quorum-очередей) |
 
 ### Причины (`reason` в `x-death`)
 
@@ -38,7 +38,7 @@ updated: 2026-11-24
 | `rejected` | `reject`/`nack` с `requeue=False` | да |
 | `expired` | истёк TTL сообщения/очереди | да |
 | `maxlen` | вытеснено по `x-max-length` с `drop-head` | да |
-| `delivery_limit` | превышен delivery limit (quorum) | нет |
+| `delivery_limit` | превышен delivery limit (quorum) | да |
 
 ### Заголовки, которые добавляет брокер
 
@@ -67,7 +67,7 @@ updated: 2026-11-24
 - **Очередь задержки без потребителей.** Сообщение «стареет» внутри очереди и «умирает» по TTL: просрочка — просто ещё одна причина dead-lettering.
 - **TTL сообщения только у головы.** В очереди с разными TTL просроченное сообщение за живым ждёт ([модуль 03](../03-queues-and-delivery/expert.ru.md#5-ttl-за-долгой-головой)); для очередей задержки используйте один TTL на очередь.
 
-> ⚠️ Проверить: гарантии `x-dead-letter-strategy` и то, как dead-lettering ведёт себя при отказе узла, здесь не проверялись; `delivery_limit` — см. выше.
+> ⚠️ Проверить: гарантии `x-dead-letter-strategy` и то, как dead-lettering ведёт себя при отказе узла, здесь не проверялись.
 
 ## Подвохи
 
@@ -93,7 +93,7 @@ updated: 2026-11-24
 
 ### 6. Delivery limit
 
-В проверке quorum-очередь с `x-delivery-limit: 3` и `nack(requeue=True)` не отправила сообщение в DLX за 140 доставок.
+`basic_nack(requeue=True)` не увеличивает счётчик доставок quorum-очереди: с `x-delivery-limit: 3` сообщение прошло 140 доставок и не попало в DLX. `basic_reject(requeue=True)` считается: 4 доставки и DLX с причиной `delivery_limit`.
 
 ### 7. Задержка зависит от TTL очереди
 
@@ -177,7 +177,7 @@ updated: 2026-11-24
 
 <details><summary>9. Подвох: можно ли доверять delivery limit quorum-очереди?</summary>
 
-Только после проверки на своей версии: в тесте предел 3 не сработал за 140 доставок.
+Для `reject(requeue=True)` и обрыва канала — да (4 доставки, затем DLX); для `nack(requeue=True)` — нет: счётчик не растёт (140 доставок без DLX).
 
 → [Подвох 6](#6-delivery-limit)
 
@@ -211,20 +211,20 @@ TTL сообщения срабатывает только у головы оч�
 
 ```text
 queue args : x-dead-letter-exchange, x-dead-letter-routing-key
-reasons    : rejected | expired | maxlen | (delivery_limit - quorum, untested here)
+reasons    : rejected | expired | maxlen | delivery_limit (quorum)
 x-death    : [{queue, reason, count, exchange, routing-keys}] + x-first-death-* / x-last-death-*
 retry      : main -DLX-> retry(TTL, no consumers) -DLX-> main ; cap attempts -> parking queue
 ```
 
 - DLX и очередь разбора — на каждую рабочую очередь.
 - Повтор — с задержкой и пределом.
-- Не полагайтесь на непроверенный delivery limit.
+- Delivery limit считает `reject` и обрыв канала, но не `nack`.
 
 ## Связанные материалы
 
 - Предыдущий уровень: [продвинутая теория](advanced.ru.md)
 - Раньше: [05 · Надёжность](../05-reliability/expert.ru.md)
-- Дальше: [07 · Типы очередей](../../overview.ru.md)
+- Дальше: [07 · Типы очередей](../07-queue-types/overview.ru.md)
 
 ## Источники
 

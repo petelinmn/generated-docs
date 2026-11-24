@@ -161,16 +161,16 @@ For an unfixable error the message loops forever. Distinguish transient from unf
 
 </details>
 
-## 11. 🔴 Can you rely on a quorum queue's `x-delivery-limit`?
+## 11. 🔴 A consumer of a quorum queue with `x-delivery-limit: 3` loops on `basic_nack(requeue=True)`. What happens?
 
-- A) Yes, it always triggers
-- B) Only after testing on your version: in this material's test a limit of 3 did not trigger in 140 deliveries
-- C) No, it does not exist
-- D) Yes, but only with `mandatory`
+- A) After four deliveries the message goes to the DLX
+- B) The limit does not trigger: `nack(requeue=True)` does not increase the delivery count
+- C) The channel closes
+- D) The message is dropped at once
 
 <details><summary>Answer</summary>
 
-**B.** We did not establish the cause, so test the behaviour yourself; details in module 07 of the roadmap.
+**B.** In the test: 140 deliveries without the DLX; with `basic_reject(requeue=True)` it would be 4 deliveries and the DLX (we did not establish the cause, this is an observation).
 → [Gotcha 6](expert.en.md#6-delivery-limit)
 
 </details>

@@ -29,7 +29,7 @@ Builds on the [basic](basics.en.md) and [advanced](advanced.en.md) theory. "Veri
 | `x-dead-letter-exchange` | where to send "dead" messages | yes |
 | `x-dead-letter-routing-key` | routing key in the DLX; otherwise the original is kept | yes |
 | `x-dead-letter-strategy` (`at-most-once`/`at-least-once`) | dead-lettering guarantee | not tested |
-| `x-delivery-limit` (quorum) | delivery cap | **did not trigger** in the test, see the [advanced theory](advanced.en.md#delivery-limit-of-quorum-queues) |
+| `x-delivery-limit` (quorum) | delivery cap | works with `reject(requeue=True)` and a channel crash; `nack(requeue=True)` is not counted, see the [advanced theory](advanced.en.md#delivery-limit-of-quorum-queues) |
 
 ### Reasons (`reason` in `x-death`)
 
@@ -38,7 +38,7 @@ Builds on the [basic](basics.en.md) and [advanced](advanced.en.md) theory. "Veri
 | `rejected` | `reject`/`nack` with `requeue=False` | yes |
 | `expired` | message/queue TTL ran out | yes |
 | `maxlen` | evicted by `x-max-length` with `drop-head` | yes |
-| `delivery_limit` | delivery limit exceeded (quorum) | no |
+| `delivery_limit` | delivery limit exceeded (quorum) | yes |
 
 ### Headers the broker adds
 
@@ -67,7 +67,7 @@ An `x-death` record is grouped by (queue, reason) and accumulates `count`; recor
 - **A delay queue with no consumers.** A message "ages" inside the queue and "dies" by TTL: expiry is just another dead-lettering reason.
 - **Message TTL only at the head.** In a queue with mixed TTLs an expired message behind a live one waits ([module 03](../03-queues-and-delivery/expert.en.md#5-ttl-behind-a-long-head)); for delay queues use one TTL per queue.
 
-> ⚠️ Verify: the guarantees of `x-dead-letter-strategy` and how dead-lettering behaves when a node fails were not verified here; `delivery_limit` — see above.
+> ⚠️ Verify: the guarantees of `x-dead-letter-strategy` and how dead-lettering behaves when a node fails were not verified here.
 
 ## Gotchas
 
@@ -93,7 +93,7 @@ With `maxlen` and `drop-head` the oldest message goes to the DLX, not the new on
 
 ### 6. Delivery limit
 
-In the check a quorum queue with `x-delivery-limit: 3` and `nack(requeue=True)` did not send the message to the DLX in 140 deliveries.
+`basic_nack(requeue=True)` does not increase a quorum queue's delivery count: with `x-delivery-limit: 3` the message went through 140 deliveries and never reached the DLX. `basic_reject(requeue=True)` is counted: 4 deliveries and a DLX with reason `delivery_limit`.
 
 ### 7. The delay depends on the queue TTL
 
@@ -177,7 +177,7 @@ A message whose processing always fails; take it out of the loop instead of requ
 
 <details><summary>9. Trick: can you trust a quorum queue's delivery limit?</summary>
 
-Only after testing on your version: in the test a limit of 3 did not trigger in 140 deliveries.
+For `reject(requeue=True)` and a channel crash, yes (4 deliveries, then the DLX); for `nack(requeue=True)`, no: the count does not grow (140 deliveries without the DLX).
 
 → [Gotcha 6](#6-delivery-limit)
 
@@ -211,20 +211,20 @@ If `x-dead-letter-routing-key` is set, that one (verified: `dead`); otherwise th
 
 ```text
 queue args : x-dead-letter-exchange, x-dead-letter-routing-key
-reasons    : rejected | expired | maxlen | (delivery_limit - quorum, untested here)
+reasons    : rejected | expired | maxlen | delivery_limit (quorum)
 x-death    : [{queue, reason, count, exchange, routing-keys}] + x-first-death-* / x-last-death-*
 retry      : main -DLX-> retry(TTL, no consumers) -DLX-> main ; cap attempts -> parking queue
 ```
 
 - A DLX and an inspection queue for every work queue.
 - Retry with a delay and a cap.
-- Do not rely on an untested delivery limit.
+- The delivery limit counts `reject` and a channel crash, but not `nack`.
 
 ## Related materials
 
 - Previous level: [advanced theory](advanced.en.md)
 - Before: [05 · Reliability](../05-reliability/expert.en.md)
-- Next: [07 · Queue types](../../overview.en.md)
+- Next: [07 · Queue types](../07-queue-types/overview.en.md)
 
 ## Sources
 

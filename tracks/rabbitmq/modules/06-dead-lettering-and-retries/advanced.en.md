@@ -95,9 +95,13 @@ For quorum queues the documentation describes `x-delivery-limit` (and the policy
 q1 deliveries: 140 dead-lettered: None None
 ```
 
-The limit did not trigger: 140 deliveries in 2 s and nothing reached the inspection queue. The result was the same for a queue without the argument and for a `delivery-limit` policy.
+The limit did not trigger: 140 deliveries in 2 s and nothing reached the inspection queue. The cause was found later ([module 07](../07-queue-types/advanced.en.md#delivery-limit)): **`basic_nack(requeue=True)` does not increase the delivery count, while `basic_reject(requeue=True)` and a channel crash do**. With `reject` the same test gives 4 deliveries and the message in the DLX with reason `delivery_limit`:
 
-> ⚠️ Verify: why `delivery-limit` did not trigger in this test (perhaps a `nack` with `requeue=True` is not counted as a "return", or the count works differently) was not established here. Do not rely on the delivery limit until you have tested it on your version; quorum queues are covered in module 07 ([roadmap](../../overview.en.md)).
+```text
+C consumer+reject: deliveries 4 [None, 1, 2, 3] dead 1
+```
+
+> ⚠️ Verify: why `nack` is not counted was not established here (an observation, not a documented guarantee). To guard against poison messages use `reject` or `requeue=False` with a DLX.
 
 ## Best practices
 

@@ -29,7 +29,7 @@ A message that cannot be processed must neither loop nor vanish. A **dead letter
 - **A delayed retry:** `main` → DLX → a `retry` queue with no consumers and a TTL → DLX back to `main`; after an attempt cap — to `parking`.
 - **A DLX with no route** loses the message silently, with no error.
 - **Count attempts from `x-death`**, filtering by queue and reason.
-- **A quorum queue's `x-delivery-limit`** did not trigger in our test — do not rely on it untested.
+- **A quorum queue's `x-delivery-limit`** counts `reject(requeue=True)` and a channel crash, but not `nack(requeue=True)`.
 
 ## Minimal example
 
@@ -69,5 +69,5 @@ Everything was run against a real RabbitMQ 4.4.1 in Docker (see the [basic theor
 ## Related materials
 
 - Prerequisites: [03 · Queues and delivery](../03-queues-and-delivery/overview.en.md), [05 · Reliability](../05-reliability/overview.en.md)
-- Next: [07 · Queue types](../../overview.en.md)
+- Next: [07 · Queue types](../07-queue-types/overview.en.md)
 - Analogues in other tracks: [C# background jobs](../../../csharp/recipes/background-jobs/overview.en.md)

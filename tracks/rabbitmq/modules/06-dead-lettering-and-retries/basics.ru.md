@@ -36,7 +36,7 @@ updated: 2026-11-24
 | `expired` | истёк TTL сообщения или очереди |
 | `maxlen` | сообщение вытеснено из очереди по `x-max-length` (`drop-head`) |
 
-> Четвёртая причина, `delivery_limit`, относится к quorum-очередям ([модуль 07 в дорожной карте](../../overview.ru.md)). В [продвинутой теории](advanced.ru.md#delivery-limit-quorum-очередей) описано, что получилось при проверке.
+> Четвёртая причина, `delivery_limit`, относится к quorum-очередям ([модуль 07](../07-queue-types/overview.ru.md)); проверено в [продвинутой теории](advanced.ru.md#delivery-limit-quorum-очередей).
 
 ## Настройка
 
@@ -105,7 +105,7 @@ maxlen: b'first' [{'count': 1, 'reason': 'maxlen', 'queue': 'mlq', 'exchange': '
 
 - Дальше: [продвинутая теория](advanced.ru.md) — повторы с задержкой, «ядовитые» сообщения
 - Раньше: [05 · Надёжность](../05-reliability/basics.ru.md), [03 · Очереди и доставка](../03-queues-and-delivery/basics.ru.md)
-- Следующие модули: [07 · Типы очередей](../../overview.ru.md)
+- Следующие модули: [07 · Типы очередей](../07-queue-types/overview.ru.md)
 
 ## Источники
 

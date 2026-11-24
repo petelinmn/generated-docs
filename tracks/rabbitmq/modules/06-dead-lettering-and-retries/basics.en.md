@@ -36,7 +36,7 @@ A message becomes dead-lettered when:
 | `expired` | the message or queue TTL ran out |
 | `maxlen` | the message was evicted from the queue by `x-max-length` (`drop-head`) |
 
-> A fourth reason, `delivery_limit`, belongs to quorum queues ([module 07 in the roadmap](../../overview.en.md)). The [advanced theory](advanced.en.md#delivery-limit-of-quorum-queues) describes what happened when it was tried.
+> A fourth reason, `delivery_limit`, belongs to quorum queues ([module 07](../07-queue-types/overview.en.md)); verified in the [advanced theory](advanced.en.md#delivery-limit-of-quorum-queues).
 
 ## Setup
 
@@ -105,7 +105,7 @@ With `maxlen` and `drop-head` the **oldest** message (`first`) becomes dead, not
 
 - Next: [advanced theory](advanced.en.md) — delayed retries, poison messages
 - Before: [05 · Reliability](../05-reliability/basics.en.md), [03 · Queues and delivery](../03-queues-and-delivery/basics.en.md)
-- Next modules: [07 · Queue types](../../overview.en.md)
+- Next modules: [07 · Queue types](../07-queue-types/overview.en.md)
 
 ## Sources
 

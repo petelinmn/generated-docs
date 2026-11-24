@@ -29,7 +29,7 @@ updated: 2026-11-24
 - **Повтор с задержкой:** `main` → DLX → очередь `retry` без потребителей с TTL → DLX обратно в `main`; после предела попыток — в `parking`.
 - **DLX без маршрута** теряет сообщение молча и без ошибки.
 - **Считайте попытки по `x-death`**, фильтруя по очереди и причине.
-- **`x-delivery-limit` quorum-очереди** в нашем тесте не сработал — не полагайтесь, не проверив.
+- **`x-delivery-limit` quorum-очереди** считает `reject(requeue=True)` и обрыв канала, но не `nack(requeue=True)`.
 
 ## Минимальный пример
 
@@ -69,5 +69,5 @@ ch.queue_declare("work", durable=True, arguments={
 ## Связанные материалы
 
 - Пререквизиты: [03 · Очереди и доставка](../03-queues-and-delivery/overview.ru.md), [05 · Надёжность](../05-reliability/overview.ru.md)
-- Дальше: [07 · Типы очередей](../../overview.ru.md)
+- Дальше: [07 · Типы очередей](../07-queue-types/overview.ru.md)
 - Аналоги в других треках: [фоновые задачи в C#](../../../csharp/recipes/background-jobs/overview.ru.md)
