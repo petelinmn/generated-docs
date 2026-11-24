@@ -221,7 +221,7 @@ assign([TopicPartition(t,p,off)]) ; seek(tp)  # no group balancing
 
 - Предыдущий уровень: [продвинутая теория](advanced.ru.md)
 - Раньше: [02 · Производители](../02-producers/expert.ru.md)
-- Следующий модуль: [04 · Темы, хранение и компактация](../../overview.ru.md)
+- Следующий модуль: [04 · Темы, хранение и компактация](../04-topics-and-retention/overview.ru.md)
 
 ## Источники
 

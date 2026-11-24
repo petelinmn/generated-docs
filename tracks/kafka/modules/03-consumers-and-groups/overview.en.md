@@ -68,5 +68,5 @@ Everything was run against a real Apache Kafka 4.3.1 in Docker (see the [basic t
 ## Related materials
 
 - Prerequisites: [01 · Kafka basics](../01-kafka-basics/overview.en.md), [02 · Producers](../02-producers/overview.en.md)
-- Next: [04 · Topics, retention and compaction](../../overview.en.md)
+- Next: [04 · Topics, retention and compaction](../04-topics-and-retention/overview.en.md)
 - Analogues in other tracks: [RabbitMQ: queues and delivery](../../../rabbitmq/modules/03-queues-and-delivery/overview.en.md)

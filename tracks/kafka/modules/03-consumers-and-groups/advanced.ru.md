@@ -112,8 +112,8 @@ poll errors after a 9 s stall: ['_MAX_POLL_EXCEEDED'] | assignment: [0, 1, 2]
 
 - Раньше: [основы](basics.ru.md)
 - Дальше: [экспертная теория](expert.ru.md)
-- [05 · Семантика доставки](../../overview.ru.md)
-- Следующий модуль: [04 · Темы, хранение и компактация](../../overview.ru.md)
+- [05 · Семантика доставки](../05-delivery-semantics/overview.ru.md)
+- Следующий модуль: [04 · Темы, хранение и компактация](../04-topics-and-retention/overview.ru.md)
 
 ## Источники
 

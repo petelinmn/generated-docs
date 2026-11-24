@@ -93,7 +93,7 @@ A record not delivered within `message.timeout.ms` ends with the error `_MSG_TIM
 
 - Before: [basics](basics.en.md)
 - Next: [expert theory](expert.en.md)
-- [05 · Delivery semantics](../../overview.en.md) — idempotence and transactions
+- [05 · Delivery semantics](../05-delivery-semantics/overview.en.md) — idempotence and transactions
 - Next module: [03 · Consumers and groups](../03-consumers-and-groups/overview.en.md)
 
 ## Sources

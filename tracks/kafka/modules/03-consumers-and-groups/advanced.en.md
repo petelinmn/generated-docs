@@ -112,8 +112,8 @@ The experiment showed: without a commit records come again; the committed offset
 
 - Before: [basics](basics.en.md)
 - Next: [expert theory](expert.en.md)
-- [05 · Delivery semantics](../../overview.en.md)
-- Next module: [04 · Topics, retention and compaction](../../overview.en.md)
+- [05 · Delivery semantics](../05-delivery-semantics/overview.en.md)
+- Next module: [04 · Topics, retention and compaction](../04-topics-and-retention/overview.en.md)
 
 ## Sources
 

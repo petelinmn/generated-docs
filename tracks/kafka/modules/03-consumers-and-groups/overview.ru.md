@@ -68,5 +68,5 @@ if m and not m.error():
 ## Связанные материалы
 
 - Пререквизиты: [01 · Основы Kafka](../01-kafka-basics/overview.ru.md), [02 · Производители](../02-producers/overview.ru.md)
-- Дальше: [04 · Темы, хранение и компактация](../../overview.ru.md)
+- Дальше: [04 · Темы, хранение и компактация](../04-topics-and-retention/overview.ru.md)
 - Аналоги в других треках: [RabbitMQ: очереди и доставка](../../../rabbitmq/modules/03-queues-and-delivery/overview.ru.md)

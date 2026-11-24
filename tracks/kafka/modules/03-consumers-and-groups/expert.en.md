@@ -221,7 +221,7 @@ assign([TopicPartition(t,p,off)]) ; seek(tp)  # no group balancing
 
 - Previous level: [advanced theory](advanced.en.md)
 - Before: [02 · Producers](../02-producers/expert.en.md)
-- Next module: [04 · Topics, retention and compaction](../../overview.en.md)
+- Next module: [04 · Topics, retention and compaction](../04-topics-and-retention/overview.en.md)
 
 ## Sources
 

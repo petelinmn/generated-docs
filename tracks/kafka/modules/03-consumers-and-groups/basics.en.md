@@ -99,7 +99,7 @@ A consumer read six records, closed **without** a `commit` (auto-commit off) and
 processed without commit, restarted -> redelivered: 6 6 True
 ```
 
-The same six records were read again. That is how at-least-once delivery works: if you processed but did not manage to commit, after a failure the record comes again ([module 05](../../overview.en.md)). Commit **after** processing and make the handler idempotent.
+The same six records were read again. That is how at-least-once delivery works: if you processed but did not manage to commit, after a failure the record comes again ([module 05](../05-delivery-semantics/overview.en.md)). Commit **after** processing and make the handler idempotent.
 
 ## Reading from a given position
 
@@ -129,7 +129,7 @@ Partition 0 held the records `m0`, `m3`, `m6` at offsets 0, 1, 2, so offset 2 is
 
 - Next: [advanced theory](advanced.en.md) — rebalancing, `max.poll.interval.ms`, strategies
 - Before: [02 · Producers](../02-producers/basics.en.md)
-- Next module: [04 · Topics, retention and compaction](../../overview.en.md)
+- Next module: [04 · Topics, retention and compaction](../04-topics-and-retention/overview.en.md)
 - Analogue in another track: [RabbitMQ: acknowledgements and prefetch](../../../rabbitmq/modules/03-queues-and-delivery/basics.en.md)
 
 ## Sources

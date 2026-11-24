@@ -102,7 +102,7 @@ Topic: orders  TopicId: MtHLzlWzRhyNBS79_B02cg  PartitionCount: 3  ReplicationFa
 
 ## Best practices
 
-- Name topics by meaning and convention (for example `orders.created`), plan the number of partitions in advance: it cannot be reduced ([module 04](../../overview.en.md)).
+- Name topics by meaning and convention (for example `orders.created`), plan the number of partitions in advance: it cannot be reduced ([module 04](../04-topics-and-retention/overview.en.md)).
 - Always call `flush()` before exiting and check for errors in the delivery callback.
 - Give groups meaningful `group.id`s: positions are stored by them.
 - Watch `LAG` ([module 09](../../overview.en.md)).
