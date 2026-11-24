@@ -86,5 +86,5 @@ The output came from a local mock server (see the "How the code was checked" sec
 ## Related materials
 
 - Prerequisites: [01 · The Claude family and model selection](../01-models/overview.en.md)
-- Next: module 03 · Prompt engineering (in the [roadmap](../../overview.en.md))
+- Next: [03 · Prompt engineering](../03-prompt-engineering/overview.en.md)
 - Analogues in other tracks: [LLM](../../../llm/overview.en.md), [Python](../../../python/overview.en.md) (SDK examples), [JavaScript](../../../javascript/modules/12-promises-and-async-await/overview.en.md) (asynchronous clients and `fetch`)
