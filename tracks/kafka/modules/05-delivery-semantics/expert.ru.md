@@ -222,7 +222,7 @@ errors: _STATE (wrong order), _FENCED (fatal: restart) ; markers take offsets ; 
 
 - Предыдущий уровень: [продвинутая теория](advanced.ru.md)
 - Раньше: [04 · Темы, хранение и компактация](../04-topics-and-retention/expert.ru.md)
-- Следующий модуль: [06 · Схемы и сериализация](../../overview.ru.md)
+- Следующий модуль: [06 · Схемы и сериализация](../06-schemas-and-serialization/overview.ru.md)
 
 ## Источники
 

@@ -87,7 +87,7 @@ The result of each record arrives in `on_delivery(err, msg)`: on success `err is
 ```
 
 - With `acks=0` the offset in the report is **unknown** (`None`): the broker answered nothing.
-- On one broker there is no speed difference: `all` has no other replicas to wait for. In a cluster `all` is slower but more reliable ([module 07](../../overview.en.md)).
+- On one broker there is no speed difference: `all` has no other replicas to wait for. In a cluster `all` is slower but more reliable ([module 07](../07-replication-and-availability/overview.en.md)).
 
 ## Errors
 

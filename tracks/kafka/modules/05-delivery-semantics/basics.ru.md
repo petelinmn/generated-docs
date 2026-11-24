@@ -93,7 +93,7 @@ after commit, read_committed: ['committed-2', 'in-flight']
 
 - Дальше: [продвинутая теория](advanced.ru.md) — чтение-обработка-запись, «зомби»
 - Раньше: [03 · Потребители и группы](../03-consumers-and-groups/basics.ru.md), [02 · Производители](../02-producers/basics.ru.md)
-- Следующий модуль: [06 · Схемы и сериализация](../../overview.ru.md)
+- Следующий модуль: [06 · Схемы и сериализация](../06-schemas-and-serialization/overview.ru.md)
 - Аналог в другом треке: [RabbitMQ: надёжность и идемпотентность](../../../rabbitmq/modules/05-reliability/advanced.ru.md)
 
 ## Источники

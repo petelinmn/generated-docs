@@ -93,7 +93,7 @@ A `read_committed` reader does not advance past the **oldest open transaction**,
 
 - Next: [advanced theory](advanced.en.md) — consume-process-produce, "zombies"
 - Before: [03 · Consumers and groups](../03-consumers-and-groups/basics.en.md), [02 · Producers](../02-producers/basics.en.md)
-- Next module: [06 · Schemas and serialization](../../overview.en.md)
+- Next module: [06 · Schemas and serialization](../06-schemas-and-serialization/overview.en.md)
 - Analogue in another track: [RabbitMQ: reliability and idempotence](../../../rabbitmq/modules/05-reliability/advanced.en.md)
 
 ## Sources

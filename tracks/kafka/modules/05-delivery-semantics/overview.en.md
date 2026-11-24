@@ -67,5 +67,5 @@ Everything was run against a real Apache Kafka 4.3.1 in Docker (see the [basic t
 ## Related materials
 
 - Prerequisites: [02 · Producers](../02-producers/overview.en.md), [03 · Consumers and groups](../03-consumers-and-groups/overview.en.md)
-- Next: [06 · Schemas and serialization](../../overview.en.md)
+- Next: [06 · Schemas and serialization](../06-schemas-and-serialization/overview.en.md)
 - Analogues in other tracks: [RabbitMQ: reliability](../../../rabbitmq/modules/05-reliability/overview.en.md)

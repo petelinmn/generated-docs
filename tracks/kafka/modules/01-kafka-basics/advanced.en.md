@@ -98,7 +98,7 @@ Topic: orders  TopicId: MtHLzlWzRhyNBS79_B02cg  PartitionCount: 3  ReplicationFa
   Partition: 0  Leader: 1  Replicas: 1  Isr: 1  Elr:   LastKnownElr:
 ```
 
-`Leader` is the broker serving writes and reads of the partition; `Replicas` are the brokers with copies; `Isr` (in-sync replicas) are the copies that keep up with the leader. More in [module 07](../../overview.en.md).
+`Leader` is the broker serving writes and reads of the partition; `Replicas` are the brokers with copies; `Isr` (in-sync replicas) are the copies that keep up with the leader. More in [module 07](../07-replication-and-availability/overview.en.md).
 
 ## Best practices
 

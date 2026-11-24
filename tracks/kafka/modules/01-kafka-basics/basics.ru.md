@@ -57,7 +57,7 @@ create: {'orders': None}
 partitions of orders: [0, 1, 2]
 ```
 
-`None` в результате `create_topics` означает успех. `replication_factor=1` допустим только потому, что брокер один; про репликацию — [модуль 07](../../overview.ru.md).
+`None` в результате `create_topics` означает успех. `replication_factor=1` допустим только потому, что брокер один; про репликацию — [модуль 07](../07-replication-and-availability/overview.ru.md).
 
 ## Запись
 

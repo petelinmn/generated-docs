@@ -222,7 +222,7 @@ errors: _STATE (wrong order), _FENCED (fatal: restart) ; markers take offsets ; 
 
 - Previous level: [advanced theory](advanced.en.md)
 - Before: [04 · Topics, retention and compaction](../04-topics-and-retention/expert.en.md)
-- Next module: [06 · Schemas and serialization](../../overview.en.md)
+- Next module: [06 · Schemas and serialization](../06-schemas-and-serialization/overview.en.md)
 
 ## Sources
 

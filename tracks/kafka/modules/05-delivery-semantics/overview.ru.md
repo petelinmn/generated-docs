@@ -67,5 +67,5 @@ tp.begin_transaction(); tp.produce("out", value=b"v"); tp.commit_transaction()
 ## Связанные материалы
 
 - Пререквизиты: [02 · Производители](../02-producers/overview.ru.md), [03 · Потребители и группы](../03-consumers-and-groups/overview.ru.md)
-- Дальше: [06 · Схемы и сериализация](../../overview.ru.md)
+- Дальше: [06 · Схемы и сериализация](../06-schemas-and-serialization/overview.ru.md)
 - Аналоги в других треках: [RabbitMQ: надёжность](../../../rabbitmq/modules/05-reliability/overview.ru.md)

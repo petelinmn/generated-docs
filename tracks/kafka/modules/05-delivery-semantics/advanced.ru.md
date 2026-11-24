@@ -109,7 +109,7 @@ produce without init_transactions -> _STATE KafkaError{code=_STATE,val=-172,str=
 - Раньше: [основы](basics.ru.md)
 - Дальше: [экспертная теория](expert.ru.md)
 - [03 · Потребители и группы](../03-consumers-and-groups/advanced.ru.md) — стратегии фиксации
-- Следующий модуль: [06 · Схемы и сериализация](../../overview.ru.md)
+- Следующий модуль: [06 · Схемы и сериализация](../06-schemas-and-serialization/overview.ru.md)
 
 ## Источники
 

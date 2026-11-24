@@ -57,7 +57,7 @@ create: {'orders': None}
 partitions of orders: [0, 1, 2]
 ```
 
-`None` as the result of `create_topics` means success. `replication_factor=1` is allowed only because there is one broker; replication is in [module 07](../../overview.en.md).
+`None` as the result of `create_topics` means success. `replication_factor=1` is allowed only because there is one broker; replication is in [module 07](../07-replication-and-availability/overview.en.md).
 
 ## Writing
 

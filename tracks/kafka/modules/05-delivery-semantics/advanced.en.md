@@ -109,7 +109,7 @@ The correct order: `init_transactions()` → (`begin_transaction()` → `produce
 - Before: [basics](basics.en.md)
 - Next: [expert theory](expert.en.md)
 - [03 · Consumers and groups](../03-consumers-and-groups/advanced.en.md) — commit strategies
-- Next module: [06 · Schemas and serialization](../../overview.en.md)
+- Next module: [06 · Schemas and serialization](../06-schemas-and-serialization/overview.en.md)
 
 ## Sources
 
