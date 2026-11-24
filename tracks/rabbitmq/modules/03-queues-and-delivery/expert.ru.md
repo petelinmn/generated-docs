@@ -40,7 +40,7 @@ updated: 2026-11-24
 | `x-max-length` | максимальное число сообщений | да |
 | `x-overflow` | `drop-head` (по умолчанию) или `reject-publish` | да |
 | `x-expires` | удалить очередь после простоя (мс) | да |
-| `x-dead-letter-exchange`, `x-dead-letter-routing-key` | dead-lettering | модуль 06 в [дорожной карте](../../overview.ru.md) |
+| `x-dead-letter-exchange`, `x-dead-letter-routing-key` | dead-lettering | [модуль 06](../06-dead-lettering-and-retries/overview.ru.md) |
 | `x-max-priority`, `x-queue-type`, `x-max-length-bytes` | приоритеты, тип очереди, лимит в байтах | здесь не проверялись |
 
 ### Свойства сообщения и доставка
@@ -234,7 +234,7 @@ redeclare with other args -> 406; use policies: rabbitmqctl set_policy NAME PATT
 
 - Предыдущий уровень: [продвинутая теория](advanced.ru.md)
 - Раньше: [02 · Обменники и маршрутизация](../02-exchanges-and-routing/expert.ru.md)
-- Следующий модуль: 04 · Шаблоны обмена сообщениями ([дорожная карта](../../overview.ru.md))
+- Следующий модуль: [04 · Шаблоны обмена сообщениями](../04-messaging-patterns/overview.ru.md)
 
 ## Источники
 

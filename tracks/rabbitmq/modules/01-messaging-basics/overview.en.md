@@ -53,7 +53,7 @@ All code was run against a real RabbitMQ 4.4.1 broker in Docker (see "How the co
 |---|---|
 | Decouple services in time, absorb bursts, spread work over workers | a RabbitMQ queue |
 | One event for many independent subscribers | exchanges (fanout / topic), [module 02](../02-exchanges-and-routing/overview.en.md) |
-| A reply is needed right now, one-to-one | a direct call; RPC over a broker is an exception (module 04 ([roadmap](../../overview.en.md))) |
+| A reply is needed right now, one-to-one | a direct call; RPC over a broker is an exception ([module 04](../04-messaging-patterns/overview.en.md)) |
 | A replayable log read by many consumers | a stream or a log system such as Kafka (see queue types, module 07 in the [roadmap](../../overview.en.md)) |
 | Data that must be stored and queried | a database |
 

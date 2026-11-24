@@ -45,7 +45,7 @@ b'{"id": 7}'
 | `content_type`, `content_encoding` | how to decode the body (`application/json`) |
 | `delivery_mode` | `1` transient, `2` persistent ([module 03](../03-queues-and-delivery/overview.en.md)) |
 | `message_id` | an identifier for deduplication and tracing |
-| `correlation_id`, `reply_to` | request/response (module 04 ([roadmap](../../overview.en.md))) |
+| `correlation_id`, `reply_to` | request/response ([module 04](../04-messaging-patterns/overview.en.md)) |
 | `type`, `app_id` | the kind of event, the sender |
 | `timestamp` | seconds since the epoch, set by the producer |
 | `priority` | for priority queues |
@@ -92,7 +92,7 @@ print("ch2 closed:", ch2.is_closed)
 ch2 closed: True
 ```
 
-The call itself returned normally. Do not treat "no exception" as "accepted": watch the channel close callbacks, use **publisher confirms** (module 05 in the [roadmap](../../overview.en.md)), and for undeliverable messages the `mandatory` flag ([module 02](../02-exchanges-and-routing/overview.en.md)).
+The call itself returned normally. Do not treat "no exception" as "accepted": watch the channel close callbacks, use **publisher confirms** ([module 05](../05-reliability/overview.en.md), and for undeliverable messages the `mandatory` flag ([module 02](../02-exchanges-and-routing/overview.en.md)).
 
 ## Naming and server-generated queues
 

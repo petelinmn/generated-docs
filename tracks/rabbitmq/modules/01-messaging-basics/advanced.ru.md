@@ -45,7 +45,7 @@ b'{"id": 7}'
 | `content_type`, `content_encoding` | как декодировать тело (`application/json`) |
 | `delivery_mode` | `1` transient, `2` persistent ([модуль 03](../03-queues-and-delivery/overview.ru.md)) |
 | `message_id` | идентификатор для дедупликации и трассировки |
-| `correlation_id`, `reply_to` | запрос/ответ (модуль 04 ([дорожная карта](../../overview.ru.md))) |
+| `correlation_id`, `reply_to` | запрос/ответ ([модуль 04](../04-messaging-patterns/overview.ru.md)) |
 | `type`, `app_id` | вид события, отправитель |
 | `timestamp` | секунды с эпохи, выставляет производитель |
 | `priority` | для очередей с приоритетом |
@@ -92,7 +92,7 @@ print("ch2 closed:", ch2.is_closed)
 ch2 closed: True
 ```
 
-Сам вызов вернулся нормально. Не считайте «нет исключения» признаком «принято»: следите за обработчиками закрытия канала, используйте **publisher confirms** (модуль 05 в [дорожной карте](../../overview.ru.md)), а для недоставляемых сообщений — флаг `mandatory` ([модуль 02](../02-exchanges-and-routing/overview.ru.md)).
+Сам вызов вернулся нормально. Не считайте «нет исключения» признаком «принято»: следите за обработчиками закрытия канала, используйте **publisher confirms** ([модуль 05](../05-reliability/overview.ru.md), а для недоставляемых сообщений — флаг `mandatory` ([модуль 02](../02-exchanges-and-routing/overview.ru.md)).
 
 ## Имена и очереди, созданные сервером
 

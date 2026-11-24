@@ -23,7 +23,7 @@ updated: 2026-11-24
 
 ## Ключевые идеи
 
-- **Подтверждайте после обработки.** `basic_ack` убирает сообщение; `basic_nack`/`basic_reject` с `requeue=True` возвращает его, с `requeue=False` отбрасывает (или отправляет в dead-letter, модуль 06 в [дорожной карте](../../overview.ru.md)).
+- **Подтверждайте после обработки.** `basic_ack` убирает сообщение; `basic_nack`/`basic_reject` с `requeue=True` возвращает его, с `requeue=False` отбрасывает (или отправляет в dead-letter, [модуль 06](../06-dead-lettering-and-retries/overview.ru.md).
 - **Умерший потребитель возвращает неподтверждённые сообщения** в очередь с пометкой `redelivered`.
 - **Prefetch (`basic_qos`) управляет справедливостью.** С `prefetch_count=1` застрявший потребитель держит одно сообщение; без лимита ему могут отдать всё.
 - **Durable ≠ persistent.** Durable-очередь переживает перезапуск; сообщение — только если оно ещё и persistent (`delivery_mode=2`). В тесте с перезапуском persistent-сообщение осталось, а transient потерялось.
@@ -77,5 +77,5 @@ ch.basic_consume("jobs", on_job)
 ## Связанные материалы
 
 - Пререквизиты: [01 · Обмен сообщениями и модель AMQP](../01-messaging-basics/overview.ru.md), [02 · Обменники и маршрутизация](../02-exchanges-and-routing/overview.ru.md)
-- Дальше: 04 · Шаблоны обмена сообщениями ([дорожная карта](../../overview.ru.md))
+- Дальше: [04 · Шаблоны обмена сообщениями](../04-messaging-patterns/overview.ru.md)
 - Аналоги в других треках: [фоновые задачи в C#](../../../csharp/recipes/background-jobs/overview.ru.md)

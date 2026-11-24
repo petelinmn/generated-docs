@@ -68,7 +68,7 @@ print([ch.basic_get("cap2", auto_ack=True)[2] for _ in range(2)])
 [b'c0', b'c1']
 ```
 
-С `drop-head` остались два новейших; с `reject-publish` — два первых. Издатель без confirms об отказе не узнает; с confirms получит nack (модуль 05 в [дорожной карте](../../overview.ru.md)).
+С `drop-head` остались два новейших; с `reject-publish` — два первых. Издатель без confirms об отказе не узнает; с confirms получит nack ([модуль 05](../05-reliability/overview.ru.md).
 
 ## Срок жизни очереди: `x-expires`
 
@@ -116,7 +116,7 @@ x-expires: ChannelClosedByBroker 404
 
 - Дальше: [экспертная теория](expert.ru.md)
 - Раньше: [02 · Обменники и маршрутизация](../02-exchanges-and-routing/advanced.ru.md)
-- Следующий модуль: 04 · Шаблоны обмена сообщениями ([дорожная карта](../../overview.ru.md))
+- Следующий модуль: [04 · Шаблоны обмена сообщениями](../04-messaging-patterns/overview.ru.md)
 
 ## Источники
 

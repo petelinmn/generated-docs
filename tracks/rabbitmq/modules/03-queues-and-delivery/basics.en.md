@@ -118,21 +118,21 @@ after restart: 1
 [b'persistent']
 ```
 
-"Persistent" is not a guarantee of safety by itself: the message may still be lost between the publish and the broker writing it. Publisher confirms close that gap (module 05 in the [roadmap](../../overview.en.md)).
+"Persistent" is not a guarantee of safety by itself: the message may still be lost between the publish and the broker writing it. Publisher confirms close that gap ([module 05](../05-reliability/overview.en.md).
 
 ## Beginner mistakes
 
 - ❌ A durable queue with transient messages → ✅ `delivery_mode=2` as well.
 - ❌ No prefetch with slow tasks → ✅ `basic_qos(prefetch_count=1)`.
 - ❌ Forgetting to ack → ✅ unacked messages pile up and return on disconnect.
-- ❌ Requeueing a poison message forever → ✅ `requeue=False` plus a DLX (module 06 in the [roadmap](../../overview.en.md)).
+- ❌ Requeueing a poison message forever → ✅ `requeue=False` plus a DLX ([module 06](../06-dead-lettering-and-retries/overview.en.md).
 - ❌ Acking before the work is done → ✅ ack last.
 
 ## Related materials
 
 - Next: [advanced theory](advanced.en.md) — TTL, length limits, expiry
 - Earlier: [02 · Exchanges and routing](../02-exchanges-and-routing/basics.en.md)
-- Next module: 04 · Messaging patterns ([roadmap](../../overview.en.md))
+- Next module: [04 · Messaging patterns](../04-messaging-patterns/overview.en.md)
 
 ## Sources
 

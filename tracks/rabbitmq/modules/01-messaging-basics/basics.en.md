@@ -35,7 +35,7 @@ When service A calls service B directly, both must be alive at the same moment a
 - **Fan-out:** one event may reach many consumers, none known to the producer.
 - **Retry and routing logic** in one place instead of in every service.
 
-The price is one more moving part, eventual consistency and the need to think about duplicates and loss (module 05 ([roadmap](../../overview.en.md))).
+The price is one more moving part, eventual consistency and the need to think about duplicates and loss ([module 05](../05-reliability/overview.en.md)).
 
 ## The AMQP model
 
@@ -180,7 +180,7 @@ Message counts right after a publish can lag: publishing is asynchronous and the
 ## Beginner mistakes
 
 - ❌ Declaring a transient queue on 4.4 → ✅ `durable=True` or `exclusive=True`.
-- ❌ Reading `message_count` right after publishing and trusting it → ✅ wait, or use confirms (module 05 ([roadmap](../../overview.en.md))).
+- ❌ Reading `message_count` right after publishing and trusting it → ✅ wait, or use confirms ([module 05](../05-reliability/overview.en.md)).
 - ❌ `auto_ack=True` for work that must not be lost → ✅ ack after processing.
 - ❌ One shared channel for everything → ✅ a connection per process, channels per task or thread.
 - ❌ Sending to a queue that does not exist and expecting an error → ✅ declare it first, or use `mandatory` ([module 02](../02-exchanges-and-routing/overview.en.md)).

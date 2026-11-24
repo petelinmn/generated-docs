@@ -36,7 +36,7 @@ print("returned:", returns)
 returned: [(312, 'NO_ROUTE', 'nokey', b'x')]
 ```
 
-The return is asynchronous, so a publisher needs a callback, and to know that a message *was* routed it needs publisher confirms (module 05 in the [roadmap](../../overview.en.md)).
+The return is asynchronous, so a publisher needs a callback, and to know that a message *was* routed it needs publisher confirms ([module 05](../05-reliability/overview.en.md).
 
 ## Alternate exchange
 

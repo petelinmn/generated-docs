@@ -68,7 +68,7 @@ print([ch.basic_get("cap2", auto_ack=True)[2] for _ in range(2)])
 [b'c0', b'c1']
 ```
 
-With `drop-head` the newest two stayed; with `reject-publish` the first two stayed. A publisher without confirms is not told about the refusal; with confirms it receives a nack (module 05 in the [roadmap](../../overview.en.md)).
+With `drop-head` the newest two stayed; with `reject-publish` the first two stayed. A publisher without confirms is not told about the refusal; with confirms it receives a nack ([module 05](../05-reliability/overview.en.md).
 
 ## Queue expiry: `x-expires`
 
@@ -116,7 +116,7 @@ To change a queue's arguments you must delete and recreate it (or use a policy f
 
 - Next: [expert theory](expert.en.md)
 - Earlier: [02 · Exchanges and routing](../02-exchanges-and-routing/advanced.en.md)
-- Next module: 04 · Messaging patterns ([roadmap](../../overview.en.md))
+- Next module: [04 · Messaging patterns](../04-messaging-patterns/overview.en.md)
 
 ## Sources
 

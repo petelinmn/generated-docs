@@ -23,7 +23,7 @@ A queue holds messages until consumers take them. How reliably and fairly that h
 
 ## Key ideas
 
-- **Ack after processing.** `basic_ack` removes the message; `basic_nack`/`basic_reject` with `requeue=True` returns it, with `requeue=False` drops it (or dead-letters it, module 06 in the [roadmap](../../overview.en.md)).
+- **Ack after processing.** `basic_ack` removes the message; `basic_nack`/`basic_reject` with `requeue=True` returns it, with `requeue=False` drops it (or dead-letters it, [module 06](../06-dead-lettering-and-retries/overview.en.md).
 - **A consumer that dies returns its unacked messages** to the queue, marked `redelivered`.
 - **Prefetch (`basic_qos`) controls fairness.** With `prefetch_count=1` a stuck consumer holds one message; with no limit it may be handed everything.
 - **Durable ≠ persistent.** A durable queue survives a restart; a message survives only if it is also persistent (`delivery_mode=2`). In a restart test the persistent message stayed and the transient one was lost.
@@ -77,5 +77,5 @@ Everything was run against a real RabbitMQ 4.4.1 in Docker (see the [basic theor
 ## Related materials
 
 - Prerequisites: [01 · Messaging and the AMQP model](../01-messaging-basics/overview.en.md), [02 · Exchanges and routing](../02-exchanges-and-routing/overview.en.md)
-- Next: 04 · Messaging patterns ([roadmap](../../overview.en.md))
+- Next: [04 · Messaging patterns](../04-messaging-patterns/overview.en.md)
 - Analogues in other tracks: [C# background jobs](../../../csharp/recipes/background-jobs/overview.en.md)

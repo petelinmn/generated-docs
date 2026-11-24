@@ -40,7 +40,7 @@ Builds on the [basic](basics.en.md) and [advanced](advanced.en.md) theory. "Test
 | `x-max-length` | maximum number of messages | yes |
 | `x-overflow` | `drop-head` (default) or `reject-publish` | yes |
 | `x-expires` | delete the queue after this idle time (ms) | yes |
-| `x-dead-letter-exchange`, `x-dead-letter-routing-key` | dead-lettering | module 06 in the [roadmap](../../overview.en.md) |
+| `x-dead-letter-exchange`, `x-dead-letter-routing-key` | dead-lettering | [module 06](../06-dead-lettering-and-retries/overview.en.md) |
 | `x-max-priority`, `x-queue-type`, `x-max-length-bytes` | priorities, queue type, byte limit | not tested here |
 
 ### Message properties and delivery
@@ -234,7 +234,7 @@ redeclare with other args -> 406; use policies: rabbitmqctl set_policy NAME PATT
 
 - Previous level: [advanced theory](advanced.en.md)
 - Earlier: [02 · Exchanges and routing](../02-exchanges-and-routing/expert.en.md)
-- Next module: 04 · Messaging patterns ([roadmap](../../overview.en.md))
+- Next module: [04 · Messaging patterns](../04-messaging-patterns/overview.en.md)
 
 ## Sources
 
