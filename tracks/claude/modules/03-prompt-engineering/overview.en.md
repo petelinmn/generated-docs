@@ -91,3 +91,4 @@ The documents go first, the question last, the answer format is set with tags.
 - Prerequisites: [02 · Messages API](../02-messages-api/overview.en.md)
 - Next: [04 · Structured outputs](../04-structured-output/overview.en.md)
 - Analogues in other tracks: [LLM](../../../llm/overview.en.md), [Python](../../../python/overview.en.md)
+- [14 · Batch, evals and reliability](../14-evals/overview.en.md)

@@ -65,3 +65,4 @@ Long dialogues and agent tasks. A short request needs none of it.
 - [05 · Prompt caching](../05-prompt-caching/overview.en.md)
 - [10 · CLAUDE.md and memory](../10-memory/overview.en.md)
 - [12 · Agents](../12-agents/overview.en.md)
+- [14 · Batch, evals and reliability](../14-evals/overview.en.md)

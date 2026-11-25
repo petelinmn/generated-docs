@@ -65,3 +65,4 @@ def compact(client, history, model="claude-opus-5-5", system=None):
 - [05 · Prompt caching](../05-prompt-caching/overview.ru.md)
 - [10 · CLAUDE.md и память](../10-memory/overview.ru.md)
 - [12 · Агенты](../12-agents/overview.ru.md)
+- [14 · Batch, evals и надёжность](../14-evals/overview.ru.md)

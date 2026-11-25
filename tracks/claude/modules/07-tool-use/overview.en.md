@@ -76,3 +76,4 @@ The full loop and its output are in the [basic theory](basics.en.md). The code w
 - Next: [08 · MCP and connectors](../08-mcp/overview.en.md)
 - Analogues in other tracks: [LLM](../../../llm/overview.en.md), [Python](../../../python/overview.en.md)
 - [12 · Agents and subagents](../12-agents/overview.en.md)
+- [16 · Security and compliance](../16-security/overview.en.md)
