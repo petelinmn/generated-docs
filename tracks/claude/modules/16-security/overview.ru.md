@@ -77,3 +77,4 @@ def authorise(tool, confirmed=False):
 - [07 · Tool use](../07-tool-use/overview.ru.md)
 - [09 · Claude Code](../09-claude-code/overview.ru.md)
 - [15 · Observability](../15-observability/overview.ru.md)
+- [17 · Развёртывание и production](../17-production/overview.ru.md)

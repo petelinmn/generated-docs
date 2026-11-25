@@ -60,3 +60,4 @@ Repository tasks with a checkable result. Do not grant broad rights where a mist
 - [10 · CLAUDE.md and memory](../10-memory/overview.en.md)
 - [11 · Skills and hooks](../11-skills-and-hooks/overview.en.md)
 - [16 · Security and compliance](../16-security/overview.en.md)
+- [17 · Deployment and production](../17-production/overview.en.md)

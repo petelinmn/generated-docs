@@ -60,3 +60,4 @@ claude -p "Explain what this repository does"      # one answer, then exit
 - [10 · CLAUDE.md и память](../10-memory/overview.ru.md)
 - [11 · Skills и hooks](../11-skills-and-hooks/overview.ru.md)
 - [16 · Безопасность и compliance](../16-security/overview.ru.md)
+- [17 · Развёртывание и production](../17-production/overview.ru.md)

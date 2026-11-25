@@ -71,3 +71,4 @@ def run_eval(classify, cases=CASES):
 - [03 · Prompt engineering](../03-prompt-engineering/overview.ru.md)
 - [13 · Компактизация и длинный контекст](../13-long-context/overview.ru.md)
 - [15 · Observability](../15-observability/overview.ru.md)
+- [17 · Развёртывание и production](../17-production/overview.ru.md)

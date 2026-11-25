@@ -88,3 +88,4 @@ end_turn 6
 - Пререквизиты: [01 · Семейство Claude и выбор модели](../01-models/overview.ru.md)
 - Дальше: [03 · Prompt engineering](../03-prompt-engineering/overview.ru.md)
 - Аналоги в других треках: [LLM](../../../llm/overview.ru.md), [Python](../../../python/overview.ru.md) (SDK-примеры), [JavaScript](../../../javascript/modules/12-promises-and-async-await/overview.ru.md) (асинхронные клиенты и `fetch`)
+- [17 · Развёртывание и production](../17-production/overview.ru.md)

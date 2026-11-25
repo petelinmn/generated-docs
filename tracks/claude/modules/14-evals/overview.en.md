@@ -71,3 +71,4 @@ Any application users will see. For a one-off experiment reading the output is e
 - [03 · Prompt engineering](../03-prompt-engineering/overview.en.md)
 - [13 · Compaction and long context](../13-long-context/overview.en.md)
 - [15 · Observability](../15-observability/overview.en.md)
+- [17 · Deployment and production](../17-production/overview.en.md)

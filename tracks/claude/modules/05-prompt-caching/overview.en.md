@@ -87,3 +87,4 @@ The output came from a local mock server (see "How the code was checked" in the 
 - [10 · CLAUDE.md and memory](../10-memory/overview.en.md)
 - [13 · Compaction and long context](../13-long-context/overview.en.md)
 - [15 · Observability](../15-observability/overview.en.md)
+- [17 · Deployment and production](../17-production/overview.en.md)

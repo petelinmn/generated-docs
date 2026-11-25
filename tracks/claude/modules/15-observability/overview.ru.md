@@ -82,3 +82,4 @@ def logged_create(client, log=print, **params):
 - [05 · Prompt caching](../05-prompt-caching/overview.ru.md)
 - [14 · Batch, evals и надёжность](../14-evals/overview.ru.md)
 - [16 · Безопасность и compliance](../16-security/overview.ru.md)
+- [17 · Развёртывание и production](../17-production/overview.ru.md)

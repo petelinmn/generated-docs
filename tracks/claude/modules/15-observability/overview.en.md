@@ -82,3 +82,4 @@ From the first day with real users or noticeable spend.
 - [05 · Prompt caching](../05-prompt-caching/overview.en.md)
 - [14 · Batch, evals and reliability](../14-evals/overview.en.md)
 - [16 · Security and compliance](../16-security/overview.en.md)
+- [17 · Deployment and production](../17-production/overview.en.md)

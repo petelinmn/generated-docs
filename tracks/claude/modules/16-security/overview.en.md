@@ -77,3 +77,4 @@ Whenever the model can act or sees other people's data.
 - [07 · Tool use](../07-tool-use/overview.en.md)
 - [09 · Claude Code](../09-claude-code/overview.en.md)
 - [15 · Observability](../15-observability/overview.en.md)
+- [17 · Deployment and production](../17-production/overview.en.md)
