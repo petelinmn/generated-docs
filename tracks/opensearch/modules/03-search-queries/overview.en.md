@@ -54,3 +54,4 @@ client.search(index="shop", body={"query": {"bool": {
 - [01 · OpenSearch basics](../01-opensearch-basics/overview.en.md)
 - [04 · Aggregations](../04-aggregations/overview.en.md)
 - [06 · Relevance](../06-relevance-tuning/overview.en.md)
+- [09 · Vector and hybrid search](../09-vector-search/overview.en.md)

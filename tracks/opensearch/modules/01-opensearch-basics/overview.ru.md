@@ -64,3 +64,4 @@ print(client.search(index="products", body={"query": {"match": {"name": "mug"}}}
 - [02 · Отображения и анализ текста](../02-mappings-and-analysis/overview.ru.md)
 - [Основы Kafka](../../../kafka/modules/01-kafka-basics/overview.ru.md) — другой распределённый сервис с партициями и репликами
 - [05 · Индексация в большом объёме](../05-indexing-at-scale/overview.ru.md)
+- [07 · Кластер и шарды](../07-cluster-and-shards/overview.ru.md)

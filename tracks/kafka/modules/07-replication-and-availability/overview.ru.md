@@ -66,3 +66,4 @@ kafka-topics.sh --bootstrap-server kafka1:19092 --create --topic rep --partition
 - Пререквизиты: [01 · Основы Kafka](../01-kafka-basics/overview.ru.md), [02 · Производители](../02-producers/overview.ru.md)
 - Дальше: [08 · Kafka Connect](../08-kafka-connect/overview.ru.md)
 - Аналоги в других треках: [RabbitMQ: кластеризация](../../../rabbitmq/modules/08-clustering/overview.ru.md)
+- [Кластер и шарды в OpenSearch](../../../opensearch/modules/07-cluster-and-shards/overview.ru.md)

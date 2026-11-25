@@ -78,6 +78,7 @@ search({"match": {"title": "mice"}})                # [('7', 0.738)]
 
 - [Базовая теория](basics.ru.md) · [Эксперт](expert.ru.md)
 - [02 · Отображения и анализ](../02-mappings-and-analysis/advanced.ru.md)
+- [09 · Векторный и гибридный поиск](../09-vector-search/overview.ru.md)
 
 ## Источники
 

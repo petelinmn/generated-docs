@@ -60,3 +60,5 @@ client.indices.update_aliases(body={"actions": [
 - [01 · Основы OpenSearch](../01-opensearch-basics/overview.ru.md)
 - [02 · Отображения и анализ текста](../02-mappings-and-analysis/overview.ru.md)
 - [Производители Kafka](../../../kafka/modules/02-producers/overview.ru.md) — тоже пакетная отправка
+- [07 · Кластер и шарды](../07-cluster-and-shards/overview.ru.md)
+- [08 · Жизненный цикл индексов](../08-index-lifecycle/overview.ru.md)

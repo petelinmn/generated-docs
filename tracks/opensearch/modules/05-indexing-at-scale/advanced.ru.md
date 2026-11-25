@@ -114,6 +114,8 @@ print(r["total"])                                # 10
 
 - [Базовая теория](basics.ru.md) · [Эксперт](expert.ru.md)
 - [01 · Основы](../01-opensearch-basics/expert.ru.md) — translog, refresh
+- [07 · Кластер и шарды](../07-cluster-and-shards/overview.ru.md)
+- [08 · Жизненный цикл индексов](../08-index-lifecycle/overview.ru.md)
 
 ## Источники
 

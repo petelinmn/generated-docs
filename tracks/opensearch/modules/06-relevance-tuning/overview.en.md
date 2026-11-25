@@ -58,3 +58,4 @@ When results are "technically right but unhelpful". Do not turn knobs without a 
 - [OpenSearch track](../../overview.en.md)
 - [03 · Search queries](../03-search-queries/overview.en.md)
 - [02 · Mappings and text analysis](../02-mappings-and-analysis/overview.en.md)
+- [09 · Vector and hybrid search](../09-vector-search/overview.en.md)

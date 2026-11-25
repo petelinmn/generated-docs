@@ -92,6 +92,7 @@ r = client.delete_by_query(index="r", params={"refresh": "true"},
 - [Fundamentals](basics.en.md) · [Expert](expert.en.md)
 - [Delivery semantics in Kafka](../../../kafka/modules/05-delivery-semantics/basics.en.md) — an idempotent sink
 - [05 · Indexing at scale](../05-indexing-at-scale/overview.en.md)
+- [07 · Cluster and shards](../07-cluster-and-shards/overview.en.md)
 
 ## Sources
 

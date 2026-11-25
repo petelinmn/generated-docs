@@ -68,3 +68,4 @@ Everything was run on three RabbitMQ 4.4.1 containers (see the [basic theory](ba
 - Prerequisites: [07 · Queue types](../07-queue-types/overview.en.md)
 - Next: [09 · Monitoring and operations](../09-monitoring/overview.en.md)
 - Analogues in other tracks: [Kubernetes](../../../kubernetes/overview.en.md)
+- [Cluster and shards in OpenSearch](../../../opensearch/modules/07-cluster-and-shards/overview.en.md)

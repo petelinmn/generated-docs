@@ -66,3 +66,4 @@ fresh("ret", retention_ms=4000, segment_ms=1500)   # topic with a 4 s retention
 - Пререквизиты: [01 · Основы Kafka](../01-kafka-basics/overview.ru.md), [03 · Потребители и группы](../03-consumers-and-groups/overview.ru.md)
 - Дальше: [05 · Семантика доставки](../05-delivery-semantics/overview.ru.md)
 - Аналоги в других треках: [RabbitMQ: очереди и доставка](../../../rabbitmq/modules/03-queues-and-delivery/overview.ru.md)
+- [Жизненный цикл индексов в OpenSearch](../../../opensearch/modules/08-index-lifecycle/overview.ru.md)

@@ -60,3 +60,5 @@ Initial loads, mapping changes, time-based indexes (logs, events).
 - [01 · OpenSearch basics](../01-opensearch-basics/overview.en.md)
 - [02 · Mappings and text analysis](../02-mappings-and-analysis/overview.en.md)
 - [Kafka producers](../../../kafka/modules/02-producers/overview.en.md) — batching too
+- [07 · Cluster and shards](../07-cluster-and-shards/overview.en.md)
+- [08 · Index lifecycle](../08-index-lifecycle/overview.en.md)

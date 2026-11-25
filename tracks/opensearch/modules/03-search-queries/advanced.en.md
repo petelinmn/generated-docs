@@ -98,6 +98,7 @@ r = client.search(index="shop", body={"query": {"match": {"name": "mouse"}},
 - [01 · Basics](../01-opensearch-basics/expert.en.md) — the two phases of search
 - [04 · Aggregations](../04-aggregations/overview.en.md)
 - [06 · Relevance](../06-relevance-tuning/overview.en.md)
+- [09 · Vector and hybrid search](../09-vector-search/overview.en.md)
 
 ## Sources
 

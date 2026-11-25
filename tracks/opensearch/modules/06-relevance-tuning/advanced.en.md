@@ -78,6 +78,7 @@ Synonyms in a `search_analyzer` need no reindexing of documents.
 
 - [Fundamentals](basics.en.md) · [Expert](expert.en.md)
 - [02 · Mappings and analysis](../02-mappings-and-analysis/advanced.en.md)
+- [09 · Vector and hybrid search](../09-vector-search/overview.en.md)
 
 ## Sources
 

@@ -114,6 +114,8 @@ For the duration of a load people usually set `refresh_interval: -1` and `number
 
 - [Fundamentals](basics.en.md) · [Expert](expert.en.md)
 - [01 · Basics](../01-opensearch-basics/expert.en.md) — translog, refresh
+- [07 · Cluster and shards](../07-cluster-and-shards/overview.en.md)
+- [08 · Index lifecycle](../08-index-lifecycle/overview.en.md)
 
 ## Sources
 

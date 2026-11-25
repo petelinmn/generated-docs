@@ -92,6 +92,7 @@ r = client.delete_by_query(index="r", params={"refresh": "true"},
 - [Базовая теория](basics.ru.md) · [Эксперт](expert.ru.md)
 - [Семантика доставки в Kafka](../../../kafka/modules/05-delivery-semantics/basics.ru.md) — идемпотентный приёмник
 - [05 · Индексация в большом объёме](../05-indexing-at-scale/overview.ru.md)
+- [07 · Кластер и шарды](../07-cluster-and-shards/overview.ru.md)
 
 ## Источники
 

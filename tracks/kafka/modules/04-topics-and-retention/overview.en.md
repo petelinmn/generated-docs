@@ -66,3 +66,4 @@ Everything was run against a real Apache Kafka 4.3.1 in Docker with accelerated 
 - Prerequisites: [01 · Kafka basics](../01-kafka-basics/overview.en.md), [03 · Consumers and groups](../03-consumers-and-groups/overview.en.md)
 - Next: [05 · Delivery semantics](../05-delivery-semantics/overview.en.md)
 - Analogues in other tracks: [RabbitMQ: queues and delivery](../../../rabbitmq/modules/03-queues-and-delivery/overview.en.md)
+- [Index lifecycle in OpenSearch](../../../opensearch/modules/08-index-lifecycle/overview.en.md)

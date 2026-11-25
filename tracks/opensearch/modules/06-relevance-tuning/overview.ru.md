@@ -58,3 +58,4 @@ client.search(index="art", body={"query": {"function_score": {
 - [Трек OpenSearch](../../overview.ru.md)
 - [03 · Поисковые запросы](../03-search-queries/overview.ru.md)
 - [02 · Отображения и анализ текста](../02-mappings-and-analysis/overview.ru.md)
+- [09 · Векторный и гибридный поиск](../09-vector-search/overview.ru.md)

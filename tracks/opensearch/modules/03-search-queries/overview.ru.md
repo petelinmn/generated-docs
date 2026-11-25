@@ -54,3 +54,4 @@ client.search(index="shop", body={"query": {"bool": {
 - [01 · Основы OpenSearch](../01-opensearch-basics/overview.ru.md)
 - [04 · Агрегации](../04-aggregations/overview.ru.md)
 - [06 · Релевантность](../06-relevance-tuning/overview.ru.md)
+- [09 · Векторный и гибридный поиск](../09-vector-search/overview.ru.md)
