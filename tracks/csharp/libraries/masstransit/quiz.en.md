@@ -8,7 +8,7 @@ slug: masstransit
 part: 3
 tags: [masstransit, messaging, consumer, retry, saga, test-harness]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: MassTransit

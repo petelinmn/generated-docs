@@ -9,16 +9,16 @@ part: 3
 tags: [masstransit, retry, fault, error-queue, request-response, rabbitmq, test-harness, concurrency]
 versions: ".NET 11, C# 15; MassTransit 8.5.12"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # MassTransit: продвинутый уровень
 
 🌐 **Русский** · [English](advanced.en.md)
 
-**Уровни:** [обзор](overview.ru.md) · [1. Основы](basics.ru.md) · **2. Продвинутый** · [3. Эксперт](expert.ru.md) · [4. Квиз](quiz.ru.md)
+**Уровни:** [обзор](overview.ru.md) · [1. Основы](basics.ru.md) · **2. Продвинутый** · [3. Эксперт](expert.ru.md) · [4. Квиз](quiz.ru.md) · [5–6. Код и тесты](code/)
 
-Опирается на [основы](basics.ru.md). Код запускался на .NET 11 с MassTransit 8.5.12; RabbitMQ — 4.4.1 в Docker. Помощник `Build(...)` создаёт `ServiceCollection` с `AddMassTransit` и шиной «в памяти».
+Опирается на [основы](basics.ru.md). Код и тесты лежат в [code/](code/); запуск: `dotnet test` в этой папке. Код запускался на .NET 11 с MassTransit 8.5.12; RabbitMQ — 4.4.1 в Docker. Помощник `Build(...)` создаёт `ServiceCollection` с `AddMassTransit` и шиной «в памяти».
 
 ## Повторы
 
@@ -44,6 +44,8 @@ cfg.ReceiveEndpoint("flaky", e =>
 Один и тот же `Consume` вызван трижды, номер повтора доступен как `context.GetRetryAttempt()`. Повторы выполняются **в процессе**, в том же сообщении, без возврата в очередь. Потому обработчик должен быть идемпотентным: частично выполненная работа повторится.
 
 Политики: `Immediate(n)`, `Interval(n, пауза)`, `Exponential(...)` и другие; `Handle<T>`/`Ignore<T>` выбирают исключения для повтора. Сравните с [Polly](../polly/overview.ru.md): это такая же идея на уровне конечной точки.
+
+Код: [Ex02_RetryAndFault.cs](code/Examples/Ex02_RetryAndFault.cs). Тесты в [ExamplesTests.cs](code/Tests/ExamplesTests.cs) задают ту же политику не на именованной конечной точке, а через `AddConfigureEndpointsCallback`, чтобы она действовала в тестовой оснастке.
 
 ## Ошибки, `Fault<T>` и очередь `_error`
 
@@ -76,6 +78,8 @@ MT-Host-MassTransitVersion: 8.5.12.0   (и другие MT-Host-*)
 
 > ⚠️ Проверить: поведение `UseMessageRedelivery` (отложенный повтор), `_skipped`-очереди для сообщений без подходящего потребителя и `UseInMemoryOutbox` здесь не проверялись.
 
+Код: [Ex02_RetryAndFault.cs](code/Examples/Ex02_RetryAndFault.cs); тест проверяет три вызова и публикацию `Fault<OrderSubmitted>`.
+
 ## Запрос и ответ
 
 `IRequestClient<TRequest>` отправляет запрос и ждёт типизированный ответ:
@@ -100,6 +104,8 @@ no consumer -> RequestTimeoutException: Timeout waiting for response, RequestId:
 
 > ⚠️ Проверить: значение таймаута запроса по умолчанию (по документации 30 секунд) здесь не проверялось.
 
+Код: [Ex03_RequestResponse.cs](code/Examples/Ex03_RequestResponse.cs); тесты проверяют ответ и таймаут без потребителя.
+
 ## Параллелизм
 
 `ConcurrentMessageLimit` ограничивает число одновременно обрабатываемых сообщений конечной точки. 8 сообщений по 200 мс:
@@ -110,6 +116,8 @@ ConcurrentMessageLimit=4: max parallel = 4, total 744 ms
 ```
 
 При лимите 1 сообщения обрабатываются последовательно, при 4 — до четырёх одновременно. Значение по умолчанию здесь не измерялось: проверены только лимиты 1 и 4. Раз обработка может идти параллельно, у состояния, разделяемого между вызовами, нужна синхронизация.
+
+Код: [Ex04_Concurrency.cs](code/Examples/Ex04_Concurrency.cs); тест удерживает потребителей внутри `Consume` и считает, сколько их там одновременно (лимиты 1 и 4).
 
 ## Топология RabbitMQ
 
@@ -142,6 +150,8 @@ binding order-submitted -> order-submitted queue
 
 > ⚠️ Проверить: кворумные очереди (`SetQuorumQueue`) и другие настройки транспорта RabbitMQ не проверялись.
 
+Код: [Ex06_RabbitMq.cs](code/Examples/Ex06_RabbitMq.cs). Интеграционный тест публикует сообщение через настоящий брокер и **пропускается**, если на `localhost:5672` никого нет.
+
 ## Тестовая оснастка (test harness)
 
 Для тестов есть `AddMassTransitTestHarness` — шина в памяти с наблюдением за сообщениями:
@@ -165,6 +175,8 @@ consumer harness consumed: True
 ```
 
 `Published`, `Consumed`, `Sent` и оснастка отдельного потребителя (`GetConsumerHarness`) ожидают события с таймаутом: тест не нужно «усыплять» `Task.Delay`. Подробности и саги — в [экспертной теории](expert.ru.md).
+
+Рабочие тесты на оснастке: [ExamplesTests.cs](code/Tests/ExamplesTests.cs). В них телеметрия отключена (`DisableUsageTelemetry()`), чтобы тесты не обращались в сеть.
 
 ## Телеметрия использования
 

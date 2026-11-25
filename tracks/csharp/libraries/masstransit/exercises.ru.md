@@ -8,14 +8,14 @@ slug: masstransit
 part: 3
 tags: [masstransit, consumer, retry, request-response, test-harness]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Упражнения: MassTransit
 
 🌐 **Русский** · [English](exercises.en.md)
 
-> Решайте сами; подсказки и решения — под спойлерами. Консольный проект `net11.0` с пакетом `MassTransit` 8.5.12; сообщения — в пространстве имён `Shop` (см. [основы](basics.ru.md#как-проверялся-код)). Решения запускались на .NET 11.
+> Решайте сами; подсказки и решения — под спойлерами. Консольный проект `net11.0` с пакетом `MassTransit` 8.5.12; сообщения — в пространстве имён `Shop` (см. [основы](basics.ru.md#как-проверялся-код)). Решения запускались на .NET 11. Проверяемые версии лежат в [code/](code/): [Exercises.cs](code/Solutions/Exercises.cs) и тесты.
 
 ## 1. 🟢 Первое сообщение
 
@@ -46,7 +46,7 @@ await Task.Delay(500);
 await bus.StopAsync();
 ```
 
-См. [основы](basics.ru.md#шина-в-памяти).
+См. [основы](basics.ru.md#шина-в-памяти). Проверяемый вариант: `FirstMessageAsync` в [Exercises.cs](code/Solutions/Exercises.cs).
 
 </details>
 
@@ -64,7 +64,7 @@ await bus.StopAsync();
 
 <details><summary>Решение</summary>
 
-См. [основы](basics.ru.md#publish-и-send).
+См. [основы](basics.ru.md#publish-и-send). Проверяемый вариант: `PublishThenSendAsync` в [Exercises.cs](code/Solutions/Exercises.cs).
 
 </details>
 
@@ -82,7 +82,7 @@ await bus.StopAsync();
 
 <details><summary>Решение</summary>
 
-См. [продвинутый](advanced.ru.md#повторы).
+См. [продвинутый](advanced.ru.md#повторы). Код: [Ex02_RetryAndFault.cs](code/Examples/Ex02_RetryAndFault.cs); тест `Retry_CallsTheConsumerAgain_UntilItSucceeds` в [ExamplesTests.cs](code/Tests/ExamplesTests.cs).
 
 </details>
 
@@ -100,6 +100,6 @@ await bus.StopAsync();
 
 <details><summary>Решение</summary>
 
-См. [продвинутый](advanced.ru.md#тестовая-оснастка-test-harness) и [экспертный](expert.ru.md#саги-и-конечные-автоматы): полный код автомата и проверки.
+См. [продвинутый](advanced.ru.md#тестовая-оснастка-test-harness) и [экспертный](expert.ru.md#саги-и-конечные-автоматы): полный код автомата и проверки. Код: [Ex05_OrderSaga.cs](code/Examples/Ex05_OrderSaga.cs); тесты в [ExamplesTests.cs](code/Tests/ExamplesTests.cs).
 
 </details>

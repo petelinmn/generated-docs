@@ -6,11 +6,11 @@ kind: library
 doc: overview
 slug: masstransit
 part: 3
-levels: [1, 2, 3, 4]
+levels: [1, 2, 3, 4, 5, 6]
 tags: [masstransit, messaging, message-bus, consumer, saga, rabbitmq, test-harness, retry]
 versions: ".NET 11, C# 15; MassTransit 8.5.12"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # MassTransit
@@ -54,6 +54,15 @@ Everything was run on .NET 11 and MassTransit 8.5.12, RabbitMQ — 4.4.1 in Dock
 - ❌ You need full control of the broker's protocol.
 - ❌ The v9 licence does not suit you (then v8 or another library).
 
+## Running the code
+
+```bash
+cd tracks/csharp/libraries/masstransit/code
+dotnet test
+```
+
+11 tests; 10 need nothing but the .NET 11 SDK, and the RabbitMQ integration test is skipped when there is no broker. To run it start a disposable broker: `docker run -d --name rabbit -p 5672:5672 rabbitmq:4-management`.
+
 ## Levels of this material
 
 | Level | What's inside |
@@ -62,8 +71,8 @@ Everything was run on .NET 11 and MassTransit 8.5.12, RabbitMQ — 4.4.1 in Dock
 | [2. Advanced](advanced.en.md) | retries, `Fault<T>` and `_error`, request-response, concurrency, RabbitMQ topology, the test harness |
 | [3. Expert](expert.en.md) | reference, sagas, internals, versions and licence, 12 interview questions |
 | [4. Self-check](quiz.en.md) | 10 questions and [4 exercises](exercises.en.md) with solutions |
-| 5. Runnable examples | not generated — `/learn csharp masstransit level 5` |
-| 6. Tests | not generated — `/learn csharp masstransit level 6` |
+| 5. [Runnable examples](code/Examples/) | 6 examples and [exercise solutions](code/Solutions/Exercises.cs) |
+| 6. [Tests](code/Tests/) | xUnit v3 on the test harness and one integration test with RabbitMQ |
 
 ## Related materials
 

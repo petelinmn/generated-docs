@@ -6,11 +6,11 @@ kind: library
 doc: overview
 slug: masstransit
 part: 3
-levels: [1, 2, 3, 4]
+levels: [1, 2, 3, 4, 5, 6]
 tags: [masstransit, messaging, message-bus, consumer, saga, rabbitmq, test-harness, retry]
 versions: ".NET 11, C# 15; MassTransit 8.5.12"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # MassTransit
@@ -54,6 +54,15 @@ await bus.Publish(new OrderSubmitted(Guid.NewGuid(), "alice", 19.99m));
 - ❌ Нужен полный контроль над протоколом брокера.
 - ❌ Лицензия v9 вам не подходит (тогда v8 или другая библиотека).
 
+## Запуск кода
+
+```bash
+cd tracks/csharp/libraries/masstransit/code
+dotnet test
+```
+
+11 тестов; 10 не требуют ничего, кроме .NET 11 SDK, а интеграционный тест с RabbitMQ пропускается, если брокера нет. Чтобы он выполнился, поднимите одноразовый брокер: `docker run -d --name rabbit -p 5672:5672 rabbitmq:4-management`.
+
 ## Уровни материала
 
 | Уровень | Что внутри |
@@ -62,8 +71,8 @@ await bus.Publish(new OrderSubmitted(Guid.NewGuid(), "alice", 19.99m));
 | [2. Продвинутый](advanced.ru.md) | повторы, `Fault<T>` и `_error`, запрос-ответ, параллелизм, топология RabbitMQ, test harness |
 | [3. Эксперт](expert.ru.md) | справочник, саги, внутреннее устройство, версии и лицензия, 12 вопросов с собеседований |
 | [4. Самопроверка](quiz.ru.md) | 10 вопросов и [4 упражнения](exercises.ru.md) с решениями |
-| 5. Запускаемые примеры | не сгенерирован — `/learn csharp masstransit level 5` |
-| 6. Тесты | не сгенерированы — `/learn csharp masstransit level 6` |
+| 5. [Запускаемые примеры](code/Examples/) | 6 примеров и [решения упражнений](code/Solutions/Exercises.cs) |
+| 6. [Тесты](code/Tests/) | xUnit v3 на тестовой оснастке и один интеграционный с RabbitMQ |
 
 ## Связанные материалы
 

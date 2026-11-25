@@ -9,14 +9,14 @@ part: 3
 tags: [masstransit, messaging, message-bus, consumer, publish-subscribe, in-memory-transport, dependency-injection]
 versions: ".NET 11, C# 15; MassTransit 8.5.12"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # MassTransit: основы
 
 🌐 **Русский** · [English](basics.en.md)
 
-**Уровни:** [обзор](overview.ru.md) · **1. Основы** · [2. Продвинутый](advanced.ru.md) · [3. Эксперт](expert.ru.md) · [4. Квиз](quiz.ru.md)
+**Уровни:** [обзор](overview.ru.md) · **1. Основы** · [2. Продвинутый](advanced.ru.md) · [3. Эксперт](expert.ru.md) · [4. Квиз](quiz.ru.md) · [5–6. Код и тесты](code/)
 
 **Пререквизиты:** [13 · DI, конфигурация, логирование](../../modules/13-di-config-logging/overview.ru.md), [10 · async/await](../../modules/10-async-await/overview.ru.md); полезно знакомство с брокерами сообщений ([RabbitMQ](../../../rabbitmq/overview.ru.md)). **Время:** ~45 мин.
 
@@ -98,6 +98,8 @@ bus address: loopback://localhost/<host>_Mt_bus_<id>
 
 > **Подвох:** контейнер нужно освобождать через **`await using`**. С обычным `using var sp` получаем `InvalidOperationException: 'MassTransit.UsageTracking.UsageTracker' type only implements IAsyncDisposable. Use DisposeAsync to dispose the container.` — некоторые сервисы MassTransit поддерживают только асинхронное освобождение.
 
+Код: [Messages.cs](code/Examples/Messages.cs), [Ex01_PublishSend.cs](code/Examples/Ex01_PublishSend.cs).
+
 ## Publish и Send
 
 | Метод | Адресат | Когда |
@@ -122,6 +124,8 @@ await ep.Send(order);                                             // to one endp
 ```
 
 `Publish` дошёл до обоих потребителей, `Send` на `queue:audit` — только до одного. Порядок вывода между потребителями не гарантирован.
+
+Код потребителей: [Ex01_PublishSend.cs](code/Examples/Ex01_PublishSend.cs); проверка того, что `Publish` получают оба, а `Send` один: [ExamplesTests.cs](code/Tests/ExamplesTests.cs).
 
 ## Имена конечных точек
 

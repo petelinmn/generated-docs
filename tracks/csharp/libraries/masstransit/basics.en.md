@@ -9,14 +9,14 @@ part: 3
 tags: [masstransit, messaging, message-bus, consumer, publish-subscribe, in-memory-transport, dependency-injection]
 versions: ".NET 11, C# 15; MassTransit 8.5.12"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # MassTransit: basics
 
 🌐 [Русский](basics.ru.md) · **English**
 
-**Levels:** [overview](overview.en.md) · **1. Basics** · [2. Advanced](advanced.en.md) · [3. Expert](expert.en.md) · [4. Quiz](quiz.en.md)
+**Levels:** [overview](overview.en.md) · **1. Basics** · [2. Advanced](advanced.en.md) · [3. Expert](expert.en.md) · [4. Quiz](quiz.en.md) · [5–6. Code and tests](code/)
 
 **Prerequisites:** [13 · DI, configuration, logging](../../modules/13-di-config-logging/overview.en.md), [10 · async/await](../../modules/10-async-await/overview.en.md); familiarity with message brokers helps ([RabbitMQ](../../../rabbitmq/overview.en.md)). **Time:** ~45 min.
 
@@ -98,6 +98,8 @@ bus address: loopback://localhost/<host>_Mt_bus_<id>
 
 > **Gotcha:** dispose the container with **`await using`**. With a plain `using var sp` you get `InvalidOperationException: 'MassTransit.UsageTracking.UsageTracker' type only implements IAsyncDisposable. Use DisposeAsync to dispose the container.` — some MassTransit services support only asynchronous disposal.
 
+Code: [Messages.cs](code/Examples/Messages.cs), [Ex01_PublishSend.cs](code/Examples/Ex01_PublishSend.cs).
+
 ## Publish and Send
 
 | Method | Addressee | When |
@@ -122,6 +124,8 @@ await ep.Send(order);                                             // to one endp
 ```
 
 `Publish` reached both consumers, `Send` to `queue:audit` only one. The output order between consumers is not guaranteed.
+
+Consumer code: [Ex01_PublishSend.cs](code/Examples/Ex01_PublishSend.cs); the check that both get a `Publish` and one gets a `Send`: [ExamplesTests.cs](code/Tests/ExamplesTests.cs).
 
 ## Endpoint names
 

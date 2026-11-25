@@ -9,14 +9,14 @@ part: 3
 tags: [masstransit, saga, state-machine, middleware, pipeline, consumer, rabbitmq, licensing]
 versions: ".NET 11, C# 15; MassTransit 8.5.12"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # MassTransit: экспертный уровень
 
 🌐 **Русский** · [English](expert.en.md)
 
-**Уровни:** [обзор](overview.ru.md) · [1. Основы](basics.ru.md) · [2. Продвинутый](advanced.ru.md) · **3. Эксперт** · [4. Квиз](quiz.ru.md)
+**Уровни:** [обзор](overview.ru.md) · [1. Основы](basics.ru.md) · [2. Продвинутый](advanced.ru.md) · **3. Эксперт** · [4. Квиз](quiz.ru.md) · [5–6. Код и тесты](code/)
 
 Опирается на [основы](basics.ru.md) и [продвинутый уровень](advanced.ru.md). «Проверено» означает наблюдалось запуском на .NET 11 с MassTransit 8.5.12 (шина в памяти и RabbitMQ 4.4.1).
 
@@ -110,6 +110,8 @@ customer: alice
 События, допустимые в нескольких состояниях, по документации описывают явно (`During(Submitted, Paid, …)`) или игнорируют (`Ignore(event)`); без этого событие вне порядка заканчивается ошибкой, как в опыте.
 
 > ⚠️ Проверить: постоянные репозитории саг (Entity Framework, MongoDB, Redis), оптимистичная блокировка, `Schedule`/`Request` внутри саги и `Ignore` здесь не проверялись.
+
+Код: [Ex05_OrderSaga.cs](code/Examples/Ex05_OrderSaga.cs); тест в [ExamplesTests.cs](code/Tests/ExamplesTests.cs) проходит весь сценарий, включая событие вне порядка.
 
 ## Внутреннее устройство
 

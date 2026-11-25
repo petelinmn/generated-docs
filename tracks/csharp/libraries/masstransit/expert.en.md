@@ -9,14 +9,14 @@ part: 3
 tags: [masstransit, saga, state-machine, middleware, pipeline, consumer, rabbitmq, licensing]
 versions: ".NET 11, C# 15; MassTransit 8.5.12"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # MassTransit: expert
 
 🌐 [Русский](expert.ru.md) · **English**
 
-**Levels:** [overview](overview.en.md) · [1. Basics](basics.en.md) · [2. Advanced](advanced.en.md) · **3. Expert** · [4. Quiz](quiz.en.md)
+**Levels:** [overview](overview.en.md) · [1. Basics](basics.en.md) · [2. Advanced](advanced.en.md) · **3. Expert** · [4. Quiz](quiz.en.md) · [5–6. Code and tests](code/)
 
 Builds on the [basics](basics.en.md) and the [advanced level](advanced.en.md). "Verified" means observed by running on .NET 11 with MassTransit 8.5.12 (an in-memory bus and RabbitMQ 4.4.1).
 
@@ -110,6 +110,8 @@ customer: alice
 Events acceptable in several states are, per the documentation, described explicitly (`During(Submitted, Paid, …)`) or ignored (`Ignore(event)`); without that an out-of-order event ends in an error, as in the experiment.
 
 > ⚠️ Verify: persistent saga repositories (Entity Framework, MongoDB, Redis), optimistic locking, `Schedule`/`Request` inside a saga and `Ignore` were not verified here.
+
+Code: [Ex05_OrderSaga.cs](code/Examples/Ex05_OrderSaga.cs); the test in [ExamplesTests.cs](code/Tests/ExamplesTests.cs) walks the whole scenario, including the out-of-order event.
 
 ## Internals
 

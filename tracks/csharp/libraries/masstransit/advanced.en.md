@@ -9,16 +9,16 @@ part: 3
 tags: [masstransit, retry, fault, error-queue, request-response, rabbitmq, test-harness, concurrency]
 versions: ".NET 11, C# 15; MassTransit 8.5.12"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # MassTransit: advanced
 
 🌐 [Русский](advanced.ru.md) · **English**
 
-**Levels:** [overview](overview.en.md) · [1. Basics](basics.en.md) · **2. Advanced** · [3. Expert](expert.en.md) · [4. Quiz](quiz.en.md)
+**Levels:** [overview](overview.en.md) · [1. Basics](basics.en.md) · **2. Advanced** · [3. Expert](expert.en.md) · [4. Quiz](quiz.en.md) · [5–6. Code and tests](code/)
 
-Builds on the [basics](basics.en.md). The code was run on .NET 11 with MassTransit 8.5.12; RabbitMQ — 4.4.1 in Docker. The helper `Build(...)` creates a `ServiceCollection` with `AddMassTransit` and an in-memory bus.
+Builds on the [basics](basics.en.md). Code and tests are in [code/](code/); run `dotnet test` in that folder. The code was run on .NET 11 with MassTransit 8.5.12; RabbitMQ — 4.4.1 in Docker. The helper `Build(...)` creates a `ServiceCollection` with `AddMassTransit` and an in-memory bus.
 
 ## Retries
 
@@ -44,6 +44,8 @@ The consumer fails on the first two attempts:
 The same `Consume` was called three times, the retry number is available as `context.GetRetryAttempt()`. Retries run **in the process**, on the same message, without returning it to the queue. So the handler must be idempotent: partly done work will be repeated.
 
 Policies: `Immediate(n)`, `Interval(n, pause)`, `Exponential(...)` and others; `Handle<T>`/`Ignore<T>` choose the exceptions to retry. Compare [Polly](../polly/overview.en.md): the same idea at the endpoint level.
+
+Code: [Ex02_RetryAndFault.cs](code/Examples/Ex02_RetryAndFault.cs). The tests in [ExamplesTests.cs](code/Tests/ExamplesTests.cs) set the same policy not on a named endpoint but through `AddConfigureEndpointsCallback`, so that it applies in the test harness.
 
 ## Errors, `Fault<T>` and the `_error` queue
 
@@ -76,6 +78,8 @@ The error queue is the analogue of a dead-letter queue ([RabbitMQ: DLX](../../..
 
 > ⚠️ Verify: the behaviour of `UseMessageRedelivery` (a delayed retry), `_skipped` queues for messages with no suitable consumer and `UseInMemoryOutbox` was not verified here.
 
+Code: [Ex02_RetryAndFault.cs](code/Examples/Ex02_RetryAndFault.cs); the test checks three calls and the published `Fault<OrderSubmitted>`.
+
 ## Request and response
 
 `IRequestClient<TRequest>` sends a request and waits for a typed response:
@@ -100,6 +104,8 @@ With no consumer the client gets a `RequestTimeoutException` after the set timeo
 
 > ⚠️ Verify: the default request timeout (30 seconds per the documentation) was not verified here.
 
+Code: [Ex03_RequestResponse.cs](code/Examples/Ex03_RequestResponse.cs); the tests check the response and the timeout with no consumer.
+
 ## Concurrency
 
 `ConcurrentMessageLimit` bounds how many messages an endpoint processes at once. 8 messages of 200 ms:
@@ -110,6 +116,8 @@ ConcurrentMessageLimit=4: max parallel = 4, total 744 ms
 ```
 
 At limit 1 messages are processed one after another, at 4 up to four at once. The default value was not measured here: only the limits 1 and 4 were checked. Since processing can run in parallel, state shared between calls needs synchronisation.
+
+Code: [Ex04_Concurrency.cs](code/Examples/Ex04_Concurrency.cs); the test holds the consumers inside `Consume` and counts how many are there at once (limits 1 and 4).
 
 ## RabbitMQ topology
 
@@ -142,6 +150,8 @@ The chain is: the message-type exchange `Shop:OrderSubmitted` (fanout) → the e
 
 > ⚠️ Verify: quorum queues (`SetQuorumQueue`) and other RabbitMQ transport settings were not verified.
 
+Code: [Ex06_RabbitMq.cs](code/Examples/Ex06_RabbitMq.cs). The integration test publishes through a real broker and is **skipped** when nothing listens on `localhost:5672`.
+
 ## The test harness
 
 For tests there is `AddMassTransitTestHarness` — an in-memory bus with observation of messages:
@@ -165,6 +175,8 @@ consumer harness consumed: True
 ```
 
 `Published`, `Consumed`, `Sent` and a single consumer's harness (`GetConsumerHarness`) wait for events with a timeout: a test need not be "put to sleep" with `Task.Delay`. Details and sagas are in the [expert theory](expert.en.md).
+
+Working harness tests: [ExamplesTests.cs](code/Tests/ExamplesTests.cs). They disable telemetry (`DisableUsageTelemetry()`) so tests do not reach the network.
 
 ## Usage telemetry
 

@@ -8,14 +8,14 @@ slug: masstransit
 part: 3
 tags: [masstransit, consumer, retry, request-response, test-harness]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Exercises: MassTransit
 
 🌐 [Русский](exercises.ru.md) · **English**
 
-> Solve on your own; hints and solutions are under spoilers. A `net11.0` console project with the `MassTransit` 8.5.12 package; messages in the namespace `Shop` (see the [basics](basics.en.md#how-the-code-was-verified)). The solutions were run on .NET 11.
+> Solve on your own; hints and solutions are under spoilers. A `net11.0` console project with the `MassTransit` 8.5.12 package; messages in the namespace `Shop` (see the [basics](basics.en.md#how-the-code-was-verified)). The solutions were run on .NET 11. Checkable versions are in [code/](code/): [Exercises.cs](code/Solutions/Exercises.cs) and the tests.
 
 ## 1. 🟢 The first message
 
@@ -46,7 +46,7 @@ await Task.Delay(500);
 await bus.StopAsync();
 ```
 
-See the [basics](basics.en.md#an-in-memory-bus).
+See the [basics](basics.en.md#an-in-memory-bus). A checkable version: `FirstMessageAsync` in [Exercises.cs](code/Solutions/Exercises.cs).
 
 </details>
 
@@ -64,7 +64,7 @@ See the [basics](basics.en.md#an-in-memory-bus).
 
 <details><summary>Solution</summary>
 
-See the [basics](basics.en.md#publish-and-send).
+See the [basics](basics.en.md#publish-and-send). A checkable version: `PublishThenSendAsync` in [Exercises.cs](code/Solutions/Exercises.cs).
 
 </details>
 
@@ -82,7 +82,7 @@ An explicit endpoint: `ReceiveEndpoint("flaky", e => { e.UseMessageRetry(…); e
 
 <details><summary>Solution</summary>
 
-See the [advanced level](advanced.en.md#retries).
+See the [advanced level](advanced.en.md#retries). Code: [Ex02_RetryAndFault.cs](code/Examples/Ex02_RetryAndFault.cs); the test `Retry_CallsTheConsumerAgain_UntilItSucceeds` in [ExamplesTests.cs](code/Tests/ExamplesTests.cs).
 
 </details>
 
@@ -100,6 +100,6 @@ See the [advanced level](advanced.en.md#retries).
 
 <details><summary>Solution</summary>
 
-See the [advanced level](advanced.en.md#the-test-harness) and the [expert level](expert.en.md#sagas-and-state-machines): the full state machine and checks.
+See the [advanced level](advanced.en.md#the-test-harness) and the [expert level](expert.en.md#sagas-and-state-machines): the full state machine and checks. Code: [Ex05_OrderSaga.cs](code/Examples/Ex05_OrderSaga.cs); tests in [ExamplesTests.cs](code/Tests/ExamplesTests.cs).
 
 </details>
