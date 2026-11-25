@@ -73,5 +73,5 @@ number string object undefined
 
 - Prerequisites: [01 · Environment and tools](../01-environment/overview.en.md)
 - Next: [03 · Variables and scopes](../03-scopes-and-hoisting/overview.en.md)
-- Analogues in other tracks: [Python: types and data structures](../../../python/overview.en.md), [C#: types and variables](../../../csharp/overview.en.md)
+- Analogues in other tracks: [Python: types and data structures](../../../python/modules/02-types-and-data-structures/overview.en.md), [C#: types and variables](../../../csharp/overview.en.md)
 - Static types on top of JavaScript: [TypeScript](../../../typescript/overview.en.md)

@@ -76,5 +76,5 @@ With `var` there is one variable for the whole loop, with `let` a new one on eve
 - Prerequisites: [01 · Environment and tools](../01-environment/overview.en.md) (strict mode), [02 · Types and values](../02-types-and-values/overview.en.md)
 - Next: [04 · Functions](../04-functions/overview.en.md)
 - Closures in depth: [10 · Closures and functional style](../10-closures-and-functional/overview.en.md)
-- Analogues in other tracks: [Python: scopes (LEGB)](../../../python/overview.en.md), [C#: variables and methods](../../../csharp/overview.en.md)
+- Analogues in other tracks: [Python: control flow and functions](../../../python/modules/03-control-flow-and-functions/overview.en.md), [C#: variables and methods](../../../csharp/overview.en.md)
 - Static types: [TypeScript](../../../typescript/overview.en.md)

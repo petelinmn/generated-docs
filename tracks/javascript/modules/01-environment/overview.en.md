@@ -74,5 +74,5 @@ $ node -p "1 + 1"
 - Next: [02 · Types and values](../02-types-and-values/overview.en.md)
 - Modules in depth: module 09 · Modules (in the [track](../../overview.en.md) roadmap)
 - Testing in depth: module 15 · Testing (in the [track](../../overview.en.md) roadmap)
-- Analogues in other tracks: [Python: environment](../../../python/overview.en.md) — uv and venv; [C#: the .NET platform](../../../csharp/overview.en.md)
+- Analogues in other tracks: [Python: environment](../../../python/modules/01-environment/overview.en.md) — uv and venv; [C#: the .NET platform](../../../csharp/overview.en.md)
 - TypeScript on top of this environment: [TypeScript](../../../typescript/overview.en.md)

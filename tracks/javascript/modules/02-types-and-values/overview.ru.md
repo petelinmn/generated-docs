@@ -73,5 +73,5 @@ number string object undefined
 
 - Пререквизиты: [01 · Окружение и инструменты](../01-environment/overview.ru.md)
 - Дальше: [03 · Переменные и области видимости](../03-scopes-and-hoisting/overview.ru.md)
-- Аналоги в других треках: [Python: типы и структуры данных](../../../python/overview.ru.md), [C#: типы и переменные](../../../csharp/overview.ru.md)
+- Аналоги в других треках: [Python: типы и структуры данных](../../../python/modules/02-types-and-data-structures/overview.ru.md), [C#: типы и переменные](../../../csharp/overview.ru.md)
 - Статические типы поверх JavaScript: [TypeScript](../../../typescript/overview.ru.md)

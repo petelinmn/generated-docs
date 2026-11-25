@@ -74,5 +74,5 @@ $ node -p "1 + 1"
 - Дальше: [02 · Типы и значения](../02-types-and-values/overview.ru.md)
 - Модули подробно: модуль 09 · Модули (в дорожной карте [трека](../../overview.ru.md))
 - Тестирование подробно: модуль 15 · Тестирование (в дорожной карте [трека](../../overview.ru.md))
-- Аналоги в других треках: [Python: окружение](../../../python/overview.ru.md) — uv и venv; [C#: платформа .NET](../../../csharp/overview.ru.md)
+- Аналоги в других треках: [Python: окружение](../../../python/modules/01-environment/overview.ru.md) — uv и venv; [C#: платформа .NET](../../../csharp/overview.ru.md)
 - TypeScript поверх этого окружения: [TypeScript](../../../typescript/overview.ru.md)
