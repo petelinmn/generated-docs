@@ -8,7 +8,7 @@ slug: 06-dead-lettering-and-retries
 part: 2
 tags: [rabbitmq, dead-letter-exchange, x-death, retry, poison-message]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Квиз: dead-lettering и повторы
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** В DLX попадают отклонённые, истёкшие и вытесненные сообщения очереди. Это обычный обменник: он не хранит всё подряд, не удаляет очереди и не является их типом.
 → [Базовая теория](basics.ru.md#зачем-нужен-dead-lettering)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Брокер сам ведёт заголовок `x-death` с очередью, причиной и счётчиком. Остальные имена брокером не заполняются.
 → [Основы](basics.ru.md#отклонённое-сообщение)
 
 </details>

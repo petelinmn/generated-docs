@@ -8,7 +8,7 @@ slug: 07-tool-use
 part: 1
 tags: [claude, tool-use, tool-choice, parallel-tool-calls]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Квиз: tool use
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**A.**
+**A.** Это структурный сигнал: причина остановки `tool_use` и блоки с именем и аргументами. По словам в тексте и HTTP-коду судить нельзя, а `end_turn` означает, что модель закончила ответ.
 → [Базовая теория](basics.ru.md#цикл-из-четырёх-шагов)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Кэш строится по иерархии `tools` → `system` → `messages`, и смена `tool_choice` затрагивает только уровень сообщений. Поэтому она не бесследна, но и не сбрасывает всё и не отключает кэширование.
 → [Подвох 5](expert.ru.md#5-tool_choice-и-кэш)
 
 </details>

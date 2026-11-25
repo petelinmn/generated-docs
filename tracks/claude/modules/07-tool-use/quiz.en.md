@@ -8,7 +8,7 @@ slug: 07-tool-use
 part: 1
 tags: [claude, tool-use, tool-choice, parallel-tool-calls]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: tool use
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** This is the structured signal: stop reason `tool_use` plus blocks with name and arguments. Words in the text or an HTTP code tell nothing, and `end_turn` means the model has finished.
 → [Basic theory](basics.en.md#the-loop-in-four-steps)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The cache follows the `tools` → `system` → `messages` hierarchy, and changing `tool_choice` affects only the message level. So it is not free, yet it neither drops everything nor disables caching.
 → [Gotcha 5](expert.en.md#5-tool_choice-and-the-cache)
 
 </details>

@@ -8,7 +8,7 @@ slug: 04-structured-output
 part: 1
 tags: [claude, structured-outputs, json-schema, pydantic, strict-tool-use]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: structured outputs
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `parse` returns a validated model instance in `parsed_output`. `content[0].text` is the raw JSON string you would parse yourself; `output` and `json()` are not the way to get it.
 → [Basic theory](basics.en.md#messagesparse-and-pydantic)
 
 </details>

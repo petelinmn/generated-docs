@@ -8,7 +8,7 @@ slug: 07-replication-and-availability
 part: 2
 tags: [kafka, replication, isr, min-insync-replicas, leader-election]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: replication and availability
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The leader takes writes and by default serves reads, while followers copy it. The controller manages metadata and no data flows through it.
 → [Basics](basics.en.md#replication)
 
 </details>
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The ISR is the set of a partition's replicas that are sufficiently caught up. It is not all brokers, anything on disk or another data centre.
 → [Basics](basics.en.md#replication)
 
 </details>
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** One replica is below the required two, so no acknowledgement comes and the client eventually gets a delivery timeout. Nothing is silently lost or sent to another cluster.
 → [Basics](basics.en.md#acks-and-mininsyncreplicas)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `min.insync.replicas` applies only to `acks=all`. The leader acknowledges alone, and until replicas return there is a single copy.
 → [Basics](basics.en.md#acks-and-mininsyncreplicas)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Creating a topic changes metadata, and one vote in three is no quorum. The topic does not appear even with a lower RF, and permissions are not the issue.
 → [Advanced theory](advanced.en.md#the-controller-quorum)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** This command lists partitions whose ISR is smaller than the replica set. A topic list, disk size or consumer count does not reveal it.
 → [Advanced theory](advanced.en.md#watching-the-state)
 
 </details>
@@ -163,7 +163,7 @@ With `min.insync.replicas=2`, after two brokers are lost writes stop (`_MSG_TIME
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A combined node is both broker and controller, so losing two removes the voting majority too. Data on the surviving node remains, but the cluster does not rebuild itself.
 → [Gotcha 4](expert.en.md#4-metadata-needs-a-controller-quorum)
 
 </details>

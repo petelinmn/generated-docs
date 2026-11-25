@@ -8,7 +8,7 @@ slug: 03-queues-and-delivery
 part: 1
 tags: [rabbitmq, queue, acknowledgement, prefetch, durability, message-ttl]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Квиз: очереди и доставка
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** `requeue=True` возвращает сообщение для повторной доставки. Отбрасывание — это `requeue=False`, подтверждение делает `basic_ack`, канал остаётся открытым.
 → [Базовая теория](basics.ru.md#ack-nack-reject)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Prefetch ограничивает, сколько сообщений брокер отдаст потребителю без подтверждения. Размер очереди, скорость публикации и число потребителей он не задаёт.
 → [Базовая теория](basics.ru.md#prefetch-и-справедливость)
 
 </details>
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** При двух TTL действует меньший. Значения не складываются и не отменяют друг друга.
 → [Продвинутая теория](advanced.ru.md#ttl-сообщений)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Эксклюзивная очередь принадлежит объявившему соединению, остальным брокер отказывает. Она не разделяется, не дублируется и существует, поэтому это не 404.
 → [Продвинутая теория](advanced.ru.md#exclusive-и-auto-delete-очереди)
 
 </details>

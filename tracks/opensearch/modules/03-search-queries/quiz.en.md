@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `match` analyses the query like the field and finds a word inside text. `term` looks up an exact unanalysed term, `ids` matches identifiers, and `exists` only checks the field is present.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Clauses in `filter` select documents without scoring and can be cached. `must` and `should` affect the score, and `highlight` only marks matches.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The default `size` is 10; get more with a larger `size` or pagination. All documents are never returned at once.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** With a `filter` or `must` present, `should` is optional and only adds score to documents that match it. It is not an error, and the clause is not ignored.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, B, D.**
+**A, B, D.** `search_after` continues from the last sort values, so it needs a sort and is not bound by the 10,000 window; a PIT freezes the view. It cannot jump to an arbitrary page.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** idf grows the fewer documents contain the term. tf is frequency within a document, and `k1` and `b` tune saturation and length normalisation.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** BM25 statistics are computed per shard by default and differ between shards. There is no randomness, and neither `_source` nor `_id` is part of the formula.
 → [Expert theory](expert.en.md)
 
 </details>

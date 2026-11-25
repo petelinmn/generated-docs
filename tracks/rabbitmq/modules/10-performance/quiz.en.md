@@ -8,7 +8,7 @@ slug: 10-performance
 part: 3
 tags: [rabbitmq, performance, flow-control, prefetch, publisher-confirms]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: flow control and performance
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Large messages take longer to move and store, so fewer pass per second, while lower per-byte overhead raises throughput in MB.
 → [Basics](basics.en.md#message-size)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Without confirms the publisher never pauses for an answer, nor knows whether the broker took the message. The broker is no faster, nothing is compressed and disk writes are not disabled.
 → [Basics](basics.en.md#publishing)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A broker moves messages rather than files: store the object elsewhere and send a reference. Huge bodies or tiny fragments burden it, and prefetch does not change size.
 → [Basics](basics.en.md#message-size)
 
 </details>
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `multiple=True` acknowledges every outstanding message on the channel up to the tag, saving frames. It acknowledges rather than rejects, and prefetch is unchanged.
 → [Advanced theory](advanced.en.md#multiple-acks)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The reason names the resource that triggered: for disk it is `low on disk`. `low on memory` is for memory.
 → [Advanced theory](advanced.en.md#the-disk-alarm)
 
 </details>

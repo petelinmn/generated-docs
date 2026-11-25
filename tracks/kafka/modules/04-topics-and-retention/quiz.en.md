@@ -8,7 +8,7 @@ slug: 04-topics-and-retention
 part: 1
 tags: [kafka, retention, log-compaction, tombstone, segment]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: topics, retention and compaction
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The broker removes old data under its retention policy, whole segments at a time. Reading or committing deletes nothing, and neither does the producer.
 → [Basics](basics.en.md#retention)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The command removes everything before the given offset by raising `low_watermark`. It does not delete a single record or the topic, and copies nothing.
 → [Basics](basics.en.md#deleting-records-by-hand)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** The broker accepts no segment smaller than 1 MiB. Smaller values are rejected, so there is a limit.
 → [Basics](basics.en.md#a-segment-size-limit)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** A tombstone is a record with the key and a null value; compaction then drops the key. Deleting a partition removes everything, an empty key is a different key, and `group.id` changes no data.
 → [Advanced theory](advanced.en.md#tombstones)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Lookup by time returns the earliest offset whose timestamp is at or after the given one. It is neither the log end nor the previous record.
 → [Basics](basics.en.md#searching-by-time)
 
 </details>
@@ -163,7 +163,7 @@ Whole segments are deleted, and a segment closes by size or `segment.ms`; in the
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A null value is legal in a compacted topic and means the key is deleted. The consumer must remove it from its state; always skipping it leaves stale data, and nothing is corrupted.
 → [Gotcha 5](expert.en.md#5-tombstones-must-be-handled)
 
 </details>

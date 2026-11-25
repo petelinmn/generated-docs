@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Yellow means all data is available but redundancy is incomplete. Unavailable data is red, and read-only mode is not what the status shows.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Replicas can be added or removed at any time. The primary count is fixed at creation; changing it takes split, shrink or reindex.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Replicas are per primary shard: 3 × (1 + 2) = 9.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** By default allocation is delayed by one minute (`delayed_timeout`) so a restarting node can return without copying. No manual command is needed.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Two copies of a shard never share a node, so the fourth has nowhere to go. Data is available, hence yellow, and the setting is accepted without error.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Forced zone awareness refuses to pile every copy into the remaining zones: the copy meant for zone c waits. Data stays available, so the index is not red.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Routing computes the single shard holding documents with that value, and search goes only there, to any of its copies.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Excluding the node by name makes the cluster move its shards away. Refresh and close do not, and zero replicas only reduces safety.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, D.**
+**A, D.** Without a voting majority no cluster manager can be elected, so cluster state cannot change, though local shards may still serve reads. A lone node does not elect itself.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Search allows partial results by default: unavailable shards are skipped and the count may be low. Check `_shards.failed` and the health status.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Shrink needs a divisor of the original count: for 4 that is 2 or 1. Three does not divide it, and going to 8 is a split.
 → [Expert theory](expert.en.md)
 
 </details>

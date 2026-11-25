@@ -8,7 +8,7 @@ slug: 03-prompt-engineering
 part: 1
 tags: [claude, prompt-engineering, xml-tags, few-shot, long-context, prefill]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Квиз: prompt engineering
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Коллега без контекста видит то же, что и модель: только сам промпт. Прогон на трёх моделях, подсчёт слов и вежливость не показывают, чего в тексте не хватает.
 → [Базовая теория](basics.ru.md#ясные-и-прямые-инструкции)
 
 </details>

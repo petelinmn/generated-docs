@@ -8,7 +8,7 @@ slug: 06-schemas-and-serialization
 part: 2
 tags: [kafka, schema-registry, avro, compatibility, serialization]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: schemas and serialization
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** To the broker a value is opaque bytes. Types and format are an agreement between clients; JSON is not required and no schema is attached automatically.
 → [Basics](basics.en.md#why-schemas)
 
 </details>
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The Confluent wire format puts a zero byte and the registry's schema ID before the data. There is no topic name, length or checksum there.
 → [Basics](basics.en.md#the-record-format-with-a-registry)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The default strategy is the topic name plus `-value` (`-key` for keys). The other patterns are not defaults.
 → [Basics](basics.en.md#the-record-format-with-a-registry)
 
 </details>
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Under `BACKWARD` the new schema must read old data, and without a default the field cannot be filled. The registry answers with a conflict, neither accepting nor failing internally.
 → [Advanced theory](advanced.en.md#schema-evolution-and-compatibility)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** When the writer lacked the field, the reader fills it with its schema's default. There is no error, and neither `None` nor an empty string replaces `USD`.
 → [Advanced theory](advanced.en.md#what-readers-with-different-schemas-see)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Fields unknown to the reader's schema are skipped and the rest is read. That is forward compatibility: no error and no empty record.
 → [Advanced theory](advanced.en.md#what-readers-with-different-schemas-see)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The method only asks the registry whether the schema is compatible. It registers and deletes nothing and changes no settings.
 → [Advanced theory](advanced.en.md#schema-evolution-and-compatibility)
 
 </details>
@@ -163,7 +163,7 @@ Avro schema resolution matches fields by **name**: a rename is removing one fiel
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Any application can register a schema at run time, bypassing review and CI checks. Caching and speed are not the risk here.
 → [Gotcha 5](expert.en.md#5-autoregisterschemastrue-by-default)
 
 </details>

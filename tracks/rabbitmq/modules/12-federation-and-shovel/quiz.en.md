@@ -8,7 +8,7 @@ slug: 12-federation-and-shovel
 part: 3
 tags: [rabbitmq, shovel, federation, upstream, multi-datacenter]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: Federation and Shovel
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Both move messages between independent brokers and tolerate unreliable links. They do not form a cluster, and TLS or queue speed are separate matters.
 → [Basics](basics.en.md#why-link-brokers)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `shovel_status` shows each shovel and its state. The other commands concern exchanges, node maintenance and the cluster.
 → [Advanced theory](advanced.en.md#managing-a-shovel)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Federation is configured by a parameter giving the upstream and a policy selecting objects by pattern. It is not clustering, a queue type or a consumer setting.
 → [Basics](basics.en.md#federation-a-shared-exchange)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A dedicated least-privilege user limits damage if leaked, and TLS protects the link between sites. `guest`, an administrator or anonymous access are excessive or unsafe.
 → [Gotcha 7](expert.en.md#7-guest-for-the-link)
 
 </details>
@@ -163,7 +163,7 @@ A cluster is designed for a fast reliable network; to link data centres use inde
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A shovel recovers by itself, so without monitoring an outage goes unnoticed while queues grow. Prefetch or disabling the shovel detects nothing.
 → [Gotcha 4](expert.en.md#4-the-terminated-state)
 
 </details>

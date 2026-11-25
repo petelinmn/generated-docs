@@ -8,7 +8,7 @@ slug: 05-reliability
 part: 2
 tags: [rabbitmq, publisher-confirms, mandatory, transactions, idempotency]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Квиз: надёжность
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** `mandatory` не даёт молча потерять сообщение, которому некуда идти: оно возвращается издателю. Это не persistence и не подтверждения, и очереди оно не создаёт.
 → [Базовая теория](basics.ru.md#mandatory-и-basicreturn)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Повторы после сбоев защищают от потери ценой возможных дубликатов, поэтому обработчик делают идемпотентным. «Без дублей» и порядок эта гарантия не обещает.
 → [Базовая теория](basics.ru.md#что-гарантирует-минимум-один-раз)
 
 </details>

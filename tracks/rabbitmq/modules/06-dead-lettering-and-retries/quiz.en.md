@@ -8,7 +8,7 @@ slug: 06-dead-lettering-and-retries
 part: 2
 tags: [rabbitmq, dead-letter-exchange, x-death, retry, poison-message]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: dead-lettering and retries
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Rejected, expired and overflowed messages go to the DLX. It is an ordinary exchange: it does not store everything, delete queues or form a queue type.
 → [Basic theory](basics.en.md#why-dead-lettering)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The broker maintains the `x-death` header with queue, reason and count. It fills none of the other names.
 → [Basics](basics.en.md#a-rejected-message)
 
 </details>

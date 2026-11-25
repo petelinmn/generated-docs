@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** BM25 normalises by field length, so one occurrence in a short text weighs more. The scores are not always equal, and `_id` plays no part.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `^3` is a boost: the field's score is multiplied by three. It says nothing about occurrence counts, typos or versions.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** `boosting` lowers the score of documents matching `negative` but keeps them. `must_not` removes them, and `filter` and `post_filter` select rather than rank.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The default is `best_fields`, which takes the best field's score. The other types must be named.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** With no modifier, large `views` values multiply the score directly and swamp text relevance. Nothing is normalised, and it is not an error.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, D.**
+**A, D.** Search-time synonyms expand the query, so indexed data need not be rebuilt. They leave `_source` alone and need no new index per search.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `rescore` recomputes only the top window on each shard; the rest keep their original score and stay in the results.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Scores cannot be negative, so the request is rejected. No absolute value is taken and nothing is replaced with zero.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** `b` sets the strength of length normalisation; at zero, length is ignored. idf and term frequency remain.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `dfs_query_then_fetch` first gathers term statistics from all shards, making scores comparable. `explain` only explains, and refresh or replicas do not merge statistics.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Reciprocal rank is one over the position of the first relevant document: 1/3. It would be 0 outside the top three and 1 in first place.
 → [Expert theory](expert.en.md)
 
 </details>

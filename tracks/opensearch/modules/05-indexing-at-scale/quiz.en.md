@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `_bulk` sends many operations per round trip. One-by-one requests waste time on overhead, especially with `refresh=true`, and `_search` writes nothing.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** An alias is a name pointing at one or more indexes; it copies no data. Replicas and analysers are different things.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** `reindex` moves documents with their fields and IDs, while the destination with the right mapping and settings must be created beforehand.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A batch is not atomic: successful operations are already applied and the exception reports the failed ones. The server does not retry, cancel or queue anything.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A template applies only when an index is created. Existing indexes are not recreated or changed, now or after refresh.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, D.**
+**A, D.** With several indexes and no `is_write_index` the target is ambiguous, so writes are rejected while search covers both. The alias does not pick the newest one.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** A `_rollover` call is a one-off check and creates no background watcher. Automatic checking is the job of ISM.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Actions in one `_aliases` call apply atomically. Two calls, or delete then create, leave a gap, and a template does not switch aliases.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Without replicas each shard has one copy, and a node failure loses it. Mappings and aliases live in cluster state and do not depend on replicas.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `split` builds a new index from the source's segments, so writes to the source must be blocked. There is no need to delete the source or close the cluster.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `create` writes only missing documents, and `proceed` keeps conflicts on existing ones from stopping the task. Changed versions are not updated.
 → [Advanced theory](advanced.en.md)
 
 </details>

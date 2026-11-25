@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `-p` (print) runs the request and exits. `--bg` starts a background session, `claude mcp` manages servers, `-c` continues the last conversation.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** In `plan` mode Claude explores and proposes without editing. `acceptEdits` and `auto` do edit, and `bypassPermissions` removes the checks altogether.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** `/init` inspects the project and writes `CLAUDE.md`. `/clear` resets the conversation, `/context` shows window usage, `/model` switches models.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `Shift+Tab` cycles permission modes. Themes, models and sessions are changed by other means.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `deny` is evaluated first and wins regardless of order in the file, so neither `allow` nor a prompt applies.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** A denied permission is not a failed run: the tool is refused and `permission_denials` lists it. With `-p` there is nobody to ask, yet it does not hang.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, B.**
+**A, B.** Local project settings and command-line flags rank higher. The user file ranks below the project one, and `README.md` is not settings.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Checkpoints track edits made by the editing tools. Changes made only by Bash commands are not tracked; the conversation and Write and Edit changes can be restored.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** A compound command is checked part by part: `touch` is allowed, `rm` is not. A rule for the first part does not cover the whole line, and the syntax is valid.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Without `--verbose` the combination is an error. `--model`, `--bare` and `--continue` are not required for streaming output.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Running out of turns is an error: result subtype `error_max_turns`, exit code 1. It is not reported as success and the output is not empty.
 → [Expert theory](expert.en.md)
 
 </details>

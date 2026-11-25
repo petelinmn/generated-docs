@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Tools are model-controlled: the model decides when to call them. Users pick prompts, the application attaches resources, and the transport is configuration.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** With stdio the client spawns the server and talks over stdin and stdout. Streamable HTTP is for remote servers, the old HTTP+SSE transport is deprecated, and WebSocket is not a standard transport.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** stdout carries protocol messages, so a stray line breaks the exchange. stderr is free for logs. Debug output does not belong in the response body or `_meta`.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The SDK builds the JSON Schema from the parameter type hints. The README and file name play no part, and the model only reads the schema.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The connector reaches a remote server over HTTPS from the API side and supports only tools. It cannot reach a local stdio process and does not carry prompts or resources.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** This is an allowlist: disable by default and enable what you need. Changing the server is unnecessary and often impossible, `tool_choice: none` forbids every call, and a URL does not list tools.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `project` writes `.mcp.json` in the project root, which is committed. `local` (the default) and `user` live in your personal configuration.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C, D.**
+**C, D.** A server from a repository runs someone's code, so it needs approval, and tool names get a server prefix. It does not connect silently, and this is Claude Code behaviour rather than the API.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, D.**
+**A, D.** This revision made the protocol stateless: no handshake, and version and capabilities travel with every request. Sessions did not become mandatory, and `ping` was removed, not added.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The SDK withholds the text of an unexpected exception so internals do not leak; the client gets an error result with a generic message. The connection stays up, and neither traceback nor secret is sent.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `-32022` is the unsupported protocol version error. `-32700` is a parse error, `-32601` an unknown method, and 404 is an HTTP status rather than a JSON-RPC code.
 → [Expert theory](expert.en.md)
 
 </details>

@@ -8,7 +8,7 @@ slug: 04-messaging-patterns
 part: 1
 tags: [rabbitmq, work-queue, publish-subscribe, routing, rpc, reply-to]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Квиз: шаблоны обмена сообщениями
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Direct reply-to не хранит сообщения, подтверждать нечего, поэтому подписка требует `auto_ack=True`. Брокер сообщает об ошибке явно.
 → [Продвинутая теория](advanced.ru.md#direct-reply-to)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Если клиент уже перестал ждать, выполнять запрос позже незачем: сообщение истекает в очереди. Скорость сервера, persistence и длину очереди это свойство не задаёт.
 → [Продвинутая теория](advanced.ru.md#rpc-клиент-с-таймаутом)
 
 </details>

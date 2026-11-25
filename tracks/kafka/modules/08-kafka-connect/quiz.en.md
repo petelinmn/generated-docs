@@ -8,7 +8,7 @@ slug: 08-kafka-connect
 part: 2
 tags: [kafka-connect, connector, smt, rest-api]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: Kafka Connect
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A source brings data into Kafka; the opposite direction is a sink. Schemas and leader election are not connector jobs.
 → [Basics](basics.en.md#what-kafka-connect-is)
 
 </details>
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The REST API confirms a new resource with 201 Created. The other codes are not what this call returned.
 → [Basics](basics.en.md#a-source-a-file--a-topic)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The source follows the file and reads new lines as they come. The line is not lost, the connector keeps running and no restart is needed.
 → [Basics](basics.en.md#a-source-a-file--a-topic)
 
 </details>
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Pausing stops reading while the file position is kept, so after resuming the line is picked up once. The connector is not removed.
 → [Advanced theory](advanced.en.md#a-connectors-lifecycle)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Configuration is validated before creation: an error yields 400 with an explanation. No failed connector is created, and it is not a server error.
 → [Advanced theory](advanced.en.md#configuration-validation)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `HoistField` wraps the string into an object under `line`, then `InsertField` adds `origin`. The transforms run in order without error.
 → [Advanced theory](advanced.en.md#single-message-transforms-smt)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A converter turns Connect's internal representation into bytes and back. Encryption, partitioning and schema compatibility are not its job.
 → [Advanced theory](advanced.en.md#converters)
 
 </details>
@@ -163,7 +163,7 @@ One worker is a single point of failure, and internal topics with RF=1 lose stat
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** SMTs change one record at a time and keep no state. Aggregations and joins need a stream processor; more tasks or another converter will not provide them.
 → [Trade-offs](expert.en.md#trade-offs-and-alternatives)
 
 </details>

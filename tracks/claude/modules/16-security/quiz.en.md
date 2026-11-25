@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** The model produces them and any text it read can steer it, so check them like internet input. They deserve none of the trust of your code or configuration.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** The key belongs outside the code, readable only by the server process. A repository, page JavaScript and a system prompt can all be read by others.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** A model mistake in an irreversible action cannot be undone, so a person decides. A prompt description guarantees nothing, and speed only adds damage.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A leaked key works until disabled, so disable it at once. Waiting, changing models or clearing a cache does not do that.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A `tool_result` marks the text as data returned by a tool. In the system prompt it would gain instruction-level trust; tool names and `stop_sequences` are not for content.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, D.**
+**A, D.** No single measure is reliable, so combine labelling, screening and limited privileges. Web pages are a typical injection source.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** The sandbox runs on macOS, Linux and WSL2; native Windows gets no isolation although commands run. It is off by default, and Seatbelt is a macOS mechanism.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** The default is `global`. `us` must be requested, there is no `eu` value, and the key does not decide it.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Instead of a long-lived secret the application exchanges its identity provider's token for a temporary one. It affects neither price, ZDR nor encryption.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `workspace-evil` starts with `workspace` yet lies outside it; check containment of resolved paths. Speed and Python support are not the issue.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C, D.**
+**C, D.** Managed Agents and the MCP connector are not ZDR-eligible. The Messages API and token counting are.
 → [Expert theory](expert.en.md)
 
 </details>

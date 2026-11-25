@@ -8,7 +8,7 @@ slug: 02-producers
 part: 1
 tags: [kafka, producer, acks, partitioning, idempotence, compression]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: producers
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `acks=all` waits until the leader and all in-sync replicas have the record. No acknowledgement is `acks=0`, leader only is `acks=1`, and consumers play no part.
 → [Basics](basics.en.md#broker-acknowledgements-acks)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `produce` is asynchronous and only buffers the record; the outcome arrives in the callback, run from `poll` or `flush`. There is no special topic for it.
 → [Basics](basics.en.md#the-delivery-callback)
 
 </details>
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Idempotence requires `acks=all`, and the client rejects the explicit contradiction at construction. Nothing is silently disabled, and the broker is never involved.
 → [Advanced theory](advanced.en.md#the-idempotent-producer)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The default size limit is about 1 MB, and the client rejects an oversized record in `produce`. It is neither silently lost nor split.
 → [Basics](basics.en.md#errors)
 
 </details>

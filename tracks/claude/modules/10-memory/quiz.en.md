@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Auto memory is the notes Claude writes for itself while working. Administrators handle managed settings, git writes nothing, and what you write by hand is `CLAUDE.md`.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `CLAUDE.local.md` holds one developer's private instructions, so it goes into `.gitignore`. The other three are shared with the team and committed.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Only a permission rule is enforced by the program at tool call time. Text in `CLAUDE.md`, memory or a message is guidance to the model, not a guarantee.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Aim for under 200 lines: a long file costs context and is followed less well. There is no need to squeeze into 20, and the 25 KB threshold applies to loading `MEMORY.md`, not to `CLAUDE.md`.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A rule with `paths` loads on demand when Claude works with a matching file. Rules without `paths` load at start; it is not guaranteed to return after compaction, and `/memory` is not needed for it.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, D.**
+**A, D.** An `@path` inside code is plain text, and import depth is limited to four hops. Imported content costs context like any text, and relative paths resolve from the importing file.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** By default `AGENTS.md` is read only when there is no `CLAUDE.md` or `CLAUDE.local.md`. Here `CLAUDE.md` exists, so `AGENTS.md` is skipped.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** A session loads the first 200 lines of `MEMORY.md` or 25 KB, whichever comes first. The rest is read when needed.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** The content arrives as a message after the system prompt, so it is context rather than enforced configuration. It does not replace the system prompt and is neither a tool nor a header.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Block HTML comments are stripped before sending, which lets you leave notes for people at no token cost. They are not executed and raise no error.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `--bare` turns off automatic loading of instructions, project and user alike: nothing was loaded in the check.
 → [Expert theory](expert.en.md)
 
 </details>

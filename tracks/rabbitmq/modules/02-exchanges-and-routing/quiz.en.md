@@ -8,7 +8,7 @@ slug: 02-exchanges-and-routing
 part: 1
 tags: [rabbitmq, exchange, routing-key, topic-exchange, alternate-exchange]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: exchanges and routing
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `*` stands for exactly one dot-separated word. Any number of words, including none, is `#`.
 → [Basic theory](basics.en.md#topic)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The broker puts one copy into a queue however many of its bindings match. Binding order does not matter.
 → [Advanced theory](advanced.en.md#one-queue-several-matching-bindings)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A declaration with different parameters does not change an existing object: it is a channel error. A second exchange with the same name cannot exist.
 → [Gotcha 6](expert.en.md#6-mismatched-redeclaration)
 
 </details>

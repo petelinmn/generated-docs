@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `knn_vector` is a vector with the number of dimensions set in the mapping. It holds no text, hash or word list.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `k` sets how many neighbours to find and `size` how many to return. With one shard you get 2.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** The dimension must match exactly. The vector is neither padded nor truncated: the request fails.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The default is `l2`, Euclidean distance. Other metrics must be specified.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A filter inside `knn` applies while neighbours are searched. `post_filter` or an outer `bool` trims what was already found and may leave fewer than k; `aggs` does not filter hits.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Cosine similarity looks only at direction. `l2`, `l1` and inner product also depend on magnitude.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, B.**
+**A, B.** Reciprocal rank fusion sums contributions from positions in each list, with a default constant of 60. It needs no score normalisation, and combining several sub-queries is its point.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `script_score` with `knn_score` computes the distance to every selected document, an exact search. `knn` stays approximate at any `size`, and `match_all` or BM25 compute no neighbours.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** The pipeline is what combines and normalises scores; without it the results show internal markers and repeated documents. RRF does not switch itself on.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The estimate covers both the float values (`4*d` bytes) and graph links (`8*m` bytes) plus 10% overhead. Options missing a part underestimate memory.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `nmslib` is deprecated and new indexes cannot use it in 3.x. `faiss` and `lucene` are available.
 → [Expert theory](expert.en.md)
 
 </details>

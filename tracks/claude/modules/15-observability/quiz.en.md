@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** The `request-id` identifies the request on Anthropic's side. Prompt texts and IP addresses are unnecessary, and a key must never be shared.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Token consumption is in `usage`. `content` is the reply, `stop_details` explains the stop, `model` names the model.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** With caching `input_tokens` is only the part after the last breakpoint; writes and reads are counted separately and must be added. Output tokens are not input.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Texts may contain personal data and secrets, and logs persist and are widely readable. Model, stop reason and latency are safe and useful.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** This variable, together with exporter settings, enables the export. Nothing reaches your collector by default, and `--verbose` or `/cost` do not enable it.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Content is hidden by default; only `OTEL_LOG_USER_PROMPTS` reveals it. Neither a truncated text nor a hash is sent instead.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, B.**
+**A, B.** The event describes the request with measurements: tokens, cost, duration. It carries no file contents or keys.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** The Analytics API exposes organisation-wide data, so it needs an Admin key. A regular key is not enough, and OTel is a separate mechanism.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** In the check `DISABLE_TELEMETRY=1` did not stop the export to your own collector, which is configured separately. There was no startup error, and more than traces arrived.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** It exports full bodies, meaning the entire conversation. Use it only for debugging and with a protected collector.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Claude Code tracing produced interaction, model request and tool spans. There were no database or HTTP server spans, and it was not empty.
 → [Expert theory](expert.en.md)
 
 </details>

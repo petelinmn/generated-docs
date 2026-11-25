@@ -8,7 +8,7 @@ slug: 05-prompt-caching
 part: 1
 tags: [claude, prompt-caching, cache-control, cache-ttl, cost-optimization]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: prompt caching
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** One-hour entries must come earlier in the prefix than five-minute ones. The reverse order is not allowed, while mixing TTLs is.
 → [Advanced theory](advanced.en.md#the-order-and-mixing-of-ttls)
 
 </details>

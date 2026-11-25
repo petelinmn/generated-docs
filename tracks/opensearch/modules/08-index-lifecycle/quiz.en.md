@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** A stream organises data by time and requires `@timestamp`. Other names do not replace it without template configuration, and an `_id` is not required from you.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Everything new goes to the latest backing index, the write index. The document's date does not choose it, and nothing is copied to all indexes.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Through the stream name you can only append (`create`). Overwrite, delete and update by `_id` require addressing the backing index.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The stream needs its write index, so deleting it is refused: roll over first. The stream does not fall back to an older index.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** ISM checks indexes periodically, every 5 minutes by default, so actions are not instantaneous.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, D.**
+**A, D.** For a plain index ISM must know which alias to switch: the `rollover_alias` setting and the write alias itself. Neither `@timestamp` nor two replicas is needed.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** A managed index keeps the policy version it started with until you change it explicitly. It does not update itself, get deleted or fail.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Age is the index's age since creation. Last write time, field values and state entry are not what it measures.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** By default an action gets a few retries with growing delay: three, with exponential backoff. They are not endless.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Without `if_seq_no` and `if_primary_term` the request is treated as a create, and the policy exists: a conflict. Nothing is deleted or duplicated.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** You fix it in the specific backing index with a version check so no concurrent change is overwritten. `PUT` through the stream name is rejected, and rollover or deleting the stream fixes nothing.
 → [Expert theory](expert.en.md)
 
 </details>

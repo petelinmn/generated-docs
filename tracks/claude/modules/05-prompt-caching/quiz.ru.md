@@ -8,7 +8,7 @@ slug: 05-prompt-caching
 part: 1
 tags: [claude, prompt-caching, cache-control, cache-ttl, cost-optimization]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Квиз: prompt caching
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Записи с часовым TTL должны стоять в префиксе раньше пятиминутных. Обратный порядок не допускается, а смешивать разные TTL можно.
 → [Продвинутая теория](advanced.ru.md#порядок-и-смешивание-ttl)
 
 </details>

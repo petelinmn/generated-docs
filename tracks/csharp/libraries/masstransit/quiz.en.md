@@ -40,7 +40,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `Publish` fans an event out to every subscriber of the type, while `Send` delivers a command to one endpoint. Synchrony is not the difference: both are asynchronous.
 → [Basics](basics.en.md#publish-and-send)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The bus supports only asynchronous disposal, so a synchronous `using` throws at run time. It compiles, and the problem is not lost messages.
 → [Basics](basics.en.md#an-in-memory-bus)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Once retries are exhausted MassTransit publishes `Fault<T>` and moves the message to the error queue with exception details. It is neither deleted nor requeued; `_skipped` is for messages no consumer handles.
 → [Advanced](advanced.en.md#errors-faultt-and-the-_error-queue)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The client waits for a limited time and then throws. There is no empty or `null` response, and the wait is not endless.
 → [Advanced](advanced.en.md#request-and-response)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The state machine rejects an event with no transition in the current state: an exception and a `Fault`, with the instance left as it was. The message does not vanish silently, and the saga neither moves nor gets deleted.
 → [Sagas](expert.en.md#sagas-and-state-machines)
 
 </details>

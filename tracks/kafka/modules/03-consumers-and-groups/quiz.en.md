@@ -8,7 +8,7 @@ slug: 03-consumers-and-groups
 part: 1
 tags: [kafka, consumer, consumer-group, rebalance, offset-commit]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: consumers and groups
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A missing position is the special value `-1001`. Zero would be a real position, no exception is raised, and the log end is not substituted.
 → [Basics](basics.en.md#committing-offsets)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The client treats processing as stuck and leaves the group, which the next `poll` reports. Nothing is committed and no partitions are gained.
 → [Advanced theory](advanced.en.md#member-liveness-maxpollintervalms)
 
 </details>
@@ -169,7 +169,7 @@ The commit comes **before** processing: if `process` fails the record counts as 
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The default interval is 5 minutes, shorter than the processing time, so the group considers the consumer gone. Kafka does not wait forever, and more partitions or compression do not shorten processing.
 → [Gotcha 5](expert.en.md#5-long-processing--_max_poll_exceeded)
 
 </details>

@@ -8,7 +8,7 @@ slug: 03-prompt-engineering
 part: 1
 tags: [claude, prompt-engineering, xml-tags, few-shot, long-context, prefill]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: prompt engineering
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A colleague with no context sees what the model sees: only the prompt. Running three models, counting words or saying "please" does not reveal what is missing.
 → [Basic theory](basics.en.md#clear-and-direct-instructions)
 
 </details>

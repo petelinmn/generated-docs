@@ -8,7 +8,7 @@ slug: 05-reliability
 part: 2
 tags: [rabbitmq, publisher-confirms, mandatory, transactions, idempotency]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: reliability
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `mandatory` stops an unroutable message from vanishing silently: it is returned to the publisher. It is not persistence or confirms, and creates no queue.
 → [Basic theory](basics.en.md#mandatory-and-basicreturn)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Retrying after failures prevents loss at the price of possible duplicates, so make handlers idempotent. The guarantee promises neither uniqueness nor order.
 → [Basic theory](basics.en.md#what-at-least-once-guarantees)
 
 </details>

@@ -8,7 +8,7 @@ slug: 04-messaging-patterns
 part: 1
 tags: [rabbitmq, work-queue, publish-subscribe, routing, rpc, reply-to]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: messaging patterns
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Direct reply-to stores no messages, so there is nothing to acknowledge and the subscription needs `auto_ack=True`. The broker reports the error explicitly.
 → [Advanced theory](advanced.en.md#direct-reply-to)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Once the client has stopped waiting there is no point executing later: the message expires in the queue. The property sets neither server speed, persistence nor queue length.
 → [Advanced theory](advanced.en.md#an-rpc-client-with-a-timeout)
 
 </details>

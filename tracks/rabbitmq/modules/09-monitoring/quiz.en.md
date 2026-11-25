@@ -8,7 +8,7 @@ slug: 09-monitoring
 part: 2
 tags: [rabbitmq, monitoring, prometheus, alarms, management-api]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: monitoring and operations
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A slash separates path segments, so the name `/` is encoded as `%2F`. The broker will not map the other forms to that vhost.
 → [Basics](basics.en.md#the-management-http-api)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The name tells you whose connection it is. It affects neither speed nor TLS and is optional.
 → [Basics](basics.en.md#connections-channels-consumers)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `list_queues` with these columns prints message and consumer counts. The other commands show plugins, the cluster and node health.
 → [Basics](basics.en.md#the-command-line)
 
 </details>
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Metrics are served on 15692: `/metrics` aggregates per node, `/metrics/per-object` details each object and is heavier. 15672 is management and 5672 is AMQP.
 → [Advanced theory](advanced.en.md#prometheus)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A health check returns 503 while an alarm is active so that load balancers and monitoring react. 200 would mean no alarms, and path and access are fine.
 → [Advanced theory](advanced.en.md#memory-and-disk-alarms)
 
 </details>

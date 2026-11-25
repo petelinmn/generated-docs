@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** A subagent works in its own window and returns only a report, which keeps the main context clean. Its history and system prompt do not come back.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Project subagents are defined in `.claude/agents/`. `skills` and `hooks` belong to other mechanisms, and an `agents.json` file is not where they live.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** A regular subagent starts with a clean window and knows only what its task and definition give it. `model: inherit` picks the model, not the history.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `Explore` is the built-in read-only search agent. `reviewer` is a custom example, `Edit` is a tool, and `Deploy` is not built in.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** An `Agent(name)` deny rule blocks that agent. Removing its description or changing the model is not a ban, and emptying the main agent's `tools` would disable everything else.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** An empty source list means no settings or instructions are read from disk. It does not disable tools, the network or hooks defined in code.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Declaring the tool is not enough: calls need permission until the full name is in `allowed_tools`. `max_turns` and `setting_sources` grant nothing.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C, D.**
+**C, D.** Managed Agents is an Anthropic-hosted loop and sandbox, in beta. It is not ZDR-eligible, and an agent is created once and reused across sessions.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** `Explore` (like the built-in `Plan`) does not get `CLAUDE.md`, so pass project rules in the task. `general-purpose` and custom agents receive it.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A subagent's denial lands in the run's list. It is not signalled by exit code 2, and nothing is written to the agent file.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Nesting is allowed up to three levels below the main conversation by default: possible, but not unlimited.
 → [Expert theory](expert.en.md)
 
 </details>

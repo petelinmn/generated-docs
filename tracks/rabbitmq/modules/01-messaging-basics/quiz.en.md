@@ -8,7 +8,7 @@ slug: 01-messaging-basics
 part: 1
 tags: [rabbitmq, amqp, queue, exchange, channel, acknowledgement]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: messaging and the AMQP model
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A connection is expensive and usually one per application or role, while channels are multiplexed inside it. They are not synonyms, not the other way round and not a publish/consume split.
 → [Basic theory](basics.en.md#connection-and-channel)
 
 </details>
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Per-message TTL is the `expiration` property, a string of milliseconds. There is no `ttl` property, `timestamp` is the creation time, and the broker reads no TTL header.
 → [Advanced theory](advanced.en.md#message-properties)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Without confirms, publishing does not wait for the broker: you cannot conclude routing or delivery. Persistence is a separate property.
 → [Advanced theory](advanced.en.md#errors-are-asynchronous)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The client returns before the broker has processed the message and updated the counter. It is not a pika bug, an overflow or an effect of persistence.
 → [Gotcha 4](expert.en.md#4-the-count-lags)
 
 </details>

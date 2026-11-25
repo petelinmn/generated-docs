@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** The window holds the system prompt, tools, the whole history and what the model is generating. Caching lowers the price but frees no space.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** When the input alone does not fit, the API rejects the request. It neither truncates nor summarises silently, and `end_turn` belongs to a successful reply.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Token counting is free but is an estimate that may differ slightly from actual use. It is not a beta and generates nothing.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Every `tool_use` needs its `tool_result`; cutting by count can leave half a pair and the API returns an error. Neither window nor model changes.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** This request only compacts: the reply is a `compaction` block with the summary, which you put into history. It does not answer the question, count tokens or return a cleaned history.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** The default trigger is 150,000 input tokens, an absolute number rather than a share of the window. The other values listed are not the default.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, B.**
+**A, B.** Clearing happens on the API side before the model sees the input, so you delete nothing yourself. It changes the prefix and breaks the cache; by default the 3 most recent tool uses are kept, not 10.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Your text replaces the default summarisation instruction entirely rather than adding to it. The field sets neither the conversation's system prompt nor limits.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** On-demand compaction uses `compact-2026-09-04`. `compact-2026-01-12` is for threshold compaction and `context-management-2025-06-27` for clearing tool results.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Without a `compaction` block there is no summary, so replacing or deleting history would lose context. Endless retries only spend money.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C, D.**
+**C, D.** Opus 5.5 and Haiku 5.5 have a 1M window. Haiku 4.5 has 200k, so "any model" is wrong.
 → [Expert theory](expert.en.md)
 
 </details>

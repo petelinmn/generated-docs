@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** An eval is a repeatable quality check: inputs, a grading rule and a pass bar. A request log does not say whether an answer is good, and Python's `eval` or a price plan are unrelated.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** A code comparison is fast, free and deterministic. Models and people are for judgements code cannot express.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** A criterion must be measurable and checked on data the prompt was not tuned on. "Good", "fast" and the author's opinion give no clear verdict.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The average shows the level; individual failures show the cause, an input class or a flawed instruction. The average is computable, and cost is not the point.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B, C.**
+**B, C.** 429 and 529 are transient, so the SDK retries them with backoff. 400 and 401 are request and key errors that would only repeat.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** `max_retries` counts retries beyond the first attempt: 1 + 2 = 3. They are not unlimited.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** A refusal is a successful HTTP reply, so you must check `stop_reason`. It raises no exception and is not a 403 or 429.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C, D.**
+**C, D.** Batches cost half and results come in any order, so match them by `custom_id`. Streaming is unsupported and no quick turnaround is promised.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Cache reads do not consume the input-token limit by default. Regular input and cache writes do.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `overloaded_error` is a 529. 429 means your own limit, and 502 and 503 are not tied to this type.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Access returns next month or after raising the limit. It is a 429, not a 400; the SDK retries in vain, and a second changes nothing.
 → [Expert theory](expert.en.md)
 
 </details>

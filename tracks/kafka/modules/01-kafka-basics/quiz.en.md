@@ -8,7 +8,7 @@ slug: 01-kafka-basics
 part: 1
 tags: [kafka, topic, partition, offset, consumer-group]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: Kafka basics
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** An offset is the record's position number in its partition's log. It is not a size or a time, and the partition number is a separate value.
 → [Basics](basics.en.md#a-log-instead-of-a-queue)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A partition is an ordered log, so order is guaranteed within it. There is no common order across partitions or topics, yet saying there is no order at all is wrong.
 → [Basics](basics.en.md#a-topic-and-partitions)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `create_topics` returns futures; a successful `result()` carries no value, hence `None`. Failures, including "already exists", raise an exception.
 → [Basics](basics.en.md#a-topic-and-partitions)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Lag is how many records the group still has to read: log end minus committed position. It is not network latency, a consumer count or a size.
 → [Advanced theory](advanced.en.md#consumer-group-positions)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Partitions can only be added: shrinking would discard or move records, so the broker refuses, even for an empty topic. `--delete` removes the whole topic.
 → [Gotcha 1](expert.en.md#1-partitions-cannot-be-reduced)
 
 </details>
@@ -167,7 +167,7 @@ There is no `flush()`: the record is only in the client buffer and the program m
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `auto.offset.reset` applies only when there is no committed position. The group has one, at the end, so there is nothing to read and no error.
 → [Advanced theory](advanced.en.md#consumer-group-positions)
 
 </details>

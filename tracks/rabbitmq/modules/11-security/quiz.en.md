@@ -8,7 +8,7 @@ slug: 11-security
 part: 3
 tags: [rabbitmq, security, permissions, tls, vhost]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: security
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Permissions are three resource-name patterns per vhost. A password is authentication, and a tag grants management access without replacing permissions.
 → [Basics](basics.en.md#three-levels-of-access)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A vhost is a separate namespace of queues, exchanges and permissions. Encryption, speed and password storage are unrelated.
 → [Basics](basics.en.md#three-levels-of-access)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Hostname verification guards against impersonation, so a mismatch aborts the handshake. No certificate is reissued and there is no fallback to plaintext.
 → [Advanced theory](advanced.en.md#the-client)
 
 </details>

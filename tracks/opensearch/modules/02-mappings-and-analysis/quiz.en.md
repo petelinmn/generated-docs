@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** The value arrived as a quoted string, and default dynamic mapping turns a string into `text` with a `keyword` subfield. It does not become a number, and it is not a date.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** An existing field's type cannot change because data is already indexed the old way. You need a new index and a `reindex`; closing, `put_mapping` and refresh do not help.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, B.**
+**A, B.** With `false` the document is accepted and kept whole in `_source`, but the unknown field is not mapped or searchable. Rejecting the document is what `strict` does.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `nested` stores each array element separately, so conditions apply within one element. `object` flattens the array and mixes values, and `text` and `keyword` do not describe objects.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Doc values are a columnar document-to-value structure used for sorting and aggregations. The inverted index answers which documents hold a term; the translog is for durability and norms for scoring.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** Values over the threshold are not indexed, yet the document is accepted and `_source` keeps them in full. Nothing is truncated or rejected.
 → [Expert theory](expert.en.md)
 
 </details>

@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** The program itself runs a hook on its event. A line in `CLAUDE.md`, a tool description or a skill only influences what the model decides.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** A skill is a directory with `SKILL.md` under `.claude/skills/`. Claude Code does not recognise the other paths as skills.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** Exit code 2 blocks: the call is cancelled and the model gets stderr. 0 is success and other codes are non-blocking errors.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -69,7 +69,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Only the listing description stays in context so the model knows when to use the skill. The body is read on invocation, attached files when needed.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** This field stops the model from invoking the skill. `user-invocable: false` does the opposite and hides it from people; `allowed-tools` and `context: fork` concern permissions and where it runs.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** A hook's `allow` does not override `deny`: deny rules always apply. It is neither a configuration error nor a reason to prompt.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** Arguments are zero-based and quotes are honoured, so the first one is the whole `Ann Lee`. The command name is not an argument, and `x` is `$1`.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C, D.**
+**C, D.** For this event stdout on exit 0 is added to context, and exit 2 rejects the prompt itself. The prompt is not replaced, and the hook fires before processing.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** A timeout is a non-blocking failure, so the action proceeds. A guard hook must be fast and cannot rely on a hang to stop anything.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -153,7 +153,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The flag says Claude is already continuing because of a `Stop` hook; without the check it can block stopping again and again. It does not identify the model and is not a required reply field.
 → [Expert theory](expert.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `PreToolUse` fires before the call and can prevent it; `PostToolUse` fires after the action has happened. It rolls nothing back.
 → [Expert theory](expert.en.md)
 
 </details>

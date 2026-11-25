@@ -83,7 +83,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A partial update with the same value changes nothing, so OpenSearch answers `noop` and keeps the version. It is neither a creation nor a 409 conflict.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, C, D.**
+**A, C, D.** `_bulk` is a batch of independent operations in one request: each has its own status and there are fewer round trips. It is not a transaction, so one failure rolls nothing back.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** The replica count is a dynamic setting. The primary shard count, a field's type and the index name cannot be changed in place.
 → [Advanced theory](advanced.en.md)
 
 </details>

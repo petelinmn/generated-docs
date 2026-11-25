@@ -8,7 +8,7 @@ slug: 03-queues-and-delivery
 part: 1
 tags: [rabbitmq, queue, acknowledgement, prefetch, durability, message-ttl]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: queues and delivery
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** `requeue=True` returns the message for redelivery. Discarding is `requeue=False`, acknowledging is `basic_ack`, and the channel stays open.
 → [Basic theory](basics.en.md#ack-nack-reject)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Prefetch limits how many unacknowledged messages the broker hands a consumer. It sets neither queue size, publish rate nor consumer count.
 → [Basic theory](basics.en.md#prefetch-and-fairness)
 
 </details>
@@ -82,7 +82,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** With two TTLs the smaller one applies. They are not added and do not cancel each other.
 → [Advanced theory](advanced.en.md#message-ttl)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** An exclusive queue belongs to the declaring connection and others are refused. It is not shared or duplicated, and it exists, so this is not a 404.
 → [Advanced theory](advanced.en.md#exclusive-and-auto-delete-queues)
 
 </details>

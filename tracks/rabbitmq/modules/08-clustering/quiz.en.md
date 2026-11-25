@@ -8,7 +8,7 @@ slug: 08-clustering
 part: 2
 tags: [rabbitmq, cluster, quorum, high-availability, maintenance-mode]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: clustering and high availability
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** A quorum queue is Raft-replicated and works while a majority is up. Classic and exclusive queues live on one node, and durable only means it survives on that node.
 → [Basics](basics.en.md#a-node-failure)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Stop the node's application, join, then start it again. The join does not work in another order.
 → [Basics](basics.en.md#what-a-cluster-is)
 
 </details>
@@ -138,7 +138,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The command shows the Raft state of a given quorum queue. Memory, connections and policies are inspected with other commands.
 → [Advanced theory](advanced.en.md#replica-state)
 
 </details>

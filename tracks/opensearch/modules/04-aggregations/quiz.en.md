@@ -27,7 +27,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** `size` controls how many documents come back; at 0 you get only aggregation results, which is cheaper. It does not affect buckets or counts.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -41,7 +41,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `keyword` has doc values and keeps the whole value. A default `text` field has none, and you cannot aggregate on `_source` or an arbitrary object.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -55,7 +55,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** `terms` returns 10 buckets by default. To get every value use a larger `size` or `composite`.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -97,7 +97,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A, D.**
+**A, D.** `global` steps outside the query and covers all documents, and can hold sub-aggregations. Query filters do not apply to it, and it returns no documents.
 → [Fundamentals](basics.en.md)
 
 </details>
@@ -111,7 +111,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** `composite` pages through every combination. `terms` with `size: 10` gives only the top values, `top_hits` returns documents and `histogram` buckets numbers by interval.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -125,7 +125,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** A larger `shard_size` makes each shard send more candidates, so the merged top is more accurate. Replicas and refresh do not affect accuracy, and `size: 0` does not refine counts.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -139,7 +139,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**D.**
+**D.** `bucket_selector` is a pipeline aggregation that filters computed buckets. Query filters and `post_filter` work on documents, and `missing` collects documents lacking the field.
 → [Advanced theory](advanced.en.md)
 
 </details>
@@ -167,7 +167,7 @@ updated: 2026-11-25
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** By default a gap is skipped, so derivatives that depend on the missing value are not produced. It is not an error, the bucket stays, and treating it as zero needs another policy.
 → [Advanced theory](advanced.en.md)
 
 </details>

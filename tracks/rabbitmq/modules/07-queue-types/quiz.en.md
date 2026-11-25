@@ -8,7 +8,7 @@ slug: 07-queue-types
 part: 2
 tags: [rabbitmq, queue-types, quorum-queue, stream, delivery-limit]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: queue types
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**C.**
+**C.** With no type given and the default unchanged, you get a classic queue. Quorum and stream must be requested, and the argument is optional.
 → [Basics](basics.en.md#three-queue-types)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The type is immutable: redeclaring with another one is a channel error, neither a conversion nor silently ignored. Create a new queue and migrate.
 → [Basics](basics.en.md#limits-of-quorum-queues-and-streams)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Streams require a prefetch; without it the broker rejects the subscription. It does not choose a value for you.
 → [Basics](basics.en.md#stream-a-log-instead-of-a-queue)
 
 </details>

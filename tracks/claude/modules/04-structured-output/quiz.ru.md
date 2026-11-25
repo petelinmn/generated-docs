@@ -8,7 +8,7 @@ slug: 04-structured-output
 part: 1
 tags: [claude, structured-outputs, json-schema, pydantic, strict-tool-use]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Квиз: structured outputs
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** `parse` возвращает уже проверенный экземпляр модели в `parsed_output`. `content[0].text` — это строка JSON, которую пришлось бы разбирать самому; `output` и `json()` для этого не служат.
 → [Базовая теория](basics.ru.md#messagesparse-и-pydantic)
 
 </details>

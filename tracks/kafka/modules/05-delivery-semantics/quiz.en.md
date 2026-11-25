@@ -8,7 +8,7 @@ slug: 05-delivery-semantics
 part: 2
 tags: [kafka, exactly-once, transactions, isolation-level, idempotence]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Quiz: delivery semantics
@@ -40,7 +40,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**A.**
+**A.** With `read_committed`, records of aborted transactions are not delivered. The setting is unrelated to encryption or speed.
 → [Basics](basics.en.md#producer-transactions)
 
 </details>
@@ -54,7 +54,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Idempotence removes duplicates caused by the same producer's retries within a partition. Multi-topic atomicity needs transactions, and external effects and offsets are not covered.
 → [Basics](basics.en.md#the-idempotent-producer--the-first-step)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The offset joins the transaction and commits with the output or not at all. Separate commits and auto-commit leave a window between the two actions.
 → [Advanced theory](advanced.en.md#consume-process-produce-exactly-once)
 
 </details>
@@ -110,7 +110,7 @@ updated: 2026-11-24
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** The new instance with the same `transactional.id` bumps the epoch and fences the old one so a zombie cannot write. The old producer cannot continue and does not become a reader.
 → [Advanced theory](advanced.en.md#zombies-and-fencing)
 
 </details>
@@ -169,7 +169,7 @@ Writing the result and committing the position are not atomic: on a failure betw
 
 <details><summary>Answer</summary>
 
-**B.**
+**B.** Kafka transactions cover only Kafka; an email is already sent even if the transaction aborts. Compression and `acks=0` do not help.
 → [Gotcha 6](expert.en.md#6-external-effects)
 
 </details>

@@ -8,7 +8,7 @@ slug: 07-queue-types
 part: 2
 tags: [rabbitmq, queue-types, quorum-queue, stream, delivery-limit]
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Квиз: типы очередей
@@ -26,7 +26,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**C.**
+**C.** Если тип не указан и значение по умолчанию не меняли, создаётся classic. Quorum и stream запрашивают явно, и аргумент не обязателен.
 → [Основы](basics.ru.md#три-типа-очередей)
 
 </details>
@@ -68,7 +68,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Тип неизменяем: повторное объявление с другим вызывает ошибку канала, а не преобразование и не молчаливое игнорирование. Нужна новая очередь и перенос.
 → [Основы](basics.ru.md#ограничения-quorum-очередей-и-stream)
 
 </details>
@@ -96,7 +96,7 @@ updated: 2026-11-24
 
 <details><summary>Ответ</summary>
 
-**B.**
+**B.** Для stream prefetch обязателен, без него брокер отклоняет подписку. Сам значение он не выбирает.
 → [Основы](basics.ru.md#stream-журнал-вместо-очереди)
 
 </details>
