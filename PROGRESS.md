@@ -518,3 +518,44 @@
 ### Проекты
 
 - [ ] projects/clickstream-pipeline
+
+## opensearch
+
+### Часть 1. Основы
+
+- [ ] 01-opensearch-basics
+- [ ] 02-mappings-and-analysis
+- [ ] 03-search-queries
+- [ ] 04-aggregations
+
+### Часть 2. Продвинутые темы
+
+- [ ] 05-indexing-at-scale
+- [ ] 06-relevance-tuning
+- [ ] 07-cluster-and-shards
+- [ ] 08-index-lifecycle
+- [ ] 09-vector-search
+
+### Часть 3. Темы для опытных
+
+- [ ] 10-performance
+- [ ] 11-security
+- [ ] 12-monitoring-and-snapshots
+- [ ] 13-ingest-pipelines
+- [ ] 14-kubernetes
+
+### Библиотеки и инструменты
+
+- [ ] libraries/opensearch-py
+- [ ] libraries/opensearch-net
+- [ ] tools/opensearch-dashboards
+
+### Рецепты
+
+- [ ] recipes/product-search
+- [ ] recipes/log-analytics
+- [ ] recipes/hybrid-search
+
+### Проекты
+
+- [ ] projects/search-service

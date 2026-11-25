@@ -83,6 +83,7 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 ## Related tracks
 
 - [RabbitMQ](../rabbitmq/overview.en.md) — a classic queue broker: comparing the models
+- [OpenSearch](../opensearch/overview.en.md) — indexing an event stream for search
 - [Python](../python/overview.en.md) — the language of the examples
 - [Kubernetes](../kubernetes/overview.en.md) — running Kafka with an operator
 - [Linux](../linux/overview.en.md) — the file system, the page cache and diagnostics

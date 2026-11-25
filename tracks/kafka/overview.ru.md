@@ -83,6 +83,7 @@ Apache Kafka — распределённая платформа потоков�
 ## Связанные треки
 
 - [RabbitMQ](../rabbitmq/overview.ru.md) — классический брокер очередей: сравнение моделей
+- [OpenSearch](../opensearch/overview.ru.md) — индексация потока событий для поиска
 - [Python](../python/overview.ru.md) — язык примеров
 - [Kubernetes](../kubernetes/overview.ru.md) — запуск Kafka оператором
 - [Linux](../linux/overview.ru.md) — файловая система, страничный кэш и диагностика
