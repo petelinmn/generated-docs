@@ -61,3 +61,5 @@ See @docs/conventions.md
 - [Трек Claude](../../overview.ru.md)
 - [09 · Claude Code](../09-claude-code/overview.ru.md)
 - [05 · Prompt caching](../05-prompt-caching/overview.ru.md)
+- [11 · Skills и hooks](../11-skills-and-hooks/overview.ru.md)
+- [13 · Компактизация и длинный контекст](../13-long-context/overview.ru.md)

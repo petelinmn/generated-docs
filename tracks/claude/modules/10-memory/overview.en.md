@@ -61,3 +61,5 @@ For lasting project facts and conventions. Say one-off instructions in chat; set
 - [Claude track](../../overview.en.md)
 - [09 · Claude Code](../09-claude-code/overview.en.md)
 - [05 · Prompt caching](../05-prompt-caching/overview.en.md)
+- [11 · Skills and hooks](../11-skills-and-hooks/overview.en.md)
+- [13 · Compaction and long context](../13-long-context/overview.en.md)

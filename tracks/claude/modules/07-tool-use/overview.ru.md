@@ -75,3 +75,4 @@ print(r.stop_reason)   # tool_use: run the function and send a tool_result
 - Предыдущий: [06 · Документы и цитаты](../06-documents-and-citations/overview.ru.md)
 - Дальше: [08 · MCP и connectors](../08-mcp/overview.ru.md)
 - Аналоги в других треках: [LLM](../../../llm/overview.ru.md), [Python](../../../python/overview.ru.md)
+- [12 · Агенты и subagents](../12-agents/overview.ru.md)

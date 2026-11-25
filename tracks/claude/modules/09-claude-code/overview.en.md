@@ -58,3 +58,4 @@ Repository tasks with a checkable result. Do not grant broad rights where a mist
 - [07 · Tool use](../07-tool-use/overview.en.md)
 - [08 · MCP](../08-mcp/overview.en.md)
 - [10 · CLAUDE.md and memory](../10-memory/overview.en.md)
+- [11 · Skills and hooks](../11-skills-and-hooks/overview.en.md)

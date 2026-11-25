@@ -85,3 +85,4 @@ The output came from a local mock server (see "How the code was checked" in the 
 - Next: [06 · Documents and citations](../06-documents-and-citations/overview.en.md)
 - Analogues in other tracks: [LLM](../../../llm/overview.en.md), [Python](../../../python/overview.en.md)
 - [10 · CLAUDE.md and memory](../10-memory/overview.en.md)
+- [13 · Compaction and long context](../13-long-context/overview.en.md)

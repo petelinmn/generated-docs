@@ -58,3 +58,4 @@ claude -p "Explain what this repository does"      # one answer, then exit
 - [07 · Tool use](../07-tool-use/overview.ru.md)
 - [08 · MCP](../08-mcp/overview.ru.md)
 - [10 · CLAUDE.md и память](../10-memory/overview.ru.md)
+- [11 · Skills и hooks](../11-skills-and-hooks/overview.ru.md)
