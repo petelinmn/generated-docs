@@ -22,7 +22,7 @@ updated: 2026-11-25
 
 ## How this was checked
 
-The `anthropic` 2.14.0 clients for every platform ran against a local server with fake keys: URLs, paths, request bodies, retries and errors were checked. Claude Code 2.1.332 ran in Foundry, Bedrock (mantle) and Claude Platform on AWS modes against a local stand-in. **No request reached a real cloud or API**: model availability, prices, quotas and regions come from the documentation as of 25 November 2026.
+The `anthropic` 2.14.0 clients for the platforms in the table below (except `AnthropicGoogleCloud`) ran against a local server with fake keys: URLs, paths, request bodies, retries and errors were checked. Claude Code 2.1.332 ran in Foundry, Bedrock (mantle) and Claude Platform on AWS modes against a local stand-in. **No request reached a real cloud or API**: model availability, prices, quotas and regions come from the documentation as of 25 November 2026.
 
 ## Where Claude can run
 
