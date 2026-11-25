@@ -52,3 +52,5 @@ client.search(index="shop", body={"query": {"bool": {
 - [OpenSearch track](../../overview.en.md)
 - [02 · Mappings and text analysis](../02-mappings-and-analysis/overview.en.md)
 - [01 · OpenSearch basics](../01-opensearch-basics/overview.en.md)
+- [04 · Aggregations](../04-aggregations/overview.en.md)
+- [06 · Relevance](../06-relevance-tuning/overview.en.md)

@@ -61,6 +61,8 @@ From the documentation; this module verified `match`, `match_phrase`, `multi_mat
 | Geo | `geo_distance`, `geo_bounding_box`, `geo_polygon`, `geo_shape` |
 | Specialised | `script`, `script_score`, `more_like_this`, `percolate`, `knn`, `neural`, `rank_feature`, `distance_feature`, `wrapper` |
 
+> ⚠️ Verify: the query catalog follows the documentation; only the ones listed above the table were run.
+
 ## Default values
 
 | Parameter | Value |

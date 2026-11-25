@@ -43,6 +43,8 @@ The list follows the documentation (this module verified `text`, `keyword`, `lon
 | Geo | `geo_point`, `geo_shape` |
 | Special | `completion`, `search_as_you_type`, `token_count`, `percolator`, `rank_feature`, `alias`, `knn_vector` |
 
+> ⚠️ Verify: the lists of types, parameters and analyzer parts follow the documentation and were not all run; `coerce: false` was not run either.
+
 ## Mapping parameters
 
 | Parameter | Meaning |

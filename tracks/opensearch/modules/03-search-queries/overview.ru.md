@@ -52,3 +52,5 @@ client.search(index="shop", body={"query": {"bool": {
 - [Трек OpenSearch](../../overview.ru.md)
 - [02 · Отображения и анализ текста](../02-mappings-and-analysis/overview.ru.md)
 - [01 · Основы OpenSearch](../01-opensearch-basics/overview.ru.md)
+- [04 · Агрегации](../04-aggregations/overview.ru.md)
+- [06 · Релевантность](../06-relevance-tuning/overview.ru.md)

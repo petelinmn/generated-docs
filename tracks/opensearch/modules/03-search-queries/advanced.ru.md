@@ -96,6 +96,8 @@ r = client.search(index="shop", body={"query": {"match": {"name": "mouse"}},
 
 - [Базовая теория](basics.ru.md) · [Эксперт](expert.ru.md)
 - [01 · Основы](../01-opensearch-basics/expert.ru.md) — две фазы поиска
+- [04 · Агрегации](../04-aggregations/overview.ru.md)
+- [06 · Релевантность](../06-relevance-tuning/overview.ru.md)
 
 ## Источники
 

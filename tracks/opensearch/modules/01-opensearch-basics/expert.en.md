@@ -77,6 +77,8 @@ Search has two phases: **query** (each shard returns ids and scores of its best 
 5. **Creating an existing** index gives `resource_already_exists_exception`.
 6. **`yellow` on a single node** with replicas is expected, not an incident.
 
+> ⚠️ Verify: the behaviour of idle shards (gotcha 1) comes from the documentation and was not reproduced.
+
 ## Interview questions
 
 1. How does refresh differ from flush?

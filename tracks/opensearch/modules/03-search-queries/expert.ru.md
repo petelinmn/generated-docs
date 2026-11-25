@@ -61,6 +61,8 @@ updated: 2026-11-25
 | Геозапросы | `geo_distance`, `geo_bounding_box`, `geo_polygon`, `geo_shape` |
 | Специальные | `script`, `script_score`, `more_like_this`, `percolate`, `knn`, `neural`, `rank_feature`, `distance_feature`, `wrapper` |
 
+> ⚠️ Проверить: каталог запросов составлен по документации; запускались только перечисленные над таблицей.
+
 ## Значения по умолчанию
 
 | Параметр | Значение |

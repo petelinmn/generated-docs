@@ -57,3 +57,6 @@ client.indices.create(index="goods", body={"mappings": {"properties": {
 - [OpenSearch track](../../overview.en.md)
 - [01 · OpenSearch basics](../01-opensearch-basics/overview.en.md)
 - [03 · Search queries](../03-search-queries/overview.en.md)
+- [04 · Aggregations](../04-aggregations/overview.en.md)
+- [05 · Indexing at scale](../05-indexing-at-scale/overview.en.md)
+- [06 · Relevance](../06-relevance-tuning/overview.en.md)

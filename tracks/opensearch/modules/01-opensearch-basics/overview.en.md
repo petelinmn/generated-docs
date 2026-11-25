@@ -63,3 +63,4 @@ print(client.search(index="products", body={"query": {"match": {"name": "mug"}}}
 - [OpenSearch track](../../overview.en.md)
 - [02 · Mappings and text analysis](../02-mappings-and-analysis/overview.en.md)
 - [Kafka basics](../../../kafka/modules/01-kafka-basics/overview.en.md) — another distributed service with partitions and replicas
+- [05 · Indexing at scale](../05-indexing-at-scale/overview.en.md)

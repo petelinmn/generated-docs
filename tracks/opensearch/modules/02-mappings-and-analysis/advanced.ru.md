@@ -114,6 +114,9 @@ client.get(index="ex", id="1")["_source"]             # {'a': '1', 'zz': 'hi'}  
 
 - [Базовая теория](basics.ru.md) · [Эксперт](expert.ru.md)
 - [Схемы в Kafka](../../../kafka/modules/06-schemas-and-serialization/basics.ru.md) — тоже эволюция структуры данных
+- [04 · Агрегации](../04-aggregations/overview.ru.md)
+- [05 · Индексация в большом объёме](../05-indexing-at-scale/overview.ru.md)
+- [06 · Релевантность](../06-relevance-tuning/overview.ru.md)
 
 ## Источники
 

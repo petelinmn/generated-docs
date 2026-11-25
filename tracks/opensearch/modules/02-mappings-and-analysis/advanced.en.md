@@ -114,6 +114,9 @@ A `long` field accepts the string `"7"` and the number `7.9` (coercion): both ar
 
 - [Fundamentals](basics.en.md) · [Expert](expert.en.md)
 - [Schemas in Kafka](../../../kafka/modules/06-schemas-and-serialization/basics.en.md) — evolving data structure too
+- [04 · Aggregations](../04-aggregations/overview.en.md)
+- [05 · Indexing at scale](../05-indexing-at-scale/overview.en.md)
+- [06 · Relevance](../06-relevance-tuning/overview.en.md)
 
 ## Sources
 
