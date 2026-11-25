@@ -80,3 +80,4 @@ Hello from 74d74856967e
 - Пререквизиты: [трек Linux](../../../linux/overview.ru.md) — процессы, namespaces и cgroups, на которых построены контейнеры
 - Дальше: [02 · Архитектура Kubernetes](../02-architecture/overview.ru.md)
 - То же в других треках: [Testcontainers для C#](../../../csharp/libraries/testcontainers/overview.ru.md) — запуск контейнеров из тестов
+- [Linux 01 · Подготовка окружения](../../../linux/modules/01-setup/overview.ru.md)

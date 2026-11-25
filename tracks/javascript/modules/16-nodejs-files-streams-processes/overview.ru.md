@@ -79,3 +79,5 @@ console.log(JSON.stringify(await fsp.readFile(file, 'utf8')));
 - Пререквизиты: [09 · Модули](../09-modules/overview.ru.md), [12 · Промисы и async/await](../12-promises-and-async-await/overview.ru.md), [13 · Цикл событий и параллелизм](../13-event-loop-and-concurrency/overview.ru.md)
 - Дальше: [17 · Браузер: DOM и события](../17-browser-dom-and-events/overview.ru.md)
 - Аналоги в других треках: [Linux: файлы, процессы и каналы](../../../linux/overview.ru.md), [Python](../../../python/overview.ru.md) (`pathlib`, `subprocess`), [C#: ввод-вывод](../../../csharp/overview.ru.md)
+- [Linux 02 · Файловая система](../../../linux/modules/02-filesystem/overview.ru.md)
+- [Linux 03 · Основы shell](../../../linux/modules/03-shell-basics/overview.ru.md)

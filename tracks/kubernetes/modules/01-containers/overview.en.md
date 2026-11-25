@@ -80,3 +80,4 @@ In detail, with the application source code, see [basics](basics.en.md).
 - Prerequisites: the [Linux track](../../../linux/overview.en.md) — processes, namespaces and cgroups that containers are built on
 - Next: [02 · Kubernetes architecture](../02-architecture/overview.en.md)
 - The same idea in other tracks: [Testcontainers for C#](../../../csharp/libraries/testcontainers/overview.en.md) — running containers from tests
+- [Linux 01 · Environment setup](../../../linux/modules/01-setup/overview.en.md)

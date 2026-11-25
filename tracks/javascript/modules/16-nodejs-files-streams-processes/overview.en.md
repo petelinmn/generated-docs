@@ -79,3 +79,5 @@ console.log(JSON.stringify(await fsp.readFile(file, 'utf8')));
 - Prerequisites: [09 · Modules](../09-modules/overview.en.md), [12 · Promises and async/await](../12-promises-and-async-await/overview.en.md), [13 · The event loop and concurrency](../13-event-loop-and-concurrency/overview.en.md)
 - Next: [17 · Browser: the DOM and events](../17-browser-dom-and-events/overview.en.md)
 - Analogues in other tracks: [Linux: files, processes and pipes](../../../linux/overview.en.md), [Python](../../../python/overview.en.md) (`pathlib`, `subprocess`), [C#: I/O](../../../csharp/overview.en.md)
+- [Linux 02 · Filesystem](../../../linux/modules/02-filesystem/overview.en.md)
+- [Linux 03 · Shell basics](../../../linux/modules/03-shell-basics/overview.en.md)

@@ -88,3 +88,4 @@ data   Bound    pvc-eac81e8c-2cc1-4f1c-b4ef-888b1005a130   1Gi        RWO       
 - То же в других треках: [Testcontainers для C#](../../../csharp/libraries/testcontainers/overview.ru.md) — тома и состояние контейнеров в тестах
 - StatefulSet и PVC на реплику: [12 · Другие workload-ы](../12-workloads/overview.ru.md)
 - Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)
+- [Linux 02 · Файловая система](../../../linux/modules/02-filesystem/overview.ru.md)
