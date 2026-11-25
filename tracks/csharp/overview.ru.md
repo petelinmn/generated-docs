@@ -106,6 +106,7 @@ C# — статически типизированный объектно-ори
 - [JavaScript](../javascript/overview.ru.md) — `async`/`await` пришёл в JavaScript из C#: сравните реализации
 - [TypeScript](../typescript/overview.ru.md) — структурная типизация против номинальной
 - [LLM](../llm/overview.ru.md) — LLM-приложения на .NET через Microsoft.Extensions.AI
+- [PostgreSQL](../postgresql/overview.ru.md) — реляционная база для приложений и EF Core
 
 ## Источники
 

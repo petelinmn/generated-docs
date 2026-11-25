@@ -98,6 +98,7 @@ Python — интерпретируемый язык общего назначе
 - [Kubernetes](../kubernetes/overview.ru.md) — деплой Python-приложений
 - [JavaScript](../javascript/overview.ru.md) — другой динамический язык: сравните модель выполнения и асинхронность
 - [TypeScript](../typescript/overview.ru.md) — статические типы в другой экосистеме: сравните с аннотациями типов Python
+- [PostgreSQL](../postgresql/overview.ru.md) — базы данных для Python-приложений
 
 ## Источники
 

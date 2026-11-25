@@ -98,6 +98,7 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 - [Kubernetes](../kubernetes/overview.en.md) — deploying Python applications
 - [JavaScript](../javascript/overview.en.md) — another dynamic language: compare the execution model and asynchrony
 - [TypeScript](../typescript/overview.en.md) — static types in another ecosystem: compare with Python type annotations
+- [PostgreSQL](../postgresql/overview.en.md) — databases for Python applications
 
 ## Sources
 

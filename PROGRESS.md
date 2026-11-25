@@ -559,3 +559,47 @@
 ### Проекты
 
 - [ ] projects/search-service
+
+## postgresql
+
+### Часть 1. Основы
+
+- [ ] 01-postgresql-basics
+- [ ] 02-sql-queries
+- [ ] 03-data-modeling-ddl
+- [ ] 04-joins-and-subqueries
+
+### Часть 2. Продвинутые темы
+
+- [ ] 05-indexes
+- [ ] 06-transactions
+- [ ] 07-views-functions
+- [ ] 08-json-and-operators
+- [ ] 09-performance-explain
+
+### Часть 3. Темы для опытных
+
+- [ ] 10-partitioning
+- [ ] 11-replication
+- [ ] 12-backups-and-recovery
+- [ ] 13-security
+- [ ] 14-operations
+
+### Библиотеки и инструменты
+
+- [ ] libraries/psycopg
+- [ ] libraries/sqlalchemy
+- [ ] tools/psql
+- [ ] tools/pg-dump
+- [ ] tools/pgadmin
+
+### Рецепты
+
+- [ ] recipes/pagination
+- [ ] recipes/schema-migrations
+- [ ] recipes/outbox
+- [ ] recipes/configuration
+
+### Проекты
+
+- [ ] projects/inventory-service

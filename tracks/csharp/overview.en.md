@@ -106,6 +106,7 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Default detail
 - [JavaScript](../javascript/overview.en.md) — `async`/`await` came to JavaScript from C#: compare the implementations
 - [TypeScript](../typescript/overview.en.md) — structural typing versus nominal typing
 - [LLM](../llm/overview.en.md) — LLM applications on .NET with Microsoft.Extensions.AI
+- [PostgreSQL](../postgresql/overview.en.md) — the relational database for applications and EF Core
 
 ## Sources
 

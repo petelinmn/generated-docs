@@ -142,6 +142,7 @@ code/
 | kafka | как python: `pyproject.toml` (клиент `confluent-kafka`), `examples/exNN_name.py`, `solutions/`, `tests/test_*.py`; брокер — контейнер `apache/kafka:4.3.1` (KRaft) | pytest; тесты с живым брокером помечены `integration` и пропускаются без `localhost:9092` | `uv run pytest` |
 | opensearch | как python: `pyproject.toml` (клиент `opensearch-py`), `examples/exNN_name.py`, `solutions/`, `tests/test_*.py`; узел — контейнер `opensearchproject/opensearch:3.10.1` с отключённым плагином безопасности | pytest; тесты с живым узлом помечены `integration` и пропускаются без `localhost:9200` | `uv run pytest` |
 | rabbitmq | как python: `pyproject.toml` (клиент `pika`), `examples/exNN_name.py`, `solutions/`, `tests/test_*.py`; брокер — контейнер `rabbitmq:4-management` | pytest; тесты с живым брокером помечены `integration` и пропускаются без `localhost:5672` | `uv run pytest` |
+| postgresql | как python: `pyproject.toml`, SQL-примеры в `examples/`, решения в `solutions/`, тесты в `tests/`; сервер — Docker `postgres:17-alpine` | pytest; интеграционные тесты с живой БД помечены `integration` и пропускаются без `localhost:5432` | `uv run pytest` |
 
 Для новой технологии выбери её стандартный тестовый инструмент (Go — `go test`, Rust — `cargo test`, TypeScript — vitest и т. п.), опиши его в overview трека и добавь строку в эту таблицу.
 
