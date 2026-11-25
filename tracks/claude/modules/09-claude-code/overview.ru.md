@@ -61,3 +61,4 @@ claude -p "Explain what this repository does"      # one answer, then exit
 - [11 · Skills и hooks](../11-skills-and-hooks/overview.ru.md)
 - [16 · Безопасность и compliance](../16-security/overview.ru.md)
 - [17 · Развёртывание и production](../17-production/overview.ru.md)
+- [Claude Agent SDK](../../libraries/agent-sdk/overview.ru.md)

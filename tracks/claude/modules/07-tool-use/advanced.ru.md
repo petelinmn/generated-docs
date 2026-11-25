@@ -9,7 +9,7 @@ part: 1
 tags: [claude, tool-use, server-tools, tool-choice, strict-tools, prompt-caching, token-cost, tool-runner]
 versions: "Claude 5.5 family; Messages API, anthropic-version 2026-10-21; Python SDK anthropic 2.13.0"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Tool use: продвинутый уровень
@@ -118,6 +118,8 @@ runner end_turn
 ```
 
 Схема сгенерирована из аннотаций типов и docstring. Ручной цикл даёт контроль (лимиты, логи, подтверждение рискованных вызовов); runner короче для простых случаев.
+
+> В `anthropic` 2.14.0 runner на Claude API и Foundry по умолчанию хранит разговор на сервере (Message Threads, бета, не под ZDR). Чтобы отправлять всю историю самому, передайте `thread=False`. Подробнее — [Anthropic SDK](../../libraries/anthropic-sdk/advanced.ru.md).
 
 ## Безопасность
 

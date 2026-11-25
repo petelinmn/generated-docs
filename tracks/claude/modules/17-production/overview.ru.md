@@ -60,3 +60,4 @@ reply = client.messages.create(model=model, max_tokens=1024,
 - [14 · Batch, evals и надёжность](../14-evals/overview.ru.md)
 - [15 · Observability](../15-observability/overview.ru.md)
 - [16 · Безопасность и compliance](../16-security/overview.ru.md)
+- [Anthropic SDK](../../libraries/anthropic-sdk/overview.ru.md)

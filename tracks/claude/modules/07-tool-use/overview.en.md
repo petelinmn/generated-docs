@@ -77,3 +77,4 @@ The full loop and its output are in the [basic theory](basics.en.md). The code w
 - Analogues in other tracks: [LLM](../../../llm/overview.en.md), [Python](../../../python/overview.en.md)
 - [12 · Agents and subagents](../12-agents/overview.en.md)
 - [16 · Security and compliance](../16-security/overview.en.md)
+- [Anthropic SDK](../../libraries/anthropic-sdk/overview.en.md)

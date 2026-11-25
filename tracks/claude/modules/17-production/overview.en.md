@@ -60,3 +60,4 @@ When a prototype becomes a service with users, a budget and data requirements. A
 - [14 · Batch, evals and reliability](../14-evals/overview.en.md)
 - [15 · Observability](../15-observability/overview.en.md)
 - [16 · Security and compliance](../16-security/overview.en.md)
+- [Anthropic SDK](../../libraries/anthropic-sdk/overview.en.md)

@@ -9,7 +9,7 @@ part: 1
 tags: [claude, tool-use, server-tools, tool-choice, strict-tools, prompt-caching, token-cost, tool-runner]
 versions: "Claude 5.5 family; Messages API, anthropic-version 2026-10-21; Python SDK anthropic 2.13.0"
 status: draft
-updated: 2026-11-24
+updated: 2026-11-25
 ---
 
 # Tool use: advanced
@@ -118,6 +118,8 @@ runner end_turn
 ```
 
 The schema was generated from the type hints and the docstring. A hand-written loop gives control (limits, logging, approval of risky calls); the runner is shorter for simple cases.
+
+> In `anthropic` 2.14.0 the runner on the Claude API and Foundry keeps the conversation server-side by default (Message Threads, beta, not ZDR-eligible). Pass `thread=False` to send the full history yourself. See [Anthropic SDK](../../libraries/anthropic-sdk/advanced.en.md).
 
 ## Safety
 

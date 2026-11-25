@@ -63,3 +63,4 @@ You are a careful reviewer. Report concrete defects with file and line.
 - [07 · Tool use](../07-tool-use/overview.ru.md)
 - [11 · Skills и hooks](../11-skills-and-hooks/overview.ru.md)
 - [LLM](../../../llm/overview.ru.md)
+- [Claude Agent SDK](../../libraries/agent-sdk/overview.ru.md)

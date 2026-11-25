@@ -63,3 +63,4 @@ Open multi-step tasks with a checkable result. Build fixed pipelines as ordinary
 - [07 · Tool use](../07-tool-use/overview.en.md)
 - [11 · Skills and hooks](../11-skills-and-hooks/overview.en.md)
 - [LLM](../../../llm/overview.en.md)
+- [Claude Agent SDK](../../libraries/agent-sdk/overview.en.md)

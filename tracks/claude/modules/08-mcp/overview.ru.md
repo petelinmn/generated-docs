@@ -84,3 +84,4 @@ if __name__ == "__main__":
 - [Трек Claude](../../overview.ru.md)
 - [07 · Tool use](../07-tool-use/overview.ru.md)
 - [09 · Claude Code](../09-claude-code/overview.ru.md)
+- [MCP SDK](../../libraries/mcp-sdk/overview.ru.md)

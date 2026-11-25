@@ -84,3 +84,4 @@ When several applications need the same tools. For one function inside your own 
 - [Claude track](../../overview.en.md)
 - [07 · Tool use](../07-tool-use/overview.en.md)
 - [09 · Claude Code](../09-claude-code/overview.en.md)
+- [MCP SDK](../../libraries/mcp-sdk/overview.en.md)

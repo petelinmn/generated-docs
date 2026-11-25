@@ -77,3 +77,4 @@ print(r.stop_reason)   # tool_use: run the function and send a tool_result
 - Аналоги в других треках: [LLM](../../../llm/overview.ru.md), [Python](../../../python/overview.ru.md)
 - [12 · Агенты и subagents](../12-agents/overview.ru.md)
 - [16 · Безопасность и compliance](../16-security/overview.ru.md)
+- [Anthropic SDK](../../libraries/anthropic-sdk/overview.ru.md)
