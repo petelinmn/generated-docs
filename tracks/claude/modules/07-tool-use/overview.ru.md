@@ -73,5 +73,5 @@ print(r.stop_reason)   # tool_use: run the function and send a tool_result
 
 - Пререквизиты: [02 · Messages API](../02-messages-api/overview.ru.md), [04 · Structured outputs](../04-structured-output/overview.ru.md), [05 · Prompt caching](../05-prompt-caching/overview.ru.md)
 - Предыдущий: [06 · Документы и цитаты](../06-documents-and-citations/overview.ru.md)
-- Дальше: модуль 08 · MCP и connectors (в [дорожной карте](../../overview.ru.md))
+- Дальше: [08 · MCP и connectors](../08-mcp/overview.ru.md)
 - Аналоги в других треках: [LLM](../../../llm/overview.ru.md), [Python](../../../python/overview.ru.md)

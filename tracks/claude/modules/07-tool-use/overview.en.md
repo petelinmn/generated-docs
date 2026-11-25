@@ -73,5 +73,5 @@ The full loop and its output are in the [basic theory](basics.en.md). The code w
 
 - Prerequisites: [02 · Messages API](../02-messages-api/overview.en.md), [04 · Structured outputs](../04-structured-output/overview.en.md), [05 · Prompt caching](../05-prompt-caching/overview.en.md)
 - Previous: [06 · Documents and citations](../06-documents-and-citations/overview.en.md)
-- Next: module 08 · MCP and connectors (in the [roadmap](../../overview.en.md))
+- Next: [08 · MCP and connectors](../08-mcp/overview.en.md)
 - Analogues in other tracks: [LLM](../../../llm/overview.en.md), [Python](../../../python/overview.en.md)
