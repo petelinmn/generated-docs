@@ -111,7 +111,7 @@ const stream = client.messages.stream({
 });
 stream.on("text", (text) => process.stdout.write(text));
 const final = await stream.finalMessage();
-console.log(final.stop_reason, final._request_id);
+console.log(final.stop_reason, stream.request_id);
 ```
 
 ## Errors
