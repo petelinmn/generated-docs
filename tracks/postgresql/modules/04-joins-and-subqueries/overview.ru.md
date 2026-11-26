@@ -73,3 +73,4 @@ SELECT c.name, o.amount FROM customers c LEFT JOIN orders o ON o.customer_id = c
 - То же в других треках: [LINQ в C#](../../../csharp/modules/07-linq/overview.ru.md)
 - Где это важно при проектировании: [хранение данных](../../../system-design/modules/04-data-storage/overview.ru.md)
 - [05 · Индексы](../05-indexes/overview.ru.md)
+- [07 · Представления и функции](../07-views-functions/overview.ru.md)

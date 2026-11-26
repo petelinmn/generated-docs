@@ -60,3 +60,4 @@ bus.Subscribe<OrderPlaced>(e => Invoices[e.OrderId] = e.Total);
 - Prerequisites: [messaging and events](../08-messaging-and-events/overview.en.md), [distributed transactions](../10-distributed-transactions/overview.en.md)
 - Inside an application: [C#: architecture](../../../csharp/modules/21-architecture/overview.en.md)
 - Deployment: [Kubernetes: deployments](../../../kubernetes/modules/05-deployments/overview.en.md)
+- [Views, functions and triggers in PostgreSQL](../../../postgresql/modules/07-views-functions/overview.en.md)

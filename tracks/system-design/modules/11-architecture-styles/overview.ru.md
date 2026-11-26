@@ -60,3 +60,4 @@ bus.Subscribe<OrderPlaced>(e => Invoices[e.OrderId] = e.Total);
 - Пререквизиты: [сообщения и события](../08-messaging-and-events/overview.ru.md), [распределённые транзакции](../10-distributed-transactions/overview.ru.md)
 - Внутри приложения: [C#: архитектура](../../../csharp/modules/21-architecture/overview.ru.md)
 - Развёртывание: [Kubernetes: deployments](../../../kubernetes/modules/05-deployments/overview.ru.md)
+- [Представления, функции и триггеры в PostgreSQL](../../../postgresql/modules/07-views-functions/overview.ru.md)

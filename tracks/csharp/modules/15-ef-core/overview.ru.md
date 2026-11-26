@@ -81,3 +81,4 @@ EF генерирует `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Like
 - [System design: распределённые транзакции](../../../system-design/modules/10-distributed-transactions/overview.ru.md)
 - [Индексы в PostgreSQL](../../../postgresql/modules/05-indexes/overview.ru.md)
 - [Транзакции в PostgreSQL](../../../postgresql/modules/06-transactions/overview.ru.md)
+- [Представления и функции в PostgreSQL](../../../postgresql/modules/07-views-functions/overview.ru.md)
