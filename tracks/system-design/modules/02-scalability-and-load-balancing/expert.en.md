@@ -8,7 +8,7 @@ slug: 02-scalability-and-load-balancing
 part: 1
 tags: [system-design, scaling, scale-out, load-balancing, consistent-hashing, yarp]
 versions: ".NET 11, C# 15; Yarp.ReverseProxy 2.3.0"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -150,6 +150,17 @@ When scaling down, the HPA takes the highest of the desired values over the wind
 |---|---|---|
 | DNS by geography or latency | the name server's answer | failover is limited by DNS caching |
 | Anycast | one address is announced from several places, routing picks the path | the client changes nothing |
+
+### Beyond picking a node
+
+| Technique | What it does | Where to see it |
+|---|---|---|
+| Direct Server Return | responses go from the backend straight to the router, bypassing the balancer, which handles only incoming packets | Maglev |
+| Outlier detection | a passive check: a host that behaves unlike the others is ejected for a while; the time grows with repeated ejections | Envoy |
+| Slow start | a newly added host receives a gradually growing share of traffic while it warms up | Envoy (round robin, least request) |
+| Zone-aware routing | requests preferably stay in the caller's zone while keeping the load per host roughly even | Envoy |
+
+These are features of particular products: check whether your balancer has them and what its defaults are.
 
 ## Gotchas
 
@@ -327,3 +338,6 @@ The resolver may be returning a single address (for example a service's virtual 
 - [.NET Generic Host: shutdown](https://learn.microsoft.com/dotnet/core/extensions/generic-host)
 - [gRPC: client-side load balancing](https://learn.microsoft.com/aspnet/core/grpc/loadbalancing)
 - [Kubernetes: pod lifecycle](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
+- [Envoy: outlier detection](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/outlier)
+- [Envoy: slow start](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/slow_start)
+- [Envoy: zone aware routing](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/load_balancing/zone_aware)

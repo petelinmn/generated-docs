@@ -8,7 +8,7 @@ slug: 02-scalability-and-load-balancing
 part: 1
 tags: [system-design, scaling, scale-out, load-balancing, consistent-hashing, yarp]
 versions: ".NET 11, C# 15; Yarp.ReverseProxy 2.3.0"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
