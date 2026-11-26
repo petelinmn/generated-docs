@@ -39,6 +39,50 @@ stateDiagram-v2
     Leader --> Follower: higher term seen
 ```
 
+### Paxos
+
+Single-decree Paxos from "Paxos Made Simple" runs in two phases. Prepare: a proposer picks a number and asks a majority of acceptors not to accept lower ones; they report what they have already accepted. Accept: if something was accepted before, the proposer must propose the value with the highest number.
+
+```csharp
+string proposed = earlier.Count > 0 ? earlier[0].Value : value;
+
+int accepted = promises.Count(p => p.a.Accept(n, proposed));
+return accepted > clusterSize / 2 ? proposed : null;
+```
+
+So a chosen value survives the next proposer: it proposed `y` but got `x`. File: [Ex04_Paxos.cs](code/Examples/Ex04_Paxos.cs). Two competing proposers may pre-empt each other forever, so in practice a leader is chosen; for a sequence of commands Multi-Paxos is used. Raft solves the same task and describes the leader and the log from the start.
+
+### Membership changes and snapshots in Raft
+
+Switching everyone to a new configuration at once is unsafe: two disjoint majorities are possible. Raft first moves to joint consensus, where decisions need majorities of both the old and the new configuration.
+
+```csharp
+public static bool JointMajority(IReadOnlySet<int> votes, IReadOnlySet<int> oldOne, IReadOnlySet<int> newOne) =>
+    HasMajority(votes, oldOne) && HasMajority(votes, newOne);
+```
+
+So that the log does not grow forever, committed entries are replaced by a state snapshot with the index and term of the last included entry; a lagging node receives the whole snapshot. File: [Ex06_Membership.cs](code/Examples/Ex06_Membership.cs).
+
+### Hybrid logical clocks
+
+HLC keeps `l`, the largest physical time heard of, and a counter `c` for events with the same `l`. Marks respect causality and stay close to physical time.
+
+```csharp
+_c = (_l == previous, _l == message.L) switch
+{
+    (true, true) => Math.Max(_c, message.C) + 1,
+    (true, false) => _c + 1,
+    (false, true) => message.C + 1,
+    _ => 0,
+};
+```
+
+A receiver with a slow clock still gets a mark later than the send. File: [Ex05_HybridClock.cs](code/Examples/Ex05_HybridClock.cs).
+
+### ZooKeeper and etcd primitives
+
+In ZooKeeper locks and elections are built from ephemeral sequential nodes: a node disappears with the client session, and each waits only for the previous one by number, to avoid a "herd effect". etcd has revisions (a growing counter of the whole key space), leases with a TTL (keys are deleted when it expires), watches from a given revision and If/Then/Else transactions. A read is linearizable by default; `serializable` answers from one member faster but may be stale. A revision works as a fencing token.
+
 ## Reference
 
 | Clock | What it gives |
@@ -55,6 +99,20 @@ stateDiagram-v2
 | a single worker | lease + idempotency |
 | protecting a write | fencing token or version |
 
+| | Paxos (single-decree) | Raft |
+|---|---|---|
+| What it decides | one value | a replicated log |
+| Leader | not required | central |
+| Numbers | proposal numbers | terms |
+| Membership change | outside the basic algorithm | described (joint consensus) |
+
+| Recipe on a coordinator | Built from |
+|---|---|
+| leader election | an ephemeral node or a lease plus watching |
+| lock | sequential nodes or a key under a lease |
+| group membership | ephemeral nodes |
+| configuration | a key plus a watch |
+
 ## Gotchas
 
 ### A smaller Lamport mark does not mean "earlier"
@@ -68,6 +126,14 @@ For simplicity the `LeaseService` example uses `GetUtcNow`. The wall clock can b
 ### lock does not work across processes
 
 `lock` synchronizes the threads of one process; two service instances will enter the "critical section" at the same time.
+
+### An instant configuration switch
+
+Old configuration {1,2,3}, new {1,...,5}: nodes {1,2} are a majority of the old one, {3,4,5} of the new one. They do not intersect, and two leaders are possible.
+
+### A proposer gets a value that is not its own
+
+If `Propose` returned a value, it is not necessarily the one proposed: check the result.
 
 ## Trade-offs and alternatives
 
@@ -162,6 +228,46 @@ It still survives one failure, and the majority got larger.
 
 </details>
 
+**11. The two phases of Paxos?**
+
+<details><summary>Answer</summary>
+
+Prepare/promise and accept/accepted, each with a majority.
+
+</details>
+
+**12. Why must a proposer take a previously accepted value?**
+
+<details><summary>Answer</summary>
+
+It may already be chosen; otherwise agreement is violated.
+
+</details>
+
+**13. What is joint consensus?**
+
+<details><summary>Answer</summary>
+
+A transitional configuration that needs majorities of both.
+
+</details>
+
+**14. Why log snapshots?**
+
+<details><summary>Answer</summary>
+
+To bound the size and let lagging and new nodes catch up quickly.
+
+</details>
+
+**15. Trick question: in etcd a `serializable` read returned an old value. Is it an etcd bug?**
+
+<details><summary>Answer</summary>
+
+No: one member answers such a read and may lag.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -171,3 +277,8 @@ It still survives one failure, and the majority got larger.
 
 - [Raft](https://raft.github.io/raft.pdf)
 - [Kleppmann: How to do distributed locking](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html)
+- [Lamport: Paxos Made Simple](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)
+- [Raft](https://raft.github.io/raft.pdf)
+- [Kulkarni et al.: Hybrid Logical Clocks](https://cse.buffalo.edu/tech-reports/2014-04.pdf)
+- [ZooKeeper: recipes](https://zookeeper.apache.org/doc/r3.9.3/recipes.html)
+- [etcd: API](https://etcd.io/docs/v3.6/learning/api/)

@@ -78,12 +78,10 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Modules are ge
 
 ## Level 3 expansion plan
 
-All modules exist at level 6, but the expert files are still shorter than a reference should be. Modules 01–10 are already expanded. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
+All modules exist at level 6, but the expert files are still shorter than a reference should be. Modules 01–12 are already expanded. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
 
 | Module | What to add to the expert theory |
 |---|---|
-| 11 · Architecture styles | strategic DDD and context maps, service mesh, BFF and API gateway, micro-frontends, branch by abstraction |
-| 12 · Consensus and coordination | Paxos and Raft, cluster membership changes, Raft log snapshots, ZooKeeper and etcd primitives, hybrid logical clocks |
 | 13 · Event sourcing and CQRS | ready-made event stores, rebuilding projections without downtime, snapshot strategies, implementing crypto-shredding |
 | 14 · Observability and SLOs | the OpenTelemetry Collector, exemplars, continuous profiling, log sampling, synthetic monitoring |
 | 15 · Security | OAuth 2.0 and OIDC flows, mTLS and certificate rotation, secret stores, the supply chain (SBOM, signing), tenant isolation, an encryption key hierarchy |

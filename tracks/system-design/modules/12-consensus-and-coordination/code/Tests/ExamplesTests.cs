@@ -71,3 +71,77 @@ public class LamportTests
         Assert.Equal((1L, 6L), (sent, received));
     }
 }
+
+public class PaxosTests
+{
+    [Fact]
+    public void A_chosen_value_survives_a_later_proposer()
+    {
+        Acceptor[] a = [new(), new(), new(), new(), new()];
+
+        Assert.Equal("x", Proposer.Propose(1, "x", [a[0], a[1], a[2]], 5));
+        Assert.Equal("x", Proposer.Propose(2, "y", [a[2], a[3], a[4]], 5));
+    }
+
+    [Fact]
+    public void No_majority_or_a_stale_number_chooses_nothing()
+    {
+        Acceptor[] a = [new(), new(), new()];
+
+        Assert.Null(Proposer.Propose(1, "x", [a[0]], 3));
+        Proposer.Propose(5, "y", a, 3);
+        Assert.Null(Proposer.Propose(3, "z", a, 3));
+    }
+}
+
+public class HybridClockTests
+{
+    [Fact]
+    public void Causality_holds_although_the_receiver_clock_is_behind()
+    {
+        long fast = 100, slow = 10;
+        var a = new HybridClock(() => fast);
+        var b = new HybridClock(() => slow);
+
+        HlcStamp sent = a.Tick();
+        HlcStamp received = b.Receive(sent);
+        HlcStamp next = b.Tick();
+
+        Assert.Equal(new HlcStamp(100, 0), sent);
+        Assert.Equal(new HlcStamp(100, 1), received);
+        Assert.True(next.CompareTo(received) > 0);
+
+        slow = 200; // physical time caught up and passed
+        Assert.Equal(new HlcStamp(200, 0), b.Tick());
+    }
+}
+
+public class MembershipTests
+{
+    [Fact]
+    public void Switching_at_once_allows_two_disjoint_majorities()
+    {
+        HashSet<int> oldOne = [1, 2, 3], newOne = [1, 2, 3, 4, 5];
+        HashSet<int> sideA = [1, 2], sideB = [3, 4, 5];
+
+        Assert.True(Membership.HasMajority(sideA, oldOne));
+        Assert.True(Membership.HasMajority(sideB, newOne));
+        Assert.False(Membership.JointMajority(sideA, oldOne, newOne));
+        Assert.False(Membership.JointMajority(sideB, oldOne, newOne));
+        Assert.True(Membership.JointMajority(new HashSet<int> { 1, 2, 4 }, oldOne, newOne));
+    }
+
+    [Fact]
+    public void Compaction_keeps_the_state()
+    {
+        var log = new CompactingLog();
+        log.Append("a", "1");
+        log.Append("a", "2");
+        log.Append("b", "3");
+
+        log.Compact(2);
+
+        Assert.Equal((1, 2L), (log.EntriesKept, log.SnapshotIndex));
+        Assert.Equal(("2", "3"), (log.State()["a"], log.State()["b"]));
+    }
+}
