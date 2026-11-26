@@ -60,3 +60,4 @@ _orders.Add(1, outcome);
 
 - Prerequisites: [design process and SLOs](../01-design-process/overview.en.md), [reliability patterns](../09-reliability-patterns/overview.en.md)
 - In other tracks: [observability in .NET](../../../csharp/modules/22-observability/overview.en.md), [observability in Kubernetes](../../../kubernetes/modules/16-observability/overview.en.md), [Serilog](../../../csharp/libraries/serilog/overview.en.md)
+- [Query performance in PostgreSQL](../../../postgresql/modules/09-performance-explain/overview.en.md)

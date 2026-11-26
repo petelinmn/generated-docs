@@ -75,3 +75,4 @@ SELECT id, balance FROM accounts ORDER BY id;   -- 1 100 | 2 100
 - The design view: [consistency and CAP](../../../system-design/modules/07-consistency-and-cap/overview.en.md), [distributed transactions](../../../system-design/modules/10-distributed-transactions/overview.en.md)
 - From .NET: [EF Core](../../../csharp/modules/15-ef-core/overview.en.md)
 - [07 · Views and functions](../07-views-functions/overview.en.md)
+- [09 · Performance and EXPLAIN](../09-performance-explain/overview.en.md)

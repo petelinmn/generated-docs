@@ -82,3 +82,4 @@ EF generates `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Likes" >= @minL
 - [Indexes in PostgreSQL](../../../postgresql/modules/05-indexes/overview.en.md)
 - [Transactions in PostgreSQL](../../../postgresql/modules/06-transactions/overview.en.md)
 - [Views and functions in PostgreSQL](../../../postgresql/modules/07-views-functions/overview.en.md)
+- [Query plans in PostgreSQL](../../../postgresql/modules/09-performance-explain/overview.en.md)

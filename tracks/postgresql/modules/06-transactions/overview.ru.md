@@ -75,3 +75,4 @@ SELECT id, balance FROM accounts ORDER BY id;   -- 1 100 | 2 100
 - Взгляд проектировщика: [согласованность и CAP](../../../system-design/modules/07-consistency-and-cap/overview.ru.md), [распределённые транзакции](../../../system-design/modules/10-distributed-transactions/overview.ru.md)
 - Из .NET: [EF Core](../../../csharp/modules/15-ef-core/overview.ru.md)
 - [07 · Представления и функции](../07-views-functions/overview.ru.md)
+- [09 · Производительность и EXPLAIN](../09-performance-explain/overview.ru.md)

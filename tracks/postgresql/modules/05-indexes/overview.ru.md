@@ -89,3 +89,4 @@ EXPLAIN (COSTS OFF) SELECT * FROM events WHERE user_id = 42 ORDER BY created_at 
 - Другая структура индекса: [анализ текста в OpenSearch](../../../opensearch/modules/02-mappings-and-analysis/overview.ru.md)
 - [06 · Транзакции](../06-transactions/overview.ru.md)
 - [08 · JSON и операторы](../08-json-and-operators/overview.ru.md)
+- [09 · Производительность и EXPLAIN](../09-performance-explain/overview.ru.md)

@@ -89,3 +89,4 @@ EXPLAIN (COSTS OFF) SELECT * FROM events WHERE user_id = 42 ORDER BY created_at 
 - A different index structure: [OpenSearch text analysis](../../../opensearch/modules/02-mappings-and-analysis/overview.en.md)
 - [06 · Transactions](../06-transactions/overview.en.md)
 - [08 · JSON and operators](../08-json-and-operators/overview.en.md)
+- [09 · Performance and EXPLAIN](../09-performance-explain/overview.en.md)

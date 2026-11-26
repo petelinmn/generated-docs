@@ -60,3 +60,4 @@ _orders.Add(1, outcome);
 
 - Пререквизиты: [процесс проектирования и SLO](../01-design-process/overview.ru.md), [паттерны надёжности](../09-reliability-patterns/overview.ru.md)
 - В других треках: [наблюдаемость в .NET](../../../csharp/modules/22-observability/overview.ru.md), [наблюдаемость в Kubernetes](../../../kubernetes/modules/16-observability/overview.ru.md), [Serilog](../../../csharp/libraries/serilog/overview.ru.md)
+- [Производительность запросов в PostgreSQL](../../../postgresql/modules/09-performance-explain/overview.ru.md)
