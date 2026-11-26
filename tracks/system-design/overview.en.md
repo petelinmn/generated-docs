@@ -78,12 +78,10 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Modules are ge
 
 ## Level 3 expansion plan
 
-All modules exist at level 6, but the expert files are still shorter than a reference should be. Modules 01–08 are already expanded. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
+All modules exist at level 6, but the expert files are still shorter than a reference should be. Modules 01–10 are already expanded. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
 
 | Module | What to add to the expert theory |
 |---|---|
-| 09 · Reliability patterns | adaptive concurrency limits, hedging, deadlines in gRPC, chaos engineering, degradation and feature flags |
-| 10 · Distributed transactions | workflow engines, CDC for the outbox, distributed transactions in .NET, the TCC pattern, saga timeouts and versions |
 | 11 · Architecture styles | strategic DDD and context maps, service mesh, BFF and API gateway, micro-frontends, branch by abstraction |
 | 12 · Consensus and coordination | Paxos and Raft, cluster membership changes, Raft log snapshots, ZooKeeper and etcd primitives, hybrid logical clocks |
 | 13 · Event sourcing and CQRS | ready-made event stores, rebuilding projections without downtime, snapshot strategies, implementing crypto-shredding |

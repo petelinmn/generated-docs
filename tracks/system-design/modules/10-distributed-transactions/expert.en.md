@@ -34,6 +34,37 @@ sequenceDiagram
     R->>D: mark sent
 ```
 
+### TCC: Try, Confirm, Cancel
+
+A participant first reserves a resource (Try), then confirms or releases it. Requirements: repeating any step is safe, `Cancel` works even if `Try` never arrived, and a reservation expires by itself.
+
+```csharp
+if (_confirmed.Contains(id)) return true;
+if (!_holds.Remove(id, out var hold)) return false;
+```
+
+`Confirm` after the hold has expired returns `false`: the caller may not consider the operation done. File: [Ex04_Tcc.cs](code/Examples/Ex04_Tcc.cs). The example does not guard against a `Try` arriving after `Cancel`: for that you remember cancelled identifiers.
+
+### Workflow engines and replay
+
+An engine such as Durable Functions saves the history of steps and after a restart runs the orchestrator code again, substituting the recorded results.
+
+```csharp
+if (recorded.Step != step)
+    throw new InvalidOperationException($"Non-deterministic workflow: expected {recorded.Step}, got {step}.");
+return recorded.Result; // the activity is not executed again
+```
+
+That is why an orchestrator must be deterministic: no `DateTime.UtcNow`, `Guid.NewGuid()`, random numbers, I/O or `Task.Delay` — there are `context.CurrentUtcDateTime`, `context.NewGuid()`, activities and timers for that. File: [Ex05_Replay.cs](code/Examples/Ex05_Replay.cs).
+
+### Versions and timeouts
+
+Adding, removing or reordering calls in an orchestrator breaks unfinished instances. Durable Functions recommends built-in orchestration versioning; another way is to deploy the new version alongside with a separate task hub. A saga needs a timeout on every wait: what to do if no answer comes.
+
+### CDC for the outbox
+
+Instead of polling the table, the database log is read. Debezium has an Outbox Event Router: the default columns are `id`, `aggregatetype`, `aggregateid`, `type`, `payload`; `aggregateid` becomes the message key and preserves order within a partition, and `id` allows duplicates to be dropped. The table is meant for inserts only.
+
 ## Reference
 
 | Approach | Atomicity | Isolation | Blocks on failure |
@@ -47,6 +78,25 @@ sequenceDiagram
 |---|---|
 | Polling the table | simple, latency and database load |
 | Reading the database log (CDC) | lower latency, more infrastructure |
+
+| Approach | Isolation | What it requires of a participant |
+|---|---|---|
+| 2PC | yes | protocol support |
+| TCC | a hold shows as taken | three idempotent operations |
+| Saga | none | an action and a compensation |
+
+| An orchestrator must not | Instead |
+|---|---|
+| `DateTime.UtcNow` | `context.CurrentUtcDateTime` |
+| `Guid.NewGuid()` | `context.NewGuid()` |
+| HTTP and database | activities |
+| `Task.Delay` | `CreateTimer` |
+| `Task.Run` | calls through the context |
+
+| `System.Transactions` in modern .NET | |
+|---|---|
+| `TransactionManager.ImplicitDistributedTransactions` | `false` by default |
+| setting the property | supported on Windows only |
 
 ## Gotchas
 
@@ -63,6 +113,20 @@ Here `Ok` and `Fails` are test helpers. Result: a `TimeoutException`, and there 
 ### A relay does not guarantee there are no duplicates
 
 In the test a crash after publishing but before marking gives two deliveries; the inbox keeps one handled item.
+
+### A second resource in a TransactionScope
+
+```csharp
+using var scope = new TransactionScope();
+Transaction.Current!.EnlistDurable(Guid.NewGuid(), new Resource(), EnlistmentOptions.None);
+Transaction.Current!.EnlistDurable(Guid.NewGuid(), new Resource(), EnlistmentOptions.None);
+```
+
+`Resource` here is a test participant. The first enlistment succeeds, the second throws `NotSupportedException`: the transaction would have to become distributed, and that is off by default.
+
+### Changed code breaks unfinished workflows
+
+In the test the history contains the step `charge`, and the new code calls `reserve` first: replay stops with a non-determinism error.
 
 ## Trade-offs and alternatives
 
@@ -157,6 +221,46 @@ A broker transaction does not cover your database; the dual write remains.
 
 </details>
 
+**11. The three TCC operations and their requirements?**
+
+<details><summary>Answer</summary>
+
+Try, Confirm, Cancel; idempotency, empty cancellation and expiry of the hold.
+
+</details>
+
+**12. Why must an orchestrator be deterministic?**
+
+<details><summary>Answer</summary>
+
+The engine restores state by running the code again against the history.
+
+</details>
+
+**13. How do you release a new version of a long workflow?**
+
+<details><summary>Answer</summary>
+
+Version the orchestrations or deploy the new version alongside and let the old ones finish.
+
+</details>
+
+**14. Why is CDC better than polling the outbox?**
+
+<details><summary>Answer</summary>
+
+Lower latency and query load, at the price of extra infrastructure.
+
+</details>
+
+**15. Trick question: two `SaveChanges` calls to different databases inside one `TransactionScope`. Will it work?**
+
+<details><summary>Answer</summary>
+
+It usually needs a distributed transaction, which is off by default and not available everywhere; an outbox or a saga is more often needed.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -166,3 +270,7 @@ A broker transaction does not cover your database; the dual write remains.
 
 - [PostgreSQL: PREPARE TRANSACTION](https://www.postgresql.org/docs/current/sql-prepare-transaction.html)
 - [Saga pattern](https://learn.microsoft.com/azure/architecture/patterns/saga)
+- [Durable Functions: orchestrator code constraints](https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-code-constraints)
+- [Durable Functions: versioning](https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-versioning)
+- [Debezium: Outbox Event Router](https://debezium.io/documentation/reference/stable/transformations/outbox-event-router.html)
+- [.NET: ImplicitDistributedTransactions](https://learn.microsoft.com/dotnet/api/system.transactions.transactionmanager.implicitdistributedtransactions)

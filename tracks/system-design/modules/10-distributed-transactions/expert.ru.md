@@ -34,6 +34,37 @@ sequenceDiagram
     R->>D: mark sent
 ```
 
+### TCC: Try, Confirm, Cancel
+
+Участник сначала резервирует ресурс (Try), потом подтверждает или освобождает. Требования: повтор любого шага безопасен, `Cancel` работает, даже если `Try` не дошёл, а резерв истекает сам.
+
+```csharp
+if (_confirmed.Contains(id)) return true;
+if (!_holds.Remove(id, out var hold)) return false;
+```
+
+`Confirm` после истечения резерва возвращает `false`: вызывающий не вправе считать операцию выполненной. Файл: [Ex04_Tcc.cs](code/Examples/Ex04_Tcc.cs). Пример не защищает от `Try`, пришедшего после `Cancel`: для этого запоминают отменённые идентификаторы.
+
+### Workflow-движки и воспроизведение
+
+Движок вроде Durable Functions сохраняет историю шагов и после перезапуска выполняет код оркестратора заново, подставляя записанные результаты.
+
+```csharp
+if (recorded.Step != step)
+    throw new InvalidOperationException($"Non-deterministic workflow: expected {recorded.Step}, got {step}.");
+return recorded.Result; // the activity is not executed again
+```
+
+Поэтому оркестратор обязан быть детерминированным: никаких `DateTime.UtcNow`, `Guid.NewGuid()`, случайных чисел, ввода-вывода и `Task.Delay` — для этого есть `context.CurrentUtcDateTime`, `context.NewGuid()`, активности и таймеры. Файл: [Ex05_Replay.cs](code/Examples/Ex05_Replay.cs).
+
+### Версии и таймауты
+
+Добавление, удаление или перестановка вызовов в оркестраторе ломают незавершённые экземпляры. Durable Functions рекомендует встроенное версионирование оркестраций; другой путь — развернуть новую версию рядом с отдельным task hub. У саги должен быть таймаут на каждом ожидании: что делать, если ответ не пришёл.
+
+### CDC для outbox
+
+Вместо опроса таблицы читают журнал базы. У Debezium есть Outbox Event Router: по умолчанию колонки `id`, `aggregatetype`, `aggregateid`, `type`, `payload`; `aggregateid` становится ключом сообщения и сохраняет порядок в партиции, а `id` позволяет отбрасывать дубликаты. Таблица рассчитана только на вставки.
+
 ## Справочник
 
 | Подход | Атомарность | Изоляция | Блокирует при сбое |
@@ -47,6 +78,25 @@ sequenceDiagram
 |---|---|
 | Опрос таблицы | просто, задержка и нагрузка на базу |
 | Чтение журнала базы (CDC) | меньше задержка, больше инфраструктуры |
+
+| Подход | Изоляция | Что требует от участника |
+|---|---|---|
+| 2PC | да | поддержка протокола |
+| TCC | резерв виден как занятое | три идемпотентные операции |
+| Saga | нет | действие и компенсация |
+
+| Оркестратор нельзя | Вместо этого |
+|---|---|
+| `DateTime.UtcNow` | `context.CurrentUtcDateTime` |
+| `Guid.NewGuid()` | `context.NewGuid()` |
+| HTTP и база | активности |
+| `Task.Delay` | `CreateTimer` |
+| `Task.Run` | вызовы через контекст |
+
+| `System.Transactions` в современном .NET | |
+|---|---|
+| `TransactionManager.ImplicitDistributedTransactions` | по умолчанию `false` |
+| установка свойства | поддерживается только на Windows |
 
 ## Подвохи
 
@@ -63,6 +113,20 @@ await Saga.RunAsync([Ok("order"), broken, Fails("payment")], journal);
 ### Relay не гарантирует отсутствие повторов
 
 В тесте сбой после публикации, но до отметки даёт две доставки; inbox оставляет один обработанный элемент.
+
+### Второй ресурс в TransactionScope
+
+```csharp
+using var scope = new TransactionScope();
+Transaction.Current!.EnlistDurable(Guid.NewGuid(), new Resource(), EnlistmentOptions.None);
+Transaction.Current!.EnlistDurable(Guid.NewGuid(), new Resource(), EnlistmentOptions.None);
+```
+
+`Resource` здесь — тестовый участник транзакции. Первая регистрация проходит, вторая бросает `NotSupportedException`: транзакция должна стать распределённой, а это по умолчанию выключено.
+
+### Изменённый код ломает незавершённые workflow
+
+В тесте история содержит шаг `charge`, а новый код первым вызывает `reserve`: воспроизведение останавливается с ошибкой недетерминизма.
 
 ## Компромиссы и альтернативы
 
@@ -157,6 +221,46 @@ await Saga.RunAsync([Ok("order"), broken, Fails("payment")], journal);
 
 </details>
 
+**11. Три операции TCC и требования к ним?**
+
+<details><summary>Ответ</summary>
+
+Try, Confirm, Cancel; идемпотентность, пустая отмена и истечение резерва.
+
+</details>
+
+**12. Почему оркестратор должен быть детерминированным?**
+
+<details><summary>Ответ</summary>
+
+Движок восстанавливает состояние повторным выполнением кода по истории.
+
+</details>
+
+**13. Как выпускать новую версию длинного workflow?**
+
+<details><summary>Ответ</summary>
+
+Версионировать оркестрации или разворачивать новую версию рядом, давая старым завершиться.
+
+</details>
+
+**14. Чем CDC лучше опроса outbox?**
+
+<details><summary>Ответ</summary>
+
+Меньше задержка и нагрузка запросами; ценой дополнительной инфраструктуры.
+
+</details>
+
+**15. Подвох: два `SaveChanges` в разные базы внутри одного `TransactionScope`. Сработает?**
+
+<details><summary>Ответ</summary>
+
+Обычно потребуется распределённая транзакция, которая по умолчанию выключена и доступна не везде; чаще нужен outbox или сага.
+
+</details>
+
 ## Связанные материалы
 
 - [Продвинутая теория](advanced.ru.md)
@@ -166,3 +270,7 @@ await Saga.RunAsync([Ok("order"), broken, Fails("payment")], journal);
 
 - [PostgreSQL: PREPARE TRANSACTION](https://www.postgresql.org/docs/current/sql-prepare-transaction.html)
 - [Паттерн Saga](https://learn.microsoft.com/azure/architecture/patterns/saga)
+- [Durable Functions: ограничения кода оркестратора](https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-code-constraints)
+- [Durable Functions: версионирование](https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-versioning)
+- [Debezium: Outbox Event Router](https://debezium.io/documentation/reference/stable/transformations/outbox-event-router.html)
+- [.NET: ImplicitDistributedTransactions](https://learn.microsoft.com/dotnet/api/system.transactions.transactionmanager.implicitdistributedtransactions)

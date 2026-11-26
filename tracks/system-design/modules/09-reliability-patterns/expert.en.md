@@ -29,6 +29,54 @@ public static int CallsAtTheBottom(int attemptsPerLayer, int layers) =>
 
 Four attempts at three layers make 64 calls. File: [Ex03_Amplification.cs](code/Examples/Ex03_Amplification.cs). A retry budget limits retries to a share of ordinary requests.
 
+### Adaptive concurrency limit
+
+A fixed limit goes stale when the dependency's capacity changes. An adaptive one raises it little by little while things are fine and cuts it sharply on errors or growing latency (AIMD).
+
+```csharp
+_limit = failed || latency > latencyTarget
+    ? Math.Max(min, _limit * 0.5)
+    : Math.Min(max, _limit + 1 / _limit);
+```
+
+With a limit of 20, after 21 good answers it became 21, after one slow one 10. File: [Ex04_AdaptiveLimit.cs](code/Examples/Ex04_AdaptiveLimit.cs). This is only the control rule, not a ready limiter.
+
+### Hedging
+
+If the first attempt has not answered within a set time, a second one is started and the winner is taken.
+
+```csharp
+.AddHedging(new HedgingStrategyOptions<string> { MaxHedgedAttempts = 1, Delay = delay })
+```
+
+In Polly the default is one extra attempt and a 2 second delay; `Delay = TimeSpan.Zero` starts them all at once. Both attempts reach the dependency, so the technique fits safe operations only. The delay is usually set near a high percentile so that a small share of requests is duplicated. File: [Ex05_Hedging.cs](code/Examples/Ex05_Hedging.cs).
+
+### Deadlines in gRPC
+
+By default a gRPC call has no deadline. The client sets `CallOptions.Deadline` (UTC); on expiry the call gets `DeadlineExceeded`, and on the server `ServerCallContext.CancellationToken` is cancelled — the method keeps running until it returns, so the token has to be passed on. The deadline covers retries too. `EnableCallContextPropagation()` passes it to child calls automatically.
+
+### Chaos engineering
+
+The order: describe the steady state with a measurable metric, hypothesize that it will hold, introduce a realistic failure and try to disprove the hypothesis, limiting the blast radius. Polly has the `Fault`, `Outcome`, `Latency` and `Behavior` strategies.
+
+```csharp
+.AddChaosFault(new ChaosFaultStrategyOptions
+{
+    InjectionRate = rate, // always set it: the default is not zero
+    Enabled = enabled,
+```
+
+### Degradation and feature flags
+
+A gradual rollout keeps each user on one side and widens the share without reshuffling.
+
+```csharp
+uint hash = BinaryPrimitives.ReadUInt32BigEndian(SHA256.HashData(Encoding.UTF8.GetBytes($"{flag}\n{userId}")));
+return hash % 100 < percent;
+```
+
+Everyone who was in 10% stays at 50%. In an application use `Microsoft.FeatureManagement`: it has percentage, time window and targeting filters. A flag is also an emergency switch for a secondary feature. File: [Ex06_FeatureFlags.cs](code/Examples/Ex06_FeatureFlags.cs).
+
 ## Reference
 
 | Polly 8.9.1 setting | Default |
@@ -52,6 +100,27 @@ Four attempts at three layers make 64 calls. File: [Ex03_Amplification.cs](code/
 | attempt timeout | 10 s |
 
 It handles HTTP 500 and above, 408, 429, `HttpRequestException` and `TimeoutRejectedException`. The hedging handler (`AddStandardHedgingHandler`) sends an extra attempt without waiting for the answer and fits only safe operations.
+
+| Way to limit load | What it knows in advance | Adapts |
+|---|---|---|
+| Fixed limit | a number | no |
+| Rate limiter | a rate | no |
+| AIMD | a latency target | yes |
+| Load shedding by priority | request importance | by state |
+
+| Polly chaos | What it injects |
+|---|---|
+| `Fault` | an exception |
+| `Outcome` | a substituted result |
+| `Latency` | a delay |
+| `Behavior` | any action |
+
+| Degradation level | Example |
+|---|---|
+| Stale data | a cache instead of the source |
+| Simplified answer | without recommendations |
+| Read only | writes temporarily off |
+| Rejecting some requests | background and unimportant first |
 
 ## Gotchas
 
@@ -78,6 +147,19 @@ Result: the call takes about 600 ms and completes successfully, with no `Timeout
 ### A breaker with default settings may never trip
 
 99 failed calls in a row through `AddCircuitBreaker(new CircuitBreakerStrategyOptions())` all reached the dependency: `MinimumThroughput` is 100. For a rarely called service this means there is effectively no protection.
+
+### Chaos is enabled by default
+
+```csharp
+var c = new ChaosFaultStrategyOptions();
+Console.WriteLine($"{c.InjectionRate} {c.Enabled}");
+```
+
+Result: `0.001` and `True` (the decimal separator depends on the culture). By adding a strategy without settings you start injecting failures. Enable it explicitly and only where intended.
+
+### Hedging calls the dependency twice
+
+In the test the first attempt hung, the second answered, and the call counter is 2. For a payment without idempotency that is a double charge.
 
 ## Trade-offs and alternatives
 
@@ -172,6 +254,46 @@ Under real overload the same retries may finish the dependency off. Test failure
 
 </details>
 
+**11. How does AIMD work?**
+
+<details><summary>Answer</summary>
+
+The limit grows additively on successes and shrinks multiplicatively on signs of overload.
+
+</details>
+
+**12. How does hedging differ from retry?**
+
+<details><summary>Answer</summary>
+
+It does not wait for a failure: it duplicates a slow request while the first is still running.
+
+</details>
+
+**13. Does a gRPC call have a default deadline?**
+
+<details><summary>Answer</summary>
+
+No, it is set explicitly.
+
+</details>
+
+**14. What must exist before a chaos experiment?**
+
+<details><summary>Answer</summary>
+
+A measurable steady state, a hypothesis, a bounded blast radius and a way to stop the experiment.
+
+</details>
+
+**15. Trick question: you raised a flag from 10% to 50% with a random choice per request. What is wrong?**
+
+<details><summary>Answer</summary>
+
+A user will flip between variants. A stable bucket per user is needed.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -182,3 +304,8 @@ Under real overload the same retries may finish the dependency off. Test failure
 - [Polly: retry](https://www.pollydocs.org/strategies/retry.html)
 - [Polly: circuit breaker](https://www.pollydocs.org/strategies/circuit-breaker.html)
 - [.NET: HTTP resilience](https://learn.microsoft.com/dotnet/core/resilience/http-resilience)
+- [Polly: hedging](https://www.pollydocs.org/strategies/hedging.html)
+- [Polly: chaos engineering](https://www.pollydocs.org/chaos/)
+- [gRPC: deadlines and cancellation](https://learn.microsoft.com/aspnet/core/grpc/deadlines-cancellation)
+- [Principles of Chaos Engineering](https://principlesofchaos.org/)
+- [Microsoft.FeatureManagement](https://learn.microsoft.com/azure/azure-app-configuration/feature-management-dotnet-reference)

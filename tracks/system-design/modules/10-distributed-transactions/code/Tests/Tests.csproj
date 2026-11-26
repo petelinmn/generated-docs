@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="xunit.v3" Version="4.0.3" />
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" Version="11.0.1" />
   </ItemGroup>
 
   <ItemGroup>

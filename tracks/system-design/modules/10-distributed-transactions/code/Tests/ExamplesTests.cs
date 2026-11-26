@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Time.Testing;
 using Transactions.Examples;
 
 public class TwoPhaseTests
@@ -87,5 +88,59 @@ public class OutboxTests
 
         Assert.Equal(2, deliveries);
         Assert.Equal(["OrderPlaced:7"], inbox.Handled);
+    }
+}
+
+public class TccTests
+{
+    [Fact]
+    public void Hold_confirm_cancel_and_expiry()
+    {
+        var clock = new FakeTimeProvider();
+        var stock = new Stock(10, clock);
+        var minute = TimeSpan.FromMinutes(1);
+
+        Assert.True(stock.Try("a", 6, minute));
+        Assert.True(stock.Try("a", 6, minute)); // repeated: no second hold
+        Assert.False(stock.Try("b", 6, minute));
+        Assert.True(stock.Confirm("a"));
+        Assert.True(stock.Confirm("a"));
+        stock.Cancel("never-tried");
+        Assert.Equal(4, stock.Available);
+
+        stock.Try("c", 4, minute);
+        clock.Advance(minute);
+        Assert.False(stock.Confirm("c"));
+        Assert.Equal(4, stock.Available);
+    }
+}
+
+public class ReplayTests
+{
+    [Fact]
+    public async Task Completed_steps_are_not_executed_again()
+    {
+        var history = new List<HistoryEntry>();
+        int charges = 0;
+        Task<string> Charge() => Task.FromResult($"payment-{++charges}");
+
+        var first = new WorkflowContext(history);
+        await first.CallAsync("charge", Charge);
+        // the process dies here and the workflow starts again
+        var second = new WorkflowContext(history);
+
+        Assert.Equal("payment-1", await second.CallAsync("charge", Charge));
+        Assert.Equal(1, charges);
+        Assert.Equal("sent", await second.CallAsync("ship", () => Task.FromResult("sent")));
+    }
+
+    [Fact]
+    public async Task Changed_code_is_detected()
+    {
+        var history = new List<HistoryEntry> { new("charge", "payment-1") };
+        var context = new WorkflowContext(history);
+
+        await Assert.ThrowsAsync<InvalidOperationException>(
+            () => context.CallAsync("reserve", () => Task.FromResult("x")));
     }
 }

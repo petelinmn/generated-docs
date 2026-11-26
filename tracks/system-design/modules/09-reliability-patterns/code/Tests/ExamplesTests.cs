@@ -94,3 +94,80 @@ public class AmplificationTests
     public void Retries_multiply(int attempts, int layers, int expected) =>
         Assert.Equal(expected, Amplification.CallsAtTheBottom(attempts, layers));
 }
+
+public class AdaptiveTests
+{
+    [Fact]
+    public void Grows_slowly_and_shrinks_fast()
+    {
+        var limit = new AimdLimit(initial: 20, min: 1, max: 100, latencyTarget: TimeSpan.FromMilliseconds(100));
+
+        for (int i = 0; i < 21; i++) limit.Record(TimeSpan.FromMilliseconds(10), failed: false);
+        Assert.Equal(21, limit.Current);
+
+        limit.Record(TimeSpan.FromSeconds(1), failed: false);
+        Assert.Equal(10, limit.Current);
+        for (int i = 0; i < 10; i++) limit.Record(TimeSpan.Zero, failed: true);
+        Assert.Equal(1, limit.Current);
+    }
+}
+
+public class HedgingTests
+{
+    [Fact]
+    public async Task A_second_attempt_wins_when_the_first_is_slow()
+    {
+        var clock = new FakeTimeProvider();
+        var pipeline = Hedged.Pipeline(TimeSpan.FromSeconds(1), clock);
+        int calls = 0;
+
+        Task<string> call = pipeline.ExecuteAsync(async token =>
+        {
+            if (Interlocked.Increment(ref calls) > 1) return "second";
+            await Task.Delay(Timeout.InfiniteTimeSpan, token);
+            return "first";
+        }, TestContext.Current.CancellationToken).AsTask();
+
+        Assert.Equal(1, calls);
+        clock.Advance(TimeSpan.FromSeconds(1));
+
+        Assert.Equal("second", await call);
+        Assert.Equal(2, calls); // both attempts reached the dependency
+    }
+}
+
+public class ChaosTests
+{
+    [Theory]
+    [InlineData(1.0, true, true)]
+    [InlineData(1.0, false, false)]
+    [InlineData(0.0, true, false)]
+    public async Task Faults_are_injected_only_when_enabled(double rate, bool enabled, bool fails)
+    {
+        var pipeline = Chaos.Faults(rate, enabled);
+        bool reached = false;
+        ValueTask Call() => pipeline.ExecuteAsync(
+            _ => { reached = true; return ValueTask.CompletedTask; }, TestContext.Current.CancellationToken);
+
+        if (fails) await Assert.ThrowsAsync<TransientException>(async () => await Call());
+        else await Call();
+
+        Assert.Equal(!fails, reached);
+    }
+}
+
+public class RolloutTests
+{
+    private static readonly string[] Users = [.. Enumerable.Range(0, 10_000).Select(i => $"u{i}")];
+
+    [Fact]
+    public void Share_is_close_and_raising_it_keeps_earlier_users()
+    {
+        string[] at10 = [.. Users.Where(u => Rollout.IsEnabled("checkout", u, 10))];
+        string[] at50 = [.. Users.Where(u => Rollout.IsEnabled("checkout", u, 50))];
+
+        Assert.InRange(at10.Length, 900, 1100);
+        Assert.Empty(at10.Except(at50));
+        Assert.NotEqual(at10, Users.Where(u => Rollout.IsEnabled("search", u, 10)));
+    }
+}
