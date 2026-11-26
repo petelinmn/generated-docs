@@ -67,3 +67,4 @@ Everything was run against a real three-broker Apache Kafka 4.3.1 cluster in Doc
 - Next: [08 · Kafka Connect](../08-kafka-connect/overview.en.md)
 - Analogues in other tracks: [RabbitMQ: clustering](../../../rabbitmq/modules/08-clustering/overview.en.md)
 - [Cluster and shards in OpenSearch](../../../opensearch/modules/07-cluster-and-shards/overview.en.md)
+- [System design: replication and sharding](../../../system-design/modules/06-replication-and-partitioning/overview.en.md)

@@ -69,3 +69,4 @@ docker exec rmq2 rabbitmqctl start_app
 - Дальше: [09 · Мониторинг и эксплуатация](../09-monitoring/overview.ru.md)
 - Аналоги в других треках: [Kubernetes](../../../kubernetes/overview.ru.md)
 - [Кластер и шарды в OpenSearch](../../../opensearch/modules/07-cluster-and-shards/overview.ru.md)
+- [System design: репликация и шардирование](../../../system-design/modules/06-replication-and-partitioning/overview.ru.md)

@@ -70,3 +70,4 @@ class GreeterService : Greeter.GreeterBase
 - Рядом: [Устойчивый HttpClient](../http-client-resilience/overview.ru.md), [Real-time через SignalR](../signalr-realtime/overview.ru.md), [JWT-аутентификация](../jwt-auth/overview.ru.md)
 - В других треках: [Python](../../../python/overview.ru.md) — gRPC в Python
 - Рецепты и библиотеки: [Refit](../../libraries/refit/overview.ru.md)
+- [System design: проектирование API](../../../system-design/modules/05-api-design/overview.ru.md)

@@ -74,3 +74,4 @@ app.Run();
 - Health checks и трассировка: [22 · Наблюдаемость](../22-observability/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — FastAPI
 - Рецепты и библиотеки: [FluentValidation](../../libraries/fluentvalidation/overview.ru.md), [Кэширование](../../recipes/caching/overview.ru.md), [Загрузка файлов](../../recipes/file-upload/overview.ru.md), [gRPC-сервис](../../recipes/grpc-service/overview.ru.md), [JWT-аутентификация](../../recipes/jwt-auth/overview.ru.md), [Пагинация и фильтрация](../../recipes/pagination-filtering/overview.ru.md), [Rate limiting](../../recipes/rate-limiting/overview.ru.md), [Real-time через SignalR](../../recipes/signalr-realtime/overview.ru.md)
+- [System design: проектирование API](../../../system-design/modules/05-api-design/overview.ru.md)

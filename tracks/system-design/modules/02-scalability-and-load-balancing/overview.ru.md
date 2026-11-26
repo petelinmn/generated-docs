@@ -54,11 +54,12 @@ return nodes[(int)(i % (uint)nodes.Count)];
 | [2. Продвинутая теория](advanced.ru.md) | взвешенные и load-aware алгоритмы, consistent hashing, health checks, affinity |
 | [3. Экспертная теория](expert.ru.md) | законы Амдала и USL, справочник YARP, подвохи, вопросы |
 | [4. Самопроверка](quiz.ru.md) | квиз и [упражнения](exercises.ru.md) |
-| [5. Запускаемые примеры](code/examples/) | балансировщики, hash ring, шлюз на YARP |
-| [6. Тесты](code/tests/) | `dotnet test` в папке `code/` |
+| [5. Запускаемые примеры](code/Examples/) | балансировщики, hash ring, шлюз на YARP |
+| [6. Тесты](code/Tests/) | `dotnet test` в папке `code/` |
 
 ## Связанные материалы
 
 - Пререквизиты: [процесс проектирования](../01-design-process/overview.ru.md)
 - Дальше: [кэширование](../03-caching/overview.ru.md)
 - То же в других треках: [Kubernetes: Services](../../../kubernetes/modules/06-services/overview.ru.md), [Kubernetes: autoscaling](../../../kubernetes/modules/15-autoscaling/overview.ru.md)
+- [Репликация и партиционирование](../06-replication-and-partitioning/overview.ru.md)

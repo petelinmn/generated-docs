@@ -56,8 +56,8 @@ return price;
 | [2. Advanced](advanced.en.md) | write strategies, stampede, eviction, HTTP cache, L1 and L2 |
 | [3. Expert](expert.en.md) | races, reference, .NET gotchas, questions |
 | [4. Self-check](quiz.en.md) | a quiz and [exercises](exercises.en.md) |
-| [5. Runnable examples](code/examples/) | cache-aside, single-flight, LRU, HybridCache |
-| [6. Tests](code/tests/) | `dotnet test` inside `code/` |
+| [5. Runnable examples](code/Examples/) | cache-aside, single-flight, LRU, HybridCache |
+| [6. Tests](code/Tests/) | `dotnet test` inside `code/` |
 
 ## Related materials
 

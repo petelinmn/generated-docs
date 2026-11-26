@@ -63,3 +63,4 @@ var users = cn.Query<User>("SELECT Id, Name FROM Users WHERE Id > @min", new { m
 - Рядом: [Пагинация и фильтрация](../../recipes/pagination-filtering/overview.ru.md), [Testcontainers](../testcontainers/overview.ru.md), [BenchmarkDotNet](../benchmarkdotnet/overview.ru.md)
 - В других треках: [Python](../../../python/overview.ru.md) — работа с БД в Python
 - Рецепты и библиотеки: [Mapperly](../mapperly/overview.ru.md)
+- [System design: выбор хранилища](../../../system-design/modules/04-data-storage/overview.ru.md)

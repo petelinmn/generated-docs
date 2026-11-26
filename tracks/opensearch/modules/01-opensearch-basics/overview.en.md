@@ -65,3 +65,4 @@ print(client.search(index="products", body={"query": {"match": {"name": "mug"}}}
 - [Kafka basics](../../../kafka/modules/01-kafka-basics/overview.en.md) — another distributed service with partitions and replicas
 - [05 · Indexing at scale](../05-indexing-at-scale/overview.en.md)
 - [07 · Cluster and shards](../07-cluster-and-shards/overview.en.md)
+- [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)

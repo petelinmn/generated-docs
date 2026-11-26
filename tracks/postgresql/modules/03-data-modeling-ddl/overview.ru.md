@@ -60,6 +60,7 @@ CREATE TABLE orders (
 
 - Пререквизиты: [02 · SQL-запросы](../02-sql-queries/overview.ru.md).
 - Дальше: следующий модуль по [дорожной карте PostgreSQL](../../overview.ru.md).
+- [System design: выбор хранилища](../../../system-design/modules/04-data-storage/overview.ru.md)
 
 ## Источники
 

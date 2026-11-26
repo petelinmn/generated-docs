@@ -55,11 +55,13 @@ double peakQps = averageQps * 3;                // about 6944
 | [2. Продвинутая теория](advanced.ru.md) | перцентили, бюджет ошибок, burn rate, ADR, частые ошибки |
 | [3. Экспертная теория](expert.ru.md) | справочник, подвохи расчётов, вопросы с собеседований |
 | [4. Самопроверка](quiz.ru.md) | квиз и [упражнения](exercises.ru.md) |
-| [5. Запускаемые примеры](code/examples/) | калькулятор нагрузки, доступность, перцентили |
-| [6. Тесты](code/tests/) | `dotnet test` в папке `code/` |
+| [5. Запускаемые примеры](code/Examples/) | калькулятор нагрузки, доступность, перцентили |
+| [6. Тесты](code/Tests/) | `dotnet test` в папке `code/` |
 
 ## Связанные материалы
 
 - Пререквизиты: [основы C#](../../../csharp/modules/02-types-and-variables/overview.ru.md)
 - Дальше: [масштабирование и балансировка](../02-scalability-and-load-balancing/overview.ru.md), [кэширование](../03-caching/overview.ru.md)
 - То же в других треках: [наблюдаемость в .NET](../../../csharp/modules/22-observability/overview.ru.md), [архитектура приложений](../../../csharp/modules/21-architecture/overview.ru.md)
+- [Хранение данных](../04-data-storage/overview.ru.md)
+- [Проектирование API](../05-api-design/overview.ru.md)

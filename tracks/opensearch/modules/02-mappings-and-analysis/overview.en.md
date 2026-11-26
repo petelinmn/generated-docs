@@ -60,3 +60,4 @@ client.indices.create(index="goods", body={"mappings": {"properties": {
 - [04 · Aggregations](../04-aggregations/overview.en.md)
 - [05 · Indexing at scale](../05-indexing-at-scale/overview.en.md)
 - [06 · Relevance](../06-relevance-tuning/overview.en.md)
+- [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)

@@ -54,11 +54,12 @@ return nodes[(int)(i % (uint)nodes.Count)];
 | [2. Advanced](advanced.en.md) | weighted and load-aware algorithms, consistent hashing, health checks, affinity |
 | [3. Expert](expert.en.md) | Amdahl's law and USL, YARP reference, gotchas, questions |
 | [4. Self-check](quiz.en.md) | a quiz and [exercises](exercises.en.md) |
-| [5. Runnable examples](code/examples/) | balancers, a hash ring, a YARP gateway |
-| [6. Tests](code/tests/) | `dotnet test` inside `code/` |
+| [5. Runnable examples](code/Examples/) | balancers, a hash ring, a YARP gateway |
+| [6. Tests](code/Tests/) | `dotnet test` inside `code/` |
 
 ## Related materials
 
 - Prerequisites: [design process](../01-design-process/overview.en.md)
 - Next: [caching](../03-caching/overview.en.md)
 - The same idea in other tracks: [Kubernetes: Services](../../../kubernetes/modules/06-services/overview.en.md), [Kubernetes: autoscaling](../../../kubernetes/modules/15-autoscaling/overview.en.md)
+- [Replication and partitioning](../06-replication-and-partitioning/overview.en.md)

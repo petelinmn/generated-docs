@@ -64,6 +64,7 @@ ORDER BY total DESC;
 
 - Prerequisites: [01 · PostgreSQL basics](../01-postgresql-basics/overview.en.md).
 - Next: [03 · Data modeling and DDL](../03-data-modeling-ddl/overview.en.md).
+- [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
 
 ## Sources
 

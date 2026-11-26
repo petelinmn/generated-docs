@@ -64,6 +64,7 @@ ORDER BY total DESC;
 
 - Пререквизиты: [01 · Основы PostgreSQL](../01-postgresql-basics/overview.ru.md).
 - Дальше: [03 · Проектирование схемы](../03-data-modeling-ddl/overview.ru.md).
+- [System design: выбор хранилища](../../../system-design/modules/04-data-storage/overview.ru.md)
 
 ## Источники
 

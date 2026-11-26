@@ -55,11 +55,13 @@ double peakQps = averageQps * 3;                // about 6944
 | [2. Advanced](advanced.en.md) | percentiles, error budget, burn rate, ADR, common mistakes |
 | [3. Expert](expert.en.md) | reference, calculation gotchas, interview questions |
 | [4. Self-check](quiz.en.md) | a quiz and [exercises](exercises.en.md) |
-| [5. Runnable examples](code/examples/) | load calculator, availability, percentiles |
-| [6. Tests](code/tests/) | `dotnet test` inside `code/` |
+| [5. Runnable examples](code/Examples/) | load calculator, availability, percentiles |
+| [6. Tests](code/Tests/) | `dotnet test` inside `code/` |
 
 ## Related materials
 
 - Prerequisites: [C# basics](../../../csharp/modules/02-types-and-variables/overview.en.md)
 - Next: [scaling and load balancing](../02-scalability-and-load-balancing/overview.en.md), [caching](../03-caching/overview.en.md)
 - The same idea in other tracks: [observability in .NET](../../../csharp/modules/22-observability/overview.en.md), [application architecture](../../../csharp/modules/21-architecture/overview.en.md)
+- [Data storage](../04-data-storage/overview.en.md)
+- [API design](../05-api-design/overview.en.md)

@@ -58,3 +58,4 @@ client.cluster.allocation_explain(body={"index": "orders", "shard": 0, "primary"
 - [Репликация и доступность в Kafka](../../../kafka/modules/07-replication-and-availability/overview.ru.md) — аналог
 - [Кластеры RabbitMQ](../../../rabbitmq/modules/08-clustering/overview.ru.md) — большинство и кворум
 - [08 · Жизненный цикл индексов](../08-index-lifecycle/overview.ru.md)
+- [System design: репликация и шардирование](../../../system-design/modules/06-replication-and-partitioning/overview.ru.md)

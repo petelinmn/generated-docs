@@ -60,6 +60,7 @@ CREATE TABLE orders (
 
 - Prerequisites: [02 · SQL queries](../02-sql-queries/overview.en.md).
 - Next: the next module in the [PostgreSQL track roadmap](../../overview.en.md).
+- [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
 
 ## Sources
 

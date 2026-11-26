@@ -63,3 +63,4 @@ var items = await db.Products.OrderBy(p => p.Id).Skip((page - 1) * size).Take(si
 - Рядом: [Кэширование](../caching/overview.ru.md), [Rate limiting](../rate-limiting/overview.ru.md), [19 · Производительность](../../modules/19-performance/overview.ru.md)
 - В других треках: [Python](../../../python/overview.ru.md) — пагинация в API на Python
 - Рецепты и библиотеки: [Dapper](../../libraries/dapper/overview.ru.md), [Mapperly](../../libraries/mapperly/overview.ru.md)
+- [System design: проектирование API](../../../system-design/modules/05-api-design/overview.ru.md)

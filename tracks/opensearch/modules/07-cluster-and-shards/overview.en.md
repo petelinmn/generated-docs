@@ -58,3 +58,4 @@ When the cluster has more than one node or you ask "how many shards". For local 
 - [Replication and availability in Kafka](../../../kafka/modules/07-replication-and-availability/overview.en.md) — a counterpart
 - [RabbitMQ clustering](../../../rabbitmq/modules/08-clustering/overview.en.md) — majority and quorum
 - [08 · Index lifecycle](../08-index-lifecycle/overview.en.md)
+- [System design: replication and sharding](../../../system-design/modules/06-replication-and-partitioning/overview.en.md)

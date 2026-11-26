@@ -63,3 +63,4 @@ var items = await db.Products.OrderBy(p => p.Id).Skip((page - 1) * size).Take(si
 - Nearby: [Caching](../caching/overview.en.md), [Rate limiting](../rate-limiting/overview.en.md), [19 · Performance](../../modules/19-performance/overview.en.md)
 - In other tracks: [Python](../../../python/overview.en.md) — pagination in Python APIs
 - Recipes and libraries: [Dapper](../../libraries/dapper/overview.en.md), [Mapperly](../../libraries/mapperly/overview.en.md)
+- [System design: API design](../../../system-design/modules/05-api-design/overview.en.md)

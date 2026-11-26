@@ -76,3 +76,4 @@ EF generates `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Likes" >= @minL
 - Repository and aggregates: [21 · Application architecture](../21-architecture/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — module 20 "Databases": SQLAlchemy and Alembic
 - Recipes and libraries: [Dapper](../../libraries/dapper/overview.en.md), [Mapperly](../../libraries/mapperly/overview.en.md), [Testcontainers](../../libraries/testcontainers/overview.en.md), [Caching](../../recipes/caching/overview.en.md), [Pagination and filtering](../../recipes/pagination-filtering/overview.en.md)
+- [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)

@@ -56,8 +56,8 @@ return price;
 | [2. Продвинутая теория](advanced.ru.md) | стратегии записи, stampede, вытеснение, HTTP-кэш, L1 и L2 |
 | [3. Экспертная теория](expert.ru.md) | гонки, справочник, подвохи .NET, вопросы |
 | [4. Самопроверка](quiz.ru.md) | квиз и [упражнения](exercises.ru.md) |
-| [5. Запускаемые примеры](code/examples/) | cache-aside, single-flight, LRU, HybridCache |
-| [6. Тесты](code/tests/) | `dotnet test` в папке `code/` |
+| [5. Запускаемые примеры](code/Examples/) | cache-aside, single-flight, LRU, HybridCache |
+| [6. Тесты](code/Tests/) | `dotnet test` в папке `code/` |
 
 ## Связанные материалы
 
