@@ -65,3 +65,4 @@ double peakQps = averageQps * 3;                // about 6944
 - То же в других треках: [наблюдаемость в .NET](../../../csharp/modules/22-observability/overview.ru.md), [архитектура приложений](../../../csharp/modules/21-architecture/overview.ru.md)
 - [Хранение данных](../04-data-storage/overview.ru.md)
 - [Проектирование API](../05-api-design/overview.ru.md)
+- [Паттерны надёжности](../09-reliability-patterns/overview.ru.md)

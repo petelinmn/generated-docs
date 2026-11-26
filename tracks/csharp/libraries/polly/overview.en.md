@@ -66,3 +66,4 @@ var result = await pipeline.ExecuteAsync(async ct => await CallServiceAsync(ct))
 - Prerequisites: [10 · async/await](../../modules/10-async-await/overview.en.md), [08 · Exceptions](../../modules/08-exceptions/overview.en.md)
 - Nearby: [Resilient HttpClient](../../recipes/http-client-resilience/overview.en.md), [Rate limiting](../../recipes/rate-limiting/overview.en.md), [Refit](../refit/overview.en.md), [MassTransit](../masstransit/overview.en.md) — retries at a broker endpoint's level
 - In other tracks: [Python](../../../python/overview.en.md) — tenacity
+- [System design: reliability patterns](../../../system-design/modules/09-reliability-patterns/overview.en.md)

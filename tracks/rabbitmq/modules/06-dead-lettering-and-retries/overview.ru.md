@@ -71,3 +71,4 @@ ch.queue_declare("work", durable=True, arguments={
 - Пререквизиты: [03 · Очереди и доставка](../03-queues-and-delivery/overview.ru.md), [05 · Надёжность](../05-reliability/overview.ru.md)
 - Дальше: [07 · Типы очередей](../07-queue-types/overview.ru.md)
 - Аналоги в других треках: [фоновые задачи в C#](../../../csharp/recipes/background-jobs/overview.ru.md)
+- [System design: сообщения и события](../../../system-design/modules/08-messaging-and-events/overview.ru.md)

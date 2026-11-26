@@ -69,3 +69,4 @@ app.MapGet("/fixed", () => "ok").RequireRateLimiting("fixed");
 - Рядом: [JWT-аутентификация](../jwt-auth/overview.ru.md), [Устойчивый HttpClient](../http-client-resilience/overview.ru.md), [Кэширование](../caching/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — ограничение частоты в FastAPI
 - Рецепты и библиотеки: [Polly](../../libraries/polly/overview.ru.md), [Фоновые задачи](../background-jobs/overview.ru.md), [Загрузка файлов](../file-upload/overview.ru.md), [Пагинация и фильтрация](../pagination-filtering/overview.ru.md), [Real-time через SignalR](../signalr-realtime/overview.ru.md)
+- [System design: паттерны надёжности](../../../system-design/modules/09-reliability-patterns/overview.ru.md)

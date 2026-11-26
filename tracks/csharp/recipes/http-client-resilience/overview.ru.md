@@ -66,3 +66,4 @@ builder.Services.AddHttpClient("api", c => c.BaseAddress = new Uri("https://api.
 - Рецепты и библиотеки: [Polly](../../libraries/polly/overview.ru.md), [Refit](../../libraries/refit/overview.ru.md), [Кэширование](../caching/overview.ru.md), [gRPC-сервис](../grpc-service/overview.ru.md)
 - [Масштабирование и балансировка](../../../system-design/modules/02-scalability-and-load-balancing/overview.ru.md)
 - [System design: проектирование API](../../../system-design/modules/05-api-design/overview.ru.md)
+- [System design: паттерны надёжности](../../../system-design/modules/09-reliability-patterns/overview.ru.md)

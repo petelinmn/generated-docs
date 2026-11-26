@@ -81,3 +81,4 @@ Four threads calling `Increment()` a million times each give exactly `4000000`.
 - The thread pool and performance: [19 · Performance](../19-performance/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — the GIL, `threading` and `asyncio`
 - Recipes and libraries: [Background jobs](../../recipes/background-jobs/overview.en.md)
+- [System design: consistency and CAP](../../../system-design/modules/07-consistency-and-cap/overview.en.md)

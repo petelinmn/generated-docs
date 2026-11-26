@@ -77,3 +77,4 @@ EF генерирует `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Like
 - То же в других треках: [Python](../../../python/overview.ru.md) — модуль 20 «Работа с БД»: SQLAlchemy и Alembic
 - Рецепты и библиотеки: [Dapper](../../libraries/dapper/overview.ru.md), [Mapperly](../../libraries/mapperly/overview.ru.md), [Testcontainers](../../libraries/testcontainers/overview.ru.md), [Кэширование](../../recipes/caching/overview.ru.md), [Пагинация и фильтрация](../../recipes/pagination-filtering/overview.ru.md)
 - [System design: выбор хранилища](../../../system-design/modules/04-data-storage/overview.ru.md)
+- [System design: согласованность и CAP](../../../system-design/modules/07-consistency-and-cap/overview.ru.md)

@@ -79,3 +79,4 @@ dotnet test
 - Пререквизиты: [13 · DI, конфигурация, логирование](../../modules/13-di-config-logging/overview.ru.md), [10 · async/await](../../modules/10-async-await/overview.ru.md)
 - Рядом: [Фоновые задачи](../../recipes/background-jobs/overview.ru.md), [Polly](../polly/overview.ru.md), [Testcontainers](../testcontainers/overview.ru.md)
 - В других треках: [RabbitMQ](../../../rabbitmq/overview.ru.md) — брокер под транспортом; [Kafka](../../../kafka/overview.ru.md) — журнал событий
+- [System design: сообщения и события](../../../system-design/modules/08-messaging-and-events/overview.ru.md)

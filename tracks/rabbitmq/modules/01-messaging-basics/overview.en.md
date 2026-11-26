@@ -76,3 +76,4 @@ All code was run against a real RabbitMQ 4.4.1 broker in Docker (see "How the co
 - Prerequisites: [Python](../../../python/overview.en.md) basics
 - Next: [02 · Exchanges and routing](../02-exchanges-and-routing/overview.en.md)
 - Analogues in other tracks: [C# background jobs](../../../csharp/recipes/background-jobs/overview.en.md), [Linux](../../../linux/overview.en.md) (sockets)
+- [System design: messaging and events](../../../system-design/modules/08-messaging-and-events/overview.en.md)

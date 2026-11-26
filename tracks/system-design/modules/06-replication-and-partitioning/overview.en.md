@@ -59,3 +59,4 @@ public static bool Overlaps(int n, int w, int r) => w + r > n;
 
 - Prerequisites: [data storage](../04-data-storage/overview.en.md), [consistent hashing](../02-scalability-and-load-balancing/overview.en.md)
 - In other tracks: [Kafka replication](../../../kafka/modules/07-replication-and-availability/overview.en.md), [RabbitMQ clustering](../../../rabbitmq/modules/08-clustering/overview.en.md), [OpenSearch shards](../../../opensearch/modules/07-cluster-and-shards/overview.en.md)
+- [Consistency and CAP](../07-consistency-and-cap/overview.en.md)

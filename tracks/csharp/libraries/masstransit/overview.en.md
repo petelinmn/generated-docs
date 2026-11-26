@@ -79,3 +79,4 @@ dotnet test
 - Prerequisites: [13 · DI, configuration, logging](../../modules/13-di-config-logging/overview.en.md), [10 · async/await](../../modules/10-async-await/overview.en.md)
 - Nearby: [Background jobs](../../recipes/background-jobs/overview.en.md), [Polly](../polly/overview.en.md), [Testcontainers](../testcontainers/overview.en.md)
 - In other tracks: [RabbitMQ](../../../rabbitmq/overview.en.md) — the broker under the transport; [Kafka](../../../kafka/overview.en.md) — an event log
+- [System design: messaging and events](../../../system-design/modules/08-messaging-and-events/overview.en.md)

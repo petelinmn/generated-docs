@@ -66,3 +66,4 @@ builder.Services.AddHttpClient("api", c => c.BaseAddress = new Uri("https://api.
 - Recipes and libraries: [Polly](../../libraries/polly/overview.en.md), [Refit](../../libraries/refit/overview.en.md), [Caching](../caching/overview.en.md), [gRPC service](../grpc-service/overview.en.md)
 - [Scaling and load balancing](../../../system-design/modules/02-scalability-and-load-balancing/overview.en.md)
 - [System design: API design](../../../system-design/modules/05-api-design/overview.en.md)
+- [System design: reliability patterns](../../../system-design/modules/09-reliability-patterns/overview.en.md)

@@ -71,3 +71,4 @@ Everything was run against a real RabbitMQ 4.4.1 in Docker (see the [basic theor
 - Prerequisites: [03 · Queues and delivery](../03-queues-and-delivery/overview.en.md), [05 · Reliability](../05-reliability/overview.en.md)
 - Next: [07 · Queue types](../07-queue-types/overview.en.md)
 - Analogues in other tracks: [C# background jobs](../../../csharp/recipes/background-jobs/overview.en.md)
+- [System design: messaging and events](../../../system-design/modules/08-messaging-and-events/overview.en.md)

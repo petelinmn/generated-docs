@@ -65,3 +65,4 @@ double peakQps = averageQps * 3;                // about 6944
 - The same idea in other tracks: [observability in .NET](../../../csharp/modules/22-observability/overview.en.md), [application architecture](../../../csharp/modules/21-architecture/overview.en.md)
 - [Data storage](../04-data-storage/overview.en.md)
 - [API design](../05-api-design/overview.en.md)
+- [Reliability patterns](../09-reliability-patterns/overview.en.md)

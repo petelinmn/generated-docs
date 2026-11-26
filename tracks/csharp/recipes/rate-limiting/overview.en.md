@@ -69,3 +69,4 @@ app.MapGet("/fixed", () => "ok").RequireRateLimiting("fixed");
 - Nearby: [JWT authentication](../jwt-auth/overview.en.md), [Resilient HttpClient](../http-client-resilience/overview.en.md), [Caching](../caching/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — rate limiting in FastAPI
 - Recipes and libraries: [Polly](../../libraries/polly/overview.en.md), [Background jobs](../background-jobs/overview.en.md), [File upload](../file-upload/overview.en.md), [Pagination and filtering](../pagination-filtering/overview.en.md), [Real-time with SignalR](../signalr-realtime/overview.en.md)
+- [System design: reliability patterns](../../../system-design/modules/09-reliability-patterns/overview.en.md)
