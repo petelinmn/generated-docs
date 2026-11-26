@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [sql, select, where, group-by, having, order-by, limit, aggregates]
 versions: "PostgreSQL 17+"
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # SQL-запросы
@@ -65,6 +65,7 @@ ORDER BY total DESC;
 - Пререквизиты: [01 · Основы PostgreSQL](../01-postgresql-basics/overview.ru.md).
 - Дальше: [03 · Проектирование схемы](../03-data-modeling-ddl/overview.ru.md).
 - [System design: выбор хранилища](../../../system-design/modules/04-data-storage/overview.ru.md)
+- [04 · Соединения и подзапросы](../04-joins-and-subqueries/overview.ru.md)
 
 ## Источники
 

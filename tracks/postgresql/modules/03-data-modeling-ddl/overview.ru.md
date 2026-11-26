@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [ddl, data-types, primary-key, foreign-key, constraints, normalization]
 versions: "PostgreSQL 17+"
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # Проектирование схемы и DDL
@@ -61,6 +61,7 @@ CREATE TABLE orders (
 - Пререквизиты: [02 · SQL-запросы](../02-sql-queries/overview.ru.md).
 - Дальше: следующий модуль по [дорожной карте PostgreSQL](../../overview.ru.md).
 - [System design: выбор хранилища](../../../system-design/modules/04-data-storage/overview.ru.md)
+- [04 · Соединения и подзапросы](../04-joins-and-subqueries/overview.ru.md)
 
 ## Источники
 

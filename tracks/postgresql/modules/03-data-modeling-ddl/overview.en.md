@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [ddl, data-types, primary-key, foreign-key, constraints, normalization]
 versions: "PostgreSQL 17+"
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # Data modeling and DDL
@@ -61,6 +61,7 @@ CREATE TABLE orders (
 - Prerequisites: [02 · SQL queries](../02-sql-queries/overview.en.md).
 - Next: the next module in the [PostgreSQL track roadmap](../../overview.en.md).
 - [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
+- [04 · Joins and subqueries](../04-joins-and-subqueries/overview.en.md)
 
 ## Sources
 

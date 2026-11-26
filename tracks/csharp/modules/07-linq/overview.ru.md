@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [linq, query-syntax, method-syntax, deferred-execution, iterators, yield, expression-trees, iqueryable, group-join, closures]
 versions: ".NET 11, C# 15"
 status: draft
-updated: 2026-11-22
+updated: 2026-11-26
 ---
 
 # LINQ
@@ -75,3 +75,4 @@ record P(string Name, string Dept, int Age);
 - Деревья выражений: [20 · Рефлексия и генераторы кода](../20-reflection-and-source-generators/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — генераторы списков, `itertools`
 - Рецепты и библиотеки: [Пагинация и фильтрация](../../recipes/pagination-filtering/overview.ru.md)
+- [Соединения в SQL (PostgreSQL)](../../../postgresql/modules/04-joins-and-subqueries/overview.ru.md)

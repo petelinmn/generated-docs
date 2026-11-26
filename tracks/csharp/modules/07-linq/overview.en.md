@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [linq, query-syntax, method-syntax, deferred-execution, iterators, yield, expression-trees, iqueryable, group-join, closures]
 versions: ".NET 11, C# 15"
 status: draft
-updated: 2026-11-22
+updated: 2026-11-26
 ---
 
 # LINQ
@@ -75,3 +75,4 @@ record P(string Name, string Dept, int Age);
 - Expression trees: [20 · Reflection and source generators](../20-reflection-and-source-generators/overview.en.md)
 - The same in other tracks: [Python](../../../python/overview.en.md) — list comprehensions, `itertools`
 - Recipes and libraries: [Pagination and filtering](../../recipes/pagination-filtering/overview.en.md)
+- [Joins in SQL (PostgreSQL)](../../../postgresql/modules/04-joins-and-subqueries/overview.en.md)

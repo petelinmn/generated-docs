@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [sql, select, where, group-by, having, order-by, limit, aggregates]
 versions: "PostgreSQL 17+"
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # SQL queries
@@ -65,6 +65,7 @@ ORDER BY total DESC;
 - Prerequisites: [01 · PostgreSQL basics](../01-postgresql-basics/overview.en.md).
 - Next: [03 · Data modeling and DDL](../03-data-modeling-ddl/overview.en.md).
 - [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
+- [04 · Joins and subqueries](../04-joins-and-subqueries/overview.en.md)
 
 ## Sources
 
