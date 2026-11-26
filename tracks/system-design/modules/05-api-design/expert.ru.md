@@ -33,6 +33,56 @@ sequenceDiagram
     S-->>C: stored result
 ```
 
+### Webhooks
+
+Webhook — это вызов в обратную сторону: поставщик отправляет вам HTTP-запрос о событии. Получатель проверяет подпись по исходным байтам тела, отбрасывает повторы по идентификатору доставки и быстро отвечает, откладывая работу.
+
+```csharp
+if (!WebhookSignature.Verify(secret, body, signature)) return WebhookResult.Rejected;
+if (!_deliveries.Add(deliveryId)) return WebhookResult.Duplicate;
+
+Work.Enqueue(Encoding.UTF8.GetString(body)); // processed by a worker, not here
+return WebhookResult.Accepted;
+```
+
+У GitHub подпись приходит в `X-Hub-Signature-256` (HMAC-SHA256 с префиксом `sha256=`), идентификатор — в `X-GitHub-Delivery` и сохраняется при повторной отправке, а ответ 2xx нужен в пределах 10 секунд. Код проверен на тестовом векторе из их документации. Файл: [Ex04_Webhooks.cs](code/Examples/Ex04_Webhooks.cs). Отправителю webhooks нужны повторы с задержкой, подпись и журнал доставок.
+
+### GraphQL
+
+Клиент сам выбирает поля. Наивный resolver для каждого элемента списка делает отдельный запрос — это проблема N+1. Загрузчик накапливает ключи и запрашивает их пачкой.
+
+```csharp
+if (!_requested.TryGetValue(key, out var source))
+{
+    _requested[key] = source = new(); // the same key is asked for once
+    _pending.Add(key);
+}
+return source.Task;
+```
+
+Десять обращений к трём авторам дают один запрос с тремя ключами. Загрузчик живёт один запрос клиента. Файл: [Ex07_Batching.cs](code/Examples/Ex07_Batching.cs). Это упрощение: пачку здесь отправляют вручную.
+
+Ответ GraphQL содержит `data`, `errors` и `extensions`; если `data` не `null`, рекомендуется код 2xx даже при ошибках, поэтому мониторинг по кодам HTTP их не увидит. Публичный GraphQL ограничивают по глубине, числу псевдонимов и операций в пачке и по «стоимости» запроса.
+
+### Совместимость контрактов
+
+Правила несимметричны: что безопасно для ответа, может ломать запрос.
+
+```csharp
+if (!after.TryGetValue(name, out Field? now))
+{
+    // A server that stops reading a request field does not break the sender.
+    if (direction == Direction.Response) problems.Add($"removed {name}");
+    continue;
+}
+```
+
+Такую проверку запускают в CI, сравнивая новую схему OpenAPI или `.proto` с опубликованной. Файл: [Ex06_Compatibility.cs](code/Examples/Ex06_Compatibility.cs). Модель в примере — только плоские объекты.
+
+### API-шлюз
+
+Шлюз — единая точка входа: маршрутизация, TLS, аутентификация, лимиты, преобразования. В .NET его строят на [YARP](../02-scalability-and-load-balancing/basics.ru.md). Бизнес-логику и проверку прав на конкретные объекты оставляют сервисам. BFF — отдельный шлюз под конкретный вид клиента.
+
 ## Справочник
 
 | Элемент | Назначение |
@@ -56,6 +106,36 @@ sequenceDiagram
 | Версия | путь, заголовок, query-параметр, без версий с совместимостью |
 | Пагинация | offset, keyset, токен продолжения |
 | Долгая операция | polling статуса, webhook, поток |
+
+| Заголовок или код | Смысл |
+|---|---|
+| 429 | клиент превысил лимит |
+| `Retry-After` | секунды или HTTP-дата |
+| `RateLimit-Policy`, `RateLimit` | квоты и остаток по проекту IETF (черновик, не RFC) |
+
+```csharp
+TimeSpan delay = value.Delta ?? value.Date!.Value - now;
+return delay < TimeSpan.Zero ? TimeSpan.Zero : delay; // the date may already be in the past
+```
+
+Файл: [Ex05_RetryAfter.cs](code/Examples/Ex05_RetryAfter.cs).
+
+| Изменение | Запрос | Ответ |
+|---|---|---|
+| удалили поле | не ломает отправителя | ломает |
+| добавили необязательное | не ломает | не ломает |
+| добавили обязательное | ломает | не ломает |
+| поле стало обязательным | ломает | не ломает |
+| поле стало необязательным | не ломает | ломает |
+| изменили тип | ломает | ломает |
+
+| Проверка | Что ловит |
+|---|---|
+| Сравнение схем | изменения формы |
+| Контрактные тесты потребителя | ожидания конкретных клиентов |
+| Интеграционные тесты | поведение |
+
+Актуальная версия спецификации OpenAPI на ноябрь 2026 года — 3.2.1.
 
 ## Подвохи
 
@@ -90,6 +170,14 @@ Console.WriteLine(JsonSerializer.Serialize(new { Day = DayOfWeek.Monday }));
 ```
 
 Результат: `{"Day":1}`. Перестановка значений enum меняет смысл контракта.
+
+### Подпись по пересериализованному JSON
+
+Тела `{"a":1}` и `{"a": 1}` значат одно и то же, но их подписи различаются. Проверяйте подпись по полученным байтам до десериализации.
+
+### Retry-After не всегда число
+
+Заголовок может быть датой, в том числе уже прошедшей. Код, читающий только число секунд, молча не станет ждать.
 
 ## Компромиссы и альтернативы
 
@@ -183,6 +271,46 @@ Idempotency key с атомарным захватом и сохранённым
 
 </details>
 
+**11. Как защитить приём webhooks?**
+
+<details><summary>Ответ</summary>
+
+Проверять подпись в постоянное время по сырым байтам, дедуплицировать по идентификатору доставки, отвечать быстро.
+
+</details>
+
+**12. Что такое проблема N+1 в GraphQL?**
+
+<details><summary>Ответ</summary>
+
+Resolver делает отдельный запрос на каждый элемент списка; решается пакетной загрузкой.
+
+</details>
+
+**13. Почему GraphQL-ошибки трудно увидеть в метриках HTTP?**
+
+<details><summary>Ответ</summary>
+
+Ответ с частичными данными обычно имеет код 2xx, а ошибки лежат в теле.
+
+</details>
+
+**14. Что не стоит переносить в API-шлюз?**
+
+<details><summary>Ответ</summary>
+
+Бизнес-правила и авторизацию на уровне объектов.
+
+</details>
+
+**15. Подвох: сделали поле ответа необязательным. Это расширение, значит совместимо?**
+
+<details><summary>Ответ</summary>
+
+Нет: клиент, ожидавший его всегда, сломается.
+
+</details>
+
 ## Связанные материалы
 
 - [Продвинутая теория](advanced.ru.md)
@@ -192,3 +320,9 @@ Idempotency key с атомарным захватом и сохранённым
 
 - [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110)
 - [Проект IETF: Idempotency-Key](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/)
+- [GitHub: проверка доставок webhooks](https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries)
+- [GitHub: best practices для webhooks](https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks)
+- [GraphQL: serving over HTTP](https://graphql.org/learn/serving-over-http/)
+- [GraphQL: security](https://graphql.org/learn/security/)
+- [Проект IETF: RateLimit headers](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/)
+- [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)

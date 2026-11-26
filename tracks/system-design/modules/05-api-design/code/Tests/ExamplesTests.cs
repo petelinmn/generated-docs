@@ -124,3 +124,75 @@ public class OrdersApiTests
         Assert.Equal(HttpStatusCode.PreconditionFailed, (await client.SendAsync(Put(1, tag), ct)).StatusCode);
     }
 }
+
+public class WebhookTests
+{
+    [Fact]
+    public void Matches_the_documented_test_vector() =>
+        Assert.Equal(
+            "sha256=757107ea0eb2509fc211221cce984b8a37570b6d7586c22c46f4379c8b043e17",
+            WebhookSignature.Sign("It's a Secret to Everybody", "Hello, World!"u8));
+
+    [Fact]
+    public void Accepts_once_and_rejects_a_changed_body()
+    {
+        var receiver = new WebhookReceiver("s3cret");
+        byte[] body = "{\"a\":1}"u8.ToArray();
+        string signature = WebhookSignature.Sign("s3cret", body);
+
+        Assert.Equal(WebhookResult.Accepted, receiver.Receive("d1", body, signature));
+        Assert.Equal(WebhookResult.Duplicate, receiver.Receive("d1", body, signature));
+        Assert.Equal(WebhookResult.Rejected, receiver.Receive("d2", "{\"a\": 1}"u8.ToArray(), signature));
+        Assert.Single(receiver.Work);
+    }
+}
+
+public class RetryAfterTests
+{
+    private static readonly DateTimeOffset Now = new(2026, 10, 21, 7, 28, 0, TimeSpan.Zero);
+
+    [Theory]
+    [InlineData("120", 120)]
+    [InlineData("Wed, 21 Oct 2026 07:29:00 GMT", 60)]
+    [InlineData("Wed, 21 Oct 2026 07:00:00 GMT", 0)]
+    public void Both_forms(string header, int seconds) =>
+        Assert.Equal(TimeSpan.FromSeconds(seconds), RetryAfter.Delay(header, Now));
+
+    [Fact]
+    public void Garbage_gives_null() => Assert.Null(RetryAfter.Delay("soon", Now));
+}
+
+public class CompatibilityTests
+{
+    private static readonly Dictionary<string, Field> V1 = new() { ["id"] = new("int", true), ["note"] = new("string", false) };
+
+    [Fact]
+    public void Requests_and_responses_break_differently()
+    {
+        var v2 = new Dictionary<string, Field> { ["id"] = new("int", true), ["email"] = new("string", true) };
+
+        Assert.Equal(["new required email"], Compatibility.BreakingChanges(V1, v2, Direction.Request));
+        Assert.Equal(["removed note"], Compatibility.BreakingChanges(V1, v2, Direction.Response));
+    }
+}
+
+public class BatchingTests
+{
+    [Fact]
+    public async Task Ten_lookups_become_one_query()
+    {
+        var queries = new List<int>();
+        var loader = new BatchLoader<int, string>(ids =>
+        {
+            queries.Add(ids.Count);
+            return Task.FromResult<IReadOnlyDictionary<int, string>>(ids.ToDictionary(i => i, i => $"author {i}"));
+        });
+
+        Task<string>[] requested = [.. Enumerable.Range(0, 10).Select(i => loader.LoadAsync(i % 3))];
+        await loader.DispatchAsync();
+        string[] authors = await Task.WhenAll(requested);
+
+        Assert.Equal([3], queries);
+        Assert.Equal("author 2", authors[5]);
+    }
+}

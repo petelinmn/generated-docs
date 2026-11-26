@@ -78,12 +78,10 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Modules are ge
 
 ## Level 3 expansion plan
 
-All modules exist at level 6, but the expert files are still shorter than a reference should be. Modules 01–04 are already expanded. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
+All modules exist at level 6, but the expert files are still shorter than a reference should be. Modules 01–06 are already expanded. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
 
 | Module | What to add to the expert theory |
 |---|---|
-| 05 · API design | GraphQL, webhooks (signatures, retries), API gateways, rate limit headers, OpenAPI contract testing |
-| 06 · Replication and partitioning | chain replication, sloppy quorum and hinted handoff, rebalancing logical partitions, cross-shard queries and global indexes |
 | 07 · Consistency and CAP | the hierarchy of consistency models, isolation in SQL Server and MySQL, how SSI works, a CRDT catalog, classifying databases by PACELC |
 | 08 · Messaging and events | Kafka transactions and exactly-once, RabbitMQ quorum queues and streams, a schema registry, retry topics, consumer rebalancing |
 | 09 · Reliability patterns | adaptive concurrency limits, hedging, deadlines in gRPC, chaos engineering, degradation and feature flags |

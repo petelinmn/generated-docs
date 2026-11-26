@@ -41,6 +41,56 @@ flowchart LR
     L -->|log| F2[Follower 2]
 ```
 
+### Chain replication
+
+Servers form a chain: a write enters at the head and is passed on, reads are served by the tail. Since everything visible has gone through the whole chain, consistency is strong.
+
+```csharp
+public bool Write(string key, string value, int stopAfter = int.MaxValue)
+{
+    for (int i = 0; i < _servers.Count && i < stopAfter; i++) _servers[i][key] = value;
+    return stopAfter >= _servers.Count;
+}
+
+public string? Read(string key) => _servers[^1].GetValueOrDefault(key);
+```
+
+An unfinished write is not visible. When a server fails, a master reconfigures the chain; if the tail failed, its predecessor becomes the tail. File: [Ex05_ChainReplication.cs](code/Examples/Ex05_ChainReplication.cs). The example does not model the master or resending.
+
+### Sloppy quorum and hinted handoff
+
+In the Dynamo paper reads and writes go to the first N *healthy* nodes of the preference list. If an intended node is unavailable, a stand-in accepts the replica with a hint saying whom it is meant for, and passes it on after recovery.
+
+```csharp
+_data[node] = value;
+if (node >= n) _hints[node] = missed.Dequeue();
+```
+
+This raises write availability, but until the handoff the returned node serves the old value, and quorum overlap is not guaranteed. Dynamo repairs replica divergence with background comparison of Merkle trees. File: [Ex06_HintedHandoff.cs](code/Examples/Ex06_HintedHandoff.cs).
+
+### Rebalancing logical partitions
+
+Many partitions are created in advance and assigned to nodes whole. When a node is added only its share moves.
+
+```csharp
+// Take from whoever has most, so the old nodes end up even.
+int donor = result.Where(n => n != newNode).CountBy(n => n).MaxBy(g => g.Value).Key;
+result[Array.LastIndexOf(result, donor)] = newNode;
+```
+
+1024 partitions going from 4 nodes to 5: 204 move, all to the new one. File: [Ex07_Rebalancing.cs](code/Examples/Ex07_Rebalancing.cs).
+
+### Queries across all shards
+
+To return a page, every shard must return `offset + size` rows.
+
+```csharp
+int[][] parts = [.. shards.Select(s => s.Order().Take(offset + size).ToArray())];
+return ([.. parts.SelectMany(p => p).Order().Skip(offset).Take(size)], parts.Sum(p => p.Length));
+```
+
+For a page of 10 rows at offset 500 over four shards, 2040 rows are transferred. Keyset pagination and a key that keeps the query in one shard help. File: [Ex08_ScatterGather.cs](code/Examples/Ex08_ScatterGather.cs).
+
 ## Reference
 
 | Read guarantee | What it promises |
@@ -62,6 +112,26 @@ flowchart LR
 | Read repair | fix a stale copy during a read |
 | Anti-entropy | background comparison |
 | Hinted handoff | temporarily accept a write for an unavailable node |
+
+| Replication scheme | Write | Read | Feature |
+|---|---|---|---|
+| Primary-backup | through the primary | primary or replicas | a simple model |
+| Chain replication | through the head, down the chain | from the tail | strong consistency, latency grows with length |
+| Leaderless quorums | W of N | R of N | a tunable trade-off |
+| Sloppy quorum | the first N healthy | the first N healthy | more available, weaker guarantees |
+
+| Rebalancing strategy | Pro | Con |
+|---|---|---|
+| A fixed number of partitions | simple, whole moves | the number is chosen in advance |
+| Dynamic splitting | adapts to volume | more complex |
+| Consistent hashing with virtual nodes | only part moves | managing tokens |
+
+| Query across shards | How to combine |
+|---|---|
+| sum, count, minimum, maximum | from partial results |
+| average | from sums and counts |
+| distinct values, percentiles | move data or use approximate structures |
+| join | avoid across shards where possible |
 
 ## Gotchas
 
@@ -90,6 +160,14 @@ Result: `-3` — an invalid partition number. Hash into a `uint`.
 In the test a node whose clock was 5 seconds fast wrote `first`; then the write `second` happened. `LastWriteWins.Resolve` chose `first`.
 
 Another trap: `DateTime` values with equal ticks and different `Kind` (`Utc` and `Local`) compare as equal — the check printed `True`. Use `DateTimeOffset` for timestamps and do not rely on them for ordering.
+
+### An average of averages
+
+One shard: a sum of 10 over 1 record. The second: a sum of 1890 over 99. The correct average is 19, while the average of the two averages is about 14.5.
+
+### A deep page
+
+The offset grows on every shard: the cost multiplies by the number of shards, although the client gets the same 10 rows.
 
 ## Trade-offs and alternatives
 
@@ -186,6 +264,46 @@ No: it may have reached some replicas, or succeeded while the acknowledgement wa
 
 </details>
 
+**11. Where are reads served in chain replication and why?**
+
+<details><summary>Answer</summary>
+
+From the tail: everything there has passed all replicas.
+
+</details>
+
+**12. What is hinted handoff?**
+
+<details><summary>Answer</summary>
+
+A stand-in node temporarily accepts a replica for an unavailable one and passes it on later.
+
+</details>
+
+**13. How does a sloppy quorum differ from an ordinary one?**
+
+<details><summary>Answer</summary>
+
+The first N healthy nodes count rather than the strictly assigned ones, so overlap is not guaranteed.
+
+</details>
+
+**14. Why many more partitions than nodes?**
+
+<details><summary>Answer</summary>
+
+To move load in small whole portions without recomputing keys.
+
+</details>
+
+**15. Trick question: each shard returned its top 10. Is that enough for global page 51–60?**
+
+<details><summary>Answer</summary>
+
+No: you need the first 60 from every shard.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -195,3 +313,5 @@ No: it may have reached some replicas, or succeeded while the acknowledgement wa
 
 - [PostgreSQL: WAL settings](https://www.postgresql.org/docs/current/runtime-config-wal.html)
 - [Azure: data partitioning](https://learn.microsoft.com/azure/architecture/best-practices/data-partitioning)
+- [Chain Replication (OSDI 2004)](https://www.cs.cornell.edu/home/rvr/papers/OSDI04.pdf)
+- [Dynamo (SOSP 2007)](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
