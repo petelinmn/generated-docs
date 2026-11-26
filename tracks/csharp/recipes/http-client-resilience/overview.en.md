@@ -64,3 +64,4 @@ builder.Services.AddHttpClient("api", c => c.BaseAddress = new Uri("https://api.
 - Nearby: [Rate limiting](../rate-limiting/overview.en.md), [Background jobs](../background-jobs/overview.en.md), [22 · Observability](../../modules/22-observability/overview.en.md)
 - In other tracks: [Python](../../../python/overview.en.md) — httpx with retries; [Kubernetes · Service and networking](../../../kubernetes/modules/06-services/overview.en.md) — Service names and `Connection refused` during a rollout
 - Recipes and libraries: [Polly](../../libraries/polly/overview.en.md), [Refit](../../libraries/refit/overview.en.md), [Caching](../caching/overview.en.md), [gRPC service](../grpc-service/overview.en.md)
+- [Scaling and load balancing](../../../system-design/modules/02-scalability-and-load-balancing/overview.en.md)

@@ -603,3 +603,47 @@
 ### Проекты
 
 - [ ] projects/inventory-service
+
+## system-design
+
+### Часть 1. Основы
+
+- [ ] 01-design-process
+- [ ] 02-scalability-and-load-balancing
+- [ ] 03-caching
+- [ ] 04-data-storage
+- [ ] 05-api-design
+
+### Часть 2. Продвинутые темы
+
+- [ ] 06-replication-and-partitioning
+- [ ] 07-consistency-and-cap
+- [ ] 08-messaging-and-events
+- [ ] 09-reliability-patterns
+- [ ] 10-distributed-transactions
+- [ ] 11-architecture-styles
+
+### Часть 3. Темы для опытных
+
+- [ ] 12-consensus-and-coordination
+- [ ] 13-event-sourcing-and-cqrs
+- [ ] 14-observability-and-slo
+- [ ] 15-security-architecture
+- [ ] 16-multi-region-and-dr
+- [ ] 17-design-case-studies
+
+### Библиотеки
+
+- [ ] libraries/yarp
+- [ ] libraries/orleans
+
+### Рецепты
+
+- [ ] recipes/url-shortener
+- [ ] recipes/distributed-rate-limiter
+- [ ] recipes/news-feed
+- [ ] recipes/notification-service
+
+### Проекты
+
+- [ ] projects/url-shortener-service

@@ -81,3 +81,4 @@ hello from web-8678fd4948-7xm64
 - Foundation: the [Linux track](../../../linux/overview.en.md) — iptables and networking
 - Pod and network security: [17 · Security](../17-security/overview.en.md)
 - Troubleshooting: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)
+- [Balancing algorithms in .NET](../../../system-design/modules/02-scalability-and-load-balancing/overview.en.md)

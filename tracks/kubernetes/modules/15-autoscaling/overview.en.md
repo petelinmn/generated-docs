@@ -86,3 +86,4 @@ php-apache   Deployment/php-apache   cpu: 250%/50%   1       5         5
 - Next: [16 · Observability](../16-observability/overview.en.md)
 - Manual scaling: [05 · Deployment](../05-deployments/advanced.en.md)
 - Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)
+- [Limits of horizontal scaling](../../../system-design/modules/02-scalability-and-load-balancing/overview.en.md)

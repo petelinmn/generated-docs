@@ -86,3 +86,4 @@ php-apache   Deployment/php-apache   cpu: 250%/50%   1       5         5
 - Дальше: [16 · Наблюдаемость](../16-observability/overview.ru.md)
 - Масштабирование вручную: [05 · Deployment](../05-deployments/advanced.ru.md)
 - Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)
+- [Пределы горизонтального масштабирования](../../../system-design/modules/02-scalability-and-load-balancing/overview.ru.md)

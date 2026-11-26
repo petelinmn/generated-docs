@@ -23,7 +23,7 @@
 - `level N` (или «уровень N») означает все уровни от 1 до N. Например, `/learn python 14 level 2` создаёт overview, базовую и продвинутую теорию.
 - Можно перечислить уровни явно: `levels 1,4` — только базовая теория и самопроверка. Уровень 6 требует уровня 5: тестам нужен код.
 - Уровень не указан → берётся `default_level` из front matter overview трека. Если его нет — уровень 4.
-- Текущие значения по умолчанию: `csharp` — 6 (основная специализация, нужна исчерпывающая информация с тестами); остальные треки — 4.
+- Текущие значения по умолчанию: `csharp` — 6 (основная специализация, нужна исчерпывающая информация с тестами), `system-design` — 6; остальные треки — 4.
 
 **Повышение уровня**
 
@@ -133,6 +133,7 @@ code/
 | Трек | Устройство `code/` | Тесты | Запуск в `code/` |
 |---|---|---|---|
 | csharp | решение `Code.slnx`: `Examples/` (classlib), `Solutions/` (classlib), `Tests/` (`OutputType=Exe`); `global.json` с `"test": {"runner": "Microsoft.Testing.Platform"}` — без него xUnit v3 в .NET 10+ SDK не запускается (с .NET 11 вместо него можно задать `DOTNET_TEST_RUNNER=Microsoft.Testing.Platform`) | xUnit v3 (`xunit.v3`) | `dotnet test` |
+| system-design | как csharp: `Code.slnx`, `Examples/`, `Solutions/`, `Tests/`, `global.json`; примеры на C#/.NET, сеть — только loopback на свободном порту | xUnit v3 (`xunit.v3`) | `dotnet test` |
 | python, llm | `pyproject.toml`, `examples/exNN_name.py`, `solutions/`, `tests/test_*.py` (имя модуля Python не может начинаться с цифры) | pytest | `uv run pytest` |
 | javascript | `package.json` (`"type": "module"`), `examples/exNN-name.js`, `solutions/`, `tests/*.test.js` | встроенный раннер `node:test` | `npm test` (`node --test`) |
 | typescript | `package.json`, `tsconfig.json`, `examples/exNN-name.ts`, `solutions/`, `tests/*.test.ts` | vitest | `npm test` (`vitest run`); типы — `npx tsc --noEmit` |

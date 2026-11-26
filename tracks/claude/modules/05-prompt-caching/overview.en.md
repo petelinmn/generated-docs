@@ -88,3 +88,4 @@ The output came from a local mock server (see "How the code was checked" in the 
 - [13 · Compaction and long context](../13-long-context/overview.en.md)
 - [15 · Observability](../15-observability/overview.en.md)
 - [17 · Deployment and production](../17-production/overview.en.md)
+- [Caching in system design](../../../system-design/modules/03-caching/overview.en.md)

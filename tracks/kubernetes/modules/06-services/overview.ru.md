@@ -81,3 +81,4 @@ hello from web-8678fd4948-7xm64
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — iptables и сеть
 - Безопасность подов и сети: [17 · Безопасность](../17-security/overview.ru.md)
 - Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)
+- [Алгоритмы балансировки на .NET](../../../system-design/modules/02-scalability-and-load-balancing/overview.ru.md)

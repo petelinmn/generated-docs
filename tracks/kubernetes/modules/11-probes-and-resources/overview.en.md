@@ -88,3 +88,4 @@ web    1/1     Running   0          20s
 - Logs, events and metrics: [16 · Observability](../16-observability/overview.en.md)
 - Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)
 - Troubleshooting: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)
+- [Availability and SLOs](../../../system-design/modules/01-design-process/overview.en.md)

@@ -64,3 +64,4 @@ var value = await hc.GetOrCreateAsync("key", async ct => await Load(ct));
 - Nearby: [15 · EF Core](../../modules/15-ef-core/overview.en.md), [19 · Performance](../../modules/19-performance/overview.en.md), [Resilient HttpClient](../http-client-resilience/overview.en.md), [Rate limiting](../rate-limiting/overview.en.md)
 - In other tracks: [Python](../../../python/overview.en.md) — `functools.cache`
 - Recipes and libraries: [Pagination and filtering](../pagination-filtering/overview.en.md)
+- [Caching as part of architecture](../../../system-design/modules/03-caching/overview.en.md)

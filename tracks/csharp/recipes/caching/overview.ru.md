@@ -64,3 +64,4 @@ var value = await hc.GetOrCreateAsync("key", async ct => await Load(ct));
 - Рядом: [15 · EF Core](../../modules/15-ef-core/overview.ru.md), [19 · Производительность](../../modules/19-performance/overview.ru.md), [Устойчивый HttpClient](../http-client-resilience/overview.ru.md), [Rate limiting](../rate-limiting/overview.ru.md)
 - В других треках: [Python](../../../python/overview.ru.md) — `functools.cache`
 - Рецепты и библиотеки: [Пагинация и фильтрация](../pagination-filtering/overview.ru.md)
+- [Кэширование как часть архитектуры](../../../system-design/modules/03-caching/overview.ru.md)
