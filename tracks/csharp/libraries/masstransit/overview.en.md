@@ -80,3 +80,4 @@ dotnet test
 - Nearby: [Background jobs](../../recipes/background-jobs/overview.en.md), [Polly](../polly/overview.en.md), [Testcontainers](../testcontainers/overview.en.md)
 - In other tracks: [RabbitMQ](../../../rabbitmq/overview.en.md) — the broker under the transport; [Kafka](../../../kafka/overview.en.md) — an event log
 - [System design: messaging and events](../../../system-design/modules/08-messaging-and-events/overview.en.md)
+- [System design: distributed transactions](../../../system-design/modules/10-distributed-transactions/overview.en.md)

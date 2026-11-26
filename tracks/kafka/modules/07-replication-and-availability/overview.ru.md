@@ -68,3 +68,4 @@ kafka-topics.sh --bootstrap-server kafka1:19092 --create --topic rep --partition
 - Аналоги в других треках: [RabbitMQ: кластеризация](../../../rabbitmq/modules/08-clustering/overview.ru.md)
 - [Кластер и шарды в OpenSearch](../../../opensearch/modules/07-cluster-and-shards/overview.ru.md)
 - [System design: репликация и шардирование](../../../system-design/modules/06-replication-and-partitioning/overview.ru.md)
+- [System design: консенсус и координация](../../../system-design/modules/12-consensus-and-coordination/overview.ru.md)

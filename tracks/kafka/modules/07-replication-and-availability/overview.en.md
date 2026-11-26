@@ -68,3 +68,4 @@ Everything was run against a real three-broker Apache Kafka 4.3.1 cluster in Doc
 - Analogues in other tracks: [RabbitMQ: clustering](../../../rabbitmq/modules/08-clustering/overview.en.md)
 - [Cluster and shards in OpenSearch](../../../opensearch/modules/07-cluster-and-shards/overview.en.md)
 - [System design: replication and sharding](../../../system-design/modules/06-replication-and-partitioning/overview.en.md)
+- [System design: consensus and coordination](../../../system-design/modules/12-consensus-and-coordination/overview.en.md)

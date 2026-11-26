@@ -72,3 +72,4 @@ SuccessfulCreate    replicaset-controller   Created pod: web-689b9bdbdd-24sgv
 - Фундамент: [трек Linux](../../../linux/overview.ru.md) — процессы, сеть, cgroups
 - Размещение подов на нодах: [18 · Планирование подов](../18-scheduling/overview.ru.md)
 - CRD и операторы: [19 · CRD и операторы](../19-crd-and-operators/overview.ru.md)
+- [System design: консенсус и координация](../../../system-design/modules/12-consensus-and-coordination/overview.ru.md)

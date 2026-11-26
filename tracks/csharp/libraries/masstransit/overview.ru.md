@@ -80,3 +80,4 @@ dotnet test
 - Рядом: [Фоновые задачи](../../recipes/background-jobs/overview.ru.md), [Polly](../polly/overview.ru.md), [Testcontainers](../testcontainers/overview.ru.md)
 - В других треках: [RabbitMQ](../../../rabbitmq/overview.ru.md) — брокер под транспортом; [Kafka](../../../kafka/overview.ru.md) — журнал событий
 - [System design: сообщения и события](../../../system-design/modules/08-messaging-and-events/overview.ru.md)
+- [System design: распределённые транзакции](../../../system-design/modules/10-distributed-transactions/overview.ru.md)

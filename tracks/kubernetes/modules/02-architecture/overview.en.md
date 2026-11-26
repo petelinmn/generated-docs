@@ -72,3 +72,4 @@ Here `deployment-controller` created a ReplicaSet, `replicaset-controller` creat
 - Foundation: the [Linux track](../../../linux/overview.en.md) — processes, network, cgroups
 - Pod placement on nodes: [18 · Pod scheduling](../18-scheduling/overview.en.md)
 - CRDs and operators: [19 · CRDs and operators](../19-crd-and-operators/overview.en.md)
+- [System design: consensus and coordination](../../../system-design/modules/12-consensus-and-coordination/overview.en.md)

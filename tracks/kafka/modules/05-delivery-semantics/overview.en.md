@@ -70,3 +70,4 @@ Everything was run against a real Apache Kafka 4.3.1 in Docker (see the [basic t
 - Next: [06 · Schemas and serialization](../06-schemas-and-serialization/overview.en.md)
 - Analogues in other tracks: [RabbitMQ: reliability](../../../rabbitmq/modules/05-reliability/overview.en.md)
 - [System design: messaging and events](../../../system-design/modules/08-messaging-and-events/overview.en.md)
+- [System design: distributed transactions](../../../system-design/modules/10-distributed-transactions/overview.en.md)

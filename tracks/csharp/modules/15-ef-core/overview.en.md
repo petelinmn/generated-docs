@@ -78,3 +78,4 @@ EF generates `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Likes" >= @minL
 - Recipes and libraries: [Dapper](../../libraries/dapper/overview.en.md), [Mapperly](../../libraries/mapperly/overview.en.md), [Testcontainers](../../libraries/testcontainers/overview.en.md), [Caching](../../recipes/caching/overview.en.md), [Pagination and filtering](../../recipes/pagination-filtering/overview.en.md)
 - [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
 - [System design: consistency and CAP](../../../system-design/modules/07-consistency-and-cap/overview.en.md)
+- [System design: distributed transactions](../../../system-design/modules/10-distributed-transactions/overview.en.md)

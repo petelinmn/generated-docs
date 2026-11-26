@@ -61,3 +61,5 @@ if (_processed.Add(message.Id)) Balance += message.Amount;
 - Пререквизиты: [согласованность и CAP](../07-consistency-and-cap/overview.ru.md), [проектирование API](../05-api-design/overview.ru.md)
 - Дальше: [паттерны надёжности](../09-reliability-patterns/overview.ru.md)
 - В других треках: [RabbitMQ](../../../rabbitmq/modules/01-messaging-basics/overview.ru.md), [Kafka](../../../kafka/modules/05-delivery-semantics/overview.ru.md), [MassTransit](../../../csharp/libraries/masstransit/overview.ru.md), [фоновые задачи](../../../csharp/recipes/background-jobs/overview.ru.md)
+- [Распределённые транзакции](../10-distributed-transactions/overview.ru.md)
+- [Архитектурные стили](../11-architecture-styles/overview.ru.md)

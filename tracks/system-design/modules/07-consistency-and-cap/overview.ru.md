@@ -60,3 +60,5 @@ public static bool HasQuorum(int reachable, int n) => reachable > n / 2;
 - Пререквизиты: [репликация и партиционирование](../06-replication-and-partitioning/overview.ru.md)
 - Дальше: [сообщения и события](../08-messaging-and-events/overview.ru.md)
 - В других треках: [EF Core: конкурентность и транзакции](../../../csharp/modules/15-ef-core/overview.ru.md), [многопоточность в C#](../../../csharp/modules/18-concurrency/overview.ru.md)
+- [Распределённые транзакции](../10-distributed-transactions/overview.ru.md)
+- [Консенсус и координация](../12-consensus-and-coordination/overview.ru.md)
