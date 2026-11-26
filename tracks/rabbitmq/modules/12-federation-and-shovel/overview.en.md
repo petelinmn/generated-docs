@@ -68,3 +68,4 @@ Everything was run on two independent RabbitMQ 4.4.1 brokers in Docker (see the 
 - Prerequisites: [08 · Clustering](../08-clustering/overview.en.md), [11 · Security](../11-security/overview.en.md)
 - Next: [13 · Internals](../../overview.en.md)
 - Analogues in other tracks: [Kubernetes](../../../kubernetes/overview.en.md)
+- [System design: multi-region and recovery](../../../system-design/modules/16-multi-region-and-dr/overview.en.md)

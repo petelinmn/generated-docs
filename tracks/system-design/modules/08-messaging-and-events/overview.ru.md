@@ -64,3 +64,4 @@ if (_processed.Add(message.Id)) Balance += message.Amount;
 - [Распределённые транзакции](../10-distributed-transactions/overview.ru.md)
 - [Архитектурные стили](../11-architecture-styles/overview.ru.md)
 - [Event sourcing и CQRS](../13-event-sourcing-and-cqrs/overview.ru.md)
+- [Разбор задач](../17-design-case-studies/overview.ru.md)

@@ -61,3 +61,5 @@ public static bool Overlaps(int n, int w, int r) => w + r > n;
 - В других треках: [репликация Kafka](../../../kafka/modules/07-replication-and-availability/overview.ru.md), [кластер RabbitMQ](../../../rabbitmq/modules/08-clustering/overview.ru.md), [шарды OpenSearch](../../../opensearch/modules/07-cluster-and-shards/overview.ru.md)
 - [Согласованность и CAP](../07-consistency-and-cap/overview.ru.md)
 - [Консенсус и координация](../12-consensus-and-coordination/overview.ru.md)
+- [Несколько регионов и восстановление](../16-multi-region-and-dr/overview.ru.md)
+- [Разбор задач](../17-design-case-studies/overview.ru.md)

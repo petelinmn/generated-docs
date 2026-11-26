@@ -88,3 +88,4 @@ guestbook   Synced        Healthy
 - Предыдущий модуль: [19 · CRD и операторы](../19-crd-and-operators/overview.ru.md)
 - Дальше: [21 · Диагностика](../21-troubleshooting/overview.ru.md)
 - Секреты: [07 · ConfigMap и Secret](../07-config-and-secrets/overview.ru.md)
+- [System design: несколько регионов и восстановление](../../../system-design/modules/16-multi-region-and-dr/overview.ru.md)

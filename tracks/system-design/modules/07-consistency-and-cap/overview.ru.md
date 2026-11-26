@@ -63,3 +63,4 @@ public static bool HasQuorum(int reachable, int n) => reachable > n / 2;
 - [Распределённые транзакции](../10-distributed-transactions/overview.ru.md)
 - [Консенсус и координация](../12-consensus-and-coordination/overview.ru.md)
 - [Event sourcing и CQRS](../13-event-sourcing-and-cqrs/overview.ru.md)
+- [Несколько регионов и восстановление](../16-multi-region-and-dr/overview.ru.md)

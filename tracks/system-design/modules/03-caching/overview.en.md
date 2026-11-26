@@ -64,3 +64,4 @@ return price;
 - Prerequisites: [scaling and load balancing](../02-scalability-and-load-balancing/overview.en.md)
 - Practice in .NET: [caching recipe](../../../csharp/recipes/caching/overview.en.md)
 - Load estimates: [design process](../01-design-process/overview.en.md)
+- [Case studies](../17-design-case-studies/overview.en.md)

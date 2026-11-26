@@ -64,3 +64,4 @@ return price;
 - Пререквизиты: [масштабирование и балансировка](../02-scalability-and-load-balancing/overview.ru.md)
 - Практика в .NET: [рецепт кэширования](../../../csharp/recipes/caching/overview.ru.md)
 - Оценки нагрузки: [процесс проектирования](../01-design-process/overview.ru.md)
+- [Разбор задач](../17-design-case-studies/overview.ru.md)

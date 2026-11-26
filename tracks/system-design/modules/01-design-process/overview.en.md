@@ -67,3 +67,5 @@ double peakQps = averageQps * 3;                // about 6944
 - [API design](../05-api-design/overview.en.md)
 - [Reliability patterns](../09-reliability-patterns/overview.en.md)
 - [Observability and SLOs](../14-observability-and-slo/overview.en.md)
+- [Multi-region and recovery](../16-multi-region-and-dr/overview.en.md)
+- [Case studies](../17-design-case-studies/overview.en.md)

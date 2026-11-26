@@ -63,3 +63,4 @@ if (!lease.IsAcquired) return (false, default);
 - Availability and error budget: [design process](../01-design-process/overview.en.md)
 - [Observability and SLOs](../14-observability-and-slo/overview.en.md)
 - [Security architecture](../15-security-architecture/overview.en.md)
+- [Case studies](../17-design-case-studies/overview.en.md)

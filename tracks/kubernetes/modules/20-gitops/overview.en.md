@@ -88,3 +88,4 @@ The example uses the public examples repository of the Argo CD project.
 - Previous module: [19 · CRDs and operators](../19-crd-and-operators/overview.en.md)
 - Next: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)
 - Secrets: [07 · ConfigMap and Secret](../07-config-and-secrets/overview.en.md)
+- [System design: multi-region and recovery](../../../system-design/modules/16-multi-region-and-dr/overview.en.md)

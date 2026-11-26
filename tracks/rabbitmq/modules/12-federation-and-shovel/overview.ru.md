@@ -68,3 +68,4 @@ rabbitmqctl set_parameter shovel s1 '{"src-protocol":"amqp091","src-uri":"amqp:/
 - Пререквизиты: [08 · Кластеризация](../08-clustering/overview.ru.md), [11 · Безопасность](../11-security/overview.ru.md)
 - Дальше: [13 · Внутреннее устройство](../../overview.ru.md)
 - Аналоги в других треках: [Kubernetes](../../../kubernetes/overview.ru.md)
+- [System design: несколько регионов и восстановление](../../../system-design/modules/16-multi-region-and-dr/overview.ru.md)

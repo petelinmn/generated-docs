@@ -63,3 +63,4 @@ if (!lease.IsAcquired) return (false, default);
 - Доступность и бюджет ошибок: [процесс проектирования](../01-design-process/overview.ru.md)
 - [Наблюдаемость и SLO](../14-observability-and-slo/overview.ru.md)
 - [Безопасность архитектуры](../15-security-architecture/overview.ru.md)
+- [Разбор задач](../17-design-case-studies/overview.ru.md)
