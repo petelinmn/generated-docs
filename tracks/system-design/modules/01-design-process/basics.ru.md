@@ -120,4 +120,3 @@ public static double Parallel(params double[] replicas) =>
 ## Источники
 
 - [Google SRE Book: Service Level Objectives](https://sre.google/sre-book/service-level-objectives/)
-- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/)

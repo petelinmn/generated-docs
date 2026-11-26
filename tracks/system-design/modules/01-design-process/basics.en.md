@@ -120,4 +120,3 @@ Three 99.9% dependencies in a row give 99.70%. Two independent 99% replicas give
 ## Sources
 
 - [Google SRE Book: Service Level Objectives](https://sre.google/sre-book/service-level-objectives/)
-- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/)

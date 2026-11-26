@@ -76,6 +76,30 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Modules are ge
 
 - [URL shortener under load](projects/url-shortener-service/overview.en.md) — API, cache, several instances, a load test
 
+## Level 3 expansion plan
+
+All modules exist at level 6, but the expert files are still shorter than a reference should be. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
+
+| Module | What to add to the expert theory |
+|---|---|
+| 01 · Design process | queueing theory (utilization and latency), MTBF and MTTR, a table of typical operation latencies, cost estimation, load testing |
+| 02 · Scaling | client-side balancing, Maglev and rendezvous hashing, connection draining in ASP.NET Core, autoscaling policies, GeoDNS and anycast |
+| 03 · Caching | L1 invalidation through pub/sub, cache warming, CDNs and purge by key, Redis Cluster and hot keys, serialization cost |
+| 04 · Data storage | columnar and time-series stores, MVCC and VACUUM, the write-ahead log, compaction strategies, secondary indexes in distributed databases |
+| 05 · API design | GraphQL, webhooks (signatures, retries), API gateways, rate limit headers, OpenAPI contract testing |
+| 06 · Replication and partitioning | chain replication, sloppy quorum and hinted handoff, rebalancing logical partitions, cross-shard queries and global indexes |
+| 07 · Consistency and CAP | the hierarchy of consistency models, isolation in SQL Server and MySQL, how SSI works, a CRDT catalog, classifying databases by PACELC |
+| 08 · Messaging and events | Kafka transactions and exactly-once, RabbitMQ quorum queues and streams, a schema registry, retry topics, consumer rebalancing |
+| 09 · Reliability patterns | adaptive concurrency limits, hedging, deadlines in gRPC, chaos engineering, degradation and feature flags |
+| 10 · Distributed transactions | workflow engines, CDC for the outbox, distributed transactions in .NET, the TCC pattern, saga timeouts and versions |
+| 11 · Architecture styles | strategic DDD and context maps, service mesh, BFF and API gateway, micro-frontends, branch by abstraction |
+| 12 · Consensus and coordination | Paxos and Raft, cluster membership changes, Raft log snapshots, ZooKeeper and etcd primitives, hybrid logical clocks |
+| 13 · Event sourcing and CQRS | ready-made event stores, rebuilding projections without downtime, snapshot strategies, implementing crypto-shredding |
+| 14 · Observability and SLOs | the OpenTelemetry Collector, exemplars, continuous profiling, log sampling, synthetic monitoring |
+| 15 · Security | OAuth 2.0 and OIDC flows, mTLS and certificate rotation, secret stores, the supply chain (SBOM, signing), tenant isolation, an encryption key hierarchy |
+| 16 · Multi-region | global databases and their consistency levels, DNS and anycast failover time, game days, immutable backups |
+| 17 · Case studies | chat, a distributed rate limiter, search autocomplete, file storage, a payment system, geo search |
+
 ## Related tracks
 
 - [C# / .NET](../csharp/overview.en.md) — the language and platform of the examples
