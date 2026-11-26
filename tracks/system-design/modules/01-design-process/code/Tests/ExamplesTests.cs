@@ -33,6 +33,13 @@ public class AvailabilityTests
     public void Redundancy_raises_availability() =>
         Assert.Equal(0.9999, Availability.Parallel(0.99, 0.99), 9);
 
+    [Theory]
+    [InlineData(1, 0.999999)]
+    [InlineData(2, 0.999702)]
+    [InlineData(3, 0.970299)]
+    public void K_of_n_replicas(int k, double expected) =>
+        Assert.Equal(expected, Availability.AtLeast(k, 3, 0.99), 9);
+
     [Fact]
     public void Downtime_per_30_days() =>
         Assert.Equal(43.2, Availability.AllowedDowntime(0.999, TimeSpan.FromDays(30)).TotalMinutes, 3);

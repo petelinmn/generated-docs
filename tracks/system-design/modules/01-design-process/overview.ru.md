@@ -9,7 +9,7 @@ part: 1
 levels: [1, 2, 3, 4, 5, 6]
 tags: [system-design, capacity-estimation, slo, availability, latency, percentiles]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

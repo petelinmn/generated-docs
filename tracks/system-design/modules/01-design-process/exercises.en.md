@@ -8,7 +8,7 @@ slug: 01-design-process
 part: 1
 tags: [system-design, capacity-estimation, slo, availability, latency, percentiles]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

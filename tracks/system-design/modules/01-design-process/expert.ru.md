@@ -8,7 +8,7 @@ slug: 01-design-process
 part: 1
 tags: [system-design, capacity-estimation, slo, availability, latency, percentiles]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -65,16 +65,16 @@ public static double MeanResponse(double serviceTime, double utilization)
 
 Отсюда два вывода: общая очередь лучше десяти отдельных, а маленькому пулу нужен больший относительный запас. Файл: [Ex04_Queueing.cs](code/Examples/Ex04_Queueing.cs). Реальный трафик не обязан подчиняться допущениям модели (всплески, длинный хвост времени обслуживания), поэтому это ориентир, а не прогноз.
 
-### MTBF и MTTR
+### MTTF, MTTR и MTBF
 
-Надёжность зависит от того, как часто система отказывает (MTBF или MTTF) и как быстро восстанавливается (MTTR). В стационарной модели доступность равна `MTBF / (MTBF + MTTR)`.
+Надёжность зависит от того, сколько система работает до отказа (MTTF, mean time to failure) и как быстро восстанавливается (MTTR, mean time to repair). В стационарной модели доступность равна `MTTF / (MTTF + MTTR)`. Интервал между двумя отказами вместе с восстановлением — это MTBF = MTTF + MTTR, поэтому то же отношение записывается как `MTTF / MTBF`.
 
 ```csharp
-public static double Availability(TimeSpan meanTimeBetweenFailures, TimeSpan meanTimeToRepair) =>
-    meanTimeBetweenFailures / (meanTimeBetweenFailures + meanTimeToRepair);
+public static double Availability(TimeSpan meanTimeToFailure, TimeSpan meanTimeToRepair) =>
+    meanTimeToFailure / (meanTimeToFailure + meanTimeToRepair);
 ```
 
-Один отказ в 30 дней с восстановлением за час даёт 99,861%, за 5 минут — 99,988%. Сокращать время восстановления часто дешевле, чем делать отказы реже.
+Отказ после каждых 30 дней работы с восстановлением за час даёт 99,861%, за 5 минут — 99,988%. Сокращать время восстановления часто дешевле, чем делать отказы реже.
 
 ## Справочник
 
@@ -141,6 +141,27 @@ public static double Availability(TimeSpan meanTimeBetweenFailures, TimeSpan mea
 |---|---|
 | Закрытая | следующий запрос после ответа на предыдущий |
 | Открытая | по расписанию, независимо от ответов |
+
+### Любые k из n реплик
+
+Кворуму большинства нужны не менее `k` из `n` реплик. При независимых отказах это сумма биномиальных вероятностей: `Σ C(n,i)·a^i·(1-a)^(n-i)` для `i` от `k` до `n`. Для трёх реплик по 99%:
+
+| Требуется | Доступность |
+|---|---|
+| любая 1 из 3 | 99,9999% |
+| 2 из 3 | 99,9702% |
+| все 3 | 97,0299% |
+
+Файл: [Ex02_Availability.cs](code/Examples/Ex02_Availability.cs).
+
+### Доступность по времени и по запросам
+
+| Определение | Формула | Когда подходит |
+|---|---|---|
+| По времени (time-based) | время работы / (время работы + простой) | система либо работает, либо нет |
+| По запросам (aggregate) | успешные запросы / все запросы | распределённый сервис, отказывающий частично |
+
+При 2,5 миллиона запросов в день и цели 99,99% за этот день неудачными могут быть до 250 запросов. Укажите в SLO, какое определение используется.
 
 ## Подвохи
 
@@ -327,4 +348,5 @@ RPO — допустимая потеря данных по времени, RTO 
 - [Google SRE Workbook: Alerting on SLOs](https://sre.google/workbook/alerting-on-slos/)
 - [Google: Rule-of-thumb latency numbers](https://sre.google/static/pdf/rule-of-thumb-latency-numbers-letter.pdf)
 - [Google SRE Book: Introduction](https://sre.google/sre-book/introduction/)
+- [Google SRE Book: Embracing Risk](https://sre.google/sre-book/embracing-risk/)
 - [k6: open и closed модели](https://grafana.com/docs/k6/latest/using-k6/scenarios/concepts/open-vs-closed/)

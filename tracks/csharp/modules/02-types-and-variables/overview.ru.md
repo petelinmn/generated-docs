@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4, 5, 6]
 tags: [types, value-types, reference-types, type-conversion, strings, nullable-reference-types, boxing, floating-point]
 versions: ".NET 11, C# 15"
 status: verified
-updated: 2026-11-20
+updated: 2026-11-26
 ---
 
 # Типы и переменные
@@ -80,3 +80,4 @@ public static (int Original, int Copy) MutateClassCopy()
 - Пререквизиты: [01 · Платформа .NET и dotnet CLI](../01-dotnet-platform/overview.ru.md)
 - Дальше: [03 · Управляющие конструкции и методы](../03-control-flow-and-methods/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — динамическая типизация, где все значения — объекты
+- [System design: процесс проектирования и оценки](../../../system-design/modules/01-design-process/overview.ru.md)

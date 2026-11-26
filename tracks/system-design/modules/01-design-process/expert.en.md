@@ -8,7 +8,7 @@ slug: 01-design-process
 part: 1
 tags: [system-design, capacity-estimation, slo, availability, latency, percentiles]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -65,16 +65,16 @@ The Erlang C formula gives the probability that a request has to wait when `c` s
 
 Two conclusions: a shared queue is better than ten separate ones, and a small pool needs a larger relative headroom. File: [Ex04_Queueing.cs](code/Examples/Ex04_Queueing.cs). Real traffic need not follow the model's assumptions (bursts, a long tail of service times), so this is a guide, not a forecast.
 
-### MTBF and MTTR
+### MTTF, MTTR and MTBF
 
-Reliability depends on how often the system fails (MTBF or MTTF) and how fast it recovers (MTTR). In a steady-state model availability is `MTBF / (MTBF + MTTR)`.
+Reliability depends on how long the system works before a failure (MTTF, mean time to failure) and how fast it recovers (MTTR, mean time to repair). In a steady-state model availability is `MTTF / (MTTF + MTTR)`. The interval between two failures including the repair is MTBF = MTTF + MTTR, so the same ratio is `MTTF / MTBF`.
 
 ```csharp
-public static double Availability(TimeSpan meanTimeBetweenFailures, TimeSpan meanTimeToRepair) =>
-    meanTimeBetweenFailures / (meanTimeBetweenFailures + meanTimeToRepair);
+public static double Availability(TimeSpan meanTimeToFailure, TimeSpan meanTimeToRepair) =>
+    meanTimeToFailure / (meanTimeToFailure + meanTimeToRepair);
 ```
 
-One failure in 30 days with an hour to recover gives 99.861%, with 5 minutes 99.988%. Shortening recovery is often cheaper than making failures rarer.
+A failure after every 30 days of operation with an hour to recover gives 99.861%, with 5 minutes 99.988%. Shortening recovery is often cheaper than making failures rarer.
 
 ## Reference
 
@@ -141,6 +141,27 @@ Take prices from your provider's calculator on the date of the estimate and reco
 |---|---|
 | Closed | the next request after the previous response |
 | Open | on a schedule, regardless of responses |
+
+### Any k of n replicas
+
+A majority quorum needs at least `k` of `n` replicas. With independent failures this is a sum of binomial probabilities: `Σ C(n,i)·a^i·(1-a)^(n-i)` for `i` from `k` to `n`. For three replicas of 99% each:
+
+| Required | Availability |
+|---|---|
+| any 1 of 3 | 99.9999% |
+| 2 of 3 | 99.9702% |
+| all 3 | 97.0299% |
+
+File: [Ex02_Availability.cs](code/Examples/Ex02_Availability.cs).
+
+### Time-based and request-based availability
+
+| Definition | Formula | Fits |
+|---|---|---|
+| Time-based | uptime / (uptime + downtime) | a system that is either up or down |
+| Request-based (aggregate) | successful requests / all requests | a distributed service that fails partially |
+
+With 2.5 million requests a day and a 99.99% target for that day, up to 250 requests may fail. State in the SLO which definition you use.
 
 ## Gotchas
 
@@ -327,4 +348,5 @@ First check the load model, how realistic the data is, the duration and whether 
 - [Google SRE Workbook: Alerting on SLOs](https://sre.google/workbook/alerting-on-slos/)
 - [Google: Rule-of-thumb latency numbers](https://sre.google/static/pdf/rule-of-thumb-latency-numbers-letter.pdf)
 - [Google SRE Book: Introduction](https://sre.google/sre-book/introduction/)
+- [Google SRE Book: Embracing Risk](https://sre.google/sre-book/embracing-risk/)
 - [k6: open and closed models](https://grafana.com/docs/k6/latest/using-k6/scenarios/concepts/open-vs-closed/)

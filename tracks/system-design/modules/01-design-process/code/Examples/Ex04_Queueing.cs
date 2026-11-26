@@ -30,6 +30,6 @@ public static class Queueing
     public static double MeanWait(int servers, double load, double serviceTime) =>
         ProbabilityOfWaiting(servers, load) * serviceTime / (servers - load);
 
-    public static double Availability(TimeSpan meanTimeBetweenFailures, TimeSpan meanTimeToRepair) =>
-        meanTimeBetweenFailures / (meanTimeBetweenFailures + meanTimeToRepair);
+    public static double Availability(TimeSpan meanTimeToFailure, TimeSpan meanTimeToRepair) =>
+        meanTimeToFailure / (meanTimeToFailure + meanTimeToRepair);
 }

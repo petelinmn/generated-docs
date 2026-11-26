@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4, 5, 6]
 tags: [types, value-types, reference-types, type-conversion, strings, nullable-reference-types, boxing, floating-point]
 versions: ".NET 11, C# 15"
 status: verified
-updated: 2026-11-20
+updated: 2026-11-26
 ---
 
 # Types and variables
@@ -80,3 +80,4 @@ public static (int Original, int Copy) MutateClassCopy()
 - Prerequisites: [01 · The .NET platform and dotnet CLI](../01-dotnet-platform/overview.en.md)
 - Next: [03 · Control flow and methods](../03-control-flow-and-methods/overview.en.md)
 - The same idea in other tracks: [Python](../../../python/overview.en.md) — dynamic typing, where every value is an object
+- [System design: design process and estimation](../../../system-design/modules/01-design-process/overview.en.md)
