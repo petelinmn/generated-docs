@@ -99,3 +99,63 @@ public class SessionTests
         Assert.Null(session.Read(new Replica(1, "old")));
     }
 }
+
+public class LinearizabilityTests
+{
+    private static Operation Write(int v, int start, int end) => new(true, v, start, end);
+    private static Operation Read(int v, int start, int end) => new(false, v, start, end);
+
+    [Fact]
+    public void A_read_concurrent_with_a_write_may_see_either_value()
+    {
+        Assert.True(Linearizability.Check([Write(1, 0, 10), Read(0, 2, 3)]));
+        Assert.True(Linearizability.Check([Write(1, 0, 10), Read(1, 2, 3)]));
+    }
+
+    [Fact]
+    public void A_read_after_the_write_returned_must_see_it() =>
+        Assert.False(Linearizability.Check([Write(1, 0, 1), Read(0, 2, 3)]));
+
+    [Fact]
+    public void Once_a_new_value_was_observed_the_old_one_cannot_return() =>
+        Assert.False(Linearizability.Check([Write(1, 0, 10), Read(1, 1, 2), Read(0, 3, 4)]));
+}
+
+public class SerializationGraphTests
+{
+    [Fact]
+    public void Write_skew_forms_a_cycle()
+    {
+        // A read what B later overwrote, and B read what A later overwrote.
+        Assert.True(SerializationGraph.HasCycle([new("A", "B"), new("B", "A")]));
+        Assert.False(SerializationGraph.HasCycle([new("A", "B"), new("B", "C"), new("A", "C")]));
+    }
+}
+
+public class CrdtTests
+{
+    [Fact]
+    public void Pn_counter_converges()
+    {
+        var a = new PnCounter("a");
+        var b = new PnCounter("b");
+        a.Add(5);
+        b.Add(-2);
+
+        a.Merge(b);
+        b.Merge(a);
+        a.Merge(b);
+
+        Assert.Equal((3L, 3L), (a.Value, b.Value));
+    }
+
+    [Fact]
+    public void Lww_with_equal_timestamps_is_order_independent()
+    {
+        var x = new LwwRegister("x", 5, "n1");
+        var y = new LwwRegister("y", 5, "n2");
+
+        Assert.Equal(LwwRegister.Merge(x, y), LwwRegister.Merge(y, x));
+        Assert.Equal("y", LwwRegister.Merge(x, y).Value);
+    }
+}

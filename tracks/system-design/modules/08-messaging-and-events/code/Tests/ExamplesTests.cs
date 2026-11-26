@@ -96,3 +96,89 @@ public class DeadLetterTests
         Assert.Equal(3, attempts);
     }
 }
+
+public class TransactionsTests
+{
+    [Fact]
+    public void Outputs_and_offset_become_visible_together()
+    {
+        var log = new TransactionalLog();
+        long first = log.Begin();
+        log.Send(first, "a");
+        log.SendOffset(first, 1);
+        long second = log.Begin();
+        log.Send(second, "b");
+
+        Assert.Empty(log.ReadCommitted());
+        Assert.Equal(0, log.ConsumedOffset);
+
+        log.Commit(second);
+        Assert.Empty(log.ReadCommitted()); // "a" is still open and comes first
+        log.Commit(first);
+        Assert.Equal(["a", "b"], log.ReadCommitted());
+        Assert.Equal(1, log.ConsumedOffset);
+    }
+
+    [Fact]
+    public void Aborted_records_are_hidden_from_read_committed()
+    {
+        var log = new TransactionalLog();
+        long tx = log.Begin();
+        log.Send(tx, "x");
+        log.Abort(tx);
+
+        Assert.Empty(log.ReadCommitted());
+        Assert.Equal(["x"], log.ReadUncommitted());
+    }
+}
+
+public class SchemaTests
+{
+    private static readonly SchemaField[] V1 = [new("id", false), new("note", false)];
+
+    [Theory]
+    [InlineData("add-with-default", true, true)]
+    [InlineData("add-required", false, true)]
+    [InlineData("remove-required", true, false)]
+    public void Compatibility(string change, bool backward, bool forward)
+    {
+        SchemaField[] v2 = change switch
+        {
+            "add-with-default" => [.. V1, new("tag", true)],
+            "add-required" => [.. V1, new("tag", false)],
+            _ => [V1[0]],
+        };
+
+        Assert.Equal(backward, SchemaCompatibility.Backward(V1, v2));
+        Assert.Equal(forward, SchemaCompatibility.Forward(V1, v2));
+    }
+}
+
+public class RetryTiersTests
+{
+    [Fact]
+    public void A_retried_message_is_overtaken_and_a_hopeless_one_is_dead_lettered()
+    {
+        var failures = new Dictionary<string, int> { ["a"] = 1, ["c"] = 99 };
+
+        var (processed, dead) = RetryTiers.Run(["a", "b", "c", "d"], failures, tierDelays: [10, 100]);
+
+        Assert.Equal(["b", "d", "a"], processed);
+        Assert.Equal(["c"], dead);
+    }
+}
+
+public class AssignmentTests
+{
+    [Fact]
+    public void Sticky_moves_much_less_than_a_full_recalculation()
+    {
+        string[] before = Assignment.RoundRobin(12, ["a", "b", "c", "d"]);
+        string[] survivors = ["a", "b", "c"];
+
+        Assert.Equal(9, Assignment.Moved(before, Assignment.RoundRobin(12, survivors)));
+        string[] sticky = Assignment.Sticky(before, survivors);
+        Assert.Equal(3, Assignment.Moved(before, sticky));
+        Assert.All(sticky.CountBy(c => c), g => Assert.Equal(4, g.Value));
+    }
+}

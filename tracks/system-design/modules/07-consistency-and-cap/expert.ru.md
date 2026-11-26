@@ -35,6 +35,54 @@ sequenceDiagram
     B->>S: commit (allowed by snapshot isolation)
 ```
 
+### Иерархия моделей
+
+Модели согласованности образуют не лестницу, а граф: «сильнее» значит «допускает меньше историй». По классификации Jepsen:
+
+```mermaid
+flowchart TD
+    SS[Strict serializable] --> S[Serializable]
+    SS --> L[Linearizable]
+    S --> RR[Repeatable read]
+    S --> SI[Snapshot isolation]
+    L --> SEQ[Sequential] --> C[Causal] --> P[PRAM]
+    P --> MR[Monotonic reads]
+    P --> MW[Monotonic writes]
+    P --> RYW[Read your writes]
+```
+
+Snapshot isolation и repeatable read между собой несравнимы. Модели не слабее cursor stability, snapshot isolation и sequential не могут быть полностью доступны в асинхронной сети; read-your-writes и сильнее — не более чем «липко» доступны (клиент должен ходить на тот же узел).
+
+### Как проверить линеаризуемость
+
+История линеаризуема, если операции можно выстроить в один порядок, не нарушая реальное время и смысл регистра.
+
+```csharp
+// An operation may go first only if no other one finished before it started.
+int earliestEnd = remaining.Min(o => o.End);
+foreach (Operation op in remaining.Where(o => o.Start <= earliestEnd))
+{
+    if (!op.IsWrite && op.Value != value) continue;
+```
+
+Чтение, пересекающееся с записью, может увидеть любое значение; но после того как новое значение уже наблюдали, старое вернуться не может. Файл: [Ex04_Linearizability.cs](code/Examples/Ex04_Linearizability.cs). Перебор экспоненциален и годится для маленьких историй.
+
+### Сериализуемость как граф без циклов
+
+Между транзакциями есть зависимости: кто должен идти раньше. Исполнение эквивалентно последовательному, если в графе нет цикла. Write skew даёт цикл: A читала то, что потом переписала B, и наоборот. Файл: [Ex05_SerializationGraph.cs](code/Examples/Ex05_SerializationGraph.cs).
+
+PostgreSQL на уровне Serializable (SSI) отслеживает такие зависимости с помощью предикатных блокировок `SIReadLock`: они никого не блокируют, а при опасной комбинации одна из транзакций получает ошибку `40001`. Под нехваткой памяти блокировки укрупняются до страницы или таблицы, а последовательное сканирование берёт блокировку на всю таблицу — это увеличивает число отказов.
+
+### Ещё CRDT
+
+PN-Counter — два растущих счётчика; значение равно разности.
+
+```csharp
+public long Value => _plus.Values.Sum() - _minus.Values.Sum();
+```
+
+LWW-Register разрешает равенство меток идентификатором узла, чтобы реплики не разошлись. Файл: [Ex06_Crdts.cs](code/Examples/Ex06_Crdts.cs).
+
 ## Справочник
 
 | Средство | От чего защищает |
@@ -60,6 +108,23 @@ sequenceDiagram
 | лента, счётчики | eventual |
 | свой профиль после правки | read-your-writes |
 
+| СУБД | Уровень по умолчанию | Особенности |
+|---|---|---|
+| PostgreSQL | Read committed | Repeatable read — snapshot isolation; Serializable — SSI |
+| SQL Server | Read committed | `READ_COMMITTED_SNAPSHOT` по умолчанию выключен; есть уровень `SNAPSHOT` |
+| Azure SQL Database | Read committed | `READ_COMMITTED_SNAPSHOT` по умолчанию включён |
+| MySQL InnoDB 8.4 | Repeatable read | обычные чтения берут снимок первого чтения; блокирующие — record, gap и next-key блокировки |
+
+В SQL Server с выключенным `READ_COMMITTED_SNAPSHOT` читатели берут блокировки, а в Azure SQL Database читают версии строк: один и тот же код может по-разному ждать и видеть данные в разных средах.
+
+| Конфигурация | PACELC |
+|---|---|
+| синхронные кворумы, отказ без большинства | PC / EC |
+| асинхронные реплики, чтения с реплик, запись везде | PA / EL |
+| кворумы с настраиваемыми W и R | зависит от значений |
+
+PACELC описывает конфигурацию, а не название продукта: одна и та же база может вести себя по-разному.
+
 ## Подвохи
 
 ### Потокобезопасная коллекция не делает операцию атомарной
@@ -78,6 +143,14 @@ d["x"] = v + 1;
 ### Восстановление связи не согласует данные
 
 В тесте режима AP после `Heal()` узлы продолжают отдавать `left` и `right`. Согласование — отдельный механизм: слияние, версии или выбор победителя.
+
+### Чтение, пересекающееся с записью
+
+Значение, увиденное во время записи, не гарантирует, что следующее чтение увидит то же. Но линеаризуемость запрещает вернуться к старому после нового — это проверяет тест с историей «запись 1, чтение 1, чтение 0».
+
+### Одинаковое имя уровня — разное поведение
+
+«Repeatable read» в MySQL и PostgreSQL устроены по-разному, а уровень по умолчанию различается. Перенося приложение между базами, проверяйте инварианты тестами с параллельными транзакциями.
 
 ## Компромиссы и альтернативы
 
@@ -171,6 +244,46 @@ Read committed.
 
 </details>
 
+**11. Уровень по умолчанию в SQL Server и MySQL InnoDB?**
+
+<details><summary>Ответ</summary>
+
+SQL Server — Read committed, InnoDB — Repeatable read.
+
+</details>
+
+**12. Что такое SSI?**
+
+<details><summary>Ответ</summary>
+
+Сериализуемость поверх снимков: зависимости чтения и записи отслеживаются, и при опасности одну транзакцию откатывают.
+
+</details>
+
+**13. Когда исполнение сериализуемо?**
+
+<details><summary>Ответ</summary>
+
+Когда граф зависимостей транзакций не содержит циклов (для конфликтной сериализуемости).
+
+</details>
+
+**14. Можно ли иметь линеаризуемость и полную доступность?**
+
+<details><summary>Ответ</summary>
+
+Нет: при разделении сети линеаризуемая система не может отвечать всем.
+
+</details>
+
+**15. Подвох: тесты проходят локально, а в облаке появились взаимные ожидания и другие результаты. Возможная причина?**
+
+<details><summary>Ответ</summary>
+
+Разные настройки версионирования чтений, например `READ_COMMITTED_SNAPSHOT`.
+
+</details>
+
 ## Связанные материалы
 
 - [Продвинутая теория](advanced.ru.md)
@@ -179,3 +292,6 @@ Read committed.
 ## Источники
 
 - [PostgreSQL: изоляция транзакций](https://www.postgresql.org/docs/current/transaction-iso.html)
+- [Jepsen: модели согласованности](https://jepsen.io/consistency/models)
+- [SQL Server: SET TRANSACTION ISOLATION LEVEL](https://learn.microsoft.com/sql/t-sql/statements/set-transaction-isolation-level-transact-sql)
+- [MySQL 8.4: уровни изоляции InnoDB](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)

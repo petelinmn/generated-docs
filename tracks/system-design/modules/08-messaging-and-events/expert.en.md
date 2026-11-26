@@ -30,6 +30,45 @@ flowchart LR
     B -->|after N attempts| D[(Dead letter)]
 ```
 
+### Kafka transactions and "exactly once"
+
+An idempotent producer does not create duplicates in the log when resending. A transaction lets you write messages to several partitions atomically, including the consumer position. A `read_committed` consumer sees only what was committed.
+
+```csharp
+public void Commit(long transaction)
+{
+    _outcome[transaction] = true;
+    if (_pendingOffsets.TryGetValue(transaction, out int offset)) ConsumedOffset = offset;
+}
+```
+
+While an earlier transaction is open, the reader does not advance past it, even if a later one has committed. The "exactly once" guarantee covers the chain "read from Kafka — process — write to Kafka"; an external database or email needs its own idempotency. File: [Ex05_Transactions.cs](code/Examples/Ex05_Transactions.cs). This models the idea, not Kafka's protocol; details are in the [Kafka track](../../../kafka/modules/05-delivery-semantics/overview.en.md).
+
+### Quorum queues and streams in RabbitMQ
+
+A quorum queue is a durable replicated queue on Raft; a publisher confirm arrives once the message is written to a majority. Since 4.0 the default delivery limit is 20: a message that exceeds it is dropped, or goes to a dead-letter exchange if one is configured. Dead lettering is at-most-once by default; at-least-once needs separate settings.
+
+A stream is a log: reading does not remove messages, and the consumer picks the starting position (`first`, `last`, `next`, an offset or a time). Retention limits (`max-age`, `max-length-bytes`) are not set by default.
+
+### Schema evolution
+
+```csharp
+public static bool CanRead(IReadOnlyList<SchemaField> reader, IReadOnlyList<SchemaField> writer) =>
+    reader.All(r => r.HasDefault || writer.Any(w => w.Name == r.Name));
+```
+
+Backward: a new reader understands old data. Forward: an old reader understands new data. File: [Ex06_SchemaCompatibility.cs](code/Examples/Ex06_SchemaCompatibility.cs). The model considers only the presence of fields and default values.
+
+### Retry queues
+
+So as not to block the stream, a failed message is sent to a delayed queue, then to one with a longer delay, and finally to the dead letter queue. The price is ordering: in the test `a`, which failed once, was processed after `b` and `d`. File: [Ex07_RetryTiers.cs](code/Examples/Ex07_RetryTiers.cs).
+
+### Rebalancing
+
+When group membership changes, partitions are reassigned. A full recalculation moves more than necessary: in a test with 12 partitions and one of four consumers leaving, 9 against 3 for the "sticky" variant. File: [Ex08_Assignment.cs](code/Examples/Ex08_Assignment.cs).
+
+In Kafka the new group protocol (KIP-848) is available since 4.0 and is enabled on the client with `group.protocol=consumer`; in it the broker performs the assignment (`uniform` by default, or `range`).
+
 ## Reference
 
 | Pattern | Task |
@@ -49,6 +88,27 @@ flowchart LR
 | correlation / causation id | tracing the chain |
 | key | ordering and partition |
 | event time | analytics, not ordering |
+
+| Schema Registry compatibility | What it guarantees | Whom to upgrade first |
+|---|---|---|
+| `BACKWARD` (default) | new consumers read old data | consumers |
+| `FORWARD` | old consumers read new data | producers |
+| `FULL` | both directions | in any order |
+| `NONE` | no checks | with care |
+
+The `_TRANSITIVE` variants check compatibility with all earlier versions, not only the latest.
+
+| Schema change | Backward | Forward |
+|---|---|---|
+| added a field with a default | yes | yes |
+| added a field without a default | no | yes |
+| removed a field without a default | yes | no |
+
+| RabbitMQ | Quorum queue | Stream |
+|---|---|---|
+| After reading | removed after ack | stays |
+| Reading again | no | yes |
+| Replication | Raft | a leader and replicas |
 
 ## Gotchas
 
@@ -73,6 +133,14 @@ await foreach (var x in ch.Reader.ReadAllAsync()) Console.WriteLine($"read {x}")
 ```
 
 Result: `False`, then `read 2`. Without `Complete()` the `ReadAllAsync` loop never ends.
+
+### An open transaction holds readers back
+
+In the model a `read_committed` reader does not see the committed `b` while an earlier transaction with `a` is open. Long transactions increase the delay for all consumers of the partition.
+
+### A retry queue breaks ordering
+
+The test result is `b`, `d`, `a` instead of `a`, `b`, `d`. If ordering by key matters, retry in place or postpone all messages of that key.
 
 ## Trade-offs and alternatives
 
@@ -166,6 +234,46 @@ In one Kafka group no more than four will work, the rest stay idle.
 
 </details>
 
+**11. What does an idempotent producer give, and what do transactions give?**
+
+<details><summary>Answer</summary>
+
+The first removes duplicates caused by resending; the second makes a write to several partitions atomic.
+
+</details>
+
+**12. Where does exactly-once end in Kafka?**
+
+<details><summary>Answer</summary>
+
+At Kafka's boundary: external systems need their own idempotency or cooperation.
+
+</details>
+
+**13. Whom do you upgrade first with `BACKWARD`?**
+
+<details><summary>Answer</summary>
+
+Consumers, before new events appear.
+
+</details>
+
+**14. What happens to a quorum queue message after the delivery limit?**
+
+<details><summary>Answer</summary>
+
+It is dropped, or goes to a dead-letter exchange if one is configured.
+
+</details>
+
+**15. Trick question: you configured a dead-letter exchange, so such messages cannot be lost?**
+
+<details><summary>Answer</summary>
+
+By default dead lettering in quorum queues is at-most-once; at-least-once needs extra settings.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -175,3 +283,8 @@ In one Kafka group no more than four will work, the rest stay idle.
 
 - [Channels in .NET](https://learn.microsoft.com/dotnet/core/extensions/channels)
 - [RabbitMQ: confirms](https://www.rabbitmq.com/docs/confirms)
+- [Kafka: design, delivery semantics and transactions](https://kafka.apache.org/43/design/design/)
+- [Kafka: consumer rebalance protocol](https://kafka.apache.org/43/operations/consumer-rebalance-protocol/)
+- [RabbitMQ: quorum queues](https://www.rabbitmq.com/docs/quorum-queues)
+- [RabbitMQ: streams](https://www.rabbitmq.com/docs/streams)
+- [Confluent: schema evolution](https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html)

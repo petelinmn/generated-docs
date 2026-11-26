@@ -35,6 +35,54 @@ sequenceDiagram
     B->>S: commit (allowed by snapshot isolation)
 ```
 
+### The hierarchy of models
+
+Consistency models form a graph, not a ladder: "stronger" means "allows fewer histories". According to Jepsen's classification:
+
+```mermaid
+flowchart TD
+    SS[Strict serializable] --> S[Serializable]
+    SS --> L[Linearizable]
+    S --> RR[Repeatable read]
+    S --> SI[Snapshot isolation]
+    L --> SEQ[Sequential] --> C[Causal] --> P[PRAM]
+    P --> MR[Monotonic reads]
+    P --> MW[Monotonic writes]
+    P --> RYW[Read your writes]
+```
+
+Snapshot isolation and repeatable read are incomparable with each other. Models at or stronger than cursor stability, snapshot isolation and sequential cannot be totally available in an asynchronous network; read-your-writes and stronger are at most "sticky" available (the client must keep going to the same node).
+
+### Checking linearizability
+
+A history is linearizable if the operations can be put into one order without breaking real time or the meaning of a register.
+
+```csharp
+// An operation may go first only if no other one finished before it started.
+int earliestEnd = remaining.Min(o => o.End);
+foreach (Operation op in remaining.Where(o => o.Start <= earliestEnd))
+{
+    if (!op.IsWrite && op.Value != value) continue;
+```
+
+A read overlapping a write may see either value; but once the new value has been observed, the old one cannot return. File: [Ex04_Linearizability.cs](code/Examples/Ex04_Linearizability.cs). The search is exponential and fits small histories.
+
+### Serializability as a graph without cycles
+
+There are dependencies between transactions: who has to come first. An execution is equivalent to a serial one if the graph has no cycle. Write skew gives a cycle: A read what B then overwrote, and the other way round. File: [Ex05_SerializationGraph.cs](code/Examples/Ex05_SerializationGraph.cs).
+
+At the Serializable level PostgreSQL (SSI) tracks such dependencies with `SIReadLock` predicate locks: they block nobody, and on a dangerous combination one transaction gets error `40001`. Short of memory, locks are coarsened to a page or a table, and a sequential scan takes a relation-level lock — which increases the number of failures.
+
+### More CRDTs
+
+A PN-Counter is two grow-only counters; the value is the difference.
+
+```csharp
+public long Value => _plus.Values.Sum() - _minus.Values.Sum();
+```
+
+An LWW-Register breaks timestamp ties with the node id so that replicas do not diverge. File: [Ex06_Crdts.cs](code/Examples/Ex06_Crdts.cs).
+
 ## Reference
 
 | Means | What it protects against |
@@ -60,6 +108,23 @@ sequenceDiagram
 | feeds, counters | eventual |
 | your own profile after editing | read-your-writes |
 
+| DBMS | Default level | Features |
+|---|---|---|
+| PostgreSQL | Read committed | Repeatable read is snapshot isolation; Serializable is SSI |
+| SQL Server | Read committed | `READ_COMMITTED_SNAPSHOT` is off by default; there is a `SNAPSHOT` level |
+| Azure SQL Database | Read committed | `READ_COMMITTED_SNAPSHOT` is on by default |
+| MySQL InnoDB 8.4 | Repeatable read | plain reads use the snapshot of the first read; locking reads use record, gap and next-key locks |
+
+In SQL Server with `READ_COMMITTED_SNAPSHOT` off readers take locks, while in Azure SQL Database they read row versions: the same code may wait and see data differently in different environments.
+
+| Configuration | PACELC |
+|---|---|
+| synchronous quorums, refusal without a majority | PC / EC |
+| asynchronous replicas, replica reads, write anywhere | PA / EL |
+| quorums with tunable W and R | depends on the values |
+
+PACELC describes a configuration, not a product name: the same database may behave differently.
+
 ## Gotchas
 
 ### A thread-safe collection does not make an operation atomic
@@ -78,6 +143,14 @@ Result: `d["x"]` is `1`, not `2`. Each access is safe, the "read, then write" pa
 ### Restoring the connection does not reconcile data
 
 In the AP mode test the nodes keep returning `left` and `right` after `Heal()`. Reconciliation is a separate mechanism: merging, versions or picking a winner.
+
+### A read overlapping a write
+
+A value seen during a write does not guarantee that the next read sees the same. But linearizability forbids returning to the old value after the new one — the test with the history "write 1, read 1, read 0" checks that.
+
+### The same level name, different behavior
+
+"Repeatable read" works differently in MySQL and PostgreSQL, and the default level differs. When moving an application between databases, check invariants with tests that run concurrent transactions.
 
 ## Trade-offs and alternatives
 
@@ -171,6 +244,46 @@ No: CAP says nothing about other failures, overload or latency.
 
 </details>
 
+**11. The default level in SQL Server and MySQL InnoDB?**
+
+<details><summary>Answer</summary>
+
+SQL Server — Read committed, InnoDB — Repeatable read.
+
+</details>
+
+**12. What is SSI?**
+
+<details><summary>Answer</summary>
+
+Serializability on top of snapshots: read and write dependencies are tracked, and one transaction is rolled back when there is danger.
+
+</details>
+
+**13. When is an execution serializable?**
+
+<details><summary>Answer</summary>
+
+When the transaction dependency graph has no cycles (for conflict serializability).
+
+</details>
+
+**14. Can you have linearizability and total availability?**
+
+<details><summary>Answer</summary>
+
+No: during a network partition a linearizable system cannot answer everyone.
+
+</details>
+
+**15. Trick question: tests pass locally, but in the cloud there are mutual waits and different results. A possible cause?**
+
+<details><summary>Answer</summary>
+
+Different read versioning settings, for example `READ_COMMITTED_SNAPSHOT`.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -179,3 +292,6 @@ No: CAP says nothing about other failures, overload or latency.
 ## Sources
 
 - [PostgreSQL: transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html)
+- [Jepsen: consistency models](https://jepsen.io/consistency/models)
+- [SQL Server: SET TRANSACTION ISOLATION LEVEL](https://learn.microsoft.com/sql/t-sql/statements/set-transaction-isolation-level-transact-sql)
+- [MySQL 8.4: InnoDB isolation levels](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)

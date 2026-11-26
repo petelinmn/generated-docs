@@ -30,6 +30,45 @@ flowchart LR
     B -->|after N attempts| D[(Dead letter)]
 ```
 
+### Транзакции Kafka и «ровно один раз»
+
+Идемпотентный producer не создаёт дубликатов в журнале при повторной отправке. Транзакция позволяет записать сообщения в несколько партиций атомарно, включая позицию потребителя. Consumer с `read_committed` видит только зафиксированное.
+
+```csharp
+public void Commit(long transaction)
+{
+    _outcome[transaction] = true;
+    if (_pendingOffsets.TryGetValue(transaction, out int offset)) ConsumedOffset = offset;
+}
+```
+
+Пока ранняя транзакция открыта, читатель не продвигается дальше неё, даже если более поздняя уже зафиксирована. Гарантия «ровно один раз» относится к цепочке «прочитал из Kafka — обработал — записал в Kafka»; внешняя база или почта требуют своей идемпотентности. Файл: [Ex05_Transactions.cs](code/Examples/Ex05_Transactions.cs). Это модель идеи, а не протокол Kafka; подробности — в [треке Kafka](../../../kafka/modules/05-delivery-semantics/overview.ru.md).
+
+### Quorum queues и streams в RabbitMQ
+
+Quorum queue — долговечная реплицируемая очередь на Raft; publisher confirm приходит, когда сообщение записано на большинство. Начиная с 4.0 лимит доставок по умолчанию равен 20: превысившее его сообщение удаляется или уходит в dead-letter exchange, если он настроен. Dead lettering по умолчанию at-most-once; для at-least-once нужны отдельные настройки.
+
+Stream — журнал: чтение не удаляет сообщения, потребитель выбирает начальную позицию (`first`, `last`, `next`, offset или время). Ограничения хранения (`max-age`, `max-length-bytes`) по умолчанию не заданы.
+
+### Эволюция схем
+
+```csharp
+public static bool CanRead(IReadOnlyList<SchemaField> reader, IReadOnlyList<SchemaField> writer) =>
+    reader.All(r => r.HasDefault || writer.Any(w => w.Name == r.Name));
+```
+
+Backward: новый читатель понимает старые данные. Forward: старый читатель понимает новые. Файл: [Ex06_SchemaCompatibility.cs](code/Examples/Ex06_SchemaCompatibility.cs). Модель учитывает только наличие полей и значения по умолчанию.
+
+### Retry-очереди
+
+Чтобы не блокировать поток, неудачное сообщение отправляют в очередь с задержкой, затем с большей, и наконец в dead-letter. Цена — порядок: в тесте `a`, упавшее один раз, обработано после `b` и `d`. Файл: [Ex07_RetryTiers.cs](code/Examples/Ex07_RetryTiers.cs).
+
+### Ребалансировка
+
+При изменении состава группы партиции переназначаются. Полный пересчёт перемещает больше, чем нужно: в тесте с 12 партициями и уходом одного из четырёх потребителей — 9 против 3 у «липкого» варианта. Файл: [Ex08_Assignment.cs](code/Examples/Ex08_Assignment.cs).
+
+В Kafka новый протокол групп (KIP-848) доступен с 4.0 и включается на клиенте `group.protocol=consumer`; в нём назначение выполняет брокер (`uniform` по умолчанию или `range`).
+
 ## Справочник
 
 | Паттерн | Задача |
@@ -49,6 +88,27 @@ flowchart LR
 | correlation / causation id | трассировка цепочки |
 | key | порядок и партиция |
 | время события | аналитика, не порядок |
+
+| Совместимость в Schema Registry | Что гарантирует | Кого обновлять первым |
+|---|---|---|
+| `BACKWARD` (по умолчанию) | новые consumers читают старые данные | consumers |
+| `FORWARD` | старые consumers читают новые данные | producers |
+| `FULL` | оба направления | в любом порядке |
+| `NONE` | проверок нет | с осторожностью |
+
+Варианты с суффиксом `_TRANSITIVE` проверяют совместимость со всеми прежними версиями, а не только с последней.
+
+| Изменение схемы | Backward | Forward |
+|---|---|---|
+| добавили поле со значением по умолчанию | да | да |
+| добавили поле без значения по умолчанию | нет | да |
+| удалили поле без значения по умолчанию | да | нет |
+
+| RabbitMQ | Quorum queue | Stream |
+|---|---|---|
+| После чтения | удаляется после ack | остаётся |
+| Повторное чтение | нет | да |
+| Репликация | Raft | лидер и реплики |
 
 ## Подвохи
 
@@ -73,6 +133,14 @@ await foreach (var x in ch.Reader.ReadAllAsync()) Console.WriteLine($"read {x}")
 ```
 
 Результат: `False`, затем `read 2`. Без `Complete()` цикл `ReadAllAsync` не завершится.
+
+### Открытая транзакция задерживает читателей
+
+Читатель `read_committed` в модели не видит зафиксированное `b`, пока открыта более ранняя транзакция с `a`. Долгие транзакции увеличивают задержку всех потребителей партиции.
+
+### Retry-очередь ломает порядок
+
+Результат теста: `b`, `d`, `a` вместо `a`, `b`, `d`. Если порядок по ключу важен, повторяйте на месте или откладывайте все сообщения этого ключа.
 
 ## Компромиссы и альтернативы
 
@@ -166,6 +234,46 @@ await foreach (var x in ch.Reader.ReadAllAsync()) Console.WriteLine($"read {x}")
 
 </details>
 
+**11. Что даёт идемпотентный producer, а что транзакции?**
+
+<details><summary>Ответ</summary>
+
+Первый устраняет дубликаты от повторной отправки; вторые делают запись в несколько партиций атомарной.
+
+</details>
+
+**12. Где кончается exactly-once в Kafka?**
+
+<details><summary>Ответ</summary>
+
+На границе Kafka: внешние системы требуют собственной идемпотентности или кооперации.
+
+</details>
+
+**13. Кого обновлять первым при `BACKWARD`?**
+
+<details><summary>Ответ</summary>
+
+Consumers, до появления новых событий.
+
+</details>
+
+**14. Что происходит с сообщением quorum queue после лимита доставок?**
+
+<details><summary>Ответ</summary>
+
+Удаляется или уходит в dead-letter exchange, если настроен.
+
+</details>
+
+**15. Подвох: настроили dead-letter exchange, значит такие сообщения не потеряются?**
+
+<details><summary>Ответ</summary>
+
+По умолчанию dead lettering в quorum queues at-most-once; для at-least-once нужны дополнительные настройки.
+
+</details>
+
 ## Связанные материалы
 
 - [Продвинутая теория](advanced.ru.md)
@@ -175,3 +283,8 @@ await foreach (var x in ch.Reader.ReadAllAsync()) Console.WriteLine($"read {x}")
 
 - [Channels в .NET](https://learn.microsoft.com/dotnet/core/extensions/channels)
 - [RabbitMQ: подтверждения](https://www.rabbitmq.com/docs/confirms)
+- [Kafka: design, семантика доставки и транзакции](https://kafka.apache.org/43/design/design/)
+- [Kafka: протокол ребалансировки](https://kafka.apache.org/43/operations/consumer-rebalance-protocol/)
+- [RabbitMQ: quorum queues](https://www.rabbitmq.com/docs/quorum-queues)
+- [RabbitMQ: streams](https://www.rabbitmq.com/docs/streams)
+- [Confluent: эволюция схем](https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html)
