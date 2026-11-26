@@ -10,7 +10,7 @@ tags: [opensearch, index, document, shard, replica, refresh, bulk, optimistic-co
 versions: "OpenSearch 3.10.1; opensearch-py 3.2.0"
 levels: [1, 2, 3, 4]
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # OpenSearch basics
@@ -66,3 +66,4 @@ print(client.search(index="products", body={"query": {"match": {"name": "mug"}}}
 - [05 · Indexing at scale](../05-indexing-at-scale/overview.en.md)
 - [07 · Cluster and shards](../07-cluster-and-shards/overview.en.md)
 - [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
+- [JSON in PostgreSQL](../../../postgresql/modules/08-json-and-operators/overview.en.md)
