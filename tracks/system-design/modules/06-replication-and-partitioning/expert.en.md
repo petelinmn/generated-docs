@@ -66,7 +66,7 @@ _data[node] = value;
 if (node >= n) _hints[node] = missed.Dequeue();
 ```
 
-This raises write availability, but until the handoff the returned node serves the old value, and quorum overlap is not guaranteed. Dynamo repairs replica divergence with background comparison of Merkle trees. File: [Ex06_HintedHandoff.cs](code/Examples/Ex06_HintedHandoff.cs).
+A late handoff must not replace a newer value that the node has already received, so the example compares write versions. This raises write availability, but until the handoff the returned node serves the old value, and quorum overlap is not guaranteed. Dynamo repairs replica divergence with background comparison of Merkle trees. File: [Ex06_HintedHandoff.cs](code/Examples/Ex06_HintedHandoff.cs).
 
 ### Rebalancing logical partitions
 

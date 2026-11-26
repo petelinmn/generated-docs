@@ -81,7 +81,7 @@ Such a check runs in CI, comparing the new OpenAPI or `.proto` schema with the p
 
 ### API gateway
 
-A gateway is a single entry point: routing, TLS, authentication, limits, transforms. In .NET it is built on [YARP](../02-scalability-and-load-balancing/basics.en.md). Business logic and permission checks on particular objects stay in the services. A BFF is a separate gateway for a particular kind of client.
+A gateway is a single entry point: routing, TLS, authentication, limits, transforms. In .NET it can be built on [YARP](../02-scalability-and-load-balancing/basics.en.md). Business logic and permission checks on particular objects stay in the services. A BFF is a separate backend for a particular kind of client: it composes data for its screens and is not the same thing as the gateway.
 
 ## Reference
 

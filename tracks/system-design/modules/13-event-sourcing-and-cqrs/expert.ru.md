@@ -67,7 +67,7 @@ if (_candidate is null || _candidate.Checkpoint < head) return false;
 Персональные поля шифруют ключом субъекта (AES-GCM: уникальный nonce, тег проверки, идентификатор субъекта как связанные данные). Удаление ключа делает все копии, включая резервные, нечитаемыми — если сам ключ не сохранился в другой копии.
 
 ```csharp
-public void Forget(string subject) => _keys.Remove(subject);
+public void Forget(string subject) => _keys[subject] = null;
 ```
 
 Файл: [Ex06_CryptoShredding.cs](code/Examples/Ex06_CryptoShredding.cs). Это учебный пример: ключи в production хранят в KMS, а проекции с открытыми данными нужно очищать отдельно. Достаточно ли этого юридически, решают не программисты.

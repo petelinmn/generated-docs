@@ -81,7 +81,7 @@ A receiver with a slow clock still gets a mark later than the send. File: [Ex05_
 
 ### ZooKeeper and etcd primitives
 
-In ZooKeeper locks and elections are built from ephemeral sequential nodes: a node disappears with the client session, and each waits only for the previous one by number, to avoid a "herd effect". etcd has revisions (a growing counter of the whole key space), leases with a TTL (keys are deleted when it expires), watches from a given revision and If/Then/Else transactions. A read is linearizable by default; `serializable` answers from one member faster but may be stale. A revision works as a fencing token.
+In ZooKeeper locks and elections are built from ephemeral sequential nodes: a node disappears with the client session, and each waits only for the previous one by number, to avoid a "herd effect". etcd has revisions (a growing counter of the whole key space), leases with a TTL (keys are deleted when it expires), watches from a given revision and If/Then/Else transactions. A read is linearizable by default; `serializable` answers from one member faster but may be stale. A revision can serve as a fencing token, but only if the protected resource checks it and rejects older values.
 
 ## Reference
 

@@ -10,12 +10,13 @@ namespace EventSourcing.Examples;
 public sealed class ShreddingVault
 {
     private const int NonceSize = 12, TagSize = 16;
-    private readonly Dictionary<string, byte[]> _keys = [];
+    private readonly Dictionary<string, byte[]?> _keys = [];
 
     // Layout: nonce | tag | ciphertext.
     public byte[] Protect(string subject, string value)
     {
         if (!_keys.TryGetValue(subject, out byte[]? key)) _keys[subject] = key = RandomNumberGenerator.GetBytes(32);
+        if (key is null) throw new InvalidOperationException("The subject has been forgotten.");
 
         byte[] plain = Encoding.UTF8.GetBytes(value);
         var result = new byte[NonceSize + TagSize + plain.Length];
@@ -31,7 +32,7 @@ public sealed class ShreddingVault
 
     public string? Reveal(string subject, byte[] data)
     {
-        if (!_keys.TryGetValue(subject, out byte[]? key)) return null; // forgotten
+        if (!_keys.TryGetValue(subject, out byte[]? key) || key is null) return null; // unknown or forgotten
 
         var plain = new byte[data.Length - NonceSize - TagSize];
         using var aes = new AesGcm(key, TagSize);
@@ -40,5 +41,5 @@ public sealed class ShreddingVault
         return Encoding.UTF8.GetString(plain);
     }
 
-    public void Forget(string subject) => _keys.Remove(subject);
+    public void Forget(string subject) => _keys[subject] = null;
 }

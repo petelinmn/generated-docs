@@ -81,7 +81,7 @@ Instead of polling the table, the database log is read. Debezium has an Outbox E
 
 | Approach | Isolation | What it requires of a participant |
 |---|---|---|
-| 2PC | yes | protocol support |
+| 2PC | depends on participants | protocol support |
 | TCC | a hold shows as taken | three idempotent operations |
 | Saga | none | an action and a compensation |
 

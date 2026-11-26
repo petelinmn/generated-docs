@@ -141,6 +141,24 @@ public class HandoffTests
     }
 }
 
+public class LateHandoffTests
+{
+    [Fact]
+    public void Handoff_does_not_replace_a_newer_value()
+    {
+        var store = new SloppyStore(n: 3, total: 5);
+        store.Down(0);
+        store.Write("v2");
+        store.Up(0);
+        store.Write("v3"); // node 0 is back and receives the newer value directly
+
+        store.Handoff();
+
+        Assert.Equal(["v3", "v3", "v3"], store.ReadPreferred());
+        Assert.Null(store.ValueAt(3));
+    }
+}
+
 public class RebalancingTests
 {
     [Fact]

@@ -115,5 +115,7 @@ public class ShreddingTests
 
         vault.Forget("u1");
         Assert.Null(vault.Reveal("u1", first));
+        Assert.Throws<InvalidOperationException>(() => vault.Protect("u1", "again"));
+        Assert.Null(vault.Reveal("u1", first));
     }
 }

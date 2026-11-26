@@ -7,6 +7,8 @@ namespace Replication.Examples;
 public sealed class SloppyStore(int n, int total)
 {
     private readonly string?[] _data = new string?[total];
+    private readonly long[] _versions = new long[total];
+    private long _lastVersion;
     private readonly Dictionary<int, int> _hints = []; // stand-in -> intended node
     private readonly HashSet<int> _down = [];
 
@@ -19,9 +21,11 @@ public sealed class SloppyStore(int n, int total)
     {
         var missed = new Queue<int>(Enumerable.Range(0, n).Where(_down.Contains));
         int written = 0;
+        long version = ++_lastVersion;
         for (int node = 0; node < total && written < n; node++)
         {
             if (_down.Contains(node)) continue;
+            _versions[node] = version;
             _data[node] = value;
             if (node >= n) _hints[node] = missed.Dequeue();
             written++;
@@ -35,7 +39,9 @@ public sealed class SloppyStore(int n, int total)
     {
         foreach (var (standIn, intended) in _hints.Where(h => !_down.Contains(h.Value)).ToList())
         {
-            _data[intended] = _data[standIn];
+            // A late handoff must not replace a newer write the node has already received.
+            if (_versions[standIn] > _versions[intended])
+                (_data[intended], _versions[intended]) = (_data[standIn], _versions[standIn]);
             _data[standIn] = null;
             _hints.Remove(standIn);
         }

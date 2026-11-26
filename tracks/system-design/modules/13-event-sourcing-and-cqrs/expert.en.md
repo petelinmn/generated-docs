@@ -67,7 +67,7 @@ The end of the log moves, so in practice you switch when the lag is small enough
 Personal fields are encrypted with a per-subject key (AES-GCM: a unique nonce, an authentication tag, the subject identifier as associated data). Deleting the key makes all copies, including backups, unreadable — if the key itself did not survive in another copy.
 
 ```csharp
-public void Forget(string subject) => _keys.Remove(subject);
+public void Forget(string subject) => _keys[subject] = null;
 ```
 
 File: [Ex06_CryptoShredding.cs](code/Examples/Ex06_CryptoShredding.cs). This is a teaching example: in production keys live in a KMS, and projections holding plain data have to be cleaned separately. Whether this is legally sufficient is not for programmers to decide.
