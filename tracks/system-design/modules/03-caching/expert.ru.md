@@ -8,7 +8,7 @@ slug: 03-caching
 part: 1
 tags: [system-design, caching, cache-aside, cache-invalidation, cache-stampede, lru-cache, hybrid-cache]
 versions: ".NET 11, C# 15; Microsoft.Extensions.Caching.Hybrid 11.0.1"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -101,9 +101,16 @@ CDN кэширует ответы ближе к пользователю. Что
 | `noeviction` | ничего: записи, требующие памяти, получают ошибку |
 | `allkeys-lru`, `allkeys-lfu`, `allkeys-random` | из всех ключей |
 | `volatile-lru`, `volatile-lfu`, `volatile-random` | только из ключей с TTL |
+| `allkeys-lrm`, `volatile-lrm` (Redis 8.6+) | давно не изменявшиеся (least recently modified): из всех ключей или из ключей с TTL |
 | `volatile-ttl` | ключи с наименьшим остатком TTL |
 
 LRU в Redis приближённый: сравнивается выборка ключей, а не все. Набор политик зависит от версии Redis; Redis в этом материале не запускался.
+
+| Механизм HTTP | Что делает |
+|---|---|
+| `Vary` | названные заголовки запроса участвуют в сопоставлении: сохранённый ответ переиспользуется, только если они совпадают; `Vary: *` не совпадает никогда |
+| `ETag` + `If-None-Match` | перепроверка: если содержимое не изменилось, сервер отвечает на GET кодом 304 без тела |
+| `must-revalidate` | устаревший ответ нельзя использовать без успешной проверки, даже когда сервер недоступен |
 
 | Проблема | Признак | Средство |
 |---|---|---|
@@ -135,7 +142,7 @@ LRU в Redis приближённый: сравнивается выборка �
 | один объект, JSON | 59 |
 | один объект, JSON + gzip | 79 |
 
-Сжатие окупается на крупных значениях, а мелкие увеличивает. Кроме размера, учитывайте процессорное время и совместимость формата между версиями приложения.
+Объект — `record Product(int Id, string Name, decimal Price, string Category)` со значениями вида `(1, "Product 1", 9.99m, "books")`, сжатие с `CompressionLevel.Optimal`. Сжатие окупается на крупных значениях, а мелкие увеличивает. Кроме размера, учитывайте процессорное время и совместимость формата между версиями приложения.
 
 ## Подвохи
 
@@ -341,3 +348,5 @@ limited.Set("a", 1);
 - [Redis: cluster specification](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/)
 - [Redis: Pub/Sub](https://redis.io/docs/latest/develop/pubsub/)
 - [Cloudflare: очистка по Cache-Tag](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/)
+- [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110)

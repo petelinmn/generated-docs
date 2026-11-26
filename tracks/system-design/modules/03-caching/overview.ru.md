@@ -9,7 +9,7 @@ part: 1
 levels: [1, 2, 3, 4, 5, 6]
 tags: [system-design, caching, cache-aside, cache-invalidation, cache-stampede, lru-cache, hybrid-cache]
 versions: ".NET 11, C# 15; Microsoft.Extensions.Caching.Hybrid 11.0.1"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

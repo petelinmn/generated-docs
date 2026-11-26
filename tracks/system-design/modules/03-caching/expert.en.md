@@ -8,7 +8,7 @@ slug: 03-caching
 part: 1
 tags: [system-design, caching, cache-aside, cache-invalidation, cache-stampede, lru-cache, hybrid-cache]
 versions: ".NET 11, C# 15; Microsoft.Extensions.Caching.Hybrid 11.0.1"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -101,9 +101,16 @@ A CDN caches responses closer to the user. To remove related objects at once, th
 | `noeviction` | nothing: writes that need memory get an error |
 | `allkeys-lru`, `allkeys-lfu`, `allkeys-random` | from all keys |
 | `volatile-lru`, `volatile-lfu`, `volatile-random` | only from keys with a TTL |
+| `allkeys-lrm`, `volatile-lrm` (Redis 8.6+) | least recently modified: from all keys or from keys with a TTL |
 | `volatile-ttl` | keys with the least remaining TTL |
 
 Redis LRU is approximate: a sample of keys is compared, not all of them. The set of policies depends on the Redis version; Redis was not run for this material.
+
+| HTTP mechanism | What it does |
+|---|---|
+| `Vary` | the named request headers become part of the match: a stored response is reused only if they agree; `Vary: *` never matches |
+| `ETag` + `If-None-Match` | revalidation: if the content has not changed, the server answers a GET with 304 and no body |
+| `must-revalidate` | once stale, the response must not be reused without successful validation, even when the server is unreachable |
 
 | Problem | Symptom | Remedy |
 |---|---|---|
@@ -135,7 +142,7 @@ Redis LRU is approximate: a sample of keys is compared, not all of them. The set
 | one object, JSON | 59 |
 | one object, JSON + gzip | 79 |
 
-Compression pays off on large values and enlarges small ones. Besides size, account for CPU time and format compatibility between application versions.
+The object is `record Product(int Id, string Name, decimal Price, string Category)` with values like `(1, "Product 1", 9.99m, "books")`, compressed with `CompressionLevel.Optimal`. Compression pays off on large values and enlarges small ones. Besides size, account for CPU time and format compatibility between application versions.
 
 ## Gotchas
 
@@ -341,3 +348,5 @@ A cold cache: all misses hit the database at once. Warming, a gradual rollout an
 - [Redis: cluster specification](https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/)
 - [Redis: Pub/Sub](https://redis.io/docs/latest/develop/pubsub/)
 - [Cloudflare: purge by Cache-Tag](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/)
+- [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110)
