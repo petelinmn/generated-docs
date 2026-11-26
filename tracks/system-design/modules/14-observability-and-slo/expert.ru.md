@@ -7,7 +7,7 @@ doc: expert
 slug: 14-observability-and-slo
 part: 3
 tags: [system-design, observability, distributed-tracing, metrics, slo, histogram, sampling]
-versions: ".NET 11, C# 15"
+versions: ".NET 11, C# 15; Microsoft.Extensions.Telemetry 11.0.1"
 status: draft
 updated: 2026-11-26
 ---
@@ -25,6 +25,51 @@ updated: 2026-11-26
 ```mermaid
 flowchart LR
     A[App: Meter, ActivitySource] --> L[Listener / exporter] --> B[(Backend)] --> D[Dashboards, alerts]
+```
+
+### OpenTelemetry Collector
+
+Отдельный процесс между приложениями и хранилищами телеметрии. Конвейер состоит из receivers (принимают), processors (преобразуют, отбрасывают, сэмплируют) и exporters (отправляют; каждый получает копию). Разворачивают как агент рядом с приложением или как шлюз, принимающий данные от многих агентов. Так приложения не знают, куда в итоге уходит телеметрия.
+
+```mermaid
+flowchart LR
+    A[App] --> R[Receiver] --> P[Processors] --> E1[Exporter: metrics]
+    P --> E2[Exporter: traces]
+```
+
+### Exemplars
+
+Exemplar — это записанное значение метрики вместе с контекстом трассы (`trace_id`, `span_id`, время, значение). От «p99 вырос» можно перейти к конкретной медленной трассе. OpenTelemetry .NET поддерживает exemplars, но польза есть, только если их понимает бэкенд.
+
+```csharp
+// The current activity carries the trace id; without one there is nothing to link to.
+if (Activity.Current is { } activity) _exemplars[i] = (value, activity.TraceId.ToHexString());
+```
+
+Файл: [Ex03_Exemplars.cs](code/Examples/Ex03_Exemplars.cs). Это модель идеи.
+
+### Сэмплирование логов
+
+Пакет `Microsoft.Extensions.Telemetry` добавляет семплеры: по решению трассировки, вероятностный (по категории, уровню, event ID) и свой.
+
+```csharp
+// Only this level is sampled: warnings and errors are always kept.
+builder.AddRandomProbabilisticSampler(informationProbability, LogLevel.Information);
+```
+
+Рекомендация документации: `Error` и `Critical`, а также `Trace` и `Debug` не сэмплировать, `Information` — да, `Warning` — по обстоятельствам. Файл: [Ex04_LogSampling.cs](code/Examples/Ex04_LogSampling.cs).
+
+### Профилирование
+
+Метрики говорят, что сервис тратит процессор, профиль — на что. `dotnet-counters` показывает счётчики и метрики живого процесса, `dotnet-trace` собирает трассу через EventPipe без нативного профилировщика (`.nettrace`, можно преобразовать в формат Speedscope). Непрерывное профилирование собирает такие профили постоянно с малой частотой, чтобы было с чем сравнить после инцидента.
+
+### Синтетический мониторинг
+
+Скрипт регулярно выполняет пользовательский сценарий из нескольких мест и замечает проблему до жалоб, в том числе когда реального трафика нет.
+
+```csharp
+public static bool ShouldAlert(IReadOnlyCollection<bool> succeededByLocation) =>
+    succeededByLocation.Count(ok => !ok) > succeededByLocation.Count / 2;
 ```
 
 ## Справочник
@@ -45,6 +90,19 @@ flowchart LR
 | членов | не более 32 |
 | один ключ | один раз |
 
+| Инструмент | Для чего |
+|---|---|
+| `dotnet-counters monitor` | быстрый взгляд на метрики процесса |
+| `dotnet-counters collect` | запись в CSV или JSON |
+| `dotnet-trace collect` | профиль и события runtime |
+| `dotnet-trace report` | сводка по собранной трассе |
+
+| Вид мониторинга | Видит | Не видит |
+|---|---|---|
+| Синтетический | сценарий снаружи, без трафика | разнообразие реальных пользователей |
+| Реальных пользователей | настоящий опыт | сценарии без посетителей |
+| Серверные метрики | внутренности | сеть до клиента |
+
 ## Подвохи
 
 ### StartActivity без слушателя
@@ -60,6 +118,15 @@ a!.SetTag("k", 1);
 ### Перцентиль из гистограммы — оценка
 
 В тесте медленный сервер получает 10 значений по 1,5 с, а `QuantileUpperBound(0.99)` отвечает `2`: это граница корзины. После объединения с 990 быстрыми значениями p99 равен `0.1`, а p99,9 — `2`.
+
+### Из двух семплеров действует последний
+
+```csharp
+l.AddRandomProbabilisticSampler(0.0, LogLevel.Information);
+l.AddRandomProbabilisticSampler(1.0, LogLevel.Information);
+```
+
+Из десяти записей `Information` сохранились все десять; при обратном порядке — ни одной. Первая настройка молча игнорируется.
 
 ## Компромиссы и альтернативы
 
@@ -152,6 +219,46 @@ Histogram.
 
 </details>
 
+**11. Из чего состоит конвейер OpenTelemetry Collector?**
+
+<details><summary>Ответ</summary>
+
+Receivers, processors и exporters.
+
+</details>
+
+**12. Что такое exemplar?**
+
+<details><summary>Ответ</summary>
+
+Значение метрики со ссылкой на трассу, позволяющее перейти от графика к конкретному запросу.
+
+</details>
+
+**13. Какие уровни логов не стоит сэмплировать?**
+
+<details><summary>Ответ</summary>
+
+Ошибки и критические; документация не советует сэмплировать и Trace с Debug.
+
+</details>
+
+**14. Чем `dotnet-counters` отличается от `dotnet-trace`?**
+
+<details><summary>Ответ</summary>
+
+Первый показывает значения счётчиков и метрик, второй записывает события и профиль выполнения.
+
+</details>
+
+**15. Подвох: синтетическая проверка из одной точки упала. Будить дежурного?**
+
+<details><summary>Ответ</summary>
+
+Сначала подтвердить из других точек: возможна проблема самой точки или пути от неё.
+
+</details>
+
 ## Связанные материалы
 
 - [Продвинутая теория](advanced.ru.md)
@@ -161,3 +268,8 @@ Histogram.
 
 - [W3C Trace Context](https://www.w3.org/TR/trace-context/)
 - [.NET: инструментирование трассировки](https://learn.microsoft.com/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs)
+- [OpenTelemetry Collector: архитектура](https://opentelemetry.io/docs/collector/architecture/)
+- [OpenTelemetry: exemplars](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars)
+- [.NET: сэмплирование логов](https://learn.microsoft.com/dotnet/core/extensions/log-sampling)
+- [dotnet-trace](https://learn.microsoft.com/dotnet/core/diagnostics/dotnet-trace)
+- [dotnet-counters](https://learn.microsoft.com/dotnet/core/diagnostics/dotnet-counters)

@@ -7,7 +7,7 @@ doc: basics
 slug: 14-observability-and-slo
 part: 3
 tags: [system-design, observability, distributed-tracing, metrics, slo, histogram, sampling]
-versions: ".NET 11, C# 15"
+versions: ".NET 11, C# 15; Microsoft.Extensions.Telemetry 11.0.1"
 status: draft
 updated: 2026-11-26
 ---

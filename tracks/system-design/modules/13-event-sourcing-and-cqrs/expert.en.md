@@ -29,6 +29,49 @@ flowchart LR
     Q[Query] --> R
 ```
 
+### Ready-made event stores
+
+| Product | What it is | Features |
+|---|---|---|
+| KurrentDB | a stream database built for event sourcing | event numbering within a stream, optimistic concurrency, catch-up and persistent subscriptions |
+| Marten | a .NET library on top of PostgreSQL | inline, async and live projections |
+
+In Marten an inline projection is updated in the same transaction that records the events; an async one is built by a background process with eventual consistency; a live one is computed from events on request and is not stored. Choosing between them is choosing between write latency, freshness and read cost.
+
+### Snapshot strategies
+
+A snapshot is taken when many events have accumulated since the previous one. It depends on the `Apply` code, so it carries a schema version: after the code changes, the old snapshot is discarded and recomputed from events.
+
+```csharp
+Account? from = _snapshots.TryGetValue(stream, out Snapshot? s) && s.SchemaVersion == schemaVersion
+    ? s.State
+    : null;
+```
+
+File: [Ex04_Snapshots.cs](code/Examples/Ex04_Snapshots.cs).
+
+### Rebuilding a projection without downtime
+
+The new model is built beside the old one from the same stream; reads are served by the old one until the new one catches up with the end of the log, then they are swapped.
+
+```csharp
+if (_candidate is null || _candidate.Checkpoint < head) return false;
+
+(Live, _candidate) = (_candidate, null);
+```
+
+The end of the log moves, so in practice you switch when the lag is small enough. Side effects must be disabled during a rebuild. File: [Ex05_BlueGreenProjection.cs](code/Examples/Ex05_BlueGreenProjection.cs).
+
+### Implementing crypto-shredding
+
+Personal fields are encrypted with a per-subject key (AES-GCM: a unique nonce, an authentication tag, the subject identifier as associated data). Deleting the key makes all copies, including backups, unreadable — if the key itself did not survive in another copy.
+
+```csharp
+public void Forget(string subject) => _keys.Remove(subject);
+```
+
+File: [Ex06_CryptoShredding.cs](code/Examples/Ex06_CryptoShredding.cs). This is a teaching example: in production keys live in a KMS, and projections holding plain data have to be cleaned separately. Whether this is legally sufficient is not for programmers to decide.
+
 ## Reference
 
 | Concept | Meaning |
@@ -45,6 +88,16 @@ flowchart LR
 |---|---|
 | the user must see their write | return the command result or wait for a position |
 | lists and reports | show "updating" |
+
+| Keep in an event | Move out |
+|---|---|
+| identifiers, amounts, statuses | names, addresses, documents (or encrypt) |
+
+| Projection | Freshness | Write cost | Read cost |
+|---|---|---|---|
+| inline | immediate | higher | low |
+| async | delayed | low | low |
+| live | immediate | none | grows with stream length |
 
 ## Gotchas
 
@@ -70,6 +123,10 @@ Console.WriteLine(new Ev([1]) == new Ev([1]));
 ```
 
 Result: `False`. This matters in tests of the form "expected events equal actual ones".
+
+### Reusing a nonce in AES-GCM reveals data
+
+`salary=1000` and `salary=9999` were encrypted with one key and one nonce. The `XOR` of the two ciphertexts and the first plaintext gave `salary=9999`. A nonce must be new for every encryption.
 
 ## Trade-offs and alternatives
 
@@ -162,6 +219,46 @@ Event sourcing usually needs reading an aggregate's stream and checking an expec
 
 </details>
 
+**11. How do inline, async and live projections differ?**
+
+<details><summary>Answer</summary>
+
+In the moment of computation: in the write transaction, in the background or on request.
+
+</details>
+
+**12. When does a snapshot become invalid?**
+
+<details><summary>Answer</summary>
+
+When the logic or shape of the state changed; it is recomputed from events.
+
+</details>
+
+**13. How do you rebuild a read model without downtime?**
+
+<details><summary>Answer</summary>
+
+Build a new one beside, catch up and switch reads.
+
+</details>
+
+**14. What remains after deleting a key in crypto-shredding?**
+
+<details><summary>Answer</summary>
+
+The ciphertext and everything stored in the clear, including projections and logs.
+
+</details>
+
+**15. Trick question: keys live in the same database and are copied into the same backups. Does deleting a key erase the data?**
+
+<details><summary>Answer</summary>
+
+No: the key can be restored from an old backup too.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -171,3 +268,5 @@ Event sourcing usually needs reading an aggregate's stream and checking an expec
 
 - [Event Sourcing pattern](https://learn.microsoft.com/azure/architecture/patterns/event-sourcing)
 - [CQRS pattern](https://learn.microsoft.com/azure/architecture/patterns/cqrs)
+- [KurrentDB: features](https://docs.kurrent.io/getting-started/features.html)
+- [Marten: event store](https://martendb.io/events/)

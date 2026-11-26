@@ -7,7 +7,7 @@ doc: expert
 slug: 14-observability-and-slo
 part: 3
 tags: [system-design, observability, distributed-tracing, metrics, slo, histogram, sampling]
-versions: ".NET 11, C# 15"
+versions: ".NET 11, C# 15; Microsoft.Extensions.Telemetry 11.0.1"
 status: draft
 updated: 2026-11-26
 ---
@@ -25,6 +25,51 @@ updated: 2026-11-26
 ```mermaid
 flowchart LR
     A[App: Meter, ActivitySource] --> L[Listener / exporter] --> B[(Backend)] --> D[Dashboards, alerts]
+```
+
+### OpenTelemetry Collector
+
+A separate process between applications and telemetry stores. A pipeline consists of receivers (accept), processors (transform, drop, sample) and exporters (send; each gets a copy). It is deployed as an agent next to the application or as a gateway receiving data from many agents. Applications then do not know where telemetry finally goes.
+
+```mermaid
+flowchart LR
+    A[App] --> R[Receiver] --> P[Processors] --> E1[Exporter: metrics]
+    P --> E2[Exporter: traces]
+```
+
+### Exemplars
+
+An exemplar is a recorded metric value together with trace context (`trace_id`, `span_id`, time, value). From "p99 went up" you can jump to a particular slow trace. OpenTelemetry .NET supports exemplars, but they are useful only if the backend understands them.
+
+```csharp
+// The current activity carries the trace id; without one there is nothing to link to.
+if (Activity.Current is { } activity) _exemplars[i] = (value, activity.TraceId.ToHexString());
+```
+
+File: [Ex03_Exemplars.cs](code/Examples/Ex03_Exemplars.cs). This models the idea.
+
+### Log sampling
+
+The `Microsoft.Extensions.Telemetry` package adds samplers: following the trace decision, probabilistic (by category, level, event ID) and custom.
+
+```csharp
+// Only this level is sampled: warnings and errors are always kept.
+builder.AddRandomProbabilisticSampler(informationProbability, LogLevel.Information);
+```
+
+The documentation advises not sampling `Error` and `Critical`, nor `Trace` and `Debug`; sampling `Information`; and `Warning` as circumstances require. File: [Ex04_LogSampling.cs](code/Examples/Ex04_LogSampling.cs).
+
+### Profiling
+
+Metrics say the service spends CPU, a profile says on what. `dotnet-counters` shows counters and metrics of a live process, `dotnet-trace` collects a trace through EventPipe without a native profiler (`.nettrace`, convertible to the Speedscope format). Continuous profiling collects such profiles all the time at a low rate, so there is something to compare with after an incident.
+
+### Synthetic monitoring
+
+A script regularly runs a user scenario from several places and notices a problem before complaints, including when there is no real traffic.
+
+```csharp
+public static bool ShouldAlert(IReadOnlyCollection<bool> succeededByLocation) =>
+    succeededByLocation.Count(ok => !ok) > succeededByLocation.Count / 2;
 ```
 
 ## Reference
@@ -45,6 +90,19 @@ flowchart LR
 | members | at most 32 |
 | one key | once |
 
+| Tool | What for |
+|---|---|
+| `dotnet-counters monitor` | a quick look at process metrics |
+| `dotnet-counters collect` | recording to CSV or JSON |
+| `dotnet-trace collect` | a profile and runtime events |
+| `dotnet-trace report` | a summary of a collected trace |
+
+| Kind of monitoring | Sees | Does not see |
+|---|---|---|
+| Synthetic | a scenario from outside, without traffic | the variety of real users |
+| Real user | the actual experience | scenarios without visitors |
+| Server metrics | internals | the network to the client |
+
 ## Gotchas
 
 ### StartActivity without a listener
@@ -60,6 +118,15 @@ Result: `NullReferenceException`. The `!` operator only silences the compiler. T
 ### A percentile from a histogram is an estimate
 
 In the test the slow server gets 10 values of 1.5 s, and `QuantileUpperBound(0.99)` answers `2`: that is the bucket bound. After merging with 990 fast values p99 is `0.1` and p99.9 is `2`.
+
+### Of two samplers the last one wins
+
+```csharp
+l.AddRandomProbabilisticSampler(0.0, LogLevel.Information);
+l.AddRandomProbabilisticSampler(1.0, LogLevel.Information);
+```
+
+All ten `Information` entries were kept; in the reverse order, none. The first setting is silently ignored.
 
 ## Trade-offs and alternatives
 
@@ -152,6 +219,46 @@ The wrong thing is measured: averages instead of percentiles, the server side wi
 
 </details>
 
+**11. What does an OpenTelemetry Collector pipeline consist of?**
+
+<details><summary>Answer</summary>
+
+Receivers, processors and exporters.
+
+</details>
+
+**12. What is an exemplar?**
+
+<details><summary>Answer</summary>
+
+A metric value with a link to a trace that lets you go from a chart to a particular request.
+
+</details>
+
+**13. Which log levels should not be sampled?**
+
+<details><summary>Answer</summary>
+
+Errors and critical ones; the documentation also advises against sampling Trace and Debug.
+
+</details>
+
+**14. How does `dotnet-counters` differ from `dotnet-trace`?**
+
+<details><summary>Answer</summary>
+
+The first shows counter and metric values, the second records events and an execution profile.
+
+</details>
+
+**15. Trick question: a synthetic check from one location failed. Page the on-call?**
+
+<details><summary>Answer</summary>
+
+Confirm from other locations first: the problem may be the location itself or the path from it.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -161,3 +268,8 @@ The wrong thing is measured: averages instead of percentiles, the server side wi
 
 - [W3C Trace Context](https://www.w3.org/TR/trace-context/)
 - [.NET: tracing instrumentation](https://learn.microsoft.com/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs)
+- [OpenTelemetry Collector: architecture](https://opentelemetry.io/docs/collector/architecture/)
+- [OpenTelemetry: exemplars](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars)
+- [.NET: log sampling](https://learn.microsoft.com/dotnet/core/extensions/log-sampling)
+- [dotnet-trace](https://learn.microsoft.com/dotnet/core/diagnostics/dotnet-trace)
+- [dotnet-counters](https://learn.microsoft.com/dotnet/core/diagnostics/dotnet-counters)

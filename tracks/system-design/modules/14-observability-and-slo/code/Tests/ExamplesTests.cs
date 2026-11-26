@@ -61,3 +61,42 @@ public class HistogramTests
         Assert.Equal(2, fast.QuantileUpperBound(0.999));
     }
 }
+
+public class ExemplarTests
+{
+    [Fact]
+    public void The_slow_bucket_points_to_its_trace()
+    {
+        var histogram = new ExemplarHistogram(0.1, 1);
+        histogram.Record(0.05); // no activity: no exemplar
+
+        using var activity = new Activity("slow").Start();
+        histogram.Record(3);
+
+        Assert.Equal((3.0, activity.TraceId.ToHexString()), histogram.ExemplarOfSlowestBucket());
+    }
+}
+
+public class SyntheticTests
+{
+    [Fact]
+    public void Alerts_only_when_most_locations_fail()
+    {
+        Assert.False(SyntheticCheck.ShouldAlert([true, false, true]));
+        Assert.True(SyntheticCheck.ShouldAlert([false, false, true]));
+    }
+}
+
+public class LogSamplingTests
+{
+    [Theory]
+    [InlineData(0.0, 1)]
+    [InlineData(1.0, 2)]
+    public void Warnings_are_kept_whatever_the_information_rate(double probability, int expected)
+    {
+        var written = LogSampling.Run(probability);
+
+        Assert.Equal(expected, written.Count);
+        Assert.Contains("payment is slow", written);
+    }
+}
