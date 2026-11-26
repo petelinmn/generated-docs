@@ -8,7 +8,7 @@ slug: 06-replication-and-partitioning
 part: 2
 tags: [system-design, replication, partitioning, shard, quorum, replication-lag, version-vector]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -132,6 +132,23 @@ For a page of 10 rows at offset 500 over four shards, 2040 rows are transferred.
 | average | from sums and counts |
 | distinct values, percentiles | move data or use approximate structures |
 | join | avoid across shards where possible |
+
+### What is shipped and when a commit returns
+
+| What replicas receive | Property |
+|---|---|
+| Physical log (PostgreSQL streaming replication) | exact block addresses, byte for byte; the replica is a copy of the whole cluster |
+| Logical changes (PostgreSQL logical replication) | row changes identified by a replica identity, usually the primary key; publish and subscribe, selected tables |
+
+| PostgreSQL `synchronous_commit` | With synchronous standbys configured, a commit waits until |
+|---|---|
+| `remote_apply` | standbys have applied it, so their queries see it |
+| `on` (default) | standbys have flushed it to durable storage |
+| `remote_write` | standbys have written it to the file system, not necessarily flushed |
+| `local` | only the local flush; no waiting for standbys |
+| `off` | nothing: success is reported before the record is guaranteed durable locally |
+
+With an empty `synchronous_standby_names` only `on` and `off` are meaningful.
 
 ## Gotchas
 
@@ -315,3 +332,4 @@ No: you need the first 60 from every shard.
 - [Azure: data partitioning](https://learn.microsoft.com/azure/architecture/best-practices/data-partitioning)
 - [Chain Replication (OSDI 2004)](https://www.cs.cornell.edu/home/rvr/papers/OSDI04.pdf)
 - [Dynamo (SOSP 2007)](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
+- [PostgreSQL: logical replication](https://www.postgresql.org/docs/current/logical-replication.html)

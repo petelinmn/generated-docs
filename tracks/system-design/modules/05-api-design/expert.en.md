@@ -8,7 +8,7 @@ slug: 05-api-design
 part: 1
 tags: [system-design, api-design, rest, grpc, idempotency, optimistic-concurrency, keyset-pagination, problem-details]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -136,6 +136,26 @@ File: [Ex05_RetryAfter.cs](code/Examples/Ex05_RetryAfter.cs).
 | Integration tests | behavior |
 
 The current version of the OpenAPI specification as of November 2026 is 3.2.1.
+
+### Partial updates
+
+`PATCH` is neither safe nor idempotent by definition, although a particular request can be designed to be idempotent. The server must apply the whole set of changes atomically.
+
+| Format | Content type | How it describes a change | Limitation |
+|---|---|---|---|
+| JSON Merge Patch | `application/merge-patch+json` | a document shaped like the target; `null` removes a member | cannot set a member to `null`; an array is replaced as a whole |
+| JSON Patch | `application/json-patch+json` | a list of operations: `add`, `remove`, `replace`, `move`, `copy`, `test` | more verbose; clients must know the paths |
+
+`test` makes the whole patch fail when a value is not the expected one.
+
+### Retiring an operation
+
+| Header | Value | Meaning |
+|---|---|---|
+| `Deprecation` (RFC 9745) | a structured date, `@1688169599` | when the resource was or will be deprecated |
+| `Sunset` (RFC 8594) | an HTTP date | when it is expected to stop responding |
+
+The two headers use different date formats. Headers do not replace telling consumers and measuring who still calls.
 
 ## Gotchas
 
@@ -326,3 +346,8 @@ No: a client that always expected it will break.
 - [GraphQL: security](https://graphql.org/learn/security/)
 - [IETF draft: RateLimit headers](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/)
 - [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [RFC 5789: PATCH](https://www.rfc-editor.org/rfc/rfc5789)
+- [RFC 7396: JSON Merge Patch](https://www.rfc-editor.org/rfc/rfc7396)
+- [RFC 6902: JSON Patch](https://www.rfc-editor.org/rfc/rfc6902)
+- [RFC 9745: Deprecation](https://www.rfc-editor.org/rfc/rfc9745)
+- [RFC 8594: Sunset](https://www.rfc-editor.org/rfc/rfc8594)

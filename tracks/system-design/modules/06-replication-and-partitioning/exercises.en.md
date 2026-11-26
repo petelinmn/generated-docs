@@ -8,7 +8,7 @@ slug: 06-replication-and-partitioning
 part: 2
 tags: [system-design, replication, partitioning, shard, quorum, replication-lag, version-vector]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

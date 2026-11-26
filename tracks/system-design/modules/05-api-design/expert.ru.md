@@ -8,7 +8,7 @@ slug: 05-api-design
 part: 1
 tags: [system-design, api-design, rest, grpc, idempotency, optimistic-concurrency, keyset-pagination, problem-details]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -136,6 +136,26 @@ return delay < TimeSpan.Zero ? TimeSpan.Zero : delay; // the date may already be
 | Интеграционные тесты | поведение |
 
 Актуальная версия спецификации OpenAPI на ноябрь 2026 года — 3.2.1.
+
+### Частичные обновления
+
+`PATCH` по определению не безопасен и не идемпотентен, хотя конкретный запрос можно сделать идемпотентным. Сервер должен применить весь набор изменений атомарно.
+
+| Формат | Тип содержимого | Как описывает изменение | Ограничение |
+|---|---|---|---|
+| JSON Merge Patch | `application/merge-patch+json` | документ по форме цели; `null` удаляет член | нельзя записать в член `null`; массив заменяется целиком |
+| JSON Patch | `application/json-patch+json` | список операций: `add`, `remove`, `replace`, `move`, `copy`, `test` | многословнее; клиент должен знать пути |
+
+Операция `test` отменяет весь патч, если значение не то, что ожидалось.
+
+### Вывод операции из эксплуатации
+
+| Заголовок | Значение | Смысл |
+|---|---|---|
+| `Deprecation` (RFC 9745) | структурированная дата, `@1688169599` | когда ресурс объявлен или будет объявлен устаревшим |
+| `Sunset` (RFC 8594) | HTTP-дата | когда он, как ожидается, перестанет отвечать |
+
+У этих двух заголовков разные форматы даты. Заголовки не заменяют оповещение потребителей и измерение того, кто ещё вызывает.
 
 ## Подвохи
 
@@ -326,3 +346,8 @@ Resolver делает отдельный запрос на каждый элем
 - [GraphQL: security](https://graphql.org/learn/security/)
 - [Проект IETF: RateLimit headers](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/)
 - [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [RFC 5789: PATCH](https://www.rfc-editor.org/rfc/rfc5789)
+- [RFC 7396: JSON Merge Patch](https://www.rfc-editor.org/rfc/rfc7396)
+- [RFC 6902: JSON Patch](https://www.rfc-editor.org/rfc/rfc6902)
+- [RFC 9745: Deprecation](https://www.rfc-editor.org/rfc/rfc9745)
+- [RFC 8594: Sunset](https://www.rfc-editor.org/rfc/rfc8594)

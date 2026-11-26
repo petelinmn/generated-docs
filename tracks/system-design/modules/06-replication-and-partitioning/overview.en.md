@@ -9,7 +9,7 @@ part: 2
 levels: [1, 2, 3, 4, 5, 6]
 tags: [system-design, replication, partitioning, shard, quorum, replication-lag, version-vector]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

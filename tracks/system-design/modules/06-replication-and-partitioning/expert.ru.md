@@ -8,7 +8,7 @@ slug: 06-replication-and-partitioning
 part: 2
 tags: [system-design, replication, partitioning, shard, quorum, replication-lag, version-vector]
 versions: ".NET 11, C# 15"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -132,6 +132,23 @@ return ([.. parts.SelectMany(p => p).Order().Skip(offset).Take(size)], parts.Sum
 | среднее | из сумм и количеств |
 | уникальные значения, перцентили | передавать данные или приближённые структуры |
 | join | по возможности не между шардами |
+
+### Что передают репликам и когда возвращается фиксация
+
+| Что получают реплики | Свойство |
+|---|---|
+| Физический журнал (потоковая репликация PostgreSQL) | точные адреса блоков, байт в байт; реплика — копия всего кластера |
+| Логические изменения (логическая репликация PostgreSQL) | изменения строк, определяемых по replica identity, обычно первичному ключу; публикация и подписка, выбранные таблицы |
+
+| `synchronous_commit` в PostgreSQL | При настроенных синхронных репликах фиксация ждёт, пока |
+|---|---|
+| `remote_apply` | реплики применят её, и запросы на них её увидят |
+| `on` (по умолчанию) | реплики сбросят её в долговременное хранилище |
+| `remote_write` | реплики запишут её в файловую систему, не обязательно сбросив на диск |
+| `local` | только локальный сброс; реплики не ждут |
+| `off` | ничего: об успехе сообщают раньше, чем запись гарантированно сохранена локально |
+
+При пустом `synchronous_standby_names` имеют смысл только `on` и `off`.
 
 ## Подвохи
 
@@ -315,3 +332,4 @@ Console.WriteLine(hash % 4);
 - [Azure: партиционирование данных](https://learn.microsoft.com/azure/architecture/best-practices/data-partitioning)
 - [Chain Replication (OSDI 2004)](https://www.cs.cornell.edu/home/rvr/papers/OSDI04.pdf)
 - [Dynamo (SOSP 2007)](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
+- [PostgreSQL: logical replication](https://www.postgresql.org/docs/current/logical-replication.html)
