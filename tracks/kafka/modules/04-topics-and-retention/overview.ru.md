@@ -67,3 +67,4 @@ fresh("ret", retention_ms=4000, segment_ms=1500)   # topic with a 4 s retention
 - Дальше: [05 · Семантика доставки](../05-delivery-semantics/overview.ru.md)
 - Аналоги в других треках: [RabbitMQ: очереди и доставка](../../../rabbitmq/modules/03-queues-and-delivery/overview.ru.md)
 - [Жизненный цикл индексов в OpenSearch](../../../opensearch/modules/08-index-lifecycle/overview.ru.md)
+- [System design: event sourcing и CQRS](../../../system-design/modules/13-event-sourcing-and-cqrs/overview.ru.md)

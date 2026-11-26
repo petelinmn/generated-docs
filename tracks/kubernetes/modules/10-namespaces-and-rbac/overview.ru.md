@@ -74,3 +74,4 @@ no
 - Безопасность подов и сети: [17 · Безопасность](../17-security/overview.ru.md)
 - CRD и операторы: [19 · CRD и операторы](../19-crd-and-operators/overview.ru.md)
 - Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)
+- [System design: безопасность архитектуры](../../../system-design/modules/15-security-architecture/overview.ru.md)

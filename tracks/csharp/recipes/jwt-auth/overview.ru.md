@@ -72,3 +72,4 @@ app.MapGet("/me", (ClaimsPrincipal u) => u.Identity?.Name).RequireAuthorization(
 - Рядом: [Rate limiting](../rate-limiting/overview.ru.md), [17 · Интеграционные тесты](../../modules/17-testing-integration/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — JWT и OAuth2 в FastAPI
 - Рецепты и библиотеки: [Загрузка файлов](../file-upload/overview.ru.md), [gRPC-сервис](../grpc-service/overview.ru.md), [Real-time через SignalR](../signalr-realtime/overview.ru.md)
+- [System design: безопасность архитектуры](../../../system-design/modules/15-security-architecture/overview.ru.md)

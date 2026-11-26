@@ -61,3 +61,5 @@ if (!lease.IsAcquired) return (false, default);
 - Пререквизиты: [проектирование API](../05-api-design/overview.ru.md), [сообщения и события](../08-messaging-and-events/overview.ru.md)
 - В других треках: [Polly](../../../csharp/libraries/polly/overview.ru.md), [устойчивый HttpClient](../../../csharp/recipes/http-client-resilience/overview.ru.md), [rate limiting](../../../csharp/recipes/rate-limiting/overview.ru.md)
 - Доступность и бюджет ошибок: [процесс проектирования](../01-design-process/overview.ru.md)
+- [Наблюдаемость и SLO](../14-observability-and-slo/overview.ru.md)
+- [Безопасность архитектуры](../15-security-architecture/overview.ru.md)

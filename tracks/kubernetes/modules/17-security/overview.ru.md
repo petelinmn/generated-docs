@@ -84,3 +84,4 @@ wget: download timed out
 - CRD и операторы: [19 · CRD и операторы](../19-crd-and-operators/overview.ru.md)
 - GitOps и Argo CD: [20 · GitOps](../20-gitops/overview.ru.md)
 - Диагностика: [21 · Диагностика](../21-troubleshooting/overview.ru.md)
+- [System design: безопасность архитектуры](../../../system-design/modules/15-security-architecture/overview.ru.md)

@@ -67,3 +67,4 @@ Log.CloseAndFlush();
 - Nearby: [22 · Observability](../../modules/22-observability/overview.en.md), [Background jobs](../../recipes/background-jobs/overview.en.md)
 - In other tracks: [Python](../../../python/overview.en.md) — `logging`, structlog
 - Recipes and libraries: [Spectre.Console](../spectre-console/overview.en.md)
+- [System design: observability and SLOs](../../../system-design/modules/14-observability-and-slo/overview.en.md)

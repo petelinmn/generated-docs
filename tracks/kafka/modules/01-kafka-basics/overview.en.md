@@ -70,3 +70,4 @@ Everything was run against a real Apache Kafka 4.3.1 in Docker (see the [basic t
 - Analogues in other tracks: [RabbitMQ](../../../rabbitmq/modules/01-messaging-basics/overview.en.md)
 - [Scaling and consistent hashing](../../../system-design/modules/02-scalability-and-load-balancing/overview.en.md)
 - [System design: messaging and events](../../../system-design/modules/08-messaging-and-events/overview.en.md)
+- [System design: event sourcing and CQRS](../../../system-design/modules/13-event-sourcing-and-cqrs/overview.en.md)

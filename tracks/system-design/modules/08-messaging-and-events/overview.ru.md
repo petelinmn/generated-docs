@@ -63,3 +63,4 @@ if (_processed.Add(message.Id)) Balance += message.Amount;
 - В других треках: [RabbitMQ](../../../rabbitmq/modules/01-messaging-basics/overview.ru.md), [Kafka](../../../kafka/modules/05-delivery-semantics/overview.ru.md), [MassTransit](../../../csharp/libraries/masstransit/overview.ru.md), [фоновые задачи](../../../csharp/recipes/background-jobs/overview.ru.md)
 - [Распределённые транзакции](../10-distributed-transactions/overview.ru.md)
 - [Архитектурные стили](../11-architecture-styles/overview.ru.md)
+- [Event sourcing и CQRS](../13-event-sourcing-and-cqrs/overview.ru.md)

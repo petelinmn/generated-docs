@@ -67,3 +67,4 @@ Log.CloseAndFlush();
 - Рядом: [22 · Наблюдаемость](../../modules/22-observability/overview.ru.md), [Фоновые задачи](../../recipes/background-jobs/overview.ru.md)
 - В других треках: [Python](../../../python/overview.ru.md) — `logging`, structlog
 - Рецепты и библиотеки: [Spectre.Console](../spectre-console/overview.ru.md)
+- [System design: наблюдаемость и SLO](../../../system-design/modules/14-observability-and-slo/overview.ru.md)

@@ -61,3 +61,5 @@ if (!lease.IsAcquired) return (false, default);
 - Prerequisites: [API design](../05-api-design/overview.en.md), [messaging and events](../08-messaging-and-events/overview.en.md)
 - In other tracks: [Polly](../../../csharp/libraries/polly/overview.en.md), [resilient HttpClient](../../../csharp/recipes/http-client-resilience/overview.en.md), [rate limiting](../../../csharp/recipes/rate-limiting/overview.en.md)
 - Availability and error budget: [design process](../01-design-process/overview.en.md)
+- [Observability and SLOs](../14-observability-and-slo/overview.en.md)
+- [Security architecture](../15-security-architecture/overview.en.md)

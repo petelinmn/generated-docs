@@ -84,3 +84,4 @@ Before the policy was applied, the same request returned a response.
 - CRDs and operators: [19 · CRDs and operators](../19-crd-and-operators/overview.en.md)
 - GitOps and Argo CD: [20 · GitOps](../20-gitops/overview.en.md)
 - Troubleshooting: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)
+- [System design: security architecture](../../../system-design/modules/15-security-architecture/overview.en.md)

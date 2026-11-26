@@ -62,3 +62,4 @@ public static bool HasQuorum(int reachable, int n) => reachable > n / 2;
 - In other tracks: [EF Core: concurrency and transactions](../../../csharp/modules/15-ef-core/overview.en.md), [concurrency in C#](../../../csharp/modules/18-concurrency/overview.en.md)
 - [Distributed transactions](../10-distributed-transactions/overview.en.md)
 - [Consensus and coordination](../12-consensus-and-coordination/overview.en.md)
+- [Event sourcing and CQRS](../13-event-sourcing-and-cqrs/overview.en.md)

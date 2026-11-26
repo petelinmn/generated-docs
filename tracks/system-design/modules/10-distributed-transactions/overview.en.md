@@ -61,3 +61,4 @@ Execute("INSERT INTO outbox (payload) VALUES ($a)", $"OrderPlaced:{orderId}");
 - Prerequisites: [consistency and CAP](../07-consistency-and-cap/overview.en.md), [messaging and events](../08-messaging-and-events/overview.en.md)
 - Next: [architecture styles](../11-architecture-styles/overview.en.md)
 - In other tracks: [sagas in MassTransit](../../../csharp/libraries/masstransit/overview.en.md), [transactions in EF Core](../../../csharp/modules/15-ef-core/overview.en.md)
+- [Event sourcing and CQRS](../13-event-sourcing-and-cqrs/overview.en.md)

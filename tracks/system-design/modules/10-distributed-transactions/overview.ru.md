@@ -61,3 +61,4 @@ Execute("INSERT INTO outbox (payload) VALUES ($a)", $"OrderPlaced:{orderId}");
 - Пререквизиты: [согласованность и CAP](../07-consistency-and-cap/overview.ru.md), [сообщения и события](../08-messaging-and-events/overview.ru.md)
 - Дальше: [архитектурные стили](../11-architecture-styles/overview.ru.md)
 - В других треках: [саги в MassTransit](../../../csharp/libraries/masstransit/overview.ru.md), [транзакции в EF Core](../../../csharp/modules/15-ef-core/overview.ru.md)
+- [Event sourcing и CQRS](../13-event-sourcing-and-cqrs/overview.ru.md)

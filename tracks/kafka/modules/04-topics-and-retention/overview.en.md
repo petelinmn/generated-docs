@@ -67,3 +67,4 @@ Everything was run against a real Apache Kafka 4.3.1 in Docker with accelerated 
 - Next: [05 · Delivery semantics](../05-delivery-semantics/overview.en.md)
 - Analogues in other tracks: [RabbitMQ: queues and delivery](../../../rabbitmq/modules/03-queues-and-delivery/overview.en.md)
 - [Index lifecycle in OpenSearch](../../../opensearch/modules/08-index-lifecycle/overview.en.md)
+- [System design: event sourcing and CQRS](../../../system-design/modules/13-event-sourcing-and-cqrs/overview.en.md)

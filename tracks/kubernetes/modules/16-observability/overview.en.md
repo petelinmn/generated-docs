@@ -77,3 +77,4 @@ LAST SEEN           TYPE      REASON    OBJECT      MESSAGE
 - DaemonSet: [12 · Other workloads](../12-workloads/overview.en.md)
 - Next: [17 · Security](../17-security/overview.en.md)
 - Diagnosis by events and logs: [21 · Troubleshooting](../21-troubleshooting/overview.en.md)
+- [System design: observability and SLOs](../../../system-design/modules/14-observability-and-slo/overview.en.md)

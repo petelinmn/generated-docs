@@ -66,3 +66,4 @@ double peakQps = averageQps * 3;                // about 6944
 - [Хранение данных](../04-data-storage/overview.ru.md)
 - [Проектирование API](../05-api-design/overview.ru.md)
 - [Паттерны надёжности](../09-reliability-patterns/overview.ru.md)
+- [Наблюдаемость и SLO](../14-observability-and-slo/overview.ru.md)
