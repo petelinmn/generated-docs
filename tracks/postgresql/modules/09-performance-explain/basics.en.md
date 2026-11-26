@@ -8,7 +8,7 @@ slug: 09-performance-explain
 part: 2
 tags: [explain, query-plan, statistics, vacuum, performance]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -61,7 +61,7 @@ Bitmap Heap Scan on orders  (cost=4.60..147.55 rows=40 width=41)
 | `rows=40` | estimated rows returned by the node |
 | `width=41` | estimated average row size in bytes |
 
-Costs are in arbitrary units: by convention reading one page sequentially costs 1 (`seq_page_cost`). They are useful only for comparing plans of the same query. A plan is a tree: the innermost nodes run first and feed their parents.
+Costs are in arbitrary units: by convention reading one page sequentially costs 1 (`seq_page_cost`). They are useful only for comparing plans of the same query. A plan is a tree. Execution is driven from the top: each node asks its children for rows, so a `Limit` can stop its children early, and the inner side of a nested loop runs once per outer row.
 
 ## EXPLAIN ANALYZE
 

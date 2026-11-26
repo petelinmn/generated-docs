@@ -8,7 +8,7 @@ slug: 09-performance-explain
 part: 2
 tags: [explain, query-plan, statistics, vacuum, performance]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -40,14 +40,14 @@ ANALYZE fresh;
 -- every city belongs to exactly one country
 EXPLAIN (ANALYZE, TIMING OFF, SUMMARY OFF)
 SELECT * FROM orders WHERE city = 'city42' AND country = 'country4';
--- (cost=... rows=201 ...) (actual rows=2000 loops=1)
+-- (cost=... rows=201 ...) (actual rows=2000 loops=1)   -- 207 in another run
 
 CREATE STATISTICS orders_city_country (dependencies) ON city, country FROM orders;
 ANALYZE orders;
 -- the same EXPLAIN:  rows=2067 ... (actual rows=2000 loops=1)
 ```
 
-Планировщик считает условия независимыми и перемножает их селективности, отсюда 201 вместо 2000. Расширенная статистика сообщает ему о зависимости. Её виды — `dependencies`, `ndistinct` и `mcv`.
+Планировщик считает условия независимыми и перемножает их селективности, отсюда около 200 вместо 2000. `ANALYZE` читает случайную выборку, поэтому точная оценка меняется от запуска к запуску (здесь 201 и 207 в двух прогонах). Расширенная статистика сообщает ему о зависимости. Её виды — `dependencies`, `ndistinct` и `mcv`.
 
 ## Память: сортировки и хэши
 

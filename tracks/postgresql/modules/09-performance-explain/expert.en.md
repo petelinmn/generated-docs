@@ -8,7 +8,7 @@ slug: 09-performance-explain
 part: 2
 tags: [explain, query-plan, statistics, vacuum, performance]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -30,7 +30,7 @@ WHERE tablename = 'orders' AND attname IN ('id', 'status', 'city');
 -- status    2  0.96
 ```
 
-A negative `n_distinct` is a fraction of rows: `-1` means every value is unique.
+The values come from a sample and differ slightly between runs. A negative `n_distinct` is a fraction of rows: `-1` means every value is unique.
 
 ### Prepared statements and generic plans
 
@@ -48,6 +48,7 @@ EXPLAIN (COSTS OFF) EXECUTE q('common');   -- Seq Scan, Filter: (kind = 'common'
 
 SET plan_cache_mode = force_generic_plan;
 EXPLAIN (COSTS OFF) EXECUTE q('common');   -- Index Only Scan, Index Cond: (kind = $1)
+RESET plan_cache_mode;
 ```
 
 With the default `plan_cache_mode = auto` the first five executions get custom plans for the actual values; then a generic plan is used if its estimated cost is not much worse than the average custom one. For skewed data a generic plan may suit one value badly; `force_custom_plan` is the remedy for such a query.
@@ -65,7 +66,7 @@ WHERE query LIKE 'SELECT count(*) FROM orders%';
 -- SELECT count(*) FROM orders WHERE customer_id = $1 | 2
 
 -- the usual question: what takes the most time overall
-SELECT calls, round(total_exec_time) AS total_ms, round(mean_exec_time, 2) AS mean_ms, query
+SELECT calls, round(total_exec_time) AS total_ms, round(mean_exec_time::numeric, 2) AS mean_ms, query
 FROM pg_stat_statements ORDER BY total_exec_time DESC LIMIT 10;
 ```
 
@@ -83,6 +84,49 @@ EXPLAIN (COSTS OFF, SETTINGS) SELECT * FROM orders WHERE customer_id = 7;
 
 `SETTINGS` lists the planner settings that differ from defaults: useful when a plan differs between servers.
 
+### Parallel query and JIT
+
+With default settings (`max_parallel_workers_per_gather = 2`) the same table is scanned in parallel:
+
+```sql
+RESET max_parallel_workers_per_gather;
+EXPLAIN (ANALYZE, TIMING OFF, SUMMARY OFF, COSTS OFF) SELECT count(*) FROM orders WHERE amount > 50;
+```
+
+```text
+Finalize Aggregate (actual rows=1 loops=1)
+  ->  Gather (actual rows=2 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        ->  Partial Aggregate (actual rows=1 loops=2)
+              ->  Parallel Seq Scan on orders (actual rows=49900 loops=2)
+                    Filter: (amount > '50'::numeric)
+                    Rows Removed by Filter: 50100
+```
+
+`loops=2` counts the leader and the worker: each processed about half. Fewer workers may be launched than planned when the pool (`max_parallel_workers`, 8 by default) is busy.
+
+JIT compiles expressions to machine code when a query's estimated cost exceeds `jit_above_cost` (100000 by default); higher thresholds add inlining and optimization. It helps long analytical queries and only adds overhead to short ones. When used, `EXPLAIN ANALYZE` shows a `JIT:` section.
+
+### Catching slow plans in production
+
+`log_min_duration_statement` logs statements that ran longer than the limit; the `auto_explain` module logs their plans as well:
+
+```sql
+LOAD 'auto_explain';                       -- per session, superuser
+SET auto_explain.log_min_duration = 0;     -- -1 (default) disables it
+SELECT count(*) FROM orders WHERE customer_id = 3;
+```
+
+```text
+LOG:  duration: 0.061 ms  plan:
+	Query Text: SELECT count(*) FROM orders WHERE customer_id = 3;
+	Aggregate  (cost=5.09..5.10 rows=1 width=8)
+	  ->  Index Only Scan using orders_customer on orders  (cost=0.29..5.00 rows=40 width=0)
+```
+
+`auto_explain.log_analyze` adds actual rows and times, at a noticeable cost for every query. Switches such as `enable_seqscan` or `enable_mergejoin` are for experiments: they discourage a plan type, as in the memory example, and do not belong in production settings.
+
 ## Reference
 
 | `EXPLAIN` option | What it adds |
@@ -94,8 +138,8 @@ EXPLAIN (COSTS OFF, SETTINGS) SELECT * FROM orders WHERE customer_id = 7;
 | `VERBOSE` | output columns, schema-qualified names |
 | `SETTINGS` | changed planner settings |
 | `WAL` | WAL records and bytes (with `ANALYZE`) |
-| `SERIALIZE` | cost of converting output (with `ANALYZE`) |
-| `MEMORY` | planner memory |
+| `SERIALIZE` | cost of converting output (with `ANALYZE`), new in 17 |
+| `MEMORY` | planner memory, new in 17 |
 | `GENERIC_PLAN` | plan with `$n` parameters, without `ANALYZE` |
 | `FORMAT TEXT \| JSON \| XML \| YAML` | output format |
 
@@ -120,8 +164,12 @@ EXPLAIN (COSTS OFF, SETTINGS) SELECT * FROM orders WHERE customer_id = 7;
 | `autovacuum_vacuum_threshold` / `_scale_factor` | 50 / 0.2 | when to vacuum |
 | `autovacuum_analyze_threshold` / `_scale_factor` | 50 / 0.1 | when to analyze |
 | `track_io_timing` | off | I/O times in plans and statistics |
+| `max_parallel_workers_per_gather` / `max_parallel_workers` | 2 / 8 | parallel workers per node and in total |
+| `parallel_setup_cost`, `min_parallel_table_scan_size` | 1000, 8MB | when parallelism is considered |
+| `jit_above_cost` | 100000 | when JIT is used |
+| `log_min_duration_statement`, `log_temp_files` | -1, -1 (off) | log slow statements and temporary files |
 
-On SSDs `random_page_cost` is often lowered toward 1.1; check the effect on real queries.
+A lower `random_page_cost` makes index scans look cheaper. It is often lowered on fast storage, but the documentation gives no recommended value: check the effect on real queries.
 
 | Diagnostic view | What it shows |
 |---|---|
@@ -130,6 +178,7 @@ On SSDs `random_page_cost` is often lowered toward 1.1; check the effect on real
 | `pg_stat_user_indexes` | index usage |
 | `pg_stat_activity` | what runs now and what it waits for |
 | `pg_stats` | column statistics |
+| `auto_explain` (module) | plans of slow statements in the server log |
 
 ## Gotchas
 
@@ -157,11 +206,11 @@ EXPLAIN (COSTS OFF) SELECT * FROM codes WHERE code = '42';      -- Index Only Sc
 EXPLAIN (COSTS OFF) SELECT * FROM codes WHERE code::int = 42;   -- Seq Scan, Filter: ((code)::integer = 42)
 ```
 
-Compare with a value of the column's type, not the column converted to the parameter's type. Mismatched types from an application driver produce the same effect.
+Compare with a value of the column's type, not the column converted to the parameter's type. A parameter of another type sent by an application driver can produce the same effect when the cast ends up on the column.
 
 ### A hash join split into batches
 
-`Batches: 128` in the memory example means the hash table was written to disk in 128 parts.
+`Batches: 128` in the [memory example](advanced.en.md) means the hash table was written to disk in 128 parts.
 
 ## Trade-offs and alternatives
 
@@ -265,7 +314,15 @@ The index walks in `id` order and discards rows until ten match; with rare match
 
 </details>
 
-**12. What changed in `EXPLAIN` in PostgreSQL 18?**
+**12. `Workers Planned: 2`, `Workers Launched: 0`. What happened?**
+
+<details><summary>Answer</summary>
+
+The worker pool was busy; the leader did all the work alone.
+
+</details>
+
+**13. What changed in `EXPLAIN` in PostgreSQL 18?**
 
 <details><summary>Answer</summary>
 
@@ -286,4 +343,7 @@ The index walks in `id` order and discards rows until ten match; with rare match
 - [PostgreSQL 17: query planning settings](https://www.postgresql.org/docs/17/runtime-config-query.html)
 - [PostgreSQL 17: PREPARE](https://www.postgresql.org/docs/17/sql-prepare.html)
 - [PostgreSQL 17: pg_stat_statements](https://www.postgresql.org/docs/17/pgstatstatements.html)
+- [PostgreSQL 17: auto_explain](https://www.postgresql.org/docs/17/auto-explain.html)
+- [PostgreSQL 17: when to JIT](https://www.postgresql.org/docs/17/jit-decision.html)
+- [PostgreSQL 17: release notes](https://www.postgresql.org/docs/17/release-17.html)
 - [PostgreSQL 18: release notes](https://www.postgresql.org/docs/18/release-18.html)

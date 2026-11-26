@@ -64,3 +64,4 @@ SELECT body FROM messages WHERE chat_id = 1 ORDER BY sent_at DESC LIMIT 20;
 - [Соединения и подзапросы в PostgreSQL](../../../postgresql/modules/04-joins-and-subqueries/overview.ru.md)
 - [Индексы в PostgreSQL](../../../postgresql/modules/05-indexes/overview.ru.md)
 - [JSON в PostgreSQL](../../../postgresql/modules/08-json-and-operators/overview.ru.md)
+- [Планы запросов в PostgreSQL](../../../postgresql/modules/09-performance-explain/overview.ru.md)

@@ -9,7 +9,7 @@ part: 2
 levels: [1, 2, 3, 4]
 tags: [explain, query-plan, statistics, vacuum, performance]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -91,3 +91,4 @@ Execution Time: 0.095 ms
 - Next: the following module of the [PostgreSQL roadmap](../../overview.en.md)
 - Measuring the whole system: [observability and SLOs](../../../system-design/modules/14-observability-and-slo/overview.en.md)
 - From .NET: [EF Core](../../../csharp/modules/15-ef-core/overview.en.md)
+- [Query plans and storage engines: data storage](../../../system-design/modules/04-data-storage/overview.en.md)

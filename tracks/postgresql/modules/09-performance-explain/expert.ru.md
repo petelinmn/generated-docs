@@ -8,7 +8,7 @@ slug: 09-performance-explain
 part: 2
 tags: [explain, query-plan, statistics, vacuum, performance]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -30,7 +30,7 @@ WHERE tablename = 'orders' AND attname IN ('id', 'status', 'city');
 -- status    2  0.96
 ```
 
-Отрицательный `n_distinct` — это доля строк: `-1` значит, что все значения уникальны.
+Значения получены по выборке и немного различаются между прогонами. Отрицательный `n_distinct` — это доля строк: `-1` значит, что все значения уникальны.
 
 ### Подготовленные запросы и общие планы
 
@@ -48,6 +48,7 @@ EXPLAIN (COSTS OFF) EXECUTE q('common');   -- Seq Scan, Filter: (kind = 'common'
 
 SET plan_cache_mode = force_generic_plan;
 EXPLAIN (COSTS OFF) EXECUTE q('common');   -- Index Only Scan, Index Cond: (kind = $1)
+RESET plan_cache_mode;
 ```
 
 При `plan_cache_mode = auto` (по умолчанию) первые пять выполнений получают собственные планы под фактические значения; затем используется общий план, если его оценка не намного хуже средней собственной. На неравномерных данных общий план может плохо подходить одному из значений; для такого запроса помогает `force_custom_plan`.
@@ -65,7 +66,7 @@ WHERE query LIKE 'SELECT count(*) FROM orders%';
 -- SELECT count(*) FROM orders WHERE customer_id = $1 | 2
 
 -- the usual question: what takes the most time overall
-SELECT calls, round(total_exec_time) AS total_ms, round(mean_exec_time, 2) AS mean_ms, query
+SELECT calls, round(total_exec_time) AS total_ms, round(mean_exec_time::numeric, 2) AS mean_ms, query
 FROM pg_stat_statements ORDER BY total_exec_time DESC LIMIT 10;
 ```
 
@@ -83,6 +84,49 @@ EXPLAIN (COSTS OFF, SETTINGS) SELECT * FROM orders WHERE customer_id = 7;
 
 `SETTINGS` перечисляет настройки планировщика, отличные от значений по умолчанию: полезно, когда план различается между серверами.
 
+### Параллельные запросы и JIT
+
+С настройками по умолчанию (`max_parallel_workers_per_gather = 2`) та же таблица читается параллельно:
+
+```sql
+RESET max_parallel_workers_per_gather;
+EXPLAIN (ANALYZE, TIMING OFF, SUMMARY OFF, COSTS OFF) SELECT count(*) FROM orders WHERE amount > 50;
+```
+
+```text
+Finalize Aggregate (actual rows=1 loops=1)
+  ->  Gather (actual rows=2 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        ->  Partial Aggregate (actual rows=1 loops=2)
+              ->  Parallel Seq Scan on orders (actual rows=49900 loops=2)
+                    Filter: (amount > '50'::numeric)
+                    Rows Removed by Filter: 50100
+```
+
+`loops=2` учитывает ведущий процесс и рабочий: каждый обработал примерно половину. Рабочих может запуститься меньше запланированного, если общий пул (`max_parallel_workers`, по умолчанию 8) занят.
+
+JIT компилирует выражения в машинный код, когда оценка стоимости запроса превышает `jit_above_cost` (по умолчанию 100000); более высокие пороги добавляют встраивание и оптимизацию. Он помогает долгим аналитическим запросам и только добавляет накладные расходы коротким. Если JIT использован, `EXPLAIN ANALYZE` показывает раздел `JIT:`.
+
+### Как поймать медленные планы на рабочей базе
+
+`log_min_duration_statement` записывает в журнал операторы, выполнявшиеся дольше порога; модуль `auto_explain` записывает ещё и их планы:
+
+```sql
+LOAD 'auto_explain';                       -- per session, superuser
+SET auto_explain.log_min_duration = 0;     -- -1 (default) disables it
+SELECT count(*) FROM orders WHERE customer_id = 3;
+```
+
+```text
+LOG:  duration: 0.061 ms  plan:
+	Query Text: SELECT count(*) FROM orders WHERE customer_id = 3;
+	Aggregate  (cost=5.09..5.10 rows=1 width=8)
+	  ->  Index Only Scan using orders_customer on orders  (cost=0.29..5.00 rows=40 width=0)
+```
+
+`auto_explain.log_analyze` добавляет фактические строки и время ценой заметных затрат на каждый запрос. Переключатели вроде `enable_seqscan` или `enable_mergejoin` — для экспериментов: они отговаривают планировщик от вида плана, как в примере про память, и не место им в рабочих настройках.
+
 ## Справочник
 
 | Параметр `EXPLAIN` | Что добавляет |
@@ -94,8 +138,8 @@ EXPLAIN (COSTS OFF, SETTINGS) SELECT * FROM orders WHERE customer_id = 7;
 | `VERBOSE` | выходные колонки, имена со схемой |
 | `SETTINGS` | изменённые настройки планировщика |
 | `WAL` | записи и байты WAL (с `ANALYZE`) |
-| `SERIALIZE` | стоимость преобразования результата (с `ANALYZE`) |
-| `MEMORY` | память планировщика |
+| `SERIALIZE` | стоимость преобразования результата (с `ANALYZE`), появился в 17 |
+| `MEMORY` | память планировщика, появился в 17 |
 | `GENERIC_PLAN` | план с параметрами `$n`, без `ANALYZE` |
 | `FORMAT TEXT \| JSON \| XML \| YAML` | формат вывода |
 
@@ -120,8 +164,12 @@ EXPLAIN (COSTS OFF, SETTINGS) SELECT * FROM orders WHERE customer_id = 7;
 | `autovacuum_vacuum_threshold` / `_scale_factor` | 50 / 0.2 | когда очищать |
 | `autovacuum_analyze_threshold` / `_scale_factor` | 50 / 0.1 | когда анализировать |
 | `track_io_timing` | off | время ввода-вывода в планах и статистике |
+| `max_parallel_workers_per_gather` / `max_parallel_workers` | 2 / 8 | параллельные процессы на узел и всего |
+| `parallel_setup_cost`, `min_parallel_table_scan_size` | 1000, 8MB | когда рассматривается параллельность |
+| `jit_above_cost` | 100000 | когда используется JIT |
+| `log_min_duration_statement`, `log_temp_files` | -1, -1 (выкл.) | журнал медленных операторов и временных файлов |
 
-На SSD `random_page_cost` часто снижают к 1.1; проверяйте эффект на настоящих запросах.
+Меньший `random_page_cost` делает индексное чтение дешевле в глазах планировщика. На быстрых дисках его часто снижают, но рекомендованного значения документация не даёт: проверяйте эффект на настоящих запросах.
 
 | Представление для диагностики | Что показывает |
 |---|---|
@@ -130,6 +178,7 @@ EXPLAIN (COSTS OFF, SETTINGS) SELECT * FROM orders WHERE customer_id = 7;
 | `pg_stat_user_indexes` | использование индексов |
 | `pg_stat_activity` | что выполняется сейчас и чего ждёт |
 | `pg_stats` | статистика колонок |
+| `auto_explain` (модуль) | планы медленных операторов в журнале сервера |
 
 ## Подвохи
 
@@ -157,11 +206,11 @@ EXPLAIN (COSTS OFF) SELECT * FROM codes WHERE code = '42';      -- Index Only Sc
 EXPLAIN (COSTS OFF) SELECT * FROM codes WHERE code::int = 42;   -- Seq Scan, Filter: ((code)::integer = 42)
 ```
 
-Сравнивайте со значением типа колонки, а не колонку, приведённую к типу параметра. Тот же эффект дают несовпадающие типы от драйвера приложения.
+Сравнивайте со значением типа колонки, а не колонку, приведённую к типу параметра. Тот же эффект может дать параметр другого типа от драйвера приложения, если приведение окажется на колонке.
 
 ### Hash join, разбитый на части
 
-`Batches: 128` в примере про память означает, что хэш-таблица записывалась на диск 128 частями.
+`Batches: 128` в [примере про память](advanced.ru.md) означает, что хэш-таблица записывалась на диск 128 частями.
 
 ## Компромиссы и альтернативы
 
@@ -265,7 +314,15 @@ EXPLAIN (COSTS OFF) SELECT * FROM codes WHERE code::int = 42;   -- Seq Scan, Fil
 
 </details>
 
-**12. Что изменилось в `EXPLAIN` в PostgreSQL 18?**
+**12. `Workers Planned: 2`, `Workers Launched: 0`. Что произошло?**
+
+<details><summary>Ответ</summary>
+
+Пул рабочих процессов был занят; ведущий процесс выполнил всю работу один.
+
+</details>
+
+**13. Что изменилось в `EXPLAIN` в PostgreSQL 18?**
 
 <details><summary>Ответ</summary>
 
@@ -286,4 +343,7 @@ EXPLAIN (COSTS OFF) SELECT * FROM codes WHERE code::int = 42;   -- Seq Scan, Fil
 - [PostgreSQL 17: настройки планирования](https://www.postgresql.org/docs/17/runtime-config-query.html)
 - [PostgreSQL 17: PREPARE](https://www.postgresql.org/docs/17/sql-prepare.html)
 - [PostgreSQL 17: pg_stat_statements](https://www.postgresql.org/docs/17/pgstatstatements.html)
+- [PostgreSQL 17: auto_explain](https://www.postgresql.org/docs/17/auto-explain.html)
+- [PostgreSQL 17: когда используется JIT](https://www.postgresql.org/docs/17/jit-decision.html)
+- [PostgreSQL 17: список изменений](https://www.postgresql.org/docs/17/release-17.html)
 - [PostgreSQL 18: список изменений](https://www.postgresql.org/docs/18/release-18.html)

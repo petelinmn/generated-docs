@@ -9,7 +9,7 @@ part: 2
 levels: [1, 2, 3, 4]
 tags: [explain, query-plan, statistics, vacuum, performance]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -91,3 +91,4 @@ Execution Time: 0.095 ms
 - Дальше: следующий модуль по [дорожной карте PostgreSQL](../../overview.ru.md)
 - Измерение всей системы: [наблюдаемость и SLO](../../../system-design/modules/14-observability-and-slo/overview.ru.md)
 - Из .NET: [EF Core](../../../csharp/modules/15-ef-core/overview.ru.md)
+- [Планы запросов и движки хранения: хранение данных](../../../system-design/modules/04-data-storage/overview.ru.md)

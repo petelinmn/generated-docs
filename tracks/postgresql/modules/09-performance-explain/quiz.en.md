@@ -8,7 +8,7 @@ slug: 09-performance-explain
 part: 2
 tags: [explain, query-plan, statistics, vacuum, performance]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

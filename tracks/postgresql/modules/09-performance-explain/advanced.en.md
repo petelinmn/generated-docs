@@ -8,7 +8,7 @@ slug: 09-performance-explain
 part: 2
 tags: [explain, query-plan, statistics, vacuum, performance]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -40,14 +40,14 @@ Before `ANALYZE` the planner guessed 501 rows instead of 10,000. Autovacuum also
 -- every city belongs to exactly one country
 EXPLAIN (ANALYZE, TIMING OFF, SUMMARY OFF)
 SELECT * FROM orders WHERE city = 'city42' AND country = 'country4';
--- (cost=... rows=201 ...) (actual rows=2000 loops=1)
+-- (cost=... rows=201 ...) (actual rows=2000 loops=1)   -- 207 in another run
 
 CREATE STATISTICS orders_city_country (dependencies) ON city, country FROM orders;
 ANALYZE orders;
 -- the same EXPLAIN:  rows=2067 ... (actual rows=2000 loops=1)
 ```
 
-The planner assumes conditions are independent and multiplies their selectivities, which gives 201 instead of 2000. Extended statistics teach it the dependency. The kinds are `dependencies`, `ndistinct` and `mcv`.
+The planner assumes conditions are independent and multiplies their selectivities, which gives about 200 instead of 2000. `ANALYZE` reads a random sample, so the exact estimate changes from run to run (201 and 207 in two runs here). Extended statistics teach it the dependency. The kinds are `dependencies`, `ndistinct` and `mcv`.
 
 ## Memory: sorts and hashes
 
