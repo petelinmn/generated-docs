@@ -59,3 +59,48 @@ public class PercentilesTests
     public void Fan_out_amplifies_the_tail() =>
         Assert.Equal(0.634, Latency.ChanceOfSlowRequest(0.01, 100), 3);
 }
+
+public class QueueingTests
+{
+    [Theory]
+    [InlineData(0.5, 20)]
+    [InlineData(0.8, 50)]
+    [InlineData(0.9, 100)]
+    [InlineData(0.99, 1000)]
+    public void Response_time_explodes_near_full_utilization(double utilization, double expected) =>
+        Assert.Equal(expected, Queueing.MeanResponse(10, utilization), 6);
+
+    [Fact]
+    public void A_shared_queue_over_many_servers_waits_less()
+    {
+        Assert.Equal(0.8, Queueing.ProbabilityOfWaiting(1, 0.8), 9);
+        Assert.Equal(40, Queueing.MeanWait(1, 0.8, 10), 6);
+        Assert.Equal(0.409, Queueing.ProbabilityOfWaiting(10, 8), 3);
+        Assert.Equal(2.05, Queueing.MeanWait(10, 8, 10), 2);
+    }
+
+    [Fact]
+    public void Faster_repair_raises_availability()
+    {
+        var month = TimeSpan.FromDays(30);
+
+        Assert.Equal(0.99861, Queueing.Availability(month, TimeSpan.FromHours(1)), 5);
+        Assert.Equal(0.99988, Queueing.Availability(month, TimeSpan.FromMinutes(5)), 5);
+    }
+}
+
+public class LoadModelTests
+{
+    [Fact]
+    public void Closed_model_hides_the_stall()
+    {
+        // 1000 requests every 10 ms, 1 ms of work, a 1 s pause in the middle.
+        var closed = LoadModels.Closed(1000, 10, 1, stallAt: 5000, stall: 1000);
+        var open = LoadModels.Open(1000, 10, 1, stallAt: 5000, stall: 1000);
+
+        Assert.Equal(1, closed.Count(l => l > 100));
+        Assert.Equal(1, Latency.Percentile(closed, 99));
+        Assert.Equal(101, open.Count(l => l > 100));
+        Assert.Equal(911, Latency.Percentile(open, 99));
+    }
+}

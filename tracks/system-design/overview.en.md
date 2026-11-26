@@ -78,12 +78,10 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Modules are ge
 
 ## Level 3 expansion plan
 
-All modules exist at level 6, but the expert files are still shorter than a reference should be. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
+All modules exist at level 6, but the expert files are still shorter than a reference should be. Modules 01 and 02 are already expanded. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
 
 | Module | What to add to the expert theory |
 |---|---|
-| 01 · Design process | queueing theory (utilization and latency), MTBF and MTTR, a table of typical operation latencies, cost estimation, load testing |
-| 02 · Scaling | client-side balancing, Maglev and rendezvous hashing, connection draining in ASP.NET Core, autoscaling policies, GeoDNS and anycast |
 | 03 · Caching | L1 invalidation through pub/sub, cache warming, CDNs and purge by key, Redis Cluster and hot keys, serialization cost |
 | 04 · Data storage | columnar and time-series stores, MVCC and VACUUM, the write-ahead log, compaction strategies, secondary indexes in distributed databases |
 | 05 · API design | GraphQL, webhooks (signatures, retries), API gateways, rate limit headers, OpenAPI contract testing |

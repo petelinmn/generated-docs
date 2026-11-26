@@ -94,3 +94,86 @@ public class YarpGatewayTests
         Assert.NotEqual(answers[0], answers[1]);
     }
 }
+
+public class RendezvousTests
+{
+    [Fact]
+    public void Removing_a_node_moves_only_its_keys()
+    {
+        string[] all = ["n1", "n2", "n3", "n4", "n5"];
+        string[] without = ["n1", "n2", "n4", "n5"];
+        string[] keys = [.. Enumerable.Range(0, 10_000).Select(i => $"user:{i}")];
+
+        string[] moved = [.. keys.Where(k => Rendezvous.NodeFor(k, all) != Rendezvous.NodeFor(k, without))];
+
+        Assert.All(moved, k => Assert.Equal("n3", Rendezvous.NodeFor(k, all)));
+        Assert.InRange(moved.Length / 10_000.0, 0.17, 0.23);
+    }
+}
+
+public class MaglevTests
+{
+    private const int Size = 65_537;
+    private static readonly string[] Nodes = [.. Enumerable.Range(1, 10).Select(i => $"n{i}")];
+
+    [Fact]
+    public void Slots_are_shared_almost_equally()
+    {
+        int[] counts = [.. new MaglevTable(Nodes, Size).Slots.CountBy(s => s).Select(p => p.Value)];
+
+        Assert.Equal(10, counts.Length);
+        Assert.True(counts.Max() - counts.Min() <= 1);
+    }
+
+    [Fact]
+    public void A_composite_size_is_rejected() =>
+        Assert.Throws<ArgumentException>(() => new MaglevTable(Nodes, 65_536));
+
+    [Fact]
+    public void Removing_a_node_disturbs_few_other_slots()
+    {
+        var before = new MaglevTable(Nodes, Size).Slots;
+        var after = new MaglevTable([.. Nodes.Where(n => n != "n3")], Size).Slots;
+
+        int others = before.Zip(after).Count(p => p.First != "n3" && p.First != p.Second);
+
+        Assert.DoesNotContain("n3", after);
+        Assert.InRange(others / (double)Size, 0.0001, 0.05); // small, but not zero
+    }
+}
+
+public class DrainingTests
+{
+    [Fact]
+    public async Task A_request_in_flight_finishes_during_shutdown()
+    {
+        var ct = TestContext.Current.CancellationToken;
+        var server = await SlowServer.StartAsync(TimeSpan.FromSeconds(30));
+        await using var app = server.App;
+        using var client = new HttpClient();
+
+        Task<string> request = client.GetStringAsync($"{YarpGateway.AddressOf(app)}/slow", ct);
+        await server.RequestEntered;
+        Task stopping = app.StopAsync(ct);
+        Assert.False(stopping.IsCompleted);
+        server.Release();
+
+        Assert.Equal("done", await request);
+        await stopping;
+    }
+
+    [Fact]
+    public async Task A_request_longer_than_the_timeout_is_aborted()
+    {
+        var ct = TestContext.Current.CancellationToken;
+        var server = await SlowServer.StartAsync(TimeSpan.FromMilliseconds(200));
+        await using var app = server.App;
+        using var client = new HttpClient();
+
+        Task<string> request = client.GetStringAsync($"{YarpGateway.AddressOf(app)}/slow", ct);
+        await server.RequestEntered;
+        await app.StopAsync(ct);
+
+        await Assert.ThrowsAsync<HttpRequestException>(() => request);
+    }
+}

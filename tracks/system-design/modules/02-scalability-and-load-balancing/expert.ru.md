@@ -48,6 +48,48 @@ flowchart LR
     B --> S
 ```
 
+### Rendezvous hashing
+
+Кольцо не нужно: для ключа считают хэш с каждым узлом и берут максимум.
+
+```csharp
+public static string NodeFor(string key, IReadOnlyList<string> nodes) =>
+    nodes.MaxBy(node => StableHash.Of($"{node}\n{key}"))!;
+```
+
+При удалении узла переезжают только его ключи (в тесте из пяти узлов — около пятой части). Цена — O(n) на поиск. Файл: [Ex05_Rendezvous.cs](code/Examples/Ex05_Rendezvous.cs).
+
+### Maglev hashing
+
+Балансировщик Google строит таблицу фиксированного размера `M`. Каждому узлу два хэша задают `offset` и `skip`, а они — порядок предпочтения слотов `(offset + j × skip) mod M`. Узлы по очереди занимают первый свободный слот из своего списка. Поиск — O(1).
+
+```csharp
+// Nodes take turns, each claiming the first free slot of its own preference order.
+for (int filled = 0, i = 0; filled < size; i = (i + 1) % nodes.Count)
+{
+    int slot;
+    do slot = (int)((offset[i] + (long)next[i]++ * skip[i]) % size);
+    while (_table[slot] is not null);
+```
+
+`M` должно быть простым, чтобы любой `skip` обходил все слоты; пример отклоняет составной размер. Доли узлов различаются не более чем на один слот. В статье приоритет отдан равномерности: при изменении состава меняется небольшая часть «чужих» слотов, но не ноль, и поэтому Maglev дополнительно отслеживает соединения. Размер по умолчанию в статье — 65537. Файл: [Ex06_Maglev.cs](code/Examples/Ex06_Maglev.cs).
+
+### Корректная остановка в ASP.NET Core
+
+По сигналу остановки хост вызывает `ApplicationStopping`, веб-сервер перестаёт принимать новые соединения и даёт активным запросам время завершиться. `HostOptions.ShutdownTimeout` по умолчанию 30 секунд (проверено на .NET 11); не успевшие запросы обрываются.
+
+```csharp
+builder.Services.Configure<HostOptions>(o => o.ShutdownTimeout = shutdownTimeout);
+```
+
+Тесты показывают оба исхода: запрос, отпущенный во время остановки, завершается успешно; запрос дольше таймаута получает `HttpRequestException`. Файл: [Ex07_Draining.cs](code/Examples/Ex07_Draining.cs).
+
+В Kubernetes остановка pod и удаление его из EndpointSlice идут одновременно, поэтому новые запросы ещё могут приходить некоторое время. Отведённое на остановку время (`terminationGracePeriodSeconds`) по умолчанию 30 секунд и включает `preStop`: таймаут приложения должен укладываться в него.
+
+### Балансировка на клиенте
+
+Клиент сам получает список адресов (resolver) и выбирает адрес для вызова (load balancer). В `Grpc.Net.Client` по умолчанию `pick_first`; `round_robin` включают через `ServiceConfig`, а адрес записывают со схемой `dns:///`. Канал нужно переиспользовать. Выигрыш — нет лишнего прыжка; цена — клиент должен знать узлы и правильно настраиваться.
+
 ## Справочник
 
 | Политика YARP | Поведение |
@@ -83,6 +125,32 @@ flowchart LR
 
 Автомасштабирование в Kubernetes (HPA): `desiredReplicas = ceil(currentReplicas × currentMetricValue / desiredMetricValue)`, с допуском 0,1 по умолчанию.
 
+| Хэширование | Поиск | Память | Особенность |
+|---|---|---|---|
+| `hash % N` | O(1) | нет | переезжает почти всё |
+| Кольцо с виртуальными узлами | O(log V) | V точек | веса через число точек |
+| Rendezvous | O(n) | нет | простота, переезжают только ключи удалённого узла |
+| Maglev | O(1) | таблица M | равномерность, небольшие лишние переезды |
+
+| Поведение HPA по умолчанию | Вверх | Вниз |
+|---|---|---|
+| Окно стабилизации | 0 с | 300 с |
+| Политики за 15 с | +100% или +4 pod (берётся большее) | до −100% |
+
+При уменьшении HPA берёт наибольшее из желаемых значений за окно, чтобы не удалять pod-ы и тут же не создавать снова.
+
+| Вид автомасштабирования | Когда |
+|---|---|
+| Реактивное по метрике | нагрузка растёт плавнее, чем запускаются экземпляры |
+| По расписанию | известные пики |
+| По длине очереди | воркеры и фоновая обработка |
+| Предварительный запас | резкие всплески и долгий прогрев |
+
+| Глобальное распределение | Как выбирается площадка | Особенность |
+|---|---|---|
+| DNS по географии или задержке | ответ сервера имён | переключение ограничено кэшированием DNS |
+| Anycast | один адрес объявляется из нескольких мест, путь выбирает маршрутизация | клиенту ничего не нужно менять |
+
 ## Подвохи
 
 ### GetHashCode меняется между запусками
@@ -102,6 +170,14 @@ Console.WriteLine($"{next} {next % 3}");
 ```
 
 Результат: `-2147483648 -2` — отрицательный индекс и исключение при обращении к списку. `Math.Abs` не спасает: `Math.Abs(int.MinValue)` бросает `OverflowException`. Решение — приведение к `uint`.
+
+### Остановка обрывает долгие запросы
+
+Приложение с `ShutdownTimeout` 200 мс и запросом, который ещё выполняется: `StopAsync` завершается, а клиент получает `HttpRequestException`. Долгие операции выносите в фон или увеличивайте таймаут вместе с таймаутом платформы.
+
+### Размер таблицы Maglev должен быть простым
+
+Если `skip` и размер таблицы имеют общий делитель, узел обходит лишь часть слотов, и поиск свободного может не закончиться. Поэтому пример бросает `ArgumentException` для размера 65536.
 
 ## Компромиссы и альтернативы
 
@@ -197,6 +273,46 @@ Console.WriteLine($"{next} {next % 3}");
 
 </details>
 
+**11. Чем rendezvous hashing отличается от кольца?**
+
+<details><summary>Ответ</summary>
+
+Не хранит структуру: для каждого ключа сравнивает все узлы. Проще, но O(n).
+
+</details>
+
+**12. Что оптимизирует Maglev по сравнению с кольцом?**
+
+<details><summary>Ответ</summary>
+
+Равномерность и скорость поиска ценой небольшого числа лишних переездов.
+
+</details>
+
+**13. Что делает приложение при остановке, чтобы не терять запросы?**
+
+<details><summary>Ответ</summary>
+
+Перестаёт получать новые, дожидается активных в пределах таймаута, затем освобождает ресурсы.
+
+</details>
+
+**14. Почему HPA уменьшает число pod-ов не сразу?**
+
+<details><summary>Ответ</summary>
+
+Окно стабилизации (300 секунд по умолчанию) защищает от колебаний.
+
+</details>
+
+**15. Подвох: включили `round_robin` в gRPC, но весь трафик на одном сервере. Почему?**
+
+<details><summary>Ответ</summary>
+
+Возможно, resolver возвращает один адрес (например, виртуальный адрес сервиса), а не адреса экземпляров.
+
+</details>
+
 ## Связанные материалы
 
 - [Продвинутая теория](advanced.ru.md)
@@ -207,3 +323,7 @@ Console.WriteLine($"{next} {next % 3}");
 - [YARP: load balancing](https://learn.microsoft.com/aspnet/core/fundamentals/servers/yarp/load-balancing)
 - [YARP: health checks](https://learn.microsoft.com/aspnet/core/fundamentals/servers/yarp/dests-health-checks)
 - [Kubernetes: Horizontal Pod Autoscaling](https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/)
+- [Maglev: A Fast and Reliable Software Network Load Balancer](https://research.google/pubs/maglev-a-fast-and-reliable-software-network-load-balancer/)
+- [.NET Generic Host: остановка](https://learn.microsoft.com/dotnet/core/extensions/generic-host)
+- [gRPC: балансировка на клиенте](https://learn.microsoft.com/aspnet/core/grpc/loadbalancing)
+- [Kubernetes: жизненный цикл pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)

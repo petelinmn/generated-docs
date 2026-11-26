@@ -32,6 +32,50 @@ flowchart LR
     B --> E
 ```
 
+### Queueing theory: why you cannot run at 100%
+
+The M/M/1 model is a random stream of requests, random (exponential) service time and one server. The mean response time is `S / (1 - ρ)`, where `S` is the service time and `ρ` the utilization.
+
+```csharp
+public static double MeanResponse(double serviceTime, double utilization)
+{
+    ArgumentOutOfRangeException.ThrowIfNegative(utilization);
+    ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(utilization, 1);
+    return serviceTime / (1 - utilization);
+}
+```
+
+| Utilization | Mean response time with S = 10 ms |
+|---|---|
+| 50% | 20 ms |
+| 80% | 50 ms |
+| 90% | 100 ms |
+| 99% | 1000 ms |
+
+The last percent of utilization is the most expensive: going from 90% to 99% makes the response time ten times longer.
+
+### Many servers and one queue
+
+The Erlang C formula gives the probability that a request has to wait when `c` servers share a queue. At the same 80% utilization a large pool waits far less.
+
+| Servers | Load | Probability of waiting | Mean wait with S = 10 ms |
+|---|---|---|---|
+| 1 | 0.8 | 0.8 | 40 ms |
+| 10 | 8 | 0.409 | 2.05 ms |
+
+Two conclusions: a shared queue is better than ten separate ones, and a small pool needs a larger relative headroom. File: [Ex04_Queueing.cs](code/Examples/Ex04_Queueing.cs). Real traffic need not follow the model's assumptions (bursts, a long tail of service times), so this is a guide, not a forecast.
+
+### MTBF and MTTR
+
+Reliability depends on how often the system fails (MTBF or MTTF) and how fast it recovers (MTTR). In a steady-state model availability is `MTBF / (MTBF + MTTR)`.
+
+```csharp
+public static double Availability(TimeSpan meanTimeBetweenFailures, TimeSpan meanTimeToRepair) =>
+    meanTimeBetweenFailures / (meanTimeBetweenFailures + meanTimeToRepair);
+```
+
+One failure in 30 days with an hour to recover gives 99.861%, with 5 minutes 99.988%. Shortening recovery is often cheaper than making failures rarer.
+
 ## Reference
 
 | Requirements question | What it affects |
@@ -60,6 +104,44 @@ flowchart LR
 | RPO (recovery point objective) | how much data, measured in time, may be lost |
 | RTO (recovery time objective) | how quickly service must be restored |
 
+| Operation (order of magnitude, Google's table) | Time |
+|---|---|
+| L1 cache reference | 1 ns |
+| L2 cache reference | 4 ns |
+| mutex lock and unlock | 17 ns |
+| main memory reference | 100 ns |
+| compress 1 KB (Zippy) | 2 µs |
+| random 4 KB read from SSD | 20 µs |
+| round trip within a datacenter | 500 µs |
+| sequential 1 MB read from SSD | 1 ms |
+| disk seek | 10 ms |
+| round trip between continents | 150 ms |
+
+The numbers are approximate and depend on hardware. The ratios matter: memory is faster than the network, a network inside a datacenter is incomparably faster than an intercontinental one, and ten sequential round trips across an ocean already take a second and a half.
+
+| Cost item | How to estimate |
+|---|---|
+| Compute | instances × price × hours, with failure headroom |
+| Storage | volume × replication × retention × price |
+| Egress | peak and average volume × price per GB |
+| Managed service requests | number of operations × price |
+| Observability | volume of logs, metrics and traces |
+| People | on-call and maintenance |
+
+Take prices from your provider's calculator on the date of the estimate and record them next to the assumptions.
+
+| Load test kind | Question |
+|---|---|
+| Load | do we hold the expected peak? |
+| Stress | where and how does it break? |
+| Spike | do we survive a sharp burst? |
+| Soak | are there leaks over a long run? |
+
+| Load model | How requests are produced |
+|---|---|
+| Closed | the next request after the previous response |
+| Open | on a schedule, regardless of responses |
+
 ## Gotchas
 
 ### int overflow in an estimate
@@ -82,6 +164,24 @@ double real = P(fast.Concat(slow), 99);
 ```
 
 Result: `averaged` = 505, `real` = 10. Percentiles can neither be added nor averaged: a server with a small share of traffic gets the same weight in an "average p99" as the main one.
+
+### A closed load model hides a stall
+
+A simulation: 1000 requests every 10 ms, 1 ms of processing, and in the middle the server freezes for a second.
+
+```csharp
+// Closed model: the next request is sent only after the previous one has finished.
+double sent = Math.Max(now, i * interval);
+double finished = Finish(sent, service, stallAt, stall);
+latencies.Add(finished - sent);
+```
+
+| Model | Requests slower than 100 ms | p99 |
+|---|---|---|
+| closed | 1 | 1 ms |
+| open | 101 | 911 ms |
+
+During the stall a closed generator simply sends nothing and does not notice that users would have waited. This is called coordinated omission. Use an open model (in k6, the executors with a constant or ramping arrival rate). File: [Ex05_LoadModels.cs](code/Examples/Ex05_LoadModels.cs).
 
 ## Trade-offs and alternatives
 
@@ -176,6 +276,46 @@ Not necessarily: responses may be empty, stale or too slow, and some requests ma
 
 </details>
 
+**11. Why is a service at 95% utilization dangerous?**
+
+<details><summary>Answer</summary>
+
+Waiting time grows non-linearly: in the M/M/1 model it is already twenty service times, and a small burst floods the queue.
+
+</details>
+
+**12. Which is better: one pool of ten workers or ten separate queues?**
+
+<details><summary>Answer</summary>
+
+All else equal, a shared pool: any free worker takes any task. Separate queues are for isolation or ordering.
+
+</details>
+
+**13. How do you raise availability without reducing the number of failures?**
+
+<details><summary>Answer</summary>
+
+Shorten MTTR: detect faster, automate rollback and failover, have instructions.
+
+</details>
+
+**14. What is coordinated omission?**
+
+<details><summary>Answer</summary>
+
+A measurement error where the load generator slows down together with the system and misses the requests that should have been sent.
+
+</details>
+
+**15. Trick question: the load test showed p99 = 1 ms. Ready to release?**
+
+<details><summary>Answer</summary>
+
+First check the load model, how realistic the data is, the duration and whether queueing time was measured.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -185,3 +325,6 @@ Not necessarily: responses may be empty, stale or too slow, and some requests ma
 
 - [Google SRE Book: Service Level Objectives](https://sre.google/sre-book/service-level-objectives/)
 - [Google SRE Workbook: Alerting on SLOs](https://sre.google/workbook/alerting-on-slos/)
+- [Google: Rule-of-thumb latency numbers](https://sre.google/static/pdf/rule-of-thumb-latency-numbers-letter.pdf)
+- [Google SRE Book: Introduction](https://sre.google/sre-book/introduction/)
+- [k6: open and closed models](https://grafana.com/docs/k6/latest/using-k6/scenarios/concepts/open-vs-closed/)

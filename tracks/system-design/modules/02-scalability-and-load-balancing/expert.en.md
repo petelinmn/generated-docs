@@ -48,6 +48,48 @@ flowchart LR
     B --> S
 ```
 
+### Rendezvous hashing
+
+No ring is needed: for a key you compute a hash with every node and take the maximum.
+
+```csharp
+public static string NodeFor(string key, IReadOnlyList<string> nodes) =>
+    nodes.MaxBy(node => StableHash.Of($"{node}\n{key}"))!;
+```
+
+When a node is removed only its keys move (in the five-node test, about a fifth). The price is O(n) per lookup. File: [Ex05_Rendezvous.cs](code/Examples/Ex05_Rendezvous.cs).
+
+### Maglev hashing
+
+Google's load balancer builds a table of a fixed size `M`. Two hashes give each node an `offset` and a `skip`, which define its preference order of slots `(offset + j × skip) mod M`. Nodes take turns claiming the first free slot of their list. A lookup is O(1).
+
+```csharp
+// Nodes take turns, each claiming the first free slot of its own preference order.
+for (int filled = 0, i = 0; filled < size; i = (i + 1) % nodes.Count)
+{
+    int slot;
+    do slot = (int)((offset[i] + (long)next[i]++ * skip[i]) % size);
+    while (_table[slot] is not null);
+```
+
+`M` must be prime so that any `skip` visits all slots; the example rejects a composite size. Node shares differ by at most one slot. The paper gives priority to evenness: when membership changes, a small share of other nodes' slots changes too, not zero, which is why Maglev also tracks connections. The default size in the paper is 65537. File: [Ex06_Maglev.cs](code/Examples/Ex06_Maglev.cs).
+
+### Graceful shutdown in ASP.NET Core
+
+On a stop signal the host raises `ApplicationStopping`, the web server stops accepting new connections and gives active requests time to finish. `HostOptions.ShutdownTimeout` is 30 seconds by default (checked on .NET 11); requests that do not make it are aborted.
+
+```csharp
+builder.Services.Configure<HostOptions>(o => o.ShutdownTimeout = shutdownTimeout);
+```
+
+The tests show both outcomes: a request released during shutdown completes successfully; a request longer than the timeout gets an `HttpRequestException`. File: [Ex07_Draining.cs](code/Examples/Ex07_Draining.cs).
+
+In Kubernetes, stopping a pod and removing it from the EndpointSlice happen at the same time, so new requests may still arrive for a while. The time given to stop (`terminationGracePeriodSeconds`) is 30 seconds by default and includes `preStop`: the application timeout must fit inside it.
+
+### Client-side balancing
+
+The client obtains the list of addresses itself (a resolver) and picks an address for a call (a load balancer). In `Grpc.Net.Client` the default is `pick_first`; `round_robin` is enabled through `ServiceConfig`, and the address is written with the `dns:///` scheme. The channel has to be reused. The gain is no extra hop; the price is that the client must know the nodes and be configured correctly.
+
 ## Reference
 
 | YARP policy | Behavior |
@@ -83,6 +125,32 @@ A custom policy implements `ILoadBalancingPolicy`.
 
 Autoscaling in Kubernetes (HPA): `desiredReplicas = ceil(currentReplicas × currentMetricValue / desiredMetricValue)`, with a default tolerance of 0.1.
 
+| Hashing | Lookup | Memory | Feature |
+|---|---|---|---|
+| `hash % N` | O(1) | none | almost everything moves |
+| Ring with virtual nodes | O(log V) | V points | weights through the number of points |
+| Rendezvous | O(n) | none | simplicity, only the removed node's keys move |
+| Maglev | O(1) | a table of M | evenness, a few extra moves |
+
+| Default HPA behavior | Up | Down |
+|---|---|---|
+| Stabilization window | 0 s | 300 s |
+| Policies per 15 s | +100% or +4 pods (the larger wins) | up to −100% |
+
+When scaling down, the HPA takes the highest of the desired values over the window, so as not to remove pods and recreate them right away.
+
+| Kind of autoscaling | When |
+|---|---|
+| Reactive on a metric | load grows more slowly than instances start |
+| Scheduled | known peaks |
+| By queue length | workers and background processing |
+| Pre-provisioned headroom | sharp bursts and a long warm-up |
+
+| Global distribution | How a site is chosen | Feature |
+|---|---|---|
+| DNS by geography or latency | the name server's answer | failover is limited by DNS caching |
+| Anycast | one address is announced from several places, routing picks the path | the client changes nothing |
+
 ## Gotchas
 
 ### GetHashCode changes between runs
@@ -102,6 +170,14 @@ Console.WriteLine($"{next} {next % 3}");
 ```
 
 Result: `-2147483648 -2` — a negative index and an exception when accessing the list. `Math.Abs` does not help: `Math.Abs(int.MinValue)` throws `OverflowException`. The fix is a cast to `uint`.
+
+### Shutdown aborts long requests
+
+An application with a 200 ms `ShutdownTimeout` and a request still running: `StopAsync` completes and the client gets an `HttpRequestException`. Move long operations to the background or raise the timeout together with the platform's one.
+
+### The Maglev table size must be prime
+
+If `skip` and the table size share a divisor, a node visits only part of the slots and the search for a free one may never end. That is why the example throws `ArgumentException` for a size of 65536.
 
 ## Trade-offs and alternatives
 
@@ -197,6 +273,46 @@ Unknown: the balancer, the database, the region or the configuration may be a si
 
 </details>
 
+**11. How does rendezvous hashing differ from a ring?**
+
+<details><summary>Answer</summary>
+
+It stores no structure: for each key it compares all nodes. Simpler, but O(n).
+
+</details>
+
+**12. What does Maglev optimize compared with a ring?**
+
+<details><summary>Answer</summary>
+
+Evenness and lookup speed at the price of a few extra moves.
+
+</details>
+
+**13. What does an application do on shutdown so as not to lose requests?**
+
+<details><summary>Answer</summary>
+
+Stops receiving new ones, waits for the active ones within the timeout, then releases resources.
+
+</details>
+
+**14. Why does the HPA not remove pods immediately?**
+
+<details><summary>Answer</summary>
+
+The stabilization window (300 seconds by default) protects against oscillation.
+
+</details>
+
+**15. Trick question: `round_robin` is enabled in gRPC but all traffic goes to one server. Why?**
+
+<details><summary>Answer</summary>
+
+The resolver may be returning a single address (for example a service's virtual address) instead of the instance addresses.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -207,3 +323,7 @@ Unknown: the balancer, the database, the region or the configuration may be a si
 - [YARP: load balancing](https://learn.microsoft.com/aspnet/core/fundamentals/servers/yarp/load-balancing)
 - [YARP: health checks](https://learn.microsoft.com/aspnet/core/fundamentals/servers/yarp/dests-health-checks)
 - [Kubernetes: Horizontal Pod Autoscaling](https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/)
+- [Maglev: A Fast and Reliable Software Network Load Balancer](https://research.google/pubs/maglev-a-fast-and-reliable-software-network-load-balancer/)
+- [.NET Generic Host: shutdown](https://learn.microsoft.com/dotnet/core/extensions/generic-host)
+- [gRPC: client-side load balancing](https://learn.microsoft.com/aspnet/core/grpc/loadbalancing)
+- [Kubernetes: pod lifecycle](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/)
