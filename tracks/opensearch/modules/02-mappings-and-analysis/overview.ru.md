@@ -10,7 +10,7 @@ tags: [mapping, analyzer, inverted-index, text-keyword, nested, dynamic-mapping]
 versions: "OpenSearch 3.10.1; opensearch-py 3.2.0"
 levels: [1, 2, 3, 4]
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # Отображения и анализ текста
@@ -61,3 +61,4 @@ client.indices.create(index="goods", body={"mappings": {"properties": {
 - [05 · Индексация в большом объёме](../05-indexing-at-scale/overview.ru.md)
 - [06 · Релевантность](../06-relevance-tuning/overview.ru.md)
 - [System design: выбор хранилища](../../../system-design/modules/04-data-storage/overview.ru.md)
+- [Индексы в PostgreSQL](../../../postgresql/modules/05-indexes/overview.ru.md)

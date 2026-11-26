@@ -62,3 +62,4 @@ SELECT body FROM messages WHERE chat_id = 1 ORDER BY sent_at DESC LIMIT 20;
 - Next: [replication and partitioning](../06-replication-and-partitioning/overview.en.md), [API design](../05-api-design/overview.en.md)
 - In other tracks: [data modeling in PostgreSQL](../../../postgresql/modules/03-data-modeling-ddl/overview.en.md), [EF Core](../../../csharp/modules/15-ef-core/overview.en.md), [OpenSearch](../../../opensearch/modules/01-opensearch-basics/overview.en.md)
 - [Joins and subqueries in PostgreSQL](../../../postgresql/modules/04-joins-and-subqueries/overview.en.md)
+- [Indexes in PostgreSQL](../../../postgresql/modules/05-indexes/overview.en.md)

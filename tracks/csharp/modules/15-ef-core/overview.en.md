@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4, 5, 6]
 tags: [ef-core, orm, dbcontext, linq, change-tracking, migrations, n-plus-one, optimistic-concurrency, transactions, query-filters, raw-sql, inheritance-mapping, interceptors]
 versions: "EF Core 11.0, .NET 11, C# 15"
 status: draft
-updated: 2026-11-21
+updated: 2026-11-26
 ---
 
 # EF Core
@@ -79,3 +79,4 @@ EF generates `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Likes" >= @minL
 - [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
 - [System design: consistency and CAP](../../../system-design/modules/07-consistency-and-cap/overview.en.md)
 - [System design: distributed transactions](../../../system-design/modules/10-distributed-transactions/overview.en.md)
+- [Indexes in PostgreSQL](../../../postgresql/modules/05-indexes/overview.en.md)

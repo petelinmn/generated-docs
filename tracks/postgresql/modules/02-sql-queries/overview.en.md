@@ -66,6 +66,7 @@ ORDER BY total DESC;
 - Next: [03 · Data modeling and DDL](../03-data-modeling-ddl/overview.en.md).
 - [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
 - [04 · Joins and subqueries](../04-joins-and-subqueries/overview.en.md)
+- [05 · Indexes](../05-indexes/overview.en.md)
 
 ## Sources
 
