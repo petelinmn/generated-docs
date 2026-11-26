@@ -87,3 +87,4 @@ EXPLAIN (COSTS OFF) SELECT * FROM events WHERE user_id = 42 ORDER BY created_at 
 - Почему индексы влияют на проект: [хранение данных](../../../system-design/modules/04-data-storage/overview.ru.md)
 - Из .NET: [EF Core](../../../csharp/modules/15-ef-core/overview.ru.md)
 - Другая структура индекса: [анализ текста в OpenSearch](../../../opensearch/modules/02-mappings-and-analysis/overview.ru.md)
+- [06 · Транзакции](../06-transactions/overview.ru.md)

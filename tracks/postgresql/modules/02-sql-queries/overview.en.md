@@ -67,6 +67,7 @@ ORDER BY total DESC;
 - [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
 - [04 · Joins and subqueries](../04-joins-and-subqueries/overview.en.md)
 - [05 · Indexes](../05-indexes/overview.en.md)
+- [06 · Transactions](../06-transactions/overview.en.md)
 
 ## Sources
 

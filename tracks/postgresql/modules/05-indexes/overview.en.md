@@ -87,3 +87,4 @@ EXPLAIN (COSTS OFF) SELECT * FROM events WHERE user_id = 42 ORDER BY created_at 
 - Why indexes shape a design: [data storage](../../../system-design/modules/04-data-storage/overview.en.md)
 - From .NET: [EF Core](../../../csharp/modules/15-ef-core/overview.en.md)
 - A different index structure: [OpenSearch text analysis](../../../opensearch/modules/02-mappings-and-analysis/overview.en.md)
+- [06 · Transactions](../06-transactions/overview.en.md)

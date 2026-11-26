@@ -62,3 +62,4 @@ Execute("INSERT INTO outbox (payload) VALUES ($a)", $"OrderPlaced:{orderId}");
 - Next: [architecture styles](../11-architecture-styles/overview.en.md)
 - In other tracks: [sagas in MassTransit](../../../csharp/libraries/masstransit/overview.en.md), [transactions in EF Core](../../../csharp/modules/15-ef-core/overview.en.md)
 - [Event sourcing and CQRS](../13-event-sourcing-and-cqrs/overview.en.md)
+- [Transactions in PostgreSQL](../../../postgresql/modules/06-transactions/overview.en.md)

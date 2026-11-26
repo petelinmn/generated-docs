@@ -80,3 +80,4 @@ EF generates `SELECT "p"."Title" FROM "Posts" … WHERE … "p"."Likes" >= @minL
 - [System design: consistency and CAP](../../../system-design/modules/07-consistency-and-cap/overview.en.md)
 - [System design: distributed transactions](../../../system-design/modules/10-distributed-transactions/overview.en.md)
 - [Indexes in PostgreSQL](../../../postgresql/modules/05-indexes/overview.en.md)
+- [Transactions in PostgreSQL](../../../postgresql/modules/06-transactions/overview.en.md)

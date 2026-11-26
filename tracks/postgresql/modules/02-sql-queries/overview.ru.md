@@ -67,6 +67,7 @@ ORDER BY total DESC;
 - [System design: выбор хранилища](../../../system-design/modules/04-data-storage/overview.ru.md)
 - [04 · Соединения и подзапросы](../04-joins-and-subqueries/overview.ru.md)
 - [05 · Индексы](../05-indexes/overview.ru.md)
+- [06 · Транзакции](../06-transactions/overview.ru.md)
 
 ## Источники
 

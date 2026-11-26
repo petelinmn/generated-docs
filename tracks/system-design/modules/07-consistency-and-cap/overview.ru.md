@@ -64,3 +64,4 @@ public static bool HasQuorum(int reachable, int n) => reachable > n / 2;
 - [Консенсус и координация](../12-consensus-and-coordination/overview.ru.md)
 - [Event sourcing и CQRS](../13-event-sourcing-and-cqrs/overview.ru.md)
 - [Несколько регионов и восстановление](../16-multi-region-and-dr/overview.ru.md)
+- [Транзакции в PostgreSQL](../../../postgresql/modules/06-transactions/overview.ru.md)
