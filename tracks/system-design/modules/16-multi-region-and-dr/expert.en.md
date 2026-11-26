@@ -31,6 +31,43 @@ flowchart LR
     A -->|backups| V[(Isolated vault)]
 ```
 
+### Global databases and consistency levels
+
+Azure Cosmos DB offers five levels, from strongest to weakest: Strong, Bounded staleness, Session, Consistent prefix, Eventual. An account with multiple write regions cannot use Strong. Choosing a level is the same [PACELC](../07-consistency-and-cap/advanced.en.md) trade-off expressed as a setting.
+
+### How long DNS failover takes
+
+The time is more than the TTL: first several failed probes, then the record change, and only then do caches expire.
+
+```csharp
+public static TimeSpan WorstCase(TimeSpan probeInterval, int failuresNeeded, TimeSpan recordUpdate, TimeSpan ttl) =>
+    probeInterval * failuresNeeded + recordUpdate + ttl;
+```
+
+Probes every 30 s, three failures, 30 s to update and a TTL of 60 s give 180 seconds. Clients that ignore the TTL switch even later. Anycast does not depend on DNS caches: the route changes. File: [Ex04_Drill.cs](code/Examples/Ex04_Drill.cs).
+
+### Immutable backups
+
+A copy that cannot be deleted before its date is not destroyed even by a compromised account. In S3 Object Lock compliance mode nobody, including root, can delete or overwrite a version, and the period cannot be shortened; governance mode allows users with a special permission to bypass it. The period can be extended in both modes.
+
+```csharp
+public bool TryDelete(string name) =>
+    _objects.TryGetValue(name, out var o) && clock.GetUtcNow() >= o.RetainUntil && _objects.Remove(name);
+```
+
+This models the idea, not a storage API.
+
+### Drills (game days)
+
+A scenario, goals and stop conditions are set in advance, recovery is performed by the runbook, and the actuals are compared with the targets.
+
+```csharp
+TimeSpan recovery = serviceRestored - failure, loss = failure - newestRecoveredWrite;
+return new(recovery, loss, recovery <= rto, loss <= rpo);
+```
+
+Recovery in 45 minutes against a target of 30 is a drill result that has to be written down and fixed.
+
 ## Reference
 
 | Scenario | Helps | Does not help |
@@ -47,6 +84,18 @@ flowchart LR
 | LWW | one is lost |
 | OR-Set | an add beats a removal that had not seen it |
 | Application | by a business rule |
+
+| Drill step | What is checked |
+|---|---|
+| Restore from a backup | backups are readable and complete |
+| Traffic switch | routing and caches |
+| Running without the primary region | hidden dependencies |
+| Failback | moving the data accumulated meanwhile |
+
+| S3 Object Lock mode | Who can delete before the date |
+|---|---|
+| Governance | users with a special permission |
+| Compliance | nobody |
 
 ## Gotchas
 
@@ -67,6 +116,14 @@ Removed tags in the example are kept forever: to drop them you need to know that
 ### A fast LWW still loses data
 
 In the test, merging baskets with stamps 1 and 2 took the second one whole: the `pen` added in the first vanished without an error.
+
+### Compliance mode cannot be undone
+
+A long period set by mistake in compliance mode cannot be shortened: you will pay for the storage. Try the policy in governance mode first.
+
+### The TTL is not the whole failover time
+
+With a TTL of 60 s the estimated worst case in the example is 180 s.
 
 ## Trade-offs and alternatives
 
@@ -160,6 +217,46 @@ Not if replication is asynchronous; and on data corruption you restore from a ba
 
 </details>
 
+**11. Can you get Strong in Cosmos DB with multiple write regions?**
+
+<details><summary>Answer</summary>
+
+No.
+
+</details>
+
+**12. What makes up DNS failover time?**
+
+<details><summary>Answer</summary>
+
+Detection, the record change, expiry of caches by TTL.
+
+</details>
+
+**13. Governance or compliance?**
+
+<details><summary>Answer</summary>
+
+The first allows a bypass with a special permission, the second allows nobody.
+
+</details>
+
+**14. What do you record after a drill?**
+
+<details><summary>Answer</summary>
+
+Actual RTO and RPO, deviations and fixes with owners.
+
+</details>
+
+**15. Trick question: the drill succeeded a year ago. Is that enough?**
+
+<details><summary>Answer</summary>
+
+No: the system and its dependencies change.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -168,3 +265,5 @@ Not if replication is asynchronous; and on data corruption you restore from a ba
 ## Sources
 
 - [AWS: disaster recovery options](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)
+- [Azure Cosmos DB: consistency levels](https://learn.microsoft.com/azure/cosmos-db/consistency-levels)
+- [Amazon S3 Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html)

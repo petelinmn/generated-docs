@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Time.Testing;
 using MultiRegion.Examples;
 
 public class RecoveryTests
@@ -76,5 +77,42 @@ public class ActiveActiveTests
 
         Assert.Equal(["book", "mug"], eu.Items);
         Assert.Equal(eu.Items, us.Items);
+    }
+}
+
+public class DrillTests
+{
+    [Fact]
+    public void Ttl_is_only_a_part_of_dns_failover() =>
+        Assert.Equal(TimeSpan.FromSeconds(180), DnsFailover.WorstCase(
+            TimeSpan.FromSeconds(30), 3, TimeSpan.FromSeconds(30), TimeSpan.FromSeconds(60)));
+
+    [Fact]
+    public void A_drill_is_compared_with_the_targets()
+    {
+        var failure = new DateTimeOffset(2026, 1, 1, 12, 0, 0, TimeSpan.Zero);
+
+        DrillResult result = Drill.Evaluate(failure, failure.AddMinutes(45), failure.AddSeconds(-30),
+            rto: TimeSpan.FromMinutes(30), rpo: TimeSpan.FromMinutes(1));
+
+        Assert.Equal((false, true), (result.MeetsRto, result.MeetsRpo));
+    }
+}
+
+public class ImmutableTests
+{
+    [Fact]
+    public void Nothing_can_be_removed_before_the_retention_date()
+    {
+        var clock = new FakeTimeProvider();
+        var store = new ImmutableStore(clock);
+        var week = TimeSpan.FromDays(7);
+
+        Assert.True(store.TryPut("b1", [1], week));
+        Assert.False(store.TryPut("b1", [2], week));
+        Assert.False(store.TryDelete("b1"));
+
+        clock.Advance(week);
+        Assert.True(store.TryDelete("b1"));
     }
 }

@@ -31,6 +31,43 @@ flowchart LR
     A -->|backups| V[(Isolated vault)]
 ```
 
+### Глобальные базы и уровни согласованности
+
+Azure Cosmos DB предлагает пять уровней, от сильного к слабому: Strong, Bounded staleness, Session, Consistent prefix, Eventual. Учётная запись с несколькими пишущими регионами не может использовать Strong. Выбор уровня — это тот же компромисс [PACELC](../07-consistency-and-cap/advanced.ru.md), оформленный как настройка.
+
+### Сколько занимает переключение по DNS
+
+Время складывается не только из TTL: сначала несколько неудачных проверок, затем изменение записи, и лишь потом истекают кэши.
+
+```csharp
+public static TimeSpan WorstCase(TimeSpan probeInterval, int failuresNeeded, TimeSpan recordUpdate, TimeSpan ttl) =>
+    probeInterval * failuresNeeded + recordUpdate + ttl;
+```
+
+Проверки раз в 30 с, три неудачи, 30 с на обновление и TTL 60 с дают 180 секунд. Клиенты, не соблюдающие TTL, переключатся ещё позже. Anycast не зависит от кэшей DNS: меняется маршрут. Файл: [Ex04_Drill.cs](code/Examples/Ex04_Drill.cs).
+
+### Неизменяемые копии
+
+Копию, которую нельзя удалить до срока, не уничтожит и захваченная учётная запись. В S3 Object Lock режим compliance не позволяет удалить или перезаписать версию никому, включая root, и срок нельзя сократить; режим governance разрешает обход пользователям со специальным правом. Срок можно продлевать в обоих режимах.
+
+```csharp
+public bool TryDelete(string name) =>
+    _objects.TryGetValue(name, out var o) && clock.GetUtcNow() >= o.RetainUntil && _objects.Remove(name);
+```
+
+Это модель идеи, а не API хранилища.
+
+### Учения (game days)
+
+Заранее назначают сценарий, цели и условия остановки, выполняют восстановление по инструкции и сравнивают факт с целями.
+
+```csharp
+TimeSpan recovery = serviceRestored - failure, loss = failure - newestRecoveredWrite;
+return new(recovery, loss, recovery <= rto, loss <= rpo);
+```
+
+Восстановление за 45 минут при цели 30 — результат учений, который нужно записать и исправить.
+
 ## Справочник
 
 | Сценарий | Помогает | Не помогает |
@@ -47,6 +84,18 @@ flowchart LR
 | LWW | одно теряется |
 | OR-Set | добавление побеждает невидевшее его удаление |
 | Приложение | по бизнес-правилу |
+
+| Шаг учений | Что проверяется |
+|---|---|
+| Восстановление из копии | копии читаются и полны |
+| Переключение трафика | маршрутизация и кэши |
+| Работа без основного региона | скрытые зависимости |
+| Failback | перенос накопившихся данных |
+
+| Режим S3 Object Lock | Кто может удалить до срока |
+|---|---|
+| Governance | пользователи со специальным разрешением |
+| Compliance | никто |
 
 ## Подвохи
 
@@ -67,6 +116,14 @@ Console.WriteLine(JsonSerializer.Serialize(DateTime.SpecifyKind(t, DateTimeKind.
 ### Быстрый LWW всё равно теряет данные
 
 В тесте объединение корзин с метками 1 и 2 выбрало вторую целиком: добавленный в первой `pen` исчез без ошибки.
+
+### Compliance-режим нельзя отменить
+
+Ошибочно заданный долгий срок в режиме compliance сократить нельзя: за хранение придётся платить. Сначала проверяют политику на governance.
+
+### TTL — не всё время переключения
+
+При TTL 60 с расчётное худшее время в примере — 180 с.
 
 ## Компромиссы и альтернативы
 
@@ -160,6 +217,46 @@ DNS и кэши, квоты, секреты, внешние зависимост
 
 </details>
 
+**11. Можно ли получить Strong в Cosmos DB с несколькими пишущими регионами?**
+
+<details><summary>Ответ</summary>
+
+Нет.
+
+</details>
+
+**12. Из чего складывается время переключения по DNS?**
+
+<details><summary>Ответ</summary>
+
+Обнаружение, изменение записи, истечение кэшей по TTL.
+
+</details>
+
+**13. Governance или compliance?**
+
+<details><summary>Ответ</summary>
+
+Первое допускает обход по особому праву, второе — никому.
+
+</details>
+
+**14. Что фиксируют по итогам учений?**
+
+<details><summary>Ответ</summary>
+
+Фактические RTO и RPO, отклонения и исправления с ответственными.
+
+</details>
+
+**15. Подвох: учения прошли успешно год назад. Достаточно?**
+
+<details><summary>Ответ</summary>
+
+Нет: система и зависимости меняются.
+
+</details>
+
 ## Связанные материалы
 
 - [Продвинутая теория](advanced.ru.md)
@@ -168,3 +265,5 @@ DNS и кэши, квоты, секреты, внешние зависимост
 ## Источники
 
 - [AWS: стратегии disaster recovery](https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)
+- [Azure Cosmos DB: уровни согласованности](https://learn.microsoft.com/azure/cosmos-db/consistency-levels)
+- [Amazon S3 Object Lock](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html)

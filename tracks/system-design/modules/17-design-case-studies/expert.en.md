@@ -30,6 +30,53 @@ flowchart LR
     R -.click event.-> Q[[Queue]] --> S[Analytics]
 ```
 
+### A distributed rate limiter
+
+The limit is shared by all instances, so the counter lives in a shared store, and "check and take" must be one atomic action. In Redis that is a Lua script: it runs atomically but blocks the server meanwhile, so it has to be short.
+
+```csharp
+tokens = Math.Min(capacity, tokens + (now - at).TotalSeconds * perSecond);
+
+bool allowed = tokens >= 1;
+```
+
+You have to decide what to do when the store is unavailable: let requests through or reject them. File: [Ex04_MoreCases.cs](code/Examples/Ex04_MoreCases.cs).
+
+### Chat
+
+Order is set by a number within the dialog (not by shared clocks), a resend is recognized by a client identifier, an offline client asks for everything after the last number.
+
+```csharp
+public IReadOnlyList<string> After(long number) => _messages[(int)number..];
+```
+
+Next: partition by dialog, persistent connections and a separate service that knows which node the recipient is connected to.
+
+### Autocomplete
+
+The best suggestions are stored in advance for every prefix: a read is one lookup by key, and updating frequencies rebuilds the index in batches.
+
+### File storage
+
+A file is split into parts addressed by the hash of their content: an upload can be resumed, identical parts are stored once, and metadata holds the list of parts. In the test, inserting one byte at the start shifts all boundaries and no part matches; content-defined variable-length chunks are used against that.
+
+### A payment system
+
+Entries are only appended and always in pairs: the debit and the credit sum to zero; an operation has an identifier and is applied once; money is stored as integer minor units.
+
+```csharp
+if (!_transfers.Add(transferId)) return false;
+
+_entries.Add((from, -cents));
+_entries.Add((to, cents));
+```
+
+An external provider may not answer: you need an "unknown" state, reconciliation and an idempotent retry.
+
+### Geo search
+
+A geohash turns coordinates into a string where a common prefix usually means closeness, and searching neighbours becomes a prefix search. The code is checked on the example `57.64911, 10.40744` → `u4pruydqqvj`. File: [Ex05_Geohash.cs](code/Examples/Ex05_Geohash.cs).
+
 ## Reference
 
 | Problem | Main bottleneck | Techniques |
@@ -46,6 +93,15 @@ flowchart LR
 | How do you delete a user's data? | |
 | What happens at 10x growth? | |
 | Where are duplicates possible? | |
+
+| Problem | Partition key | Main invariant |
+|---|---|---|
+| Rate limiter | client | check and take are atomic |
+| Chat | dialog | order within a dialog |
+| Autocomplete | prefix | fast reads, batch updates |
+| Files | part hash | integrity and deduplication |
+| Payments | account | entries sum to zero |
+| Geo search | cell | look in neighbouring cells too |
 
 ## Gotchas
 
@@ -70,6 +126,14 @@ Result: `+//+` — the characters `/` and `+` break a URL. Use base62 or Base64U
 ### The case of a code matters
 
 Base62 distinguishes `aB` from `Ab`. A case-insensitive comparison (a collection with `OrdinalIgnoreCase` or a database with such a collation) would merge different links.
+
+### Neighbours with different prefixes
+
+The points `(10, -0.0001)` and `(10, 0.0001)` are tens of meters apart, yet their geohashes differ already in the first character. Always check neighbouring cells and compute the real distance.
+
+### One byte breaks chunk deduplication
+
+In the test, inserting a character at the start added three new parts out of three.
 
 ## Trade-offs and alternatives
 
@@ -163,6 +227,46 @@ By clarifying activity and operations: the number of registered users alone does
 
 </details>
 
+**11. How do you make a limit shared by several instances?**
+
+<details><summary>Answer</summary>
+
+A shared store with an atomic check and take, or local quotas with periodic synchronization.
+
+</details>
+
+**12. How do you order chat messages?**
+
+<details><summary>Answer</summary>
+
+By a number within the dialog issued by the single owner of the partition.
+
+</details>
+
+**13. Why must money not be stored in a `double`?**
+
+<details><summary>Answer</summary>
+
+A binary fraction cannot represent decimal amounts exactly; use integer minor units or `decimal`.
+
+</details>
+
+**14. How do you find nearby objects with a geohash?**
+
+<details><summary>Answer</summary>
+
+Search the own and neighbouring cells, then filter by distance.
+
+</details>
+
+**15. Trick question: the balance is a separate field updated on transfers. What can go wrong?**
+
+<details><summary>Answer</summary>
+
+It may diverge from the entries under concurrency or retries; atomicity and reconciliation with the ledger are needed.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -171,3 +275,5 @@ By clarifying activity and operations: the number of registered users alone does
 ## Sources
 
 - [RFC 9110: redirection codes](https://www.rfc-editor.org/rfc/rfc9110)
+- [Redis: Lua scripts](https://redis.io/docs/latest/develop/programmability/eval-intro/)
+- [Geohash](https://en.wikipedia.org/wiki/Geohash)

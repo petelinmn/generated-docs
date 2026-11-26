@@ -76,15 +76,9 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Modules are ge
 
 - [URL shortener under load](projects/url-shortener-service/overview.en.md) — API, cache, several instances, a load test
 
-## Level 3 expansion plan
+## Level 3
 
-All modules exist at level 6, but the expert files are still shorter than a reference should be. Modules 01–14 are already expanded. Below is what remains to be written; each item is closed with `/learn system-design <module> level 3`, after which the module is checked with `/verify`.
-
-| Module | What to add to the expert theory |
-|---|---|
-| 15 · Security | OAuth 2.0 and OIDC flows, mTLS and certificate rotation, secret stores, the supply chain (SBOM, signing), tenant isolation, an encryption key hierarchy |
-| 16 · Multi-region | global databases and their consistency levels, DNS and anycast failover time, game days, immutable backups |
-| 17 · Case studies | chat, a distributed rate limiter, search autocomplete, file storage, a payment system, geo search |
+The expert files of all 17 modules have been expanded according to the original plan. That does not replace an independent check: the materials stay `draft` until `/verify` has checked them.
 
 ## Related tracks
 
