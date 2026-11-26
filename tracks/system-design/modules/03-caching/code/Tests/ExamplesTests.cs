@@ -117,3 +117,75 @@ public class HybridCacheTests
         Assert.Equal(2, catalog.Loads);
     }
 }
+
+public class BackplaneTests
+{
+    [Fact]
+    public void A_lost_message_is_covered_only_by_the_ttl()
+    {
+        var clock = new FakeTimeProvider();
+        string source = "v1";
+        var a = new LocalCache(clock, TimeSpan.FromMinutes(1), _ => source);
+        var b = new LocalCache(clock, TimeSpan.FromMinutes(1), _ => source);
+        var backplane = new Backplane();
+        backplane.Subscribe(a);
+        backplane.Subscribe(b);
+        a.Get("k");
+        b.Get("k");
+
+        source = "v2";
+        backplane.Publish("k");
+        Assert.Equal(("v2", "v2"), (a.Get("k"), b.Get("k")));
+
+        backplane.Unsubscribe(b); // a network break
+        source = "v3";
+        backplane.Publish("k");
+        backplane.Subscribe(b);   // reconnected, the message is gone
+        Assert.Equal(("v3", "v2"), (a.Get("k"), b.Get("k")));
+
+        clock.Advance(TimeSpan.FromMinutes(1));
+        Assert.Equal("v3", b.Get("k"));
+    }
+}
+
+public class HashSlotTests
+{
+    [Fact]
+    public void Crc_check_value() => Assert.Equal(0x31C3, HashSlots.Crc16("123456789"u8));
+
+    [Fact]
+    public void Hash_tags_put_related_keys_into_one_slot()
+    {
+        Assert.Equal(HashSlots.SlotOf("{user1000}.following"), HashSlots.SlotOf("{user1000}.followers"));
+        Assert.Equal(HashSlots.SlotOf("bar"), HashSlots.SlotOf("foo{bar}{zap}"));
+        Assert.Equal(HashSlots.SlotOf("{bar"), HashSlots.SlotOf("foo{{bar}}zap"));
+        Assert.Equal(HashSlots.Crc16("foo{}{bar}"u8) % HashSlots.Count, HashSlots.SlotOf("foo{}{bar}"));
+    }
+}
+
+public class WarmingTests
+{
+    [Fact]
+    public async Task Warming_limits_concurrency_and_reports_failures()
+    {
+        int running = 0, peak = 0;
+        var gate = new SemaphoreSlim(0);
+        var lockObject = new Lock();
+
+        Task<IReadOnlyCollection<string>> warming = Warming.WarmAsync(
+            Enumerable.Range(0, 10).Select(i => $"{i}"),
+            async (key, token) =>
+            {
+                lock (lockObject) peak = Math.Max(peak, ++running);
+                await gate.WaitAsync(token);
+                lock (lockObject) running--;
+                if (key == "7") throw new InvalidOperationException();
+            },
+            maxConcurrency: 3,
+            TestContext.Current.CancellationToken);
+        gate.Release(10);
+
+        Assert.Equal(["7"], await warming);
+        Assert.InRange(peak, 1, 3);
+    }
+}

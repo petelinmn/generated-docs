@@ -98,3 +98,89 @@ public class QueryPlanTests
         Assert.DoesNotContain("SEARCH", db.Plan(Query));
     }
 }
+
+public class WriteAheadLogTests
+{
+    private static MemoryStream Written()
+    {
+        var log = new MemoryStream();
+        WriteAheadLog.Append(log, "a", "1");
+        WriteAheadLog.Append(log, "b", "2");
+        WriteAheadLog.Append(log, "a", "3");
+        return log;
+    }
+
+    private static Dictionary<string, string> Recover(byte[] bytes) => WriteAheadLog.Recover(new MemoryStream(bytes));
+
+    [Fact]
+    public void Replay_restores_the_last_values() =>
+        Assert.Equal("3", Recover(Written().ToArray())["a"]);
+
+    [Fact]
+    public void A_torn_or_damaged_tail_is_ignored()
+    {
+        byte[] full = Written().ToArray();
+        byte[] torn = full[..^2];
+        byte[] damaged = (byte[])full.Clone();
+        damaged[^1] ^= 0xFF;
+
+        Assert.Equal("1", Recover(torn)["a"]);
+        Assert.Equal("1", Recover(damaged)["a"]);
+        Assert.Equal("2", Recover(torn)["b"]);
+    }
+}
+
+public class ColumnarTests
+{
+    [Fact]
+    public void Columns_read_less_and_sorted_columns_compress()
+    {
+        Assert.Equal(1_000_000, Columnar.ValuesRead(1_000_000, 50, columnLayout: true));
+        Assert.Equal(50_000_000, Columnar.ValuesRead(1_000_000, 50, columnLayout: false));
+
+        string[] column = ["de", "de", "de", "fr", "fr", "us"];
+        Assert.Equal([("de", 3), ("fr", 2), ("us", 1)], Columnar.RunLengthEncode(column));
+        Assert.Equal(6, Columnar.RunLengthEncode(["de", "fr", "de", "fr", "de", "us"]).Count);
+    }
+}
+
+public class SnapshotTests
+{
+    [Fact]
+    public void Reader_does_not_see_a_commit_made_during_its_transaction()
+    {
+        string folder = Directory.CreateTempSubdirectory("sd04-").FullName;
+        try
+        {
+            Assert.Equal((1L, 2L), SnapshotDemo.Run(Path.Combine(folder, "demo.db")));
+        }
+        finally
+        {
+            Directory.Delete(folder, recursive: true);
+        }
+    }
+}
+
+public class BloomTests
+{
+    [Fact]
+    public void No_false_negatives_and_few_false_positives()
+    {
+        var filter = new BloomFilter(bits: 10_000, hashes: 7);
+        for (int i = 0; i < 1_000; i++) filter.Add($"in:{i}");
+
+        Assert.All(Enumerable.Range(0, 1_000), i => Assert.True(filter.MightContain($"in:{i}")));
+        int falsePositives = Enumerable.Range(0, 10_000).Count(i => filter.MightContain($"out:{i}"));
+        Assert.InRange(falsePositives / 10_000.0, 0.001, 0.02);
+    }
+}
+
+public class SecondaryLayoutTests
+{
+    [Fact]
+    public void A_global_index_asks_fewer_partitions_for_a_selective_query()
+    {
+        Assert.Equal(100, SecondaryLayout.PartitionsAsked(100, 2, globalIndex: false));
+        Assert.Equal(3, SecondaryLayout.PartitionsAsked(100, 2, globalIndex: true));
+    }
+}

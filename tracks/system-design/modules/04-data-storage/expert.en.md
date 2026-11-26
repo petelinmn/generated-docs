@@ -30,6 +30,48 @@ flowchart LR
     R --> S2
 ```
 
+### The write-ahead log (WAL)
+
+Changes to data files are written only after the log records describing them have been flushed to permanent storage. So a commit only needs to flush the log, and after a crash the state is recovered by replaying it.
+
+```csharp
+int length = BinaryPrimitives.ReadInt32LittleEndian(header);
+if (length < 0 || length > log.Length - log.Position) break; // cut off mid-record
+
+byte[] payload = new byte[length];
+log.ReadExactly(payload);
+if (!SHA256.HashData(payload).AsSpan(0, 4).SequenceEqual(header[4..])) break; // damaged
+```
+
+A torn or damaged tail is discarded: a record has a length and a checksum. File: [Ex04_WriteAheadLog.cs](code/Examples/Ex04_WriteAheadLog.cs). A real log also forces data to disk and is cleared at checkpoints.
+
+### MVCC and VACUUM
+
+With MVCC readers and writers do not block each other: `UPDATE` and `DELETE` do not erase the old row version at once. In PostgreSQL `VACUUM` frees the space when nobody can see the version; it also updates statistics and the visibility map and protects against transaction ID wraparound. Plain `VACUUM` runs alongside queries but generally does not return space to the operating system. `VACUUM FULL` rewrites the table and takes an exclusive lock; autovacuum never runs it.
+
+The same snapshot principle is visible in SQLite in WAL mode: a reader that started a transaction does not see a write committed later. File: [Ex06_Snapshot.cs](code/Examples/Ex06_Snapshot.cs). SQLite has one writer at a time.
+
+### Bloom filter
+
+It says "certainly not" or "possibly present" and lets you skip reading an LSM segment.
+
+```csharp
+// false: certainly absent. true: possibly present.
+public bool MightContain(string key) => Positions(key).All(i => _bits[i]);
+```
+
+| Bits | Hashes | False positives with 1000 keys |
+|---|---|---|
+| 10,000 | 7 | 0.84% |
+| 10,000 | 1 | 9.29% |
+| 5,000 | 7 | 14.09% |
+
+File: [Ex07_BloomAndIndexes.cs](code/Examples/Ex07_BloomAndIndexes.cs).
+
+### Columnar storage
+
+A row store reads a whole row, a column store only the needed columns: summing one of 50 columns over a million rows requires reading a million values instead of 50 million. Repeated values of a sorted column compress well, for example with run-length encoding. File: [Ex05_Columnar.cs](code/Examples/Ex05_Columnar.cs). This counts values, it does not measure time.
+
 ## Reference
 
 | Index kind | What for |
@@ -51,6 +93,26 @@ flowchart LR
 | a huge write stream, queries known in advance | wide-column |
 | text search and relevance | a search index |
 | analytics over large volumes | a columnar store |
+
+| Compaction style (RocksDB) | Lowest | Pays with |
+|---|---|---|
+| Leveled (classic) | space amplification | reads and writes |
+| Tiered (Universal) | write amplification | reads and space |
+| Tiered+Leveled (the default, Level) | a compromise | less writing than leveled, less space than tiered |
+| FIFO | old files are dropped | suits cache-like data |
+
+| Secondary index with partitioning | Write | Read through it |
+|---|---|---|
+| Local (each partition has its own) | in one partition | asks all partitions |
+| Global (partitioned by value) | updates another partition | only the needed partitions |
+
+In DynamoDB the names have their own meaning: an LSI has the same partition key as the table, is created only together with it and supports strongly consistent reads; a GSI may have a different key, can be added later and is read only with eventual consistency.
+
+| Store kind | What for |
+|---|---|
+| Row store (OLTP) | many short operations on whole rows |
+| Column store (OLAP) | aggregates over few columns of large tables |
+| Time-series | metrics and events over time: compression, expiry, downsampling |
 
 ## Gotchas
 
@@ -84,6 +146,10 @@ INSERT INTO users (name) VALUES (NULL);
 ```
 
 Both inserts succeed: in SQLite `NULL` values are not considered equal. The behavior differs between database systems.
+
+### A long reader stops SQLite from truncating the WAL
+
+While a read transaction was open, `PRAGMA wal_checkpoint(TRUNCATE)` returned `busy=1`, 4 frames in the log, 3 moved. After the transaction ended — `0,0,0`. Long transactions make the log grow; in PostgreSQL they similarly keep `VACUUM` from removing old versions.
 
 ## Trade-offs and alternatives
 
@@ -177,6 +243,46 @@ Check writes, size and other queries: the index has a cost and may duplicate an 
 
 </details>
 
+**11. What does the WAL guarantee?**
+
+<details><summary>Answer</summary>
+
+The description of a change is flushed before the data files themselves, so after a crash the changes can be redone.
+
+</details>
+
+**12. Why VACUUM with MVCC?**
+
+<details><summary>Answer</summary>
+
+To remove row versions nobody can see any more and to protect against transaction ID wraparound.
+
+</details>
+
+**13. What is dangerous about a long transaction?**
+
+<details><summary>Answer</summary>
+
+It prevents removing old versions or truncating the log: space grows and queries slow down.
+
+</details>
+
+**14. A local or a global secondary index?**
+
+<details><summary>Answer</summary>
+
+Local is cheaper to write, global is cheaper to read by a non-key field.
+
+</details>
+
+**15. Trick question: a Bloom filter said "possibly present" but the key is absent. Is that a bug?**
+
+<details><summary>Answer</summary>
+
+No, that is a false positive. A bug would be "no" for an existing key.
+
+</details>
+
 ## Related materials
 
 - [Advanced theory](advanced.en.md)
@@ -186,3 +292,8 @@ Check writes, size and other queries: the index has a cost and may duplicate an 
 
 - [SQLite: EXPLAIN QUERY PLAN](https://www.sqlite.org/eqp.html)
 - [SQLite: Query Planning](https://www.sqlite.org/queryplanner.html)
+- [PostgreSQL: Write-Ahead Logging](https://www.postgresql.org/docs/current/wal-intro.html)
+- [PostgreSQL: VACUUM](https://www.postgresql.org/docs/current/routine-vacuuming.html)
+- [SQLite: Write-Ahead Logging](https://www.sqlite.org/wal.html)
+- [RocksDB: Compaction](https://github.com/facebook/rocksdb/wiki/Compaction)
+- [DynamoDB: secondary indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html)
