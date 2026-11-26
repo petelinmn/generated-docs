@@ -8,7 +8,7 @@ slug: 04-data-storage
 part: 1
 tags: [system-design, data-modeling, database-index, b-tree, lsm-tree, query-plan, nosql]
 versions: ".NET 11, C# 15; Microsoft.Data.Sqlite 11.0.0"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

@@ -8,7 +8,7 @@ slug: 04-data-storage
 part: 1
 tags: [system-design, data-modeling, database-index, b-tree, lsm-tree, query-plan, nosql]
 versions: ".NET 11, C# 15; Microsoft.Data.Sqlite 11.0.0"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -100,6 +100,8 @@ public bool MightContain(string key) => Positions(key).All(i => _bits[i]);
 | Tiered (Universal) | усиление записи | чтением и пространством |
 | Tiered+Leveled (по умолчанию, Level) | компромисс | запись меньше, чем у leveled; пространство меньше, чем у tiered |
 | FIFO | старые файлы удаляются | подходит для данных вроде кэша |
+
+Первая строка — классическая схема для сравнения: в RocksDB она не реализована. RocksDB реализует Tiered+Leveled (в коде — Level), Tiered (Universal) и FIFO.
 
 | Вторичный индекс при партиционировании | Запись | Чтение по нему |
 |---|---|---|

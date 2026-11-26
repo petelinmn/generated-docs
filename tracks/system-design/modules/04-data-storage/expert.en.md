@@ -8,7 +8,7 @@ slug: 04-data-storage
 part: 1
 tags: [system-design, data-modeling, database-index, b-tree, lsm-tree, query-plan, nosql]
 versions: ".NET 11, C# 15; Microsoft.Data.Sqlite 11.0.0"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -100,6 +100,8 @@ A row store reads a whole row, a column store only the needed columns: summing o
 | Tiered (Universal) | write amplification | reads and space |
 | Tiered+Leveled (the default, Level) | a compromise | less writing than leveled, less space than tiered |
 | FIFO | old files are dropped | suits cache-like data |
+
+The first row is the classic scheme, given for comparison: RocksDB does not implement it. What RocksDB implements is Tiered+Leveled (called Level in the code), Tiered (Universal) and FIFO.
 
 | Secondary index with partitioning | Write | Read through it |
 |---|---|---|

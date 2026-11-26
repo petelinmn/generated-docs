@@ -9,7 +9,7 @@ part: 1
 levels: [1, 2, 3, 4, 5, 6]
 tags: [system-design, data-modeling, database-index, b-tree, lsm-tree, query-plan, nosql]
 versions: ".NET 11, C# 15; Microsoft.Data.Sqlite 11.0.0"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
