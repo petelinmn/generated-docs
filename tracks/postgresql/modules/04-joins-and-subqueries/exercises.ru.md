@@ -8,7 +8,7 @@ slug: 04-joins-and-subqueries
 part: 1
 tags: [join, subquery, cte, lateral, set-operations]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

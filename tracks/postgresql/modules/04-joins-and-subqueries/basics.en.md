@@ -8,7 +8,7 @@ slug: 04-joins-and-subqueries
 part: 1
 tags: [join, subquery, cte, lateral, set-operations]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -65,8 +65,13 @@ ORDER BY c.id, o.id;
 `ON` takes any boolean condition. `USING (col)` is a shorthand for equality of same-named columns and outputs that column once. Short aliases (`customers c`) keep the condition readable and are required when a table is joined with itself:
 
 ```sql
+CREATE TABLE employees (id int PRIMARY KEY, name text, manager_id int);
+INSERT INTO employees VALUES (1,'Root',NULL),(2,'Mid',1),(3,'Leaf',2);
+
 SELECT e.name, m.name AS manager
-FROM employees e LEFT JOIN employees m ON m.id = e.manager_id;
+FROM employees e LEFT JOIN employees m ON m.id = e.manager_id
+ORDER BY e.id;
+-- Root NULL | Mid Root | Leaf Mid
 ```
 
 ## Does a related row exist

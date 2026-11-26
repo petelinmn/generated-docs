@@ -8,7 +8,7 @@ slug: 07-views-functions
 part: 2
 tags: [view, materialized-view, plpgsql, stored-procedure, trigger]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -80,6 +80,20 @@ RESET ROLE;
 | `WITH [CASCADED \| LOCAL] CHECK OPTION` | записанное должно оставаться видимым |
 | `security_invoker` | проверять права вызывающего |
 | `security_barrier` | для представлений, скрывающих строки |
+
+### Событийные триггеры
+
+Обычные триггеры реагируют на данные, событийные — на DDL (`ddl_command_start`, `ddl_command_end`, `sql_drop`, `table_rewrite`, `login`); создаёт их суперпользователь.
+
+```sql
+CREATE FUNCTION log_ddl() RETURNS event_trigger LANGUAGE plpgsql AS
+$$ BEGIN RAISE NOTICE 'ddl: %', tg_tag; END $$;
+CREATE EVENT TRIGGER on_ddl ON ddl_command_end EXECUTE FUNCTION log_ddl();
+
+CREATE TABLE e (a int);   -- NOTICE:  ddl: CREATE TABLE
+```
+
+Их обычно используют для аудита изменений схемы и запрета некоторых из них.
 
 ## Подвохи
 

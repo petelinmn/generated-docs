@@ -8,7 +8,7 @@ slug: 05-indexes
 part: 2
 tags: [index, b-tree, gin, brin, query-plan]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -66,16 +66,18 @@ updated: 2026-11-26
 ### «Index Scan» может означать чтение всего индекса
 
 ```sql
+CREATE INDEX IF NOT EXISTS events_user_created ON events (user_id, created_at);   -- from basics
+DROP INDEX IF EXISTS events_btree_time;   -- if you created it in the advanced part
 -- only the second column of (user_id, created_at)
 EXPLAIN (ANALYZE, BUFFERS, COSTS OFF, TIMING OFF, SUMMARY OFF)
 SELECT * FROM events WHERE created_at = timestamptz '2026-01-02 00:00+00';
--- Index Scan using events_user_created ...   Buffers: shared hit=6 read=382
+-- Index Scan using events_user_created ...   Buffers: shared hit=1 read=386
 
 CREATE INDEX events_time ON events (created_at);
 -- Index Scan using events_time ...           Buffers: shared hit=1 read=2
 ```
 
-Оба плана называются `Index Scan`; один прочитал 388 буферов, другой 3.
+Оба плана называются `Index Scan`; один прочитал 387 буферов, другой 3. Как они делятся на `hit` и `read`, зависит от кэша.
 
 ### Unique не значит «один NULL»
 

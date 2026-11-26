@@ -8,7 +8,7 @@ slug: 08-json-and-operators
 part: 2
 tags: [jsonb, json, jsonpath, gin, operators]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

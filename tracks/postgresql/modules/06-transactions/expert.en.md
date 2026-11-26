@@ -8,7 +8,7 @@ slug: 06-transactions
 part: 2
 tags: [transaction, isolation-level, mvcc, locks, deadlock]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -25,6 +25,7 @@ updated: 2026-11-26
 Every row version records `xmin`, the transaction that created it, and `xmax`, which marks deletion or locking. `ctid` is the physical position. An `UPDATE` writes a new version elsewhere:
 
 ```sql
+-- transaction numbers differ on every server; compare them with each other
 SELECT xmin, xmax, ctid, balance FROM accounts WHERE id = 1;   -- 790 | 0 | (0,1) | 100
 UPDATE accounts SET balance = 101 WHERE id = 1;
 SELECT xmin, xmax, ctid, balance FROM accounts WHERE id = 1;   -- 791 | 0 | (0,3) | 101
@@ -59,6 +60,7 @@ There are eight table-level lock modes, from `ACCESS SHARE` (taken by `SELECT`) 
 | `SAVEPOINT`, `ROLLBACK TO`, `RELEASE` | partial rollback |
 | `LOCK TABLE ... IN ... MODE` | explicit table lock |
 | `pg_advisory_lock`, `pg_advisory_xact_lock` | application locks for a session or a transaction |
+| `PREPARE TRANSACTION 'id'`, `COMMIT PREPARED`, `ROLLBACK PREPARED` | two-phase commit; off by default (`max_prepared_transactions = 0`): `ERROR:  prepared transactions are disabled` |
 
 | Setting | Default | Limits |
 |---|---|---|

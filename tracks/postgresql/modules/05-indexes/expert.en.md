@@ -8,7 +8,7 @@ slug: 05-indexes
 part: 2
 tags: [index, b-tree, gin, brin, query-plan]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -66,16 +66,18 @@ An index may have up to 32 columns, including `INCLUDE` columns.
 ### "Index Scan" can mean reading the whole index
 
 ```sql
+CREATE INDEX IF NOT EXISTS events_user_created ON events (user_id, created_at);   -- from basics
+DROP INDEX IF EXISTS events_btree_time;   -- if you created it in the advanced part
 -- only the second column of (user_id, created_at)
 EXPLAIN (ANALYZE, BUFFERS, COSTS OFF, TIMING OFF, SUMMARY OFF)
 SELECT * FROM events WHERE created_at = timestamptz '2026-01-02 00:00+00';
--- Index Scan using events_user_created ...   Buffers: shared hit=6 read=382
+-- Index Scan using events_user_created ...   Buffers: shared hit=1 read=386
 
 CREATE INDEX events_time ON events (created_at);
 -- Index Scan using events_time ...           Buffers: shared hit=1 read=2
 ```
 
-Both plans say `Index Scan`; one touched 388 buffers, the other 3.
+Both plans say `Index Scan`; one touched 387 buffers, the other 3. How they split into `hit` and `read` depends on the cache.
 
 ### Unique does not mean "one NULL"
 

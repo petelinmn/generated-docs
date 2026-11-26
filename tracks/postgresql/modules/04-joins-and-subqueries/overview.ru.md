@@ -9,7 +9,7 @@ part: 1
 levels: [1, 2, 3, 4]
 tags: [join, subquery, cte, lateral, set-operations]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

@@ -8,7 +8,7 @@ slug: 07-views-functions
 part: 2
 tags: [view, materialized-view, plpgsql, stored-procedure, trigger]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -19,6 +19,8 @@ updated: 2026-11-26
 **Levels:** [overview](overview.en.md) · [1. Basics](basics.en.md) · **2. Advanced** · [3. Expert](expert.en.md) · [4. Quiz](quiz.en.md)
 
 ## Updatable views
+
+The examples continue from [basics](basics.en.md): the `products` table and the `active_products` view.
 
 A view with exactly one table (or updatable view) in `FROM` and without `DISTINCT`, `GROUP BY`, `HAVING`, `LIMIT`, `OFFSET`, `WITH`, set operations, aggregates, window or set-returning functions in the select list accepts `INSERT`, `UPDATE` and `DELETE`.
 
@@ -92,7 +94,7 @@ ROLLBACK;
 SELECT fill(1);  -- ERROR:  fill(integer) is a procedure
 ```
 
-A procedure may `COMMIT` and `ROLLBACK` when called at the top level. It cannot do so inside an explicit transaction block, and transaction control is not allowed inside a block with an exception handler.
+A procedure may `COMMIT` and `ROLLBACK` when called at the top level; so may an anonymous `DO` block. It cannot do so inside an explicit transaction block, and transaction control is not allowed inside a block with an exception handler.
 
 ## Triggers
 

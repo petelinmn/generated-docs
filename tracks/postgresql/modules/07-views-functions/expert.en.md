@@ -8,7 +8,7 @@ slug: 07-views-functions
 part: 2
 tags: [view, materialized-view, plpgsql, stored-procedure, trigger]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -80,6 +80,20 @@ For `SECURITY DEFINER` set `search_path` to schemas untrusted users cannot write
 | `WITH [CASCADED \| LOCAL] CHECK OPTION` | writes must stay visible |
 | `security_invoker` | check rights of the caller |
 | `security_barrier` | for row-hiding views |
+
+### Event triggers
+
+Ordinary triggers react to data; event triggers react to DDL (`ddl_command_start`, `ddl_command_end`, `sql_drop`, `table_rewrite`, `login`) and are created by a superuser.
+
+```sql
+CREATE FUNCTION log_ddl() RETURNS event_trigger LANGUAGE plpgsql AS
+$$ BEGIN RAISE NOTICE 'ddl: %', tg_tag; END $$;
+CREATE EVENT TRIGGER on_ddl ON ddl_command_end EXECUTE FUNCTION log_ddl();
+
+CREATE TABLE e (a int);   -- NOTICE:  ddl: CREATE TABLE
+```
+
+Typical uses are auditing schema changes and forbidding some of them.
 
 ## Gotchas
 

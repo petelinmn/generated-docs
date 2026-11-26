@@ -8,7 +8,7 @@ slug: 06-transactions
 part: 2
 tags: [transaction, isolation-level, mvcc, locks, deadlock]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -25,6 +25,7 @@ updated: 2026-11-26
 В каждой версии строки записаны `xmin` — создавшая её транзакция, и `xmax`, отмечающий удаление или блокировку. `ctid` — физическое положение. `UPDATE` записывает новую версию в другое место:
 
 ```sql
+-- номера транзакций на каждом сервере свои; сравнивайте их между собой
 SELECT xmin, xmax, ctid, balance FROM accounts WHERE id = 1;   -- 790 | 0 | (0,1) | 100
 UPDATE accounts SET balance = 101 WHERE id = 1;
 SELECT xmin, xmax, ctid, balance FROM accounts WHERE id = 1;   -- 791 | 0 | (0,3) | 101
@@ -59,6 +60,7 @@ Serializable работает на снимках, как Repeatable Read, и д
 | `SAVEPOINT`, `ROLLBACK TO`, `RELEASE` | частичный откат |
 | `LOCK TABLE ... IN ... MODE` | явная табличная блокировка |
 | `pg_advisory_lock`, `pg_advisory_xact_lock` | прикладные блокировки на сессию или транзакцию |
+| `PREPARE TRANSACTION 'id'`, `COMMIT PREPARED`, `ROLLBACK PREPARED` | двухфазная фиксация; по умолчанию выключена (`max_prepared_transactions = 0`): `ERROR:  prepared transactions are disabled` |
 
 | Настройка | По умолчанию | Что ограничивает |
 |---|---|---|

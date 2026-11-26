@@ -9,7 +9,7 @@ part: 2
 levels: [1, 2, 3, 4]
 tags: [transaction, isolation-level, mvcc, locks, deadlock]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

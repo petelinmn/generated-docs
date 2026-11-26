@@ -8,7 +8,7 @@ slug: 04-joins-and-subqueries
 part: 1
 tags: [join, subquery, cte, lateral, set-operations]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -85,9 +85,7 @@ Without `LATERAL` a subquery in `FROM` cannot see `c.id`. `LEFT JOIN LATERAL ...
 ## Recursive CTE
 
 ```sql
-CREATE TABLE employees (id int PRIMARY KEY, name text, manager_id int);
-INSERT INTO employees VALUES (1,'Root',NULL),(2,'Mid',1),(3,'Leaf',2);
-
+-- employees from basics: Root <- Mid <- Leaf
 WITH RECURSIVE chain AS (
     SELECT id, name, 1 AS depth FROM employees WHERE manager_id IS NULL
     UNION ALL

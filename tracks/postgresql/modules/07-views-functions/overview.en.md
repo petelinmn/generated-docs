@@ -9,7 +9,7 @@ part: 2
 levels: [1, 2, 3, 4]
 tags: [view, materialized-view, plpgsql, stored-procedure, trigger]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
@@ -27,7 +27,7 @@ A view is a saved query that behaves like a table. A function is code stored in 
 - Simple views are updatable; `WITH CHECK OPTION` stops rows from escaping the view.
 - `SELECT *` in a view is expanded once, when the view is created.
 - Volatility (`VOLATILE`, `STABLE`, `IMMUTABLE`) is a promise the planner relies on.
-- Only a procedure called with `CALL` can commit inside its body.
+- A function cannot commit; a procedure called with `CALL` and a `DO` block can.
 - `BEFORE` triggers can change or skip a row, `AFTER` triggers react to it.
 - `SECURITY DEFINER` runs with the owner's rights and needs a fixed `search_path`.
 

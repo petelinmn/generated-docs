@@ -8,7 +8,7 @@ slug: 05-indexes
 part: 2
 tags: [index, b-tree, gin, brin, query-plan]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 

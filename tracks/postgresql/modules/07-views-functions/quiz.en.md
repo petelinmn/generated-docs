@@ -8,7 +8,7 @@ slug: 07-views-functions
 part: 2
 tags: [view, materialized-view, plpgsql, stored-procedure, trigger]
 versions: "PostgreSQL 17+"
-status: draft
+status: verified
 updated: 2026-11-26
 ---
 
