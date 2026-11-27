@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, custom-hooks, hooks, use-sync-external-store, reuse]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Пользовательские хуки
@@ -65,3 +65,4 @@ export function useToggle(initial = false) {
 - Замыкания, на которых держатся хуки: [замыкания в JavaScript](../../../javascript/modules/10-closures-and-functional/overview.ru.md)
 - Обобщённые типы для хуков: [трек TypeScript](../../../typescript/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [10 · Тестирование](../10-testing/overview.ru.md)

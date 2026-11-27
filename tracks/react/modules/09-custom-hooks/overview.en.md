@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, custom-hooks, hooks, use-sync-external-store, reuse]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Custom hooks
@@ -65,3 +65,4 @@ export function useToggle(initial = false) {
 - Closures that hooks rely on: [closures in JavaScript](../../../javascript/modules/10-closures-and-functional/overview.en.md)
 - Generic types for hooks: [TypeScript track](../../../typescript/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [10 · Testing](../10-testing/overview.en.md)

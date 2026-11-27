@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, forms, controlled-components, validation, form-data]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Формы
@@ -65,3 +65,4 @@ function Upper() {
 - Формы в DOM: [DOM и события в браузере](../../../javascript/modules/17-browser-dom-and-events/overview.ru.md)
 - Проверка на сервере: [проектирование API](../../../system-design/modules/05-api-design/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [10 · Тестирование](../10-testing/overview.ru.md)

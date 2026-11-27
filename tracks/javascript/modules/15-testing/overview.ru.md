@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [testing, node-test, assert, mock, fake-timers, coverage, snapshot, test-runner]
 versions: "Node.js 24.15 LTS (node:test, node:assert)"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Тестирование
@@ -80,3 +80,4 @@ $ node --test
 - Пререквизиты: [14 · Ошибки и отладка](../14-errors-and-debugging/overview.ru.md), [12 · Промисы и async/await](../12-promises-and-async-await/overview.ru.md), [09 · Модули](../09-modules/overview.ru.md)
 - Дальше: [16 · Node.js: файлы, потоки, процессы](../16-nodejs-files-streams-processes/overview.ru.md)
 - Аналоги в других треках: [C#: модульное тестирование](../../../csharp/modules/16-testing-unit/overview.ru.md), [Python](../../../python/overview.ru.md) (pytest), [TypeScript](../../../typescript/overview.ru.md) (vitest)
+- [Тестирование компонентов React](../../../react/modules/10-testing/overview.ru.md)

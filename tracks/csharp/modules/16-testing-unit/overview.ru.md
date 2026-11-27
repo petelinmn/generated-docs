@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [unit-testing, xunit, arrange-act-assert, theory, fixtures, mocking, code-coverage]
 versions: ".NET 11, C# 15; xunit.v3 4.0.3; NSubstitute 5.3.0"
 status: draft
-updated: 2026-11-22
+updated: 2026-11-26
 ---
 
 # Unit-тесты
@@ -74,3 +74,4 @@ public class CalculatorTests
 - Архитектурные тесты: [21 · Архитектура приложений](../21-architecture/overview.ru.md)
 - То же в других треках: [Python](../../../python/overview.ru.md) — pytest
 - Рецепты и библиотеки: [FluentValidation](../../libraries/fluentvalidation/overview.ru.md), [NSubstitute](../../libraries/nsubstitute/overview.ru.md), [Spectre.Console](../../libraries/spectre-console/overview.ru.md), [Testcontainers](../../libraries/testcontainers/overview.ru.md)
+- [Тестирование компонентов React](../../../react/modules/10-testing/overview.ru.md)
