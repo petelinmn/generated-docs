@@ -8,8 +8,8 @@ slug: 04-oop-basics
 part: 1
 tags: [object-layout, virtual-dispatch, callvirt, backing-field, init-accessor, required-members, primary-constructor, access-modifiers, object-methods, interview-questions]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-22
+status: verified
+updated: 2026-11-27
 ---
 
 # OOP: classes and objects: expert
@@ -26,7 +26,7 @@ A class instance is an object on the managed heap ([12 · Memory and GC](../12-m
 
 ### How the compiler calls methods
 
-To call an instance method, C# emits the IL instruction `callvirt`, **even for non-virtual methods**: this performs the `null` check of `this` (otherwise calling a method on `null` would silently work). For static methods it emits `call`. Verified by reading the IL: a method calling `t.NonVirtual()` and a method calling `t.Virt()` both contain `callvirt`, while the call `Target.St()` contains `call`.
+To call a method of a class instance through a reference, C# usually emits the IL instruction `callvirt`, **even if the method is not virtual**: this performs the `null` check of the receiver. When the compiler knows the receiver is not `null`, it emits `call` for a non-virtual method: `this.M()` and `new T().M()`. `base.M()` also uses `call`, and so do static methods. Verified by reading the IL: `t.NonVirtual()` and `t.Virt()` through a parameter compile to `callvirt`; `Target.St()`, `new Target().Plain()` and a call of an own method without a receiver compile to `call`.
 
 For a virtual method, when it executes `callvirt` the runtime looks into the method table of the actual type and calls the most derived implementation. All polymorphic behavior follows from this: `override` replaces an entry in the table, while `new` does not.
 
@@ -78,7 +78,7 @@ There is also `file` — a type visible only in one source file (for generated c
 | `abstract` | class, member | cannot be instantiated / no implementation |
 | `sealed` | class, override | forbids inheritance / overriding |
 | `static` | class, member | belongs to the type; a static class is `abstract sealed` in metadata |
-| `partial` | class, method | the definition is in several parts |
+| `partial` | type, method, property and indexer (C# 13), constructor and event (C# 14) | the definition is in several parts |
 | `virtual` / `override` / `new` | member | replaceable / replacing / hiding |
 | `readonly` | field | changed only in the constructor |
 | `required` | property, field | a value is mandatory on initialization |
@@ -94,6 +94,70 @@ There is also `file` — a type visible only in one source file (for generated c
 | `GetType()` | the exact runtime type | not overridable |
 | `MemberwiseClone()` | a shallow copy (protected) | for cloning |
 | `Finalize()` | empty | through the `~T()` syntax |
+| `Equals(a, b)`, `ReferenceEquals(a, b)` (static) | the first handles `null` and calls `a.Equals(b)`; the second compares references | not overridable |
+
+## Other class features
+
+```csharp
+Animal animal = new Cat();
+Console.WriteLine(animal.Create().GetType().Name);   // Cat
+Console.WriteLine(new Cat().Create().Name);          // cat — the static type is already Cat
+
+var (x, y) = new Point(1, 2);                        // calls Deconstruct
+double degrees = new Celsius(100);                   // implicit conversion
+var back = (Celsius)36.6;                            // explicit conversion
+
+var tag = new Tag("a");                              // no initializer needed
+var id = Id.Create(5);                               // new Id(5) does not compile
+Console.WriteLine(new Loud().Say());                 // HI!
+
+class Animal { public virtual Animal Create() => new Animal(); }
+class Cat : Animal
+{
+    public string Name => "cat";
+    public override Cat Create() => new Cat();       // covariant return (C# 9)
+}
+
+class Point(int x, int y)
+{
+    public void Deconstruct(out int px, out int py) { px = x; py = y; }
+}
+
+class Celsius(double degrees)
+{
+    public double Degrees => degrees;
+    public static implicit operator double(Celsius c) => c.Degrees;
+    public static explicit operator Celsius(double d) => new(d);
+}
+
+class Tag
+{
+    public required string Name { get; init; }
+    public Tag() { }
+    [System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+    public Tag(string name) => Name = name;
+}
+
+class Id
+{
+    public int Value { get; }
+    private Id(int value) => Value = value;          // only the class itself can create
+    public static Id Create(int value) => new(value);
+}
+
+class Quiet { public virtual string Say() => "hi"; }
+class Loud : Quiet { public override string Say() => base.Say().ToUpper() + "!"; }
+```
+
+| Feature | Rule |
+|---|---|
+| Covariant return | an `override` method or read-only property may return a more derived type |
+| `base.M()` | calls the base implementation, bypassing the override |
+| `Deconstruct` | `out` parameters enable `var (x, y) = obj` |
+| `implicit` / `explicit operator` | user-defined conversions; make it `explicit` if information can be lost |
+| `SetsRequiredMembers` | the constructor promises to set all `required` members; the compiler does not check that promise |
+| Private constructor | creation only through factory methods |
+| Primary constructor and other constructors | every other explicit constructor must chain with `this(...)` |
 
 ## Gotchas
 
@@ -287,7 +351,7 @@ Once per type, before the first instance is created or the first static member i
 
 <details><summary>Answer</summary>
 
-`const` is a compile-time constant, its value is substituted into code (in metadata the field is `static literal`); it is possible only for simple types and strings. `static readonly` is computed at run time, can be of any type, and its value is not "baked into" other assemblies. For values that may change, use `static readonly`.
+`const` is a compile-time constant, its value is substituted into code (in metadata the field is `static literal`); it is possible only for numbers, `bool`, `char`, enums, strings, and `null` for reference types. `static readonly` is computed at run time, can be of any type, and its value is not "baked into" other assemblies. For values that may change, use `static readonly`.
 
 </details>
 
@@ -295,7 +359,7 @@ Once per type, before the first instance is created or the first static member i
 
 <details><summary>Answer</summary>
 
-To get a `null` check: calling a method on a `null` reference must throw `NullReferenceException`. Verified by reading the IL: non-virtual and virtual calls both give `callvirt`, a static one gives `call`.
+To get a `null` check: calling a method on a `null` reference must throw `NullReferenceException`. It is not used for every call: when the receiver cannot be `null` (`this.M()`, `new T().M()`) a non-virtual method is called with `call`, as are `base.M()` and static methods (verified by reading the IL).
 
 </details>
 
@@ -326,7 +390,7 @@ It lets you describe a class (or a method) in several parts and files; the compi
 
 - Before: [basics](basics.en.md), [advanced](advanced.en.md)
 - Memory allocation for objects, `Dispose`: [12 · Memory and GC](../12-memory-and-gc/overview.en.md)
-- Reflection and attributes: 20 · Reflection and source generators
+- Reflection and attributes: [20 · Reflection and source generators](../20-reflection-and-source-generators/overview.en.md)
 - Interfaces, structs, records: [05 · Interfaces, structs, records](../05-interfaces-structs-records/overview.en.md)
 
 ## Sources

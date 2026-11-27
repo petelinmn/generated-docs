@@ -8,8 +8,8 @@ slug: 04-oop-basics
 part: 1
 tags: [class, object, constructor, property, encapsulation, access-modifiers, static, inheritance, polymorphism, virtual-override]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-22
+status: verified
+updated: 2026-11-27
 ---
 
 # OOP: classes and objects: basics
@@ -33,6 +33,10 @@ A class is a **reference type** (see [02 · Types and variables](../02-types-and
 ## A class and an object
 
 ```csharp
+var account = new Account("Ann", 100m);
+account.Deposit(50m);
+Console.WriteLine(account.Balance);         // 150
+
 public class Account
 {
     private decimal _balance;               // field: the object's state, hidden from outside
@@ -54,10 +58,6 @@ public class Account
         _balance += amount;
     }
 }
-
-var account = new Account("Ann", 100m);
-account.Deposit(50m);
-Console.WriteLine(account.Balance);         // 150
 ```
 
 Class members: **fields** (data), **methods** (actions), **properties** (access to data), **constructors** (initialization), **events** and **indexers**. A field stores data, a method runs code, and a property looks like a field but is really a pair of `get`/`set` methods.
@@ -132,13 +132,13 @@ A primary constructor parameter is **neither a field nor a property**: the compi
 An **object initializer** sets properties right after creation, and the `required` modifier forces the caller to set them:
 
 ```csharp
+var ann = new Person { Name = "Ann", Age = 30 };   // without Name — a compile error
+
 public class Person
 {
     public required string Name { get; init; }
     public int Age { get; init; }
 }
-
-var ann = new Person { Name = "Ann", Age = 30 };   // without Name — a compile error
 ```
 
 ## Static members and this

@@ -8,8 +8,8 @@ slug: 04-oop-basics
 part: 1
 tags: [object-layout, virtual-dispatch, callvirt, backing-field, init-accessor, required-members, primary-constructor, access-modifiers, object-methods, interview-questions]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-22
+status: verified
+updated: 2026-11-27
 ---
 
 # ООП: классы и объекты: экспертная теория
@@ -26,7 +26,7 @@ updated: 2026-11-22
 
 ### Как компилятор вызывает методы
 
-Для вызова метода экземпляра C# генерирует инструкцию IL `callvirt`, **даже для невиртуальных методов**: так выполняется проверка `this` на `null` (иначе вызов метода на `null` молча бы сработал). Для статических методов — `call`. Проверено чтением IL: метод, вызывающий `t.NonVirtual()`, и метод, вызывающий `t.Virt()`, содержат `callvirt`, а вызов `Target.St()` — `call`.
+Для вызова метода экземпляра класса по ссылке C# обычно генерирует инструкцию IL `callvirt`, **даже если метод не виртуальный**: так получатель проверяется на `null`. Когда компилятор знает, что получатель не `null`, для невиртуального метода он генерирует `call`: `this.M()` и `new T().M()`. `base.M()` тоже использует `call`, как и статические методы. Проверено чтением IL: `t.NonVirtual()` и `t.Virt()` через параметр компилируются в `callvirt`, а `Target.St()`, `new Target().Plain()` и вызов своего метода без получателя — в `call`.
 
 Для виртуального метода runtime при выполнении `callvirt` смотрит в таблицу методов фактического типа и вызывает самую производную реализацию. Отсюда следует всё поведение полиморфизма: `override` подменяет запись в таблице, а `new` — нет.
 
@@ -78,7 +78,7 @@ updated: 2026-11-22
 | `abstract` | класс, член | нельзя создать / нет реализации |
 | `sealed` | класс, override | запрещает наследование / переопределение |
 | `static` | класс, член | принадлежит типу; статический класс — `abstract sealed` в метаданных |
-| `partial` | класс, метод | определение в нескольких частях |
+| `partial` | тип, метод, свойство и индексатор (C# 13), конструктор и событие (C# 14) | определение в нескольких частях |
 | `virtual` / `override` / `new` | член | заменяемый / заменяющий / скрывающий |
 | `readonly` | поле | меняется только в конструкторе |
 | `required` | свойство, поле | значение обязательно при инициализации |
@@ -94,6 +94,70 @@ updated: 2026-11-22
 | `GetType()` | точный тип во время выполнения | не переопределяется |
 | `MemberwiseClone()` | поверхностная копия (protected) | для клонирования |
 | `Finalize()` | пусто | через синтаксис `~T()` |
+| `Equals(a, b)`, `ReferenceEquals(a, b)` (статические) | первый учитывает `null` и вызывает `a.Equals(b)`; второй сравнивает ссылки | не переопределяются |
+
+## Другие возможности классов
+
+```csharp
+Animal animal = new Cat();
+Console.WriteLine(animal.Create().GetType().Name);   // Cat
+Console.WriteLine(new Cat().Create().Name);          // cat — the static type is already Cat
+
+var (x, y) = new Point(1, 2);                        // calls Deconstruct
+double degrees = new Celsius(100);                   // implicit conversion
+var back = (Celsius)36.6;                            // explicit conversion
+
+var tag = new Tag("a");                              // no initializer needed
+var id = Id.Create(5);                               // new Id(5) does not compile
+Console.WriteLine(new Loud().Say());                 // HI!
+
+class Animal { public virtual Animal Create() => new Animal(); }
+class Cat : Animal
+{
+    public string Name => "cat";
+    public override Cat Create() => new Cat();       // covariant return (C# 9)
+}
+
+class Point(int x, int y)
+{
+    public void Deconstruct(out int px, out int py) { px = x; py = y; }
+}
+
+class Celsius(double degrees)
+{
+    public double Degrees => degrees;
+    public static implicit operator double(Celsius c) => c.Degrees;
+    public static explicit operator Celsius(double d) => new(d);
+}
+
+class Tag
+{
+    public required string Name { get; init; }
+    public Tag() { }
+    [System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+    public Tag(string name) => Name = name;
+}
+
+class Id
+{
+    public int Value { get; }
+    private Id(int value) => Value = value;          // only the class itself can create
+    public static Id Create(int value) => new(value);
+}
+
+class Quiet { public virtual string Say() => "hi"; }
+class Loud : Quiet { public override string Say() => base.Say().ToUpper() + "!"; }
+```
+
+| Возможность | Правило |
+|---|---|
+| Ковариантный возврат | `override`-метод или свойство только для чтения может возвращать более производный тип |
+| `base.M()` | вызывает реализацию базы, минуя переопределение |
+| `Deconstruct` | параметры `out` дают запись `var (x, y) = obj` |
+| `implicit` / `explicit operator` | пользовательские преобразования; `explicit` — если возможна потеря информации |
+| `SetsRequiredMembers` | конструктор обещает задать все `required`-члены; компилятор это обещание не проверяет |
+| Закрытый конструктор | создание только через фабричные методы |
+| Первичный и другие конструкторы | каждый другой явный конструктор обязан вызывать `this(...)` |
 
 ## Подвохи
 
@@ -287,7 +351,7 @@ class C : A
 
 <details><summary>Ответ</summary>
 
-`const` — константа времени компиляции, её значение подставляется в код (в метаданных поле `static literal`); возможна только для простых типов и строк. `static readonly` вычисляется при выполнении, может иметь любой тип, и значение не «вшивается» в чужие сборки. Для значений, которые могут измениться, нужен `static readonly`.
+`const` — константа времени компиляции, её значение подставляется в код (в метаданных поле `static literal`); возможна только для чисел, `bool`, `char`, перечислений, строк и `null` для ссылочных типов. `static readonly` вычисляется при выполнении, может иметь любой тип, и значение не «вшивается» в чужие сборки. Для значений, которые могут измениться, нужен `static readonly`.
 
 </details>
 
@@ -295,7 +359,7 @@ class C : A
 
 <details><summary>Ответ</summary>
 
-Чтобы получить проверку на `null`: вызов метода на `null`-ссылке должен бросить `NullReferenceException`. Проверено чтением IL: невиртуальный и виртуальный вызовы дают `callvirt`, статический — `call`.
+Чтобы получить проверку на `null`: вызов метода на `null`-ссылке должен бросить `NullReferenceException`. Используется он не для всех вызовов: когда получатель не может быть `null` (`this.M()`, `new T().M()`), невиртуальный метод вызывается через `call`, как и `base.M()` и статические методы (проверено чтением IL).
 
 </details>
 
@@ -326,7 +390,7 @@ class C : A
 
 - Раньше: [базовая теория](basics.ru.md), [продвинутая теория](advanced.ru.md)
 - Выделение памяти под объекты, `Dispose`: [12 · Память и GC](../12-memory-and-gc/overview.ru.md)
-- Рефлексия и атрибуты: 20 · Рефлексия и генераторы кода
+- Рефлексия и атрибуты: [20 · Рефлексия и генераторы кода](../20-reflection-and-source-generators/overview.ru.md)
 - Интерфейсы, структуры, записи: [05 · Интерфейсы, структуры, записи](../05-interfaces-structs-records/overview.ru.md)
 
 ## Источники

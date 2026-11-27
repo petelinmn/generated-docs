@@ -8,8 +8,8 @@ slug: 04-oop-basics
 part: 1
 tags: [class, object, constructor, property, encapsulation, access-modifiers, static, inheritance, polymorphism, virtual-override]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-22
+status: verified
+updated: 2026-11-27
 ---
 
 # ООП: классы и объекты: базовая теория
@@ -33,6 +33,10 @@ updated: 2026-11-22
 ## Класс и объект
 
 ```csharp
+var account = new Account("Ann", 100m);
+account.Deposit(50m);
+Console.WriteLine(account.Balance);         // 150
+
 public class Account
 {
     private decimal _balance;               // field: the object's state, hidden from outside
@@ -54,10 +58,6 @@ public class Account
         _balance += amount;
     }
 }
-
-var account = new Account("Ann", 100m);
-account.Deposit(50m);
-Console.WriteLine(account.Balance);         // 150
 ```
 
 Члены класса: **поля** (данные), **методы** (действия), **свойства** (доступ к данным), **конструкторы** (инициализация), **события** и **индексаторы**. Поле хранит данные, метод выполняет код, свойство выглядит как поле, но на деле является парой методов `get`/`set`.
@@ -132,13 +132,13 @@ public class Counter(int start)
 **Инициализатор объекта** задаёт свойства сразу после создания, а модификатор `required` заставляет вызывающую сторону их задать:
 
 ```csharp
+var ann = new Person { Name = "Ann", Age = 30 };   // without Name — a compile error
+
 public class Person
 {
     public required string Name { get; init; }
     public int Age { get; init; }
 }
-
-var ann = new Person { Name = "Ann", Age = 30 };   // without Name — a compile error
 ```
 
 ## Статические члены и this

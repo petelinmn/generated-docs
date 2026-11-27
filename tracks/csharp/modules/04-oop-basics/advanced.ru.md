@@ -8,8 +8,8 @@ slug: 04-oop-basics
 part: 1
 tags: [initialization-order, virtual-override, method-hiding, abstract-class, sealed, static-constructor, extension-methods, partial-class, indexer, composition]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-22
+status: verified
+updated: 2026-11-27
 ---
 
 # ООП: классы и объекты: продвинутая теория
@@ -57,6 +57,11 @@ class C : A
 Разница между `override` и `new` — в том, что выбирается при вызове через переменную базового типа:
 
 ```csharp
+Animal a = new Dog();
+Console.WriteLine(a.Speak());          // Woof   — override, decided by the actual type
+Console.WriteLine(a.Name());           // Animal — new, decided by the variable type
+Console.WriteLine(((Dog)a).Name());    // Dog
+
 class Animal
 {
     public virtual string Speak() => "...";
@@ -68,11 +73,6 @@ class Dog : Animal
     public override string Speak() => "Woof";
     public new string Name() => "Dog";
 }
-
-Animal a = new Dog();
-Console.WriteLine(a.Speak());          // Woof   — override, decided by the actual type
-Console.WriteLine(a.Name());           // Animal — new, decided by the variable type
-Console.WriteLine(((Dog)a).Name());    // Dog
 ```
 
 Сокрытие через `new` — почти всегда признак ошибки проектирования: одно и то же имя ведёт себя по-разному в зависимости от типа переменной. Без `new` компилятор выдаёт предупреждение CS0108.
@@ -82,13 +82,13 @@ Console.WriteLine(((Dog)a).Name());    // Dog
 Правило разрешения перегрузок неочевидно: если у наследника есть **подходящий** метод, компилятор не смотрит на методы базового класса:
 
 ```csharp
+new Printer().Print(5);     // double in derived
+
 class PrinterBase { public void Print(int x) => Console.WriteLine("int in base"); }
 class Printer : PrinterBase { public void Print(double x) => Console.WriteLine("double in derived"); }
-
-new Printer().Print(5);     // double in derived
 ```
 
-Хотя `Print(int)` подходит точнее, выполнился метод наследника: `5` неявно приводится к `double`, а методы, объявленные в более производном типе, имеют приоритет. Перегрузки в иерархиях лучше не смешивать. Правила перегрузки в целом — в [03 · Управляющие конструкции и методы](../03-control-flow-and-methods/advanced.ru.md).
+Хотя `Print(int)` подходит точнее, выполнился метод наследника: `5` неявно приводится к `double`, а методы, объявленные в более производном типе, имеют приоритет. `override` не считается объявленным в наследнике: если `Printer` переопределяет базовый `Print(int)` и объявляет свой `Print(double)`, то `Print(5)` всё равно вызовет вариант с `double` (проверено). Перегрузки в иерархиях лучше не смешивать. Правила перегрузки в целом — в [03 · Управляющие конструкции и методы](../03-control-flow-and-methods/advanced.ru.md).
 
 ## Абстрактные классы и запечатывание
 
@@ -143,7 +143,7 @@ public class Grid
 
 | | Когда задаётся | Можно ли менять |
 |---|---|---|
-| `const` | при компиляции (значение подставляется в код) | нет; только простые типы и строки |
+| `const` | при компиляции (значение подставляется в код) | нет; числа, `bool`, `char`, перечисления, строки или `null` для ссылочных типов |
 | `readonly` | в инициализаторе или конструкторе | нет, после конструктора |
 | `static readonly` | в статическом инициализаторе или статическом конструкторе | нет |
 
@@ -171,7 +171,7 @@ public static class GreeterExt
 
 ## Вложенные типы
 
-Тип, объявленный внутри другого типа, — вложенный. Он по умолчанию `private` и видит закрытые члены внешнего типа. Подходит для деталей реализации. Вложенный класс-наследник в примере проверки показал и ещё одну тонкость: код наследника может обратиться к `protected`-члену через ссылку **своего** типа (`other.v` для `other` типа `D`), но не через ссылку базового типа.
+Тип, объявленный внутри другого типа, — вложенный. Он по умолчанию `private` и видит закрытые члены внешнего типа. Подходит для деталей реализации. Ещё одна тонкость: код наследника может обратиться к `protected`-члену через ссылку **своего** типа (`other.v` для `other` типа `D`), но не через ссылку базового типа.
 
 ## Композиция вместо наследования
 

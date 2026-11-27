@@ -7,8 +7,8 @@ doc: exercises
 slug: 04-oop-basics
 part: 1
 tags: [class, encapsulation, polymorphism, abstract-class, virtual-override, equality]
-status: draft
-updated: 2026-11-22
+status: verified
+updated: 2026-11-27
 ---
 
 # Упражнения: ООП: классы и объекты
@@ -128,6 +128,9 @@ derived field | base field | base ctor | derived ctor
 
 ```csharp
 // Exercise 3: the order of initialization in an inheritance chain.
+new Derived();
+Console.WriteLine(string.Join(" | ", Trace.Log));
+
 static class Trace
 {
     public static readonly List<string> Log = new();
@@ -145,9 +148,6 @@ class Derived : Base
     int g = Trace.Add("derived field");
     public Derived() { Trace.Add("derived ctor"); }
 }
-
-new Derived();
-Console.WriteLine(string.Join(" | ", Trace.Log));
 ```
 
 Проверено: `derived field | base field | base ctor | derived ctor`. Инициализаторы полей наследника идут раньше базы — поэтому вызов виртуальных методов из конструктора опасен.
@@ -175,11 +175,11 @@ Console.WriteLine(string.Join(" | ", Trace.Log));
 
 ```csharp
 // Exercise 4: replace member hiding with real overriding.
-public class Animal { public virtual string Kind() => "Animal"; }
-public class Dog : Animal { public override string Kind() => "Dog"; }
-
 Animal b = new Dog();
 Console.WriteLine(b.Kind());   // Dog
+
+public class Animal { public virtual string Kind() => "Animal"; }
+public class Dog : Animal { public override string Kind() => "Dog"; }
 ```
 
 Проверено: `Dog`. `new` скрывает член и выбирается по типу переменной, а `virtual`/`override` — по фактическому типу объекта.

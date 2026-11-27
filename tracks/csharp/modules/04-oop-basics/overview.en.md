@@ -9,8 +9,8 @@ part: 1
 levels: [1, 2, 3, 4]
 tags: [class, object, constructor, property, encapsulation, access-modifiers, static, inheritance, polymorphism, virtual-override]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-22
+status: verified
+updated: 2026-11-27
 ---
 
 # OOP: classes and objects
@@ -34,6 +34,9 @@ A class describes a type: data (fields, properties) and behavior (methods). An o
 ## Minimal example
 
 ```csharp
+Animal animal = new Dog();
+Console.WriteLine(animal.Speak());     // Woof — decided by the actual type
+
 public class Animal
 {
     public virtual string Speak() => "...";
@@ -43,9 +46,6 @@ public class Dog : Animal
 {
     public override string Speak() => "Woof";
 }
-
-Animal animal = new Dog();
-Console.WriteLine(animal.Speak());     // Woof — decided by the actual type
 ```
 
 ## When to use and when not

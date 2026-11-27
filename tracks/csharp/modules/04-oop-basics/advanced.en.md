@@ -8,8 +8,8 @@ slug: 04-oop-basics
 part: 1
 tags: [initialization-order, virtual-override, method-hiding, abstract-class, sealed, static-constructor, extension-methods, partial-class, indexer, composition]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-22
+status: verified
+updated: 2026-11-27
 ---
 
 # OOP: classes and objects: advanced
@@ -57,6 +57,11 @@ A field that the derived class sets in the constructor **body** is still unassig
 The difference between `override` and `new` is what gets chosen when calling through a variable of the base type:
 
 ```csharp
+Animal a = new Dog();
+Console.WriteLine(a.Speak());          // Woof   — override, decided by the actual type
+Console.WriteLine(a.Name());           // Animal — new, decided by the variable type
+Console.WriteLine(((Dog)a).Name());    // Dog
+
 class Animal
 {
     public virtual string Speak() => "...";
@@ -68,11 +73,6 @@ class Dog : Animal
     public override string Speak() => "Woof";
     public new string Name() => "Dog";
 }
-
-Animal a = new Dog();
-Console.WriteLine(a.Speak());          // Woof   — override, decided by the actual type
-Console.WriteLine(a.Name());           // Animal — new, decided by the variable type
-Console.WriteLine(((Dog)a).Name());    // Dog
 ```
 
 Hiding with `new` is almost always a design smell: the same name behaves differently depending on the variable's type. Without `new` the compiler issues warning CS0108.
@@ -82,13 +82,13 @@ Hiding with `new` is almost always a design smell: the same name behaves differe
 The overload resolution rule is not obvious: if the derived class has an **applicable** method, the compiler does not look at the base class methods:
 
 ```csharp
+new Printer().Print(5);     // double in derived
+
 class PrinterBase { public void Print(int x) => Console.WriteLine("int in base"); }
 class Printer : PrinterBase { public void Print(double x) => Console.WriteLine("double in derived"); }
-
-new Printer().Print(5);     // double in derived
 ```
 
-Although `Print(int)` fits better, the derived class's method ran: `5` converts implicitly to `double`, and methods declared in a more derived type take priority. It is better not to mix overloads across a hierarchy. Overload rules in general are in [03 · Control flow and methods](../03-control-flow-and-methods/advanced.en.md).
+Although `Print(int)` fits better, the derived class's method ran: `5` converts implicitly to `double`, and methods declared in a more derived type take priority. An `override` does not count as declared in the derived class: if `Printer` overrides a base `Print(int)` and also declares `Print(double)`, `Print(5)` still calls the `double` one (verified). It is better not to mix overloads across a hierarchy. Overload rules in general are in [03 · Control flow and methods](../03-control-flow-and-methods/advanced.en.md).
 
 ## Abstract classes and sealing
 
@@ -143,7 +143,7 @@ public class Grid
 
 | | When it is set | Can it change |
 |---|---|---|
-| `const` | at compile time (the value is substituted into code) | no; only simple types and strings |
+| `const` | at compile time (the value is substituted into code) | no; numbers, `bool`, `char`, enums, strings, or `null` for reference types |
 | `readonly` | in an initializer or constructor | no, after the constructor |
 | `static readonly` | in a static initializer or static constructor | no |
 
@@ -171,7 +171,7 @@ A **`partial class`** lets you split a class definition across several files, an
 
 ## Nested types
 
-A type declared inside another type is nested. It is `private` by default and sees the private members of the outer type. It suits implementation details. A nested derived class in the check showed one more subtlety: derived code can access a `protected` member through a reference of **its own** type (`other.v` for `other` of type `D`), but not through a reference of the base type.
+A type declared inside another type is nested. It is `private` by default and sees the private members of the outer type. It suits implementation details. One more subtlety: derived code can access a `protected` member through a reference of **its own** type (`other.v` for `other` of type `D`), but not through a reference of the base type.
 
 ## Composition instead of inheritance
 

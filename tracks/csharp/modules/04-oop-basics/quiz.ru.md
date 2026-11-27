@@ -7,8 +7,8 @@ doc: quiz
 slug: 04-oop-basics
 part: 1
 tags: [class, constructor, property, inheritance, polymorphism, virtual-override, access-modifiers]
-status: draft
-updated: 2026-11-22
+status: verified
+updated: 2026-11-27
 ---
 
 # Квиз: ООП: классы и объекты
@@ -34,11 +34,11 @@ updated: 2026-11-22
 ## 2. 🟢 Что выведет код?
 
 ```csharp
-public class Animal { public virtual string Speak() => "..."; }
-public class Dog : Animal { public override string Speak() => "Woof"; }
-
 Animal animal = new Dog();
 Console.WriteLine(animal.Speak());
+
+public class Animal { public virtual string Speak() => "..."; }
+public class Dog : Animal { public override string Speak() => "Woof"; }
 ```
 
 - A) `...`
@@ -103,11 +103,11 @@ class Derived : Base { int g = Trace.Add("derived field"); public Derived() { Tr
 ## 6. 🟡 Что выведет код?
 
 ```csharp
-class Animal { public virtual string Speak() => "..."; public string Name() => "Animal"; }
-class Dog : Animal { public override string Speak() => "Woof"; public new string Name() => "Dog"; }
-
 Animal a = new Dog();
 Console.WriteLine($"{a.Speak()} {a.Name()} {((Dog)a).Name()}");
+
+class Animal { public virtual string Speak() => "..."; public string Name() => "Animal"; }
+class Dog : Animal { public override string Speak() => "Woof"; public new string Name() => "Dog"; }
 ```
 
 <details><summary>Ответ</summary>
@@ -124,10 +124,10 @@ Woof Animal Dog
 ## 7. 🟡 Что вызовется?
 
 ```csharp
+new Printer().Print(5);
+
 class PrinterBase { public void Print(int x) => Console.WriteLine("int in base"); }
 class Printer : PrinterBase { public void Print(double x) => Console.WriteLine("double in derived"); }
-
-new Printer().Print(5);
 ```
 
 - A) `int in base`
