@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, suspense, transitions, concurrent-rendering, error-boundaries]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Конкурентные возможности
@@ -66,3 +66,4 @@ const Chart = lazy(() => import('./Chart'));
 - Промисы: [асинхронность в JavaScript](../../../javascript/modules/12-promises-and-async-await/overview.ru.md)
 - Динамический импорт: [модули JavaScript](../../../javascript/modules/09-modules/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [13 · Actions](../13-actions/overview.ru.md)

@@ -66,3 +66,4 @@ function Upper() {
 - Проверка на сервере: [проектирование API](../../../system-design/modules/05-api-design/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
 - [10 · Тестирование](../10-testing/overview.ru.md)
+- [13 · Actions](../13-actions/overview.ru.md)

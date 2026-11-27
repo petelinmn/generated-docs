@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, suspense, transitions, concurrent-rendering, error-boundaries]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Concurrent features
@@ -66,3 +66,4 @@ const Chart = lazy(() => import('./Chart'));
 - Promises: [JavaScript async](../../../javascript/modules/12-promises-and-async-await/overview.en.md)
 - Dynamic import: [JavaScript modules](../../../javascript/modules/09-modules/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [13 · Actions](../13-actions/overview.en.md)
