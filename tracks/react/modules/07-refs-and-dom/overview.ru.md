@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, refs, dom, portals, hooks]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Refs и DOM
@@ -69,3 +69,4 @@ function Search() {
 - Сам API DOM: [DOM и события в браузере](../../../javascript/modules/17-browser-dom-and-events/overview.ru.md)
 - `ref` как prop в композиции: [02 · Props и композиция](../02-props-and-composition/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [09 · Пользовательские хуки](../09-custom-hooks/overview.ru.md)

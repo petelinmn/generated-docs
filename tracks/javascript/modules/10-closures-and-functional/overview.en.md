@@ -80,3 +80,4 @@ Every call of `makeCounter` has its own variable `n`.
 - Analogues in other tracks: [C#: delegates, events and lambdas](../../../csharp/modules/09-delegates-events-lambdas/overview.en.md), [Python](../../../python/overview.en.md)
 - [Closures and state snapshots in React](../../../react/modules/03-state-and-events/overview.en.md)
 - [Stale values in React effects](../../../react/modules/06-effects/overview.en.md)
+- [Custom hooks in React](../../../react/modules/09-custom-hooks/overview.en.md)

@@ -67,3 +67,4 @@ useEffect(() => {
 - Timeouts and retries on the server side: [reliability patterns](../../../system-design/modules/09-reliability-patterns/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
 - [07 · Refs and the DOM](../07-refs-and-dom/overview.en.md)
+- [09 · Custom hooks](../09-custom-hooks/overview.en.md)

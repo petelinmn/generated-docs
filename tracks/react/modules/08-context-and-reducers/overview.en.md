@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, context, use-reducer, state-management, hooks]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Context and reducers
@@ -74,3 +74,4 @@ function Counter() {
 - The same idea of events producing state: [event sourcing and CQRS](../../../system-design/modules/13-event-sourcing-and-cqrs/overview.en.md)
 - Discriminated unions for actions: [TypeScript track](../../../typescript/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [09 · Custom hooks](../09-custom-hooks/overview.en.md)

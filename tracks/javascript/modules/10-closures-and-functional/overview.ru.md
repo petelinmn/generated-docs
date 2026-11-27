@@ -80,3 +80,4 @@ console.log(c1.get(), c2.get());
 - Аналоги в других треках: [C#: делегаты, события и лямбды](../../../csharp/modules/09-delegates-events-lambdas/overview.ru.md), [Python](../../../python/overview.ru.md)
 - [Замыкания и снимки состояния в React](../../../react/modules/03-state-and-events/overview.ru.md)
 - [Устаревшие значения в эффектах React](../../../react/modules/06-effects/overview.ru.md)
+- [Пользовательские хуки React](../../../react/modules/09-custom-hooks/overview.ru.md)

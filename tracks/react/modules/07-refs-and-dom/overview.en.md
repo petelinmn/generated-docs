@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, refs, dom, portals, hooks]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Refs and the DOM
@@ -69,3 +69,4 @@ function Search() {
 - The DOM API itself: [browser DOM and events](../../../javascript/modules/17-browser-dom-and-events/overview.en.md)
 - `ref` as a prop in composition: [02 · Props and composition](../02-props-and-composition/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [09 · Custom hooks](../09-custom-hooks/overview.en.md)

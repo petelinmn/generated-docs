@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, context, use-reducer, state-management, hooks]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Context и редьюсеры
@@ -74,3 +74,4 @@ function Counter() {
 - Та же идея «события дают состояние»: [event sourcing и CQRS](../../../system-design/modules/13-event-sourcing-and-cqrs/overview.ru.md)
 - Размеченные объединения для actions: [трек TypeScript](../../../typescript/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [09 · Пользовательские хуки](../09-custom-hooks/overview.ru.md)

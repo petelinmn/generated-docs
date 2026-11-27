@@ -67,3 +67,4 @@ useEffect(() => {
 - Таймауты и повторы на стороне сервера: [паттерны надёжности](../../../system-design/modules/09-reliability-patterns/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
 - [07 · Refs и DOM](../07-refs-and-dom/overview.ru.md)
+- [09 · Пользовательские хуки](../09-custom-hooks/overview.ru.md)
