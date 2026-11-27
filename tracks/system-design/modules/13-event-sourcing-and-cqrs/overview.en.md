@@ -59,3 +59,4 @@ Account account = Account.Replay([new Deposited(100), new Withdrawn(30)]); // ba
 
 - Prerequisites: [consistency](../07-consistency-and-cap/overview.en.md), [messaging and events](../08-messaging-and-events/overview.en.md), [distributed transactions](../10-distributed-transactions/overview.en.md)
 - In other tracks: [C#: architecture and CQRS](../../../csharp/modules/21-architecture/overview.en.md), [Kafka basics](../../../kafka/modules/01-kafka-basics/overview.en.md)
+- [Reducers in React](../../../react/modules/08-context-and-reducers/overview.en.md)

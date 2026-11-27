@@ -67,3 +67,4 @@ function Counter() {
 - Next: the following module of the [React roadmap](../../overview.en.md)
 - [04 · Lists, keys and identity](../04-lists-and-keys/overview.en.md)
 - [06 · Effects](../06-effects/overview.en.md)
+- [08 · Context and reducers](../08-context-and-reducers/overview.en.md)

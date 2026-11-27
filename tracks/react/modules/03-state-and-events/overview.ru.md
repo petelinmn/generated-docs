@@ -67,3 +67,4 @@ function Counter() {
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
 - [04 · Списки, ключи и идентичность](../04-lists-and-keys/overview.ru.md)
 - [06 · Эффекты](../06-effects/overview.ru.md)
+- [08 · Context и редьюсеры](../08-context-and-reducers/overview.ru.md)

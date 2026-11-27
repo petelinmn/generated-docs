@@ -59,3 +59,4 @@ Account account = Account.Replay([new Deposited(100), new Withdrawn(30)]); // ba
 
 - Пререквизиты: [согласованность](../07-consistency-and-cap/overview.ru.md), [сообщения и события](../08-messaging-and-events/overview.ru.md), [распределённые транзакции](../10-distributed-transactions/overview.ru.md)
 - В других треках: [C#: архитектура и CQRS](../../../csharp/modules/21-architecture/overview.ru.md), [основы Kafka](../../../kafka/modules/01-kafka-basics/overview.ru.md)
+- [Редьюсеры в React](../../../react/modules/08-context-and-reducers/overview.ru.md)

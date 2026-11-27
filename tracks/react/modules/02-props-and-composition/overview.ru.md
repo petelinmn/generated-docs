@@ -70,3 +70,4 @@ function Avatar({ name, size = 40 }: { name: string; size?: number }) {
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
 - [03 · Состояние и события](../03-state-and-events/overview.ru.md)
 - [07 · Refs и DOM](../07-refs-and-dom/overview.ru.md)
+- [08 · Context и редьюсеры](../08-context-and-reducers/overview.ru.md)
