@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, effects, use-effect, hooks, cleanup]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Effects
@@ -66,3 +66,4 @@ useEffect(() => {
 - Closures behind stale values: [closures in JavaScript](../../../javascript/modules/10-closures-and-functional/overview.en.md)
 - Timeouts and retries on the server side: [reliability patterns](../../../system-design/modules/09-reliability-patterns/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [07 · Refs and the DOM](../07-refs-and-dom/overview.en.md)

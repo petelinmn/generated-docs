@@ -89,3 +89,4 @@ One handler on `<ul>` serves all the `<li>`s, including those added later.
 - [React: components and JSX](../../../react/modules/01-components-and-jsx/overview.en.md)
 - [Events in React](../../../react/modules/03-state-and-events/overview.en.md)
 - [Forms in React](../../../react/modules/05-forms/overview.en.md)
+- [Refs and the DOM in React](../../../react/modules/07-refs-and-dom/overview.en.md)

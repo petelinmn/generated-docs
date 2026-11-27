@@ -69,3 +69,4 @@ function Avatar({ name, size = 40 }: { name: string; size?: number }) {
 - The same idea elsewhere: [composition in application architecture](../../../csharp/modules/21-architecture/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
 - [03 · State and events](../03-state-and-events/overview.en.md)
+- [07 · Refs and the DOM](../07-refs-and-dom/overview.en.md)

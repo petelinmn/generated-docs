@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, effects, use-effect, hooks, cleanup]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Эффекты
@@ -66,3 +66,4 @@ useEffect(() => {
 - Замыкания, стоящие за устаревшими значениями: [замыкания в JavaScript](../../../javascript/modules/10-closures-and-functional/overview.ru.md)
 - Таймауты и повторы на стороне сервера: [паттерны надёжности](../../../system-design/modules/09-reliability-patterns/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [07 · Refs и DOM](../07-refs-and-dom/overview.ru.md)

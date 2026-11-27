@@ -89,3 +89,4 @@ clicked One
 - [React: компоненты и JSX](../../../react/modules/01-components-and-jsx/overview.ru.md)
 - [События в React](../../../react/modules/03-state-and-events/overview.ru.md)
 - [Формы в React](../../../react/modules/05-forms/overview.ru.md)
+- [Refs и DOM в React](../../../react/modules/07-refs-and-dom/overview.ru.md)
