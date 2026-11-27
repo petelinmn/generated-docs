@@ -10,7 +10,7 @@ tags: [linux, filesystem, fhs, inode, hard-link, symlink, path]
 versions: "Ubuntu 26.04 LTS, Bash 5.3, WSL 2"
 levels: [1, 2, 3, 4]
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # Файловая система Linux
@@ -70,6 +70,7 @@ total 8
 - Дальше: [03 · Основы shell](../03-shell-basics/overview.ru.md)
 - Файлы и потоки из программы: [Node.js: файлы, потоки, процессы](../../../javascript/modules/16-nodejs-files-streams-processes/overview.ru.md)
 - Хранение в кластере: [Kubernetes 08 · Хранилище](../../../kubernetes/modules/08-storage/overview.ru.md)
+- [04 · Файлы и права](../04-files-and-permissions/overview.ru.md)
 
 ## Источники
 

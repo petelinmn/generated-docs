@@ -10,7 +10,7 @@ tags: [linux, bash, shell, redirection, pipeline, quoting, exit-status]
 versions: "Ubuntu 26.04 LTS, Bash 5.3, WSL 2"
 levels: [1, 2, 3, 4]
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # Основы shell
@@ -63,6 +63,7 @@ sort fruit | uniq -c | sort -rn | head -n 2
 - Пререквизиты: [02 · Файловая система](../02-filesystem/overview.ru.md)
 - Среда для практики: [01 · Подготовка окружения](../01-setup/overview.ru.md)
 - Потоки и конвейеры из программы: [Node.js: файлы, потоки, процессы](../../../javascript/modules/16-nodejs-files-streams-processes/overview.ru.md)
+- [04 · Файлы и права](../04-files-and-permissions/overview.ru.md)
 
 ## Источники
 

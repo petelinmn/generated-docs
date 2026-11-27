@@ -10,7 +10,7 @@ tags: [linux, filesystem, fhs, inode, hard-link, symlink, path]
 versions: "Ubuntu 26.04 LTS, Bash 5.3, WSL 2"
 levels: [1, 2, 3, 4]
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # Linux filesystem
@@ -70,6 +70,7 @@ total 8
 - Next: [03 · Shell basics](../03-shell-basics/overview.en.md)
 - Files and streams from a program: [Node.js: files, streams, processes](../../../javascript/modules/16-nodejs-files-streams-processes/overview.en.md)
 - Storage in a cluster: [Kubernetes 08 · Storage](../../../kubernetes/modules/08-storage/overview.en.md)
+- [04 · Files and permissions](../04-files-and-permissions/overview.en.md)
 
 ## Sources
 

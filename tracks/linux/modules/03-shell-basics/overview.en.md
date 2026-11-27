@@ -10,7 +10,7 @@ tags: [linux, bash, shell, redirection, pipeline, quoting, exit-status]
 versions: "Ubuntu 26.04 LTS, Bash 5.3, WSL 2"
 levels: [1, 2, 3, 4]
 status: draft
-updated: 2026-11-25
+updated: 2026-11-26
 ---
 
 # Shell basics
@@ -63,6 +63,7 @@ sort fruit | uniq -c | sort -rn | head -n 2
 - Prerequisites: [02 · Filesystem](../02-filesystem/overview.en.md)
 - Practice environment: [01 · Environment setup](../01-setup/overview.en.md)
 - Streams and pipelines from a program: [Node.js: files, streams, processes](../../../javascript/modules/16-nodejs-files-streams-processes/overview.en.md)
+- [04 · Files and permissions](../04-files-and-permissions/overview.en.md)
 
 ## Sources
 
