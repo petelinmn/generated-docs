@@ -87,3 +87,4 @@ One handler on `<ul>` serves all the `<li>`s, including those added later.
 - Next: [18 · Metaprogramming](../18-metaprogramming/overview.en.md)
 - Analogues in other tracks: [TypeScript](../../../typescript/overview.en.md) (DOM types, frameworks), [C#: Blazor and ASP.NET Core](../../../csharp/overview.en.md) (the server side)
 - [React: components and JSX](../../../react/modules/01-components-and-jsx/overview.en.md)
+- [Events in React](../../../react/modules/03-state-and-events/overview.en.md)

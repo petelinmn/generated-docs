@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [event-loop, macrotask, microtask, timers, set-immediate, next-tick, worker-threads, atomics, shared-array-buffer]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # The event loop and concurrency
@@ -80,3 +80,4 @@ First all the synchronous code, then microtasks, then the timer.
 - Prerequisites: [12 · Promises and async/await](../12-promises-and-async-await/overview.en.md)
 - Next: [14 · Errors and debugging](../14-errors-and-debugging/overview.en.md)
 - Analogues in other tracks: [C#: concurrency](../../../csharp/modules/18-concurrency/overview.en.md), [Python](../../../python/overview.en.md) (GIL, asyncio), [Linux: processes](../../../linux/overview.en.md)
+- [State updates and timers in React](../../../react/modules/03-state-and-events/overview.en.md)

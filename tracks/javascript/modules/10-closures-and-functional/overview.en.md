@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [closure, higher-order-function, currying, partial-application, composition, memoization, immutability, pure-function]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Closures and functional style
@@ -78,3 +78,4 @@ Every call of `makeCounter` has its own variable `n`.
 - Next: [11 · Iterators and generators](../11-iterators-and-generators/overview.en.md)
 - Modules and their state: [09 · Modules](../09-modules/overview.en.md)
 - Analogues in other tracks: [C#: delegates, events and lambdas](../../../csharp/modules/09-delegates-events-lambdas/overview.en.md), [Python](../../../python/overview.en.md)
+- [Closures and state snapshots in React](../../../react/modules/03-state-and-events/overview.en.md)

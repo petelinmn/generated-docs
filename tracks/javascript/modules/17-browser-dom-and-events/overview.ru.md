@@ -87,3 +87,4 @@ clicked One
 - Дальше: [18 · Метапрограммирование](../18-metaprogramming/overview.ru.md)
 - Аналоги в других треках: [TypeScript](../../../typescript/overview.ru.md) (типы DOM, фреймворки), [C#: Blazor и ASP.NET Core](../../../csharp/overview.ru.md) (серверная сторона)
 - [React: компоненты и JSX](../../../react/modules/01-components-and-jsx/overview.ru.md)
+- [События в React](../../../react/modules/03-state-and-events/overview.ru.md)

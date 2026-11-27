@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, props, composition, children, typescript]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Props and composition
@@ -68,3 +68,4 @@ function Avatar({ name, size = 40 }: { name: string; size?: number }) {
 - Destructuring and rest: [objects in JavaScript](../../../javascript/modules/05-objects-and-prototypes/overview.en.md)
 - The same idea elsewhere: [composition in application architecture](../../../csharp/modules/21-architecture/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [03 · State and events](../03-state-and-events/overview.en.md)

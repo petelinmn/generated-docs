@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, props, composition, children, typescript]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Props и композиция
@@ -68,3 +68,4 @@ function Avatar({ name, size = 40 }: { name: string; size?: number }) {
 - Деструктуризация и rest: [объекты в JavaScript](../../../javascript/modules/05-objects-and-prototypes/overview.ru.md)
 - Та же идея в других местах: [композиция в архитектуре приложений](../../../csharp/modules/21-architecture/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [03 · Состояние и события](../03-state-and-events/overview.ru.md)

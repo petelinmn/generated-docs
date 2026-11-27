@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [event-loop, macrotask, microtask, timers, set-immediate, next-tick, worker-threads, atomics, shared-array-buffer]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Цикл событий и параллелизм
@@ -80,3 +80,4 @@ console.log('2 sync');
 - Пререквизиты: [12 · Промисы и async/await](../12-promises-and-async-await/overview.ru.md)
 - Дальше: [14 · Ошибки и отладка](../14-errors-and-debugging/overview.ru.md)
 - Аналоги в других треках: [C#: параллелизм](../../../csharp/modules/18-concurrency/overview.ru.md), [Python](../../../python/overview.ru.md) (GIL, asyncio), [Linux: процессы](../../../linux/overview.ru.md)
+- [Обновления состояния и таймеры в React](../../../react/modules/03-state-and-events/overview.ru.md)

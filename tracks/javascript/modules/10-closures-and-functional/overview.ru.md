@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [closure, higher-order-function, currying, partial-application, composition, memoization, immutability, pure-function]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Замыкания и функциональный стиль
@@ -78,3 +78,4 @@ console.log(c1.get(), c2.get());
 - Дальше: [11 · Итераторы и генераторы](../11-iterators-and-generators/overview.ru.md)
 - Модули и их состояние: [09 · Модули](../09-modules/overview.ru.md)
 - Аналоги в других треках: [C#: делегаты, события и лямбды](../../../csharp/modules/09-delegates-events-lambdas/overview.ru.md), [Python](../../../python/overview.ru.md)
+- [Замыкания и снимки состояния в React](../../../react/modules/03-state-and-events/overview.ru.md)
