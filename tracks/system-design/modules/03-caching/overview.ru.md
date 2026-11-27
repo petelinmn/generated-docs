@@ -65,3 +65,4 @@ return price;
 - Практика в .NET: [рецепт кэширования](../../../csharp/recipes/caching/overview.ru.md)
 - Оценки нагрузки: [процесс проектирования](../01-design-process/overview.ru.md)
 - [Разбор задач](../17-design-case-studies/overview.ru.md)
+- [Рецепт: сокращатель ссылок](../../recipes/url-shortener/overview.ru.md)

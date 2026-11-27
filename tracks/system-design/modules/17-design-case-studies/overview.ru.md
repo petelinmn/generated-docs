@@ -60,3 +60,4 @@ Console.WriteLine(Base62.Encode(62)); // "10"
 - Пререквизиты: [процесс проектирования](../01-design-process/overview.ru.md), [кэширование](../03-caching/overview.ru.md), [партиционирование](../06-replication-and-partitioning/overview.ru.md), [сообщения](../08-messaging-and-events/overview.ru.md), [надёжность](../09-reliability-patterns/overview.ru.md)
 - Соседний модуль: [несколько регионов](../16-multi-region-and-dr/overview.ru.md)
 - В других треках: [rate limiting](../../../csharp/recipes/rate-limiting/overview.ru.md), [фоновые задачи](../../../csharp/recipes/background-jobs/overview.ru.md)
+- [Рецепт: сокращатель ссылок](../../recipes/url-shortener/overview.ru.md)

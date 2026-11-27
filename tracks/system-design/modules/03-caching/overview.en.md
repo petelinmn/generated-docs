@@ -65,3 +65,4 @@ return price;
 - Practice in .NET: [caching recipe](../../../csharp/recipes/caching/overview.en.md)
 - Load estimates: [design process](../01-design-process/overview.en.md)
 - [Case studies](../17-design-case-studies/overview.en.md)
+- [Recipe: URL shortener](../../recipes/url-shortener/overview.en.md)

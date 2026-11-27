@@ -60,3 +60,4 @@ Console.WriteLine(Base62.Encode(62)); // "10"
 - Prerequisites: [design process](../01-design-process/overview.en.md), [caching](../03-caching/overview.en.md), [partitioning](../06-replication-and-partitioning/overview.en.md), [messaging](../08-messaging-and-events/overview.en.md), [reliability](../09-reliability-patterns/overview.en.md)
 - A neighbouring module: [multi-region](../16-multi-region-and-dr/overview.en.md)
 - In other tracks: [rate limiting](../../../csharp/recipes/rate-limiting/overview.en.md), [background jobs](../../../csharp/recipes/background-jobs/overview.en.md)
+- [Recipe: URL shortener](../../recipes/url-shortener/overview.en.md)
