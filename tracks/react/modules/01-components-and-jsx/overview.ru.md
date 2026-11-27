@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, jsx, components, rendering]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Компоненты и JSX
@@ -69,3 +69,4 @@ console.log(renderToStaticMarkup(<Greeting />));
 - Типы для кода на React: [трек TypeScript](../../../typescript/overview.ru.md)
 - DOM, которым управляет React: [DOM и события в браузере](../../../javascript/modules/17-browser-dom-and-events/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [02 · Props и композиция](../02-props-and-composition/overview.ru.md)

@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, jsx, components, rendering]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Components and JSX
@@ -69,3 +69,4 @@ console.log(renderToStaticMarkup(<Greeting />));
 - Types for React code: [TypeScript track](../../../typescript/overview.en.md)
 - The DOM that React manages: [browser DOM and events](../../../javascript/modules/17-browser-dom-and-events/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [02 · Props and composition](../02-props-and-composition/overview.en.md)

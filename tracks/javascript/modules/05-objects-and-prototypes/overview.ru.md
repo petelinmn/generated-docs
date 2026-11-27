@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [objects, prototype, prototype-chain, property-descriptors, destructuring, spread, object-create, freeze, structured-clone]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Объекты и прототипы
@@ -77,3 +77,4 @@ hi c [ 'name' ] x { a: 1, b: 2 }
 - Дальше: [06 · Классы](../06-classes/overview.ru.md)
 - Аналоги в других треках: [Python: ООП и dataclasses](../../../python/overview.ru.md), [C#: классы и записи](../../../csharp/overview.ru.md)
 - Типизация объектов: [TypeScript](../../../typescript/overview.ru.md)
+- [React: props и композиция](../../../react/modules/02-props-and-composition/overview.ru.md)

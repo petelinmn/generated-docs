@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [objects, prototype, prototype-chain, property-descriptors, destructuring, spread, object-create, freeze, structured-clone]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Objects and prototypes
@@ -77,3 +77,4 @@ hi c [ 'name' ] x { a: 1, b: 2 }
 - Next: [06 · Classes](../06-classes/overview.en.md)
 - Analogues in other tracks: [Python: OOP and dataclasses](../../../python/overview.en.md), [C#: classes and records](../../../csharp/overview.en.md)
 - Typing objects: [TypeScript](../../../typescript/overview.en.md)
+- [React: props and composition](../../../react/modules/02-props-and-composition/overview.en.md)

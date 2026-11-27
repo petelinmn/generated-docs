@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [architecture, clean-architecture, ddd, cqrs, vertical-slices, hexagonal-architecture, architecture-tests]
 versions: ".NET 11, C# 15"
 status: draft
-updated: 2026-11-22
+updated: 2026-11-26
 ---
 
 # Application architecture
@@ -75,3 +75,4 @@ Console.WriteLine($"{summary!.Lines} lines, total {summary.Total.ToString(System
 - [System design: design process](../../../system-design/modules/01-design-process/overview.en.md)
 - [System design: architecture styles](../../../system-design/modules/11-architecture-styles/overview.en.md)
 - [System design: event sourcing and CQRS](../../../system-design/modules/13-event-sourcing-and-cqrs/overview.en.md)
+- [Composition in React](../../../react/modules/02-props-and-composition/overview.en.md)
