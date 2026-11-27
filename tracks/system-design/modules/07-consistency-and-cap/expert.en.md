@@ -8,8 +8,8 @@ slug: 07-consistency-and-cap
 part: 2
 tags: [system-design, consistency, cap-theorem, isolation-levels, mvcc, write-skew, crdt]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-26
+status: verified
+updated: 2026-11-27
 ---
 
 # Consistency and CAP: expert
@@ -124,6 +124,15 @@ In SQL Server with `READ_COMMITTED_SNAPSHOT` off readers take locks, while in Az
 | quorums with tunable W and R | depends on the values |
 
 PACELC describes a configuration, not a product name: the same database may behave differently.
+
+### Two more anomalies
+
+| Anomaly | What happens |
+|---|---|
+| Dirty write | a transaction overwrites a value written by another one that has not yet committed or aborted |
+| Read skew | a transaction reads `x`, another changes both `x` and `y` and commits, then the first reads `y`: the two values never existed together |
+
+Snapshot isolation and repeatable read, as Jepsen defines them, rule out read skew, because all reads come from one state. Snapshot isolation still allows write skew.
 
 ## Gotchas
 
@@ -295,3 +304,5 @@ Different read versioning settings, for example `READ_COMMITTED_SNAPSHOT`.
 - [Jepsen: consistency models](https://jepsen.io/consistency/models)
 - [SQL Server: SET TRANSACTION ISOLATION LEVEL](https://learn.microsoft.com/sql/t-sql/statements/set-transaction-isolation-level-transact-sql)
 - [MySQL 8.4: InnoDB isolation levels](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)
+- [Jepsen: dirty write](https://jepsen.io/consistency/phenomena/p0)
+- [Jepsen: read skew](https://jepsen.io/consistency/phenomena/a5a)

@@ -8,8 +8,8 @@ slug: 08-messaging-and-events
 part: 2
 tags: [system-design, message-broker, events, delivery-semantics, idempotency, backpressure, poison-message]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-26
+status: verified
+updated: 2026-11-27
 ---
 
 # Сообщения и события: экспертная теория
@@ -42,11 +42,11 @@ public void Commit(long transaction)
 }
 ```
 
-Пока ранняя транзакция открыта, читатель не продвигается дальше неё, даже если более поздняя уже зафиксирована. Гарантия «ровно один раз» относится к цепочке «прочитал из Kafka — обработал — записал в Kafka»; внешняя база или почта требуют своей идемпотентности. Файл: [Ex05_Transactions.cs](code/Examples/Ex05_Transactions.cs). Это модель идеи, а не протокол Kafka; подробности — в [треке Kafka](../../../kafka/modules/05-delivery-semantics/overview.ru.md).
+Consumer с `read_committed` читает только до last stable offset (LSO) — перед первой открытой транзакцией, поэтому, пока ранняя транзакция открыта, он не продвигается дальше неё, даже если более поздняя уже зафиксирована. Гарантия «ровно один раз» относится к цепочке «прочитал из Kafka — обработал — записал в Kafka»; внешняя база или почта требуют своей идемпотентности. Файл: [Ex05_Transactions.cs](code/Examples/Ex05_Transactions.cs). Это модель идеи, а не протокол Kafka; подробности — в [треке Kafka](../../../kafka/modules/05-delivery-semantics/overview.ru.md).
 
 ### Quorum queues и streams в RabbitMQ
 
-Quorum queue — долговечная реплицируемая очередь на Raft; publisher confirm приходит, когда сообщение записано на большинство. Начиная с 4.0 лимит доставок по умолчанию равен 20: превысившее его сообщение удаляется или уходит в dead-letter exchange, если он настроен. Dead lettering по умолчанию at-most-once; для at-least-once нужны отдельные настройки.
+Quorum queue — долговечная реплицируемая очередь на Raft; publisher confirm приходит, когда сообщение записано на большинство. Начиная с 4.0 лимит доставок по умолчанию равен 20: превысившее его сообщение удаляется или уходит в dead-letter exchange, если он настроен. С 4.3 счётчик доставок растёт только при настоящих сбоях (например, упавший канал или `basic.reject`); возврат сообщения через `basic.nack` в лимит больше не идёт. Dead lettering по умолчанию at-most-once; для at-least-once нужны `dead-letter-strategy: at-least-once`, `overflow: reject-publish` (значение по умолчанию `drop-head` возвращает к at-most-once) и настроенный dead-letter exchange.
 
 Stream — журнал: чтение не удаляет сообщения, потребитель выбирает начальную позицию (`first`, `last`, `next`, offset или время). Ограничения хранения (`max-age`, `max-length-bytes`) по умолчанию не заданы.
 
@@ -288,3 +288,4 @@ Consumers, до появления новых событий.
 - [RabbitMQ: quorum queues](https://www.rabbitmq.com/docs/quorum-queues)
 - [RabbitMQ: streams](https://www.rabbitmq.com/docs/streams)
 - [Confluent: эволюция схем](https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html)
+- [Kafka: consumer configs](https://kafka.apache.org/43/configuration/consumer-configs/)

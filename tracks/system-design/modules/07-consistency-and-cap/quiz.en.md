@@ -8,8 +8,8 @@ slug: 07-consistency-and-cap
 part: 2
 tags: [system-design, consistency, cap-theorem, isolation-levels, mvcc, write-skew, crdt]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-26
+status: verified
+updated: 2026-11-27
 ---
 
 # Quiz: consistency and CAP

@@ -8,8 +8,8 @@ slug: 07-consistency-and-cap
 part: 2
 tags: [system-design, consistency, cap-theorem, isolation-levels, mvcc, write-skew, crdt]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-26
+status: verified
+updated: 2026-11-27
 ---
 
 # Согласованность и CAP: экспертная теория
@@ -124,6 +124,15 @@ LWW-Register разрешает равенство меток идентифик
 | кворумы с настраиваемыми W и R | зависит от значений |
 
 PACELC описывает конфигурацию, а не название продукта: одна и та же база может вести себя по-разному.
+
+### Ещё две аномалии
+
+| Аномалия | Что происходит |
+|---|---|
+| Dirty write (грязная запись) | транзакция перезаписывает значение, записанное другой, ещё не зафиксированной и не отменённой |
+| Read skew (перекос чтения) | транзакция читает `x`, другая меняет и `x`, и `y` и фиксируется, затем первая читает `y`: такой пары значений одновременно не существовало |
+
+Snapshot isolation и repeatable read в определениях Jepsen исключают read skew, потому что все чтения идут из одного состояния. Write skew snapshot isolation всё равно допускает.
 
 ## Подвохи
 
@@ -295,3 +304,5 @@ SQL Server — Read committed, InnoDB — Repeatable read.
 - [Jepsen: модели согласованности](https://jepsen.io/consistency/models)
 - [SQL Server: SET TRANSACTION ISOLATION LEVEL](https://learn.microsoft.com/sql/t-sql/statements/set-transaction-isolation-level-transact-sql)
 - [MySQL 8.4: уровни изоляции InnoDB](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)
+- [Jepsen: dirty write](https://jepsen.io/consistency/phenomena/p0)
+- [Jepsen: read skew](https://jepsen.io/consistency/phenomena/a5a)

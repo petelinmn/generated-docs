@@ -8,8 +8,8 @@ slug: 08-messaging-and-events
 part: 2
 tags: [system-design, message-broker, events, delivery-semantics, idempotency, backpressure, poison-message]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-26
+status: verified
+updated: 2026-11-27
 ---
 
 # Упражнения: сообщения и события

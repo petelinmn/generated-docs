@@ -8,8 +8,8 @@ slug: 08-messaging-and-events
 part: 2
 tags: [system-design, message-broker, events, delivery-semantics, idempotency, backpressure, poison-message]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-26
+status: verified
+updated: 2026-11-27
 ---
 
 # Messaging and events: expert
@@ -42,11 +42,11 @@ public void Commit(long transaction)
 }
 ```
 
-While an earlier transaction is open, the reader does not advance past it, even if a later one has committed. The "exactly once" guarantee covers the chain "read from Kafka — process — write to Kafka"; an external database or email needs its own idempotency. File: [Ex05_Transactions.cs](code/Examples/Ex05_Transactions.cs). This models the idea, not Kafka's protocol; details are in the [Kafka track](../../../kafka/modules/05-delivery-semantics/overview.en.md).
+A `read_committed` consumer reads only up to the last stable offset (LSO), just before the first open transaction, so while an earlier transaction is open it does not advance past it, even if a later one has committed. The "exactly once" guarantee covers the chain "read from Kafka — process — write to Kafka"; an external database or email needs its own idempotency. File: [Ex05_Transactions.cs](code/Examples/Ex05_Transactions.cs). This models the idea, not Kafka's protocol; details are in the [Kafka track](../../../kafka/modules/05-delivery-semantics/overview.en.md).
 
 ### Quorum queues and streams in RabbitMQ
 
-A quorum queue is a durable replicated queue on Raft; a publisher confirm arrives once the message is written to a majority. Since 4.0 the default delivery limit is 20: a message that exceeds it is dropped, or goes to a dead-letter exchange if one is configured. Dead lettering is at-most-once by default; at-least-once needs separate settings.
+A quorum queue is a durable replicated queue on Raft; a publisher confirm arrives once the message is written to a majority. Since 4.0 the default delivery limit is 20: a message that exceeds it is dropped, or goes to a dead-letter exchange if one is configured. Since 4.3 the delivery count grows only for genuine failures (for example a crashed channel or `basic.reject`); returning a message with `basic.nack` no longer counts towards the limit. Dead lettering is at-most-once by default; at-least-once needs `dead-letter-strategy: at-least-once`, `overflow: reject-publish` (the default `drop-head` falls back to at-most-once) and a configured dead-letter exchange.
 
 A stream is a log: reading does not remove messages, and the consumer picks the starting position (`first`, `last`, `next`, an offset or a time). Retention limits (`max-age`, `max-length-bytes`) are not set by default.
 
@@ -288,3 +288,4 @@ By default dead lettering in quorum queues is at-most-once; at-least-once needs 
 - [RabbitMQ: quorum queues](https://www.rabbitmq.com/docs/quorum-queues)
 - [RabbitMQ: streams](https://www.rabbitmq.com/docs/streams)
 - [Confluent: schema evolution](https://docs.confluent.io/platform/current/schema-registry/fundamentals/schema-evolution.html)
+- [Kafka: consumer configs](https://kafka.apache.org/43/configuration/consumer-configs/)

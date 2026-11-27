@@ -9,8 +9,8 @@ part: 2
 levels: [1, 2, 3, 4, 5, 6]
 tags: [system-design, consistency, cap-theorem, isolation-levels, mvcc, write-skew, crdt]
 versions: ".NET 11, C# 15"
-status: draft
-updated: 2026-11-26
+status: verified
+updated: 2026-11-27
 ---
 
 # Согласованность и CAP
