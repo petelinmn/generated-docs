@@ -81,3 +81,4 @@ console.log('2 sync');
 - Дальше: [14 · Ошибки и отладка](../14-errors-and-debugging/overview.ru.md)
 - Аналоги в других треках: [C#: параллелизм](../../../csharp/modules/18-concurrency/overview.ru.md), [Python](../../../python/overview.ru.md) (GIL, asyncio), [Linux: процессы](../../../linux/overview.ru.md)
 - [Обновления состояния и таймеры в React](../../../react/modules/03-state-and-events/overview.ru.md)
+- [Производительность рендера в React](../../../react/modules/11-performance/overview.ru.md)

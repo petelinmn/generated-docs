@@ -75,3 +75,4 @@ function Counter() {
 - Discriminated unions for actions: [TypeScript track](../../../typescript/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
 - [09 · Custom hooks](../09-custom-hooks/overview.en.md)
+- [11 · Rendering performance](../11-performance/overview.en.md)

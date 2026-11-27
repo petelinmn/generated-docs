@@ -66,3 +66,4 @@ const users = [{ id: 'u1', name: 'Ann' }, { id: 'u2', name: 'Bob' }];
 - The same notion of identity in data: [data modeling](../../../postgresql/modules/03-data-modeling-ddl/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
 - [05 · Forms](../05-forms/overview.en.md)
+- [11 · Rendering performance](../11-performance/overview.en.md)

@@ -66,3 +66,4 @@ const users = [{ id: 'u1', name: 'Ann' }, { id: 'u2', name: 'Bob' }];
 - То же понятие идентичности в данных: [проектирование схемы](../../../postgresql/modules/03-data-modeling-ddl/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
 - [05 · Формы](../05-forms/overview.ru.md)
+- [11 · Производительность рендера](../11-performance/overview.ru.md)

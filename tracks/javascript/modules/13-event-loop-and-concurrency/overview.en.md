@@ -81,3 +81,4 @@ First all the synchronous code, then microtasks, then the timer.
 - Next: [14 · Errors and debugging](../14-errors-and-debugging/overview.en.md)
 - Analogues in other tracks: [C#: concurrency](../../../csharp/modules/18-concurrency/overview.en.md), [Python](../../../python/overview.en.md) (GIL, asyncio), [Linux: processes](../../../linux/overview.en.md)
 - [State updates and timers in React](../../../react/modules/03-state-and-events/overview.en.md)
+- [Rendering performance in React](../../../react/modules/11-performance/overview.en.md)

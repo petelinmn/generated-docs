@@ -69,3 +69,4 @@ double peakQps = averageQps * 3;                // about 6944
 - [Observability and SLOs](../14-observability-and-slo/overview.en.md)
 - [Multi-region and recovery](../16-multi-region-and-dr/overview.en.md)
 - [Case studies](../17-design-case-studies/overview.en.md)
+- [Rendering performance in React](../../../react/modules/11-performance/overview.en.md)

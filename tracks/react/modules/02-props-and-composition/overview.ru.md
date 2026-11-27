@@ -71,3 +71,4 @@ function Avatar({ name, size = 40 }: { name: string; size?: number }) {
 - [03 · Состояние и события](../03-state-and-events/overview.ru.md)
 - [07 · Refs и DOM](../07-refs-and-dom/overview.ru.md)
 - [08 · Context и редьюсеры](../08-context-and-reducers/overview.ru.md)
+- [11 · Производительность рендера](../11-performance/overview.ru.md)

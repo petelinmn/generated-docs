@@ -71,3 +71,4 @@ function Avatar({ name, size = 40 }: { name: string; size?: number }) {
 - [03 · State and events](../03-state-and-events/overview.en.md)
 - [07 · Refs and the DOM](../07-refs-and-dom/overview.en.md)
 - [08 · Context and reducers](../08-context-and-reducers/overview.en.md)
+- [11 · Rendering performance](../11-performance/overview.en.md)

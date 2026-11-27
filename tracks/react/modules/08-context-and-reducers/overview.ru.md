@@ -75,3 +75,4 @@ function Counter() {
 - Размеченные объединения для actions: [трек TypeScript](../../../typescript/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
 - [09 · Пользовательские хуки](../09-custom-hooks/overview.ru.md)
+- [11 · Производительность рендера](../11-performance/overview.ru.md)
