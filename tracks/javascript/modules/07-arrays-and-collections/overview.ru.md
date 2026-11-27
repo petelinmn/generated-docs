@@ -83,3 +83,4 @@ console.log([...new Set([1, 2, 2, 3])], new Map([['a', 1]]).get('a'));
 - Аналоги в других треках: [Python: списки, словари, множества](../../../python/overview.ru.md), [C#: коллекции и LINQ](../../../csharp/overview.ru.md)
 - Типизация массивов и коллекций: [TypeScript](../../../typescript/overview.ru.md)
 - [Вывод списков в React](../../../react/modules/01-components-and-jsx/overview.ru.md)
+- [Ключи и списки в React](../../../react/modules/04-lists-and-keys/overview.ru.md)

@@ -62,6 +62,7 @@ CREATE TABLE orders (
 - Next: the next module in the [PostgreSQL track roadmap](../../overview.en.md).
 - [System design: choosing a store](../../../system-design/modules/04-data-storage/overview.en.md)
 - [04 · Joins and subqueries](../04-joins-and-subqueries/overview.en.md)
+- [Identity of items in React lists](../../../react/modules/04-lists-and-keys/overview.en.md)
 
 ## Sources
 

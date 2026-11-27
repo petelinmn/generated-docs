@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, state, use-state, events, hooks]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Состояние и события
@@ -65,3 +65,4 @@ function Counter() {
 - Цикл событий и таймеры: [event loop в JavaScript](../../../javascript/modules/13-event-loop-and-concurrency/overview.ru.md)
 - События DOM под капотом: [DOM и события в браузере](../../../javascript/modules/17-browser-dom-and-events/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [04 · Списки, ключи и идентичность](../04-lists-and-keys/overview.ru.md)

@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, state, use-state, events, hooks]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # State and events
@@ -65,3 +65,4 @@ function Counter() {
 - Event loop and timers: [JavaScript event loop](../../../javascript/modules/13-event-loop-and-concurrency/overview.en.md)
 - DOM events underneath: [browser DOM and events](../../../javascript/modules/17-browser-dom-and-events/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [04 · Lists, keys and identity](../04-lists-and-keys/overview.en.md)

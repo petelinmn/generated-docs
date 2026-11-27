@@ -83,3 +83,4 @@ console.log([...new Set([1, 2, 2, 3])], new Map([['a', 1]]).get('a'));
 - Analogues in other tracks: [Python: lists, dicts, sets](../../../python/overview.en.md), [C#: collections and LINQ](../../../csharp/overview.en.md)
 - Typing arrays and collections: [TypeScript](../../../typescript/overview.en.md)
 - [Rendering lists in React](../../../react/modules/01-components-and-jsx/overview.en.md)
+- [Keys and lists in React](../../../react/modules/04-lists-and-keys/overview.en.md)

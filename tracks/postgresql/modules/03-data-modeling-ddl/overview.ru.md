@@ -62,6 +62,7 @@ CREATE TABLE orders (
 - Дальше: следующий модуль по [дорожной карте PostgreSQL](../../overview.ru.md).
 - [System design: выбор хранилища](../../../system-design/modules/04-data-storage/overview.ru.md)
 - [04 · Соединения и подзапросы](../04-joins-and-subqueries/overview.ru.md)
+- [Идентичность элементов списка в React](../../../react/modules/04-lists-and-keys/overview.ru.md)
 
 ## Источники
 
