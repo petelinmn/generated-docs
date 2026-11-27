@@ -67,3 +67,4 @@ const Chart = lazy(() => import('./Chart'));
 - Dynamic import: [JavaScript modules](../../../javascript/modules/09-modules/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
 - [13 · Actions](../13-actions/overview.en.md)
+- [14 · Server rendering](../14-server-rendering/overview.en.md)

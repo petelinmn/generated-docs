@@ -69,3 +69,4 @@ useEffect(() => {
 - [07 · Refs and the DOM](../07-refs-and-dom/overview.en.md)
 - [09 · Custom hooks](../09-custom-hooks/overview.en.md)
 - [12 · Concurrent features](../12-concurrent-features/overview.en.md)
+- [14 · Server rendering](../14-server-rendering/overview.en.md)

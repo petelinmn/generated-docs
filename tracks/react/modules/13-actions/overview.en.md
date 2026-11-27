@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, actions, forms, optimistic-updates, transitions]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Actions
@@ -67,3 +67,4 @@ async function save(data: FormData) {
 - Prerequisites: [05 · Forms](../05-forms/overview.en.md), [12 · Concurrent features](../12-concurrent-features/overview.en.md)
 - Promises: [JavaScript async](../../../javascript/modules/12-promises-and-async-await/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [14 · Server rendering](../14-server-rendering/overview.en.md)

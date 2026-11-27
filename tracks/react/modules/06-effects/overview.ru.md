@@ -69,3 +69,4 @@ useEffect(() => {
 - [07 · Refs и DOM](../07-refs-and-dom/overview.ru.md)
 - [09 · Пользовательские хуки](../09-custom-hooks/overview.ru.md)
 - [12 · Конкурентные возможности](../12-concurrent-features/overview.ru.md)
+- [14 · Серверный рендеринг](../14-server-rendering/overview.ru.md)

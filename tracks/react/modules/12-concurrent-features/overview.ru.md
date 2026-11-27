@@ -67,3 +67,4 @@ const Chart = lazy(() => import('./Chart'));
 - Динамический импорт: [модули JavaScript](../../../javascript/modules/09-modules/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
 - [13 · Actions](../13-actions/overview.ru.md)
+- [14 · Серверный рендеринг](../14-server-rendering/overview.ru.md)

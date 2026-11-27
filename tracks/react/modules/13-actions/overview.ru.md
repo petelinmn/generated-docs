@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, actions, forms, optimistic-updates, transitions]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Actions
@@ -67,3 +67,4 @@ async function save(data: FormData) {
 - Пререквизиты: [05 · Формы](../05-forms/overview.ru.md), [12 · Конкурентные возможности](../12-concurrent-features/overview.ru.md)
 - Промисы: [асинхронность в JavaScript](../../../javascript/modules/12-promises-and-async-await/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [14 · Серверный рендеринг](../14-server-rendering/overview.ru.md)
