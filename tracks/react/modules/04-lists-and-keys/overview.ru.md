@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, keys, lists, identity, state]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Списки, ключи и идентичность
@@ -65,3 +65,4 @@ const users = [{ id: 'u1', name: 'Ann' }, { id: 'u2', name: 'Bob' }];
 - `map`, `filter`, `toSorted`: [массивы в JavaScript](../../../javascript/modules/07-arrays-and-collections/overview.ru.md)
 - То же понятие идентичности в данных: [проектирование схемы](../../../postgresql/modules/03-data-modeling-ddl/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [05 · Формы](../05-forms/overview.ru.md)

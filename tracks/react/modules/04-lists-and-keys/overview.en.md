@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, keys, lists, identity, state]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Lists, keys and identity
@@ -65,3 +65,4 @@ const users = [{ id: 'u1', name: 'Ann' }, { id: 'u2', name: 'Bob' }];
 - `map`, `filter`, `toSorted`: [arrays in JavaScript](../../../javascript/modules/07-arrays-and-collections/overview.en.md)
 - The same notion of identity in data: [data modeling](../../../postgresql/modules/03-data-modeling-ddl/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [05 · Forms](../05-forms/overview.en.md)

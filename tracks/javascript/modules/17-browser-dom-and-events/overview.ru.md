@@ -88,3 +88,4 @@ clicked One
 - Аналоги в других треках: [TypeScript](../../../typescript/overview.ru.md) (типы DOM, фреймворки), [C#: Blazor и ASP.NET Core](../../../csharp/overview.ru.md) (серверная сторона)
 - [React: компоненты и JSX](../../../react/modules/01-components-and-jsx/overview.ru.md)
 - [События в React](../../../react/modules/03-state-and-events/overview.ru.md)
+- [Формы в React](../../../react/modules/05-forms/overview.ru.md)
