@@ -54,6 +54,7 @@ generated-docs/
 ├── CLAUDE.md               generation rules (Claude reads them automatically)
 ├── _templates/             document templates
 ├── tools/check-docs.ps1    automatic documentation checks
+├── tools/build-epub.ps1    builds an EPUB from a track
 ├── .claude/skills/         the /learn, /quiz-me, /verify commands
 └── tracks/<track>/
     ├── overview.ru.md / .en.md   the technology in brief + roadmap
@@ -82,6 +83,7 @@ generated-docs/
 | `/quiz-me <track>/<module>` | interactive quiz: one question at a time, mistakes explained |
 | `/verify <path>` | facts, tests, translation, links → `verified` |
 | `powershell -NoProfile -ExecutionPolicy Bypass -File tools/check-docs.ps1 [path]` | automatic checks: ru/en pairs, structure, front matter, broken links |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-epub.ps1 -Track csharp -Lang en` | an EPUB book from a track for an e-reader (needs pandoc); answers and solutions are at the end of the book; `-Levels 1,2` limits the levels; output in `dist/epub/` |
 
 ## Service files
 

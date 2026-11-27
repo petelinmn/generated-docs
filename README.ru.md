@@ -54,6 +54,7 @@ generated-docs/
 ├── CLAUDE.md               правила генерации (Claude читает автоматически)
 ├── _templates/             шаблоны документов
 ├── tools/check-docs.ps1    автопроверка документации
+├── tools/build-epub.ps1    сборка EPUB из трека
 ├── .claude/skills/         команды /learn, /quiz-me, /verify
 └── tracks/<track>/
     ├── overview.ru.md / .en.md   кратко о технологии + дорожная карта
@@ -82,6 +83,7 @@ generated-docs/
 | `/quiz-me <track>/<модуль>` | интерактивный квиз: вопросы по одному, разбор ошибок |
 | `/verify <путь>` | факты, тесты, перевод, ссылки → `verified` |
 | `powershell -NoProfile -ExecutionPolicy Bypass -File tools/check-docs.ps1 [путь]` | автопроверка: пары ru/en, структура, front matter, битые ссылки |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-epub.ps1 -Track csharp -Lang ru` | книга EPUB из трека для читалки (нужен pandoc); ответы и решения — в конце книги; `-Levels 1,2` ограничивает уровни; результат в `dist/epub/` |
 
 ## Служебные файлы
 

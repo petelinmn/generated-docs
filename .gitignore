@@ -52,6 +52,9 @@ Thumbs.db
 node_modules/
 .vitepress/cache/
 .vitepress/dist/
+
+# EPUB books built by tools/build-epub.ps1
+/dist/
 .vitepress/.temp/
 
 # JavaScript / TypeScript
