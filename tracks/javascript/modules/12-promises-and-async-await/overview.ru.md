@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [promise, async-await, promise-all, promise-allsettled, promise-any, microtask, unhandled-rejection, abort-signal]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Промисы и async/await
@@ -80,3 +80,4 @@ a b
 - Пререквизиты: [04 · Функции](../04-functions/overview.ru.md), [11 · Итераторы и генераторы](../11-iterators-and-generators/overview.ru.md)
 - Дальше: [13 · Цикл событий и параллелизм](../13-event-loop-and-concurrency/overview.ru.md)
 - Аналоги в других треках: [C#: async/await](../../../csharp/modules/10-async-await/overview.ru.md), [Python](../../../python/overview.ru.md) (asyncio)
+- [Эффекты и отмена в React](../../../react/modules/06-effects/overview.ru.md)

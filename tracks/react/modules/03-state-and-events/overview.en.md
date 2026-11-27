@@ -66,3 +66,4 @@ function Counter() {
 - DOM events underneath: [browser DOM and events](../../../javascript/modules/17-browser-dom-and-events/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
 - [04 · Lists, keys and identity](../04-lists-and-keys/overview.en.md)
+- [06 · Effects](../06-effects/overview.en.md)

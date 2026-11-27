@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [promise, async-await, promise-all, promise-allsettled, promise-any, microtask, unhandled-rejection, abort-signal]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Promises and async/await
@@ -80,3 +80,4 @@ Two operations run simultaneously, and `await` waits for both.
 - Prerequisites: [04 · Functions](../04-functions/overview.en.md), [11 · Iterators and generators](../11-iterators-and-generators/overview.en.md)
 - Next: [13 · The event loop and concurrency](../13-event-loop-and-concurrency/overview.en.md)
 - Analogues in other tracks: [C#: async/await](../../../csharp/modules/10-async-await/overview.en.md), [Python](../../../python/overview.en.md) (asyncio)
+- [Effects and cancellation in React](../../../react/modules/06-effects/overview.en.md)

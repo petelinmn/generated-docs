@@ -66,3 +66,4 @@ function Counter() {
 - События DOM под капотом: [DOM и события в браузере](../../../javascript/modules/17-browser-dom-and-events/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
 - [04 · Списки, ключи и идентичность](../04-lists-and-keys/overview.ru.md)
+- [06 · Эффекты](../06-effects/overview.ru.md)
