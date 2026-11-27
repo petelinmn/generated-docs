@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [caching, memory-cache, hybrid-cache, output-cache, cache-stampede, redis]
 versions: ".NET 11, C# 15; Microsoft.Extensions.Caching.Hybrid 11.0.1"
 status: draft
-updated: 2026-11-22
+updated: 2026-11-26
 ---
 
 # Кэширование
@@ -65,3 +65,4 @@ var value = await hc.GetOrCreateAsync("key", async ct => await Load(ct));
 - В других треках: [Python](../../../python/overview.ru.md) — `functools.cache`
 - Рецепты и библиотеки: [Пагинация и фильтрация](../pagination-filtering/overview.ru.md)
 - [Кэширование как часть архитектуры](../../../system-design/modules/03-caching/overview.ru.md)
+- [Применение: сокращатель ссылок](../../../system-design/recipes/url-shortener/overview.ru.md)

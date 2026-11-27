@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [rate-limiting, throttling, aspnet-core, http-429, token-bucket, partitioned-limiter]
 versions: ".NET 11, C# 15; ASP.NET Core 11.0"
 status: draft
-updated: 2026-11-22
+updated: 2026-11-26
 ---
 
 # Rate limiting
@@ -71,3 +71,4 @@ app.MapGet("/fixed", () => "ok").RequireRateLimiting("fixed");
 - Recipes and libraries: [Polly](../../libraries/polly/overview.en.md), [Background jobs](../background-jobs/overview.en.md), [File upload](../file-upload/overview.en.md), [Pagination and filtering](../pagination-filtering/overview.en.md), [Real-time with SignalR](../signalr-realtime/overview.en.md)
 - [System design: reliability patterns](../../../system-design/modules/09-reliability-patterns/overview.en.md)
 - [System design: case studies](../../../system-design/modules/17-design-case-studies/overview.en.md)
+- [Across instances: distributed rate limiter](../../../system-design/recipes/distributed-rate-limiter/overview.en.md)

@@ -68,6 +68,7 @@ public class ValidationTests
     [InlineData("example.com/x", "not an absolute URL")]
     [InlineData("https://bank.example@evil.example/", "credentials are not allowed")]
     [InlineData("https://SHORT.test/abc", "points to the shortener")]
+    [InlineData("https://short.test./abc", "points to the shortener")]
     [InlineData("  ", "empty")]
     public void Validation_Url(string url, string? reason) => Assert.Equal(reason, LinkRules.CheckUrl(url, "short.test"));
 

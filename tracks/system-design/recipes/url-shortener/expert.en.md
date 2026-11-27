@@ -24,7 +24,7 @@ updated: 2026-11-27
 |---|---|---|
 | Database | shared | not SQLite on a network share: a server database |
 | `HybridCache` | local copies are separate; add a distributed cache (`IDistributedCache`) as the second level | short `LocalCacheExpiration`, or broadcast invalidation |
-| Rate limiter | counters per instance, up to N times the limit | gateway or a distributed limiter |
+| Rate limiter | counters per instance, up to N times the limit | gateway or a [distributed limiter](../distributed-rate-limiter/overview.en.md) |
 | Click queue | one per instance | totals are added in the database, so they combine |
 
 The documentation states that `RemoveAsync` removes the entry on the current server and in the distributed cache, while memory caches on other servers are not affected. The test `Cache_AnotherInstanceKeepsItsLocalCopyAfterDisable` shows it:
@@ -55,6 +55,9 @@ public async Task DisableAsync(string code)
 
 ## Gotchas
 
+- **A lookup running during a disable** can put the old value back into the cache after the key was removed; it lives until the entry expires.
+- **A request path is user input:** reject strings that cannot be a code before they become cache keys.
+- **A failing background flush** stops the host by default; catch and log inside the service.
 - **A cached link outlives its expiry.** Check `ExpiresAt` after reading the cache.
 - **A cached "not found" blocks a new alias.** Remove the key on creation; with several instances other local copies still answer 404 until they expire.
 - **`$` in a regular expression** accepts a trailing newline.

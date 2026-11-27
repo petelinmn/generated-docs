@@ -65,3 +65,4 @@ if (!lease.IsAcquired) return (false, default);
 - [Security architecture](../15-security-architecture/overview.en.md)
 - [Case studies](../17-design-case-studies/overview.en.md)
 - [Requests from React effects](../../../react/modules/06-effects/overview.en.md)
+- [Recipe: distributed rate limiter](../../recipes/distributed-rate-limiter/overview.en.md)

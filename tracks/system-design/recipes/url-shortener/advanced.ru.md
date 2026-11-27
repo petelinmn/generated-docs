@@ -32,7 +32,8 @@ public static string? CheckUrl(string? url, string ownHost)
     // https://bank.example@evil.example shows one host and opens another.
     if (uri.UserInfo.Length > 0) return "credentials are not allowed";
     // A short link that points to a short link can build a loop.
-    if (string.Equals(uri.Host, ownHost, StringComparison.OrdinalIgnoreCase)) return "points to the shortener";
+    // "short.test." with a trailing dot is the same host.
+    if (string.Equals(uri.Host.TrimEnd('.'), ownHost, StringComparison.OrdinalIgnoreCase)) return "points to the shortener";
     return null;
 ```
 
@@ -137,6 +138,8 @@ public async Task<int> FlushAsync(LinkStore store)
 ```csharp
 app.MapGet("/{code}", async (string code, LinkResolver resolver, ClickCounter clicks, CancellationToken ct) =>
 {
+    // Anything that cannot be a code never becomes a cache key or a query.
+    if (!LinkRules.IsValidAlias(code)) return Results.NotFound();
     string? url = await resolver.ResolveAsync(code, ct);
     if (url is null) return Results.NotFound();
     clicks.Record(code);

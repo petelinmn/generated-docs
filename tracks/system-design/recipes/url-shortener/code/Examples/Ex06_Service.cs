@@ -17,7 +17,7 @@ public sealed record NewLink(string Url, string? Alias = null, int? TtlSeconds =
 public sealed record ShortenerOptions(string ConnectionString, string PublicHost, int CreatesPerMinute = 30);
 
 // Flushes clicks on a timer and once more on shutdown.
-public sealed class ClickFlusher(ClickCounter clicks, LinkStore store) : BackgroundService
+public sealed class ClickFlusher(ClickCounter clicks, LinkStore store, ILogger<ClickFlusher> logger) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -25,13 +25,26 @@ public sealed class ClickFlusher(ClickCounter clicks, LinkStore store) : Backgro
         try
         {
             while (await timer.WaitForNextTickAsync(stoppingToken))
-                await clicks.FlushAsync(store);
+                await FlushSafelyAsync();
         }
         catch (OperationCanceledException)
         {
         }
 
-        await clicks.FlushAsync(store);
+        await FlushSafelyAsync();
+    }
+
+    // An unhandled exception in a background service stops the host; statistics are not worth that.
+    private async Task FlushSafelyAsync()
+    {
+        try
+        {
+            await clicks.FlushAsync(store);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "Click counts were lost.");
+        }
     }
 }
 
@@ -91,6 +104,8 @@ public static class ShortenerService
 
         app.MapGet("/{code}", async (string code, LinkResolver resolver, ClickCounter clicks, CancellationToken ct) =>
         {
+            // Anything that cannot be a code never becomes a cache key or a query.
+            if (!LinkRules.IsValidAlias(code)) return Results.NotFound();
             string? url = await resolver.ResolveAsync(code, ct);
             if (url is null) return Results.NotFound();
             clicks.Record(code);

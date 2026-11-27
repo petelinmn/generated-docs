@@ -20,7 +20,8 @@ public static partial class LinkRules
         // https://bank.example@evil.example shows one host and opens another.
         if (uri.UserInfo.Length > 0) return "credentials are not allowed";
         // A short link that points to a short link can build a loop.
-        if (string.Equals(uri.Host, ownHost, StringComparison.OrdinalIgnoreCase)) return "points to the shortener";
+        // "short.test." with a trailing dot is the same host.
+        if (string.Equals(uri.Host.TrimEnd('.'), ownHost, StringComparison.OrdinalIgnoreCase)) return "points to the shortener";
         return null;
     }
 

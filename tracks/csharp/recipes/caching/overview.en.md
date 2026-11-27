@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [caching, memory-cache, hybrid-cache, output-cache, cache-stampede, redis]
 versions: ".NET 11, C# 15; Microsoft.Extensions.Caching.Hybrid 11.0.1"
 status: draft
-updated: 2026-11-22
+updated: 2026-11-26
 ---
 
 # Caching
@@ -65,3 +65,4 @@ var value = await hc.GetOrCreateAsync("key", async ct => await Load(ct));
 - In other tracks: [Python](../../../python/overview.en.md) — `functools.cache`
 - Recipes and libraries: [Pagination and filtering](../pagination-filtering/overview.en.md)
 - [Caching as part of architecture](../../../system-design/modules/03-caching/overview.en.md)
+- [Applied: URL shortener](../../../system-design/recipes/url-shortener/overview.en.md)
