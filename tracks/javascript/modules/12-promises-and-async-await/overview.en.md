@@ -81,3 +81,4 @@ Two operations run simultaneously, and `await` waits for both.
 - Next: [13 · The event loop and concurrency](../13-event-loop-and-concurrency/overview.en.md)
 - Analogues in other tracks: [C#: async/await](../../../csharp/modules/10-async-await/overview.en.md), [Python](../../../python/overview.en.md) (asyncio)
 - [Effects and cancellation in React](../../../react/modules/06-effects/overview.en.md)
+- [Suspense and transitions in React](../../../react/modules/12-concurrent-features/overview.en.md)

@@ -108,12 +108,12 @@ useEffect(() => {
 
 </details>
 
-## 7. 🟡 Select where an effect is not needed
+## 7. 🟡 Select all cases where an effect is not needed
 
-- A) Computing a full name from two fields
-- B) Opening a connection
-- C) Sending a request after a button click
-- D) Subscribing to window resize
+- [ ] A) Computing a full name from two fields
+- [ ] B) Opening a connection
+- [ ] C) Sending a request after a button click
+- [ ] D) Subscribing to window resize
 
 <details><summary>Answer</summary>
 

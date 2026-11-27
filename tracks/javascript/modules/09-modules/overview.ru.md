@@ -88,3 +88,4 @@ default 0
 - Аналоги в других треках: [Python: модули и пакеты](../../../python/overview.ru.md), [C#: сборки и пространства имён](../../../csharp/overview.ru.md)
 - Модули и `tsconfig` в TypeScript: [TypeScript](../../../typescript/overview.ru.md)
 - [React: компоненты и JSX](../../../react/modules/01-components-and-jsx/overview.ru.md)
+- [Разделение кода через lazy в React](../../../react/modules/12-concurrent-features/overview.ru.md)

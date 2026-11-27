@@ -111,12 +111,12 @@ So an empty field silently becomes zero.
 
 </details>
 
-## 7. 🟡 Select what is absent from `FormData`
+## 7. 🟡 Select all items absent from `FormData`
 
-- A) An unchecked checkbox
-- B) A disabled input
-- C) An input without `name`
-- D) An input with `defaultValue`
+- [ ] A) An unchecked checkbox
+- [ ] B) A disabled input
+- [ ] C) An input without `name`
+- [ ] D) An input with `defaultValue`
 
 <details><summary>Answer</summary>
 

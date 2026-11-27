@@ -108,12 +108,12 @@ The name arrives later; use `await screen.findByText('Ann')`.
 
 </details>
 
-## 7. 🟡 Select good ways to deal with a network request in a test
+## 7. 🟡 Select all good ways to deal with a network request in a test
 
-- A) Pass the loading function as a prop and mock it
-- B) Call the real production server
-- C) Intercept requests with a mock server
-- D) Wait five seconds
+- [ ] A) Pass the loading function as a prop and mock it
+- [ ] B) Call the real production server
+- [ ] C) Intercept requests with a mock server
+- [ ] D) Wait five seconds
 
 <details><summary>Answer</summary>
 

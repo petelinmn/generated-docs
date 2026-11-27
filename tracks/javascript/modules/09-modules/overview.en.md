@@ -88,3 +88,4 @@ default 0
 - Analogues in other tracks: [Python: modules and packages](../../../python/overview.en.md), [C#: assemblies and namespaces](../../../csharp/overview.en.md)
 - Modules and `tsconfig` in TypeScript: [TypeScript](../../../typescript/overview.en.md)
 - [React: components and JSX](../../../react/modules/01-components-and-jsx/overview.en.md)
+- [Code splitting with lazy in React](../../../react/modules/12-concurrent-features/overview.en.md)

@@ -91,12 +91,12 @@ updated: 2026-11-27
 
 </details>
 
-## 6. 🟡 Select props that keep `memo` effective
+## 6. 🟡 Select all props that keep `memo` effective
 
-- A) A number that does not change
-- B) A function from `useCallback` with stable deps
-- C) An inline arrow function
-- D) A value from `useMemo`
+- [ ] A) A number that does not change
+- [ ] B) A function from `useCallback` with stable deps
+- [ ] C) An inline arrow function
+- [ ] D) A value from `useMemo`
 
 <details><summary>Answer</summary>
 

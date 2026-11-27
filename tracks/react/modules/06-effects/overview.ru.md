@@ -68,3 +68,4 @@ useEffect(() => {
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
 - [07 · Refs и DOM](../07-refs-and-dom/overview.ru.md)
 - [09 · Пользовательские хуки](../09-custom-hooks/overview.ru.md)
+- [12 · Конкурентные возможности](../12-concurrent-features/overview.ru.md)

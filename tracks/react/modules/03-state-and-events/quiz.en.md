@@ -146,12 +146,12 @@ The same array is set, so no render is requested. Use `setItems([...items, newIt
 
 </details>
 
-## 9. 🟡 Select what resets a component's state
+## 9. 🟡 Select all things that reset a component's state
 
-- A) A new `key`
-- B) A change of props
-- C) A different element type at that position
-- D) Removing it from the tree
+- [ ] A) A new `key`
+- [ ] B) A change of props
+- [ ] C) A different element type at that position
+- [ ] D) Removing it from the tree
 
 <details><summary>Answer</summary>
 

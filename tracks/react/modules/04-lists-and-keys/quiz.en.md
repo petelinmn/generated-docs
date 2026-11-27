@@ -112,12 +112,12 @@ The key must be on the fragment: `<Fragment key={item.id}>`.
 
 </details>
 
-## 7. 🟡 Select ways that keep a component's state
+## 7. 🟡 Select all ways that keep a component's state
 
-- A) Hiding it with `hidden`
-- B) Removing it with `&&`
-- C) Reordering siblings with stable keys
-- D) Changing its `key`
+- [ ] A) Hiding it with `hidden`
+- [ ] B) Removing it with `&&`
+- [ ] C) Reordering siblings with stable keys
+- [ ] D) Changing its `key`
 
 <details><summary>Answer</summary>
 

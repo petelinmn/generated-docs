@@ -81,3 +81,4 @@ a b
 - Дальше: [13 · Цикл событий и параллелизм](../13-event-loop-and-concurrency/overview.ru.md)
 - Аналоги в других треках: [C#: async/await](../../../csharp/modules/10-async-await/overview.ru.md), [Python](../../../python/overview.ru.md) (asyncio)
 - [Эффекты и отмена в React](../../../react/modules/06-effects/overview.ru.md)
+- [Suspense и transitions в React](../../../react/modules/12-concurrent-features/overview.ru.md)

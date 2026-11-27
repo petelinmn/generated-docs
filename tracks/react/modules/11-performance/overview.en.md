@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, performance, memoization, react-compiler, profiling]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Rendering performance
@@ -72,3 +72,4 @@ function Down() { return <><Field /><Expensive /></>; }
 - Measuring and percentiles: [design process](../../../system-design/modules/01-design-process/overview.en.md)
 - Main thread and long tasks: [event loop in JavaScript](../../../javascript/modules/13-event-loop-and-concurrency/overview.en.md)
 - Next: the following module of the [React roadmap](../../overview.en.md)
+- [12 · Concurrent features](../12-concurrent-features/overview.en.md)

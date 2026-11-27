@@ -128,12 +128,12 @@ A hook is called conditionally; call `useState` at the top and branch afterwards
 
 </details>
 
-## 8. 🟡 Select good candidates for a custom hook
+## 8. 🟡 Select all good candidates for a custom hook
 
-- A) Subscribing to window size
-- B) A pure price calculation
-- C) Syncing a value with storage
-- D) Rendering a button
+- [ ] A) Subscribing to window size
+- [ ] B) A pure price calculation
+- [ ] C) Syncing a value with storage
+- [ ] D) Rendering a button
 
 <details><summary>Answer</summary>
 

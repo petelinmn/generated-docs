@@ -123,12 +123,12 @@ The DOM is not updated yet; wrap the update in `flushSync` or scroll in an effec
 
 </details>
 
-## 8. 🟡 Select valid uses of refs
+## 8. 🟡 Select all valid uses of refs
 
-- A) Focusing a field
-- B) Storing a list shown on screen
-- C) Keeping an interval id
-- D) Scrolling to an element
+- [ ] A) Focusing a field
+- [ ] B) Storing a list shown on screen
+- [ ] C) Keeping an interval id
+- [ ] D) Scrolling to an element
 
 <details><summary>Answer</summary>
 

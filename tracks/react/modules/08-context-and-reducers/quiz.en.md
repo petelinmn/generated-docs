@@ -109,12 +109,12 @@ The reducer mutates and returns the same object, so nothing re-renders. Return `
 
 </details>
 
-## 7. 🟡 Select ways to reduce re-renders caused by context
+## 7. 🟡 Select all ways to reduce re-renders caused by context
 
-- A) Memoize the value
-- B) Split into several contexts
-- C) Wrap consumers in `memo`
-- D) Move state closer to its users
+- [ ] A) Memoize the value
+- [ ] B) Split into several contexts
+- [ ] C) Wrap consumers in `memo`
+- [ ] D) Move state closer to its users
 
 <details><summary>Answer</summary>
 

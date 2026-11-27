@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [react, performance, memoization, react-compiler, profiling]
 versions: "React 19.3"
 status: draft
-updated: 2026-11-27
+updated: 2026-11-26
 ---
 
 # Производительность рендера
@@ -72,3 +72,4 @@ function Down() { return <><Field /><Expensive /></>; }
 - Измерения и перцентили: [процесс проектирования](../../../system-design/modules/01-design-process/overview.ru.md)
 - Главный поток и долгие задачи: [event loop в JavaScript](../../../javascript/modules/13-event-loop-and-concurrency/overview.ru.md)
 - Дальше: следующий модуль по [дорожной карте React](../../overview.ru.md)
+- [12 · Конкурентные возможности](../12-concurrent-features/overview.ru.md)
