@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [dom, events, event-bubbling, event-delegation, fetch, web-storage, shadow-dom, custom-elements, cors, web-workers]
 versions: "WHATWG DOM и HTML Living Standard; проверено в Chrome 157 (headless)"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Браузер: DOM и события
@@ -86,3 +86,4 @@ clicked One
 - Пререквизиты: [09 · Модули](../09-modules/overview.ru.md), [12 · Промисы и async/await](../12-promises-and-async-await/overview.ru.md), [13 · Цикл событий и параллелизм](../13-event-loop-and-concurrency/overview.ru.md)
 - Дальше: [18 · Метапрограммирование](../18-metaprogramming/overview.ru.md)
 - Аналоги в других треках: [TypeScript](../../../typescript/overview.ru.md) (типы DOM, фреймворки), [C#: Blazor и ASP.NET Core](../../../csharp/overview.ru.md) (серверная сторона)
+- [React: компоненты и JSX](../../../react/modules/01-components-and-jsx/overview.ru.md)

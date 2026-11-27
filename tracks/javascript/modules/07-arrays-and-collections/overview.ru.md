@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [array, map, set, weakmap, typed-array, sort, iteration, immutability, array-methods, array-holes]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Массивы и коллекции
@@ -82,3 +82,4 @@ console.log([...new Set([1, 2, 2, 3])], new Map([['a', 1]]).get('a'));
 - Итераторы и генераторы подробно: [11 · Итераторы и генераторы](../11-iterators-and-generators/overview.ru.md)
 - Аналоги в других треках: [Python: списки, словари, множества](../../../python/overview.ru.md), [C#: коллекции и LINQ](../../../csharp/overview.ru.md)
 - Типизация массивов и коллекций: [TypeScript](../../../typescript/overview.ru.md)
+- [Вывод списков в React](../../../react/modules/01-components-and-jsx/overview.ru.md)

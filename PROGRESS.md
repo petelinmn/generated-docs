@@ -647,3 +647,43 @@
 ### Проекты
 
 - [ ] projects/url-shortener-service
+
+## react
+
+### Часть 1. Основы
+
+- [ ] 01-components-and-jsx
+- [ ] 02-props-and-composition
+- [ ] 03-state-and-events
+- [ ] 04-lists-and-keys
+- [ ] 05-forms
+
+### Часть 2. Продвинутые темы
+
+- [ ] 06-effects
+- [ ] 07-refs-and-dom
+- [ ] 08-context-and-reducers
+- [ ] 09-custom-hooks
+- [ ] 10-testing
+
+### Часть 3. Темы для опытных
+
+- [ ] 11-performance
+- [ ] 12-concurrent-features
+- [ ] 13-actions
+- [ ] 14-server-rendering
+
+### Библиотеки
+
+- [ ] libraries/react-router
+- [ ] libraries/tanstack-query
+- [ ] libraries/zustand
+
+### Рецепты
+
+- [ ] recipes/data-fetching
+- [ ] recipes/form-validation
+
+### Проекты
+
+- [ ] projects/task-board

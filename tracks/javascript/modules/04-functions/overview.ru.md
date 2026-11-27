@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [functions, arrow-functions, this, call-apply-bind, default-parameters, rest-parameters, arguments, new-target, recursion]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Функции
@@ -77,3 +77,4 @@ console.log(add(1), add(1, 2, 3, 4), [1, 2, 3].map(double));
 - Асинхронные функции: [12 · Промисы и async/await](../12-promises-and-async-await/overview.ru.md)
 - Аналоги в других треках: [Python: функции](../../../python/overview.ru.md), [C#: методы и делегаты](../../../csharp/overview.ru.md)
 - Типизация функций: [TypeScript](../../../typescript/overview.ru.md)
+- [Компоненты и JSX в React](../../../react/modules/01-components-and-jsx/overview.ru.md)

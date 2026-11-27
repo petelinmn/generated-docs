@@ -93,6 +93,7 @@ Learning progress is tracked in [PROGRESS.md](../../PROGRESS.md). Modules are ge
 - [JavaScript](../javascript/overview.en.md) — the basis of the language; without modules 01–08 types make no sense
 - [Python](../python/overview.en.md) — Python type annotations (mypy, pyright) work differently: compare
 - [C# / .NET](../csharp/overview.en.md) — nominal typing versus structural typing
+- [React](../react/overview.en.md) — types for components, props and hooks
 
 ## Sources
 

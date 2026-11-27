@@ -137,6 +137,7 @@ code/
 | python, llm | `pyproject.toml`, `examples/exNN_name.py`, `solutions/`, `tests/test_*.py` (имя модуля Python не может начинаться с цифры) | pytest | `uv run pytest` |
 | javascript | `package.json` (`"type": "module"`), `examples/exNN-name.js`, `solutions/`, `tests/*.test.js` | встроенный раннер `node:test` | `npm test` (`node --test`) |
 | typescript | `package.json`, `tsconfig.json`, `examples/exNN-name.ts`, `solutions/`, `tests/*.test.ts` | vitest | `npm test` (`vitest run`); типы — `npx tsc --noEmit` |
+| react | `package.json` (`"type": "module"`), `tsconfig.json`, `examples/exNN-name.tsx`, `solutions/`, `tests/*.test.tsx` | vitest + Testing Library | `npm test` (`vitest run`); типы — `npx tsc --noEmit` |
 | kubernetes | `examples/NN-name.yaml`, ресурсы в namespace `learn-NN` | bats: kubeconform + проверка в kind | `bats tests` |
 | linux | `examples/NN-name.sh` (`#!/usr/bin/env bash`, `set -euo pipefail`, без замечаний shellcheck) | bats | `bats tests` |
 | claude | `pyproject.toml`, `examples/exNN_name.py`, `solutions/`, `tests/test_*.py` | pytest (`uv run pytest`) | `uv run pytest` |

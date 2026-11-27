@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [array, map, set, weakmap, typed-array, sort, iteration, immutability, array-methods, array-holes]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Arrays and collections
@@ -82,3 +82,4 @@ console.log([...new Set([1, 2, 2, 3])], new Map([['a', 1]]).get('a'));
 - Iterators and generators in depth: [11 · Iterators and generators](../11-iterators-and-generators/overview.en.md)
 - Analogues in other tracks: [Python: lists, dicts, sets](../../../python/overview.en.md), [C#: collections and LINQ](../../../csharp/overview.en.md)
 - Typing arrays and collections: [TypeScript](../../../typescript/overview.en.md)
+- [Rendering lists in React](../../../react/modules/01-components-and-jsx/overview.en.md)

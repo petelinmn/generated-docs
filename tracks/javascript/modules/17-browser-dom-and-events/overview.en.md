@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [dom, events, event-bubbling, event-delegation, fetch, web-storage, shadow-dom, custom-elements, cors, web-workers]
 versions: "WHATWG DOM and HTML Living Standard; checked in Chrome 157 (headless)"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Browser: the DOM and events
@@ -86,3 +86,4 @@ One handler on `<ul>` serves all the `<li>`s, including those added later.
 - Prerequisites: [09 · Modules](../09-modules/overview.en.md), [12 · Promises and async/await](../12-promises-and-async-await/overview.en.md), [13 · The event loop and concurrency](../13-event-loop-and-concurrency/overview.en.md)
 - Next: [18 · Metaprogramming](../18-metaprogramming/overview.en.md)
 - Analogues in other tracks: [TypeScript](../../../typescript/overview.en.md) (DOM types, frameworks), [C#: Blazor and ASP.NET Core](../../../csharp/overview.en.md) (the server side)
+- [React: components and JSX](../../../react/modules/01-components-and-jsx/overview.en.md)

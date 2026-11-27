@@ -93,6 +93,7 @@ TypeScript — надмножество [JavaScript](../javascript/overview.ru.m
 - [JavaScript](../javascript/overview.ru.md) — основа языка; без модулей 01–08 типы не имеют смысла
 - [Python](../python/overview.ru.md) — аннотации типов Python (mypy, pyright) устроены иначе: сравните
 - [C# / .NET](../csharp/overview.ru.md) — номинальная типизация против структурной
+- [React](../react/overview.ru.md) — типы для компонентов, props и хуков
 
 ## Источники
 

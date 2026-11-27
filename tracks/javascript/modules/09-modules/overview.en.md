@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [esm, commonjs, import, export, dynamic-import, live-bindings, package-exports, circular-dependencies, top-level-await, interop]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Modules
@@ -87,3 +87,4 @@ default 0
 - Asynchrony in depth: module 12 of the roadmap
 - Analogues in other tracks: [Python: modules and packages](../../../python/overview.en.md), [C#: assemblies and namespaces](../../../csharp/overview.en.md)
 - Modules and `tsconfig` in TypeScript: [TypeScript](../../../typescript/overview.en.md)
+- [React: components and JSX](../../../react/modules/01-components-and-jsx/overview.en.md)

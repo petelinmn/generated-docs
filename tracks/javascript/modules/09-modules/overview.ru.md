@@ -10,7 +10,7 @@ levels: [1, 2, 3, 4]
 tags: [esm, commonjs, import, export, dynamic-import, live-bindings, package-exports, circular-dependencies, top-level-await, interop]
 versions: "ECMAScript 2025+, Node.js 24.15 LTS"
 status: draft
-updated: 2026-11-23
+updated: 2026-11-26
 ---
 
 # Модули
@@ -87,3 +87,4 @@ default 0
 - Асинхронность подробно: модуль 12 дорожной карты
 - Аналоги в других треках: [Python: модули и пакеты](../../../python/overview.ru.md), [C#: сборки и пространства имён](../../../csharp/overview.ru.md)
 - Модули и `tsconfig` в TypeScript: [TypeScript](../../../typescript/overview.ru.md)
+- [React: компоненты и JSX](../../../react/modules/01-components-and-jsx/overview.ru.md)
